@@ -1,0 +1,24 @@
+<h1>Categories</h1>
+
+Add category:<input type="text" ng-model="category.name" />
+Add description:<input type="text" ng-model="category.description" />
+<input type="submit" value="Add Category" ng-click="addCategory();"/>
+
+<span>{{category.errorMessage}}</span>
+
+
+<table>
+<thead>
+<tr>
+<th>Name</th><th>Description</th><th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="category in categories">
+<th><input type="text" ng-model="categories[$index].name" ng-show="categories[$index].edit" /> <span ng-bind="category.name" ng-show="!categories[$index].edit"></span></th><th><input type="text" ng-model="categories[$index].description" ng-show="categories[$index].edit" /> <span ng-bind="category.description" ng-show="!categories[$index].edit"></span></th><th><input type="button" value="Update" ng-click="updateCategory($index);"/>/<input type="button" value="Delete" ng-click="deleteCategory($index,category.id);"/></th>
+</tr>
+</tbody>
+
+
+</table>
+
