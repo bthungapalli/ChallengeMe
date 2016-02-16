@@ -10,6 +10,10 @@ challengeMeApp.config(["$stateProvider",function($stateProvider){
 		url: "/categories",
 		controller:"categoriesController",
 		templateUrl : "angularjs/partials/categories.html",
+	}).state("profile",{
+		url: "/profile",
+		controller:"profileController",
+		templateUrl : "angularjs/partials/profile.html",
 	});
 	
 }]);
