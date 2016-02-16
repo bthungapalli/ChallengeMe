@@ -4,7 +4,6 @@ challengeMeApp.config(["$stateProvider",function($stateProvider){
 	
 	$stateProvider.state("/",{
 		url: "/login",
-		controller:"loginController",
 		templateUrl : "angularjs/partials/login.html",
 	}).state("categories",{
 		url: "/categories",
