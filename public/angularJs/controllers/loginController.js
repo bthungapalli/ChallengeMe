@@ -17,7 +17,7 @@ angular.module("challengeMeApp").controller("loginController",["$scope","$http",
 		$http.post(authenticateUserUrl,data).success(function(response){
 			
 			if(angular.isDefined(response.user)){
-				$state.go("dashBoard");
+				$state.go("categories");
 			}else if(response==="Not able to access server"){
 				$scope.user.errorMessage="Not able to access server";
 			}
