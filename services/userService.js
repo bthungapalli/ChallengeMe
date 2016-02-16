@@ -1,4 +1,5 @@
 var userModel=require("../models/userModel.js");
+var counterModel     = require("../models/counterModel"); 
 
 var userService =function(){
 
@@ -10,20 +11,30 @@ createOrSaveUser : function(userDetails){
     query.exec(function(err, users){
         if(err)
             res.send(err);
-      //  if(users.length===0){
+        
         var user ;
         if(users!==null){
-        	 user = new userModel({"_id":users._id,"username": userDetails.username,"name": userDetails.name,"emailId":userDetails.emailId ,"title":userDetails.title,"empId":userDetails.empId,"phone":userDetails.phone,"workPhone":userDetails.workPhone,"location":userDetails.location,"businessUnit":userDetails.businessUnit,"adminIndicator":userDetails.adminIndicator});
+        	 var conditions = { "_id":users._id };
+        	 var update = { $set: {"username": userDetails.username,"name": userDetails.name,"emailId":userDetails.emailId ,"title":userDetails.title,"empId":userDetails.empId,"phone":userDetails.phone,"workPhone":userDetails.workPhone,"location":userDetails.location,"businessUnit":userDetails.businessUnit,"adminIndicator":userDetails.adminIndicator }};
+        	 userModel.update(conditions, update, callback);
+
+        	function callback (err, numAffected) {
+        		console.log(numAffected + "rows updates");
+        	};
+        	 
         }else{
-        	 user = new userModel({"username": userDetails.username,"name": userDetails.name,"emailId":userDetails.emailId ,"title":userDetails.title,"empId":userDetails.empId,"phone":userDetails.phone,"workPhone":userDetails.workPhone,"location":userDetails.location,"businessUnit":userDetails.businessUnit,"adminIndicator":userDetails.adminIndicator});
-        }
-        	
-            user.save(function(err){
+        	counterModel.findByIdAndUpdate({_id : "userId"}, {$inc: {seq: 1} }, function(error, counter)   {
+  		       if(error)
+  		            return next(error);
+  		       
+  		      user = new userModel({"_id":counter.seq ,"username": userDetails.username,"name": userDetails.name,"emailId":userDetails.emailId ,"title":userDetails.title,"empId":userDetails.empId,"phone":userDetails.phone,"workPhone":userDetails.workPhone,"location":userDetails.location,"businessUnit":userDetails.businessUnit,"adminIndicator":userDetails.adminIndicator});
+  		      user.save(function(err){
                 if(err)
                 	return err;
             });
-        //}
-
+  		      
+        	});
+        }
         return users;
     });
     

@@ -2,7 +2,7 @@ var mongoose    = require('mongoose');
 var Schema      = mongoose.Schema;
 var counterModel     = require("./counterModel"); 
 
-var counter = new counterModel({"_id":"userId","username": 0});
+var counter = new counterModel({"_id":"userId","seq": 0});
 counter.save(function(err){
     if(err)
     	return err;
@@ -13,7 +13,7 @@ var UserSchema = new Schema({
     username: {type: String, required: true},
     name:{type: String, required: true},
     emailId: {type: String, required: true},
-    title:{type: String, required: true},
+    title:{type: String},
     empId: {type: String, required: false},
     phone:{type: String, required: false},
     workPhone:{type: String, required: false},
@@ -27,21 +27,7 @@ var UserSchema = new Schema({
 
 
     UserSchema.pre('save', function(next){
-	if(this._id===0){
-		
-		/* var query = counterModel.find({_id : "userId"});
-		    query.exec(function(err, counter){
-		    	 console.log("counter:"+counter.toString());
-		    });*/
-		
-		counterModel.findByIdAndUpdate({"_id" : "userId"}, {$inc: {seq: 1} }, function(error, counter)   {
-			  console.log("counter:"+counter.toString());
-		       if(error)
-		            return next(error);
-		        this._id = counter.seq;
-		    });
-	}
-  
+
     now = new Date();
     this.updated_at = now;
     if(!this.created_at) {
