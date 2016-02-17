@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("categoriesController",["$scope",function($scope){
+angular.module("challengeMeApp").controller("categoriesController",["$scope","$http",function($scope,$http){
 	
 	$scope.initializeCategory=function(){
 		$scope.category={
