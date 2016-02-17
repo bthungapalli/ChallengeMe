@@ -1,2 +1,16 @@
 <h1>Profile</h1>
 
+
+
+
+All Categories{{allCategories.length}}
+<div id="allCategories" droppable drop="handleDropInAllCategory" style="width:200px;height:200px;border:1px black solid;">
+
+<span ng-repeat="category in allCategories" id="{{category}}"  draggable>{{category.name}}</span>
+
+</div>
+user Categories{{userCategories.length}}
+<div id="userCategories" droppable drop="handleDropInUserCategory" style="width:200px;height:200px;border:1px black solid;">
+
+<span ng-repeat="category in userCategories" id="{{category}}"  draggable>{{category.name}}</span>
+</div>

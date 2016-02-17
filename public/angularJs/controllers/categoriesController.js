@@ -2,7 +2,7 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 	
 	$scope.initializeCategory=function(){
 		$scope.category={
-				"id":"1",
+				"_id":"",
 				"name":"",
 				"description":"",
 				"edit":false,
@@ -10,8 +10,19 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 		};
 	};
 	
-	$scope.initializeCategory();
 	$scope.categories=[];
+	
+	
+	$scope.getAllCategories=function(){
+		
+	$http.get("/categories").success(function(response){
+		$scope.categories=response;
+		$scope.initializeCategory();
+		}).error(function(error){
+			$scope.category.errorMessage="Some thing went wrong.";
+		});
+	};
+	$scope.getAllCategories();
 	
 	$scope.addCategory=function(){
 		var data = {
@@ -26,11 +37,11 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 			$scope.category.errorMessage="Some thing went wrong.";
 		});
 		
-	}
+	};
 	
 	$scope.updateCategory=function(index){
 		var data = {
-				id:$scope.categories[index].id,
+				id:$scope.categories[index]._id,
 				name : $scope.categories[index].name,
 				description : $scope.categories[index].description
 			};
@@ -43,9 +54,7 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 		}else{
 			$scope.categories[index].edit=!$scope.categories[index].edit;
 		}
-		
-	
-	}
+	};
 	
 	$scope.deleteCategory=function(index,id){
 		
@@ -54,6 +63,6 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 		}).error(function(error){
 			$scope.category.errorMessage="Some thing went wrong.";
 		});
-	}
+	};
 	
 }]);

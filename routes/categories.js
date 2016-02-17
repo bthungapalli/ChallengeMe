@@ -24,11 +24,11 @@ router.post('/',function (req,res,next){
         if(categoryDetails.id !== undefined){
         console.log('came in update');
         	 var conditions = { "_id":categoryDetails.id };
-        	 var update = { $set: {"name":req.body.name,"description":req.body.description,"updated_at":Date.now}};
+        	 var update = { $set: {"name":req.body.name,"description":req.body.description}};
         	 catModel.update(conditions, update, callback);
         	 
         	function callback (err, numAffected) {
-        		console.log(categoryDetails.id + "rows updates");
+        		console.log(numAffected + "rows updates");
         		res.json(categoryDetails.id);
         	};
         	 
@@ -48,12 +48,10 @@ router.post('/',function (req,res,next){
 	
 });
 
-router.delete('/',function (req,res,next){
-        if(req.body.id !== undefined){
+router.delete('/:id',function (req,res,next){
+        if(req.params.id !== undefined){
         console.log('came in delete');
-        var query = catModel.find().remove({ '_id': req.body.id });
-        query.remove({ name: 'Anne Murray' }).remove(callback)
-        catModel.remove({"_id":req.body.id},callback);
+        catModel.remove({"_id":req.params.id},callback);
         	function callback (err, numAffected) {
         		console.log(numAffected+ "rows updates");
         		}
