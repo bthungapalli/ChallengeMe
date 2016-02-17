@@ -2,8 +2,8 @@ angular.module("challengeMeApp").controller("loginController",["$scope","$http",
 	
 
 	$scope.user={
-		userName:"apatha@osius.com",
-		password:"Cricket@100",
+		userName:"",
+		password:"",
 		errorMessage:""
 	};
 	
