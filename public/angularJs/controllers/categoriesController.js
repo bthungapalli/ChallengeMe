@@ -25,17 +25,27 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 	$scope.getAllCategories();
 	
 	$scope.addCategory=function(){
+		var duplicateCategory=false;
+		angular.forEach($scope.categories,function(category,index){
+			if(category.name.toUpperCase()===$scope.category.name.toUpperCase()){
+				duplicateCategory=true;
+				$scope.category.errorMessage="Category all ready exist.";
+			}
+		});
+		if(!duplicateCategory){
 		var data = {
 				name : $scope.category.name,
 				description :  $scope.category.description
-			};
-	$http.post("/categories",data).success(function(response){
-		$scope.category.errorMessage=""
-		$scope.categories.push($scope.category);
-		$scope.initializeCategory();
-		}).error(function(error){
-			$scope.category.errorMessage="Some thing went wrong.";
-		});
+				};
+		$http.post("/categories",data).success(function(response){
+			$scope.category.errorMessage=""
+			$scope.categories.push($scope.category);
+			$scope.initializeCategory();
+			}).error(function(error){
+				$scope.category.errorMessage="Some thing went wrong.";
+			});
+		};
+		
 		
 	};
 	
