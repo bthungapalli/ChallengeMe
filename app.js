@@ -10,6 +10,7 @@ mongoose.connect('mongodb://localhost/challengeMeDB');
 
 var login = require('./routes/login');
 var categories = require('./routes/categories');
+var locations = require('./routes/locations');
 
 
 var app = express();
@@ -24,6 +25,7 @@ app.use('/node_modules', express.static(path.join(__dirname + '/node_modules')))
 
 app.use('/', login);
 app.use('/categories', categories);
+app.use('/locations', locations);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

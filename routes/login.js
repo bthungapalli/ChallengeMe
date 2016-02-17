@@ -28,8 +28,11 @@ router.post('/authenticate', function(request, response,next) {
 		  });
 		  res.on('end', function(){
 			 var resBodyJson=  JSON.parse(resBody);
-			  userService.createOrSaveUser(resBodyJson.user.principal);
-			  response.send(resBodyJson);
+			  userService.createOrSaveUser(resBodyJson.user.principal,function(err,userDetails){
+				  if(err)
+					  response.send("Invalid");
+				  response.send(userDetails);
+			  });
 		  });
 		});
 

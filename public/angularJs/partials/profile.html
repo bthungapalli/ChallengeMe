@@ -2,8 +2,7 @@
 
 
 
-
-All Categories{{allCategories.length}}
+<!-- All Categories{{allCategories.length}}
 <div id="allCategories" droppable drop="handleDropInAllCategory" style="width:200px;height:200px;border:1px black solid;">
 
 <span ng-repeat="category in allCategories" id="{{category}}"  draggable>{{category.name}}</span>
@@ -13,4 +12,18 @@ user Categories{{userCategories.length}}
 <div id="userCategories" droppable drop="handleDropInUserCategory" style="width:200px;height:200px;border:1px black solid;">
 
 <span ng-repeat="category in userCategories" id="{{category}}"  draggable>{{category.name}}</span>
-</div>
+</div> -->
+
+
+name:        {{userDetails.name}}     
+</br>
+work phone: <input type="text" ng-model="userDetails.workPhone"/>
+</br>
+location:  <select ng-options="location._id as location.name for location in locations" ng-model="userDetails.location"></select>
+</br>
+empId: <input type="text" ng-model="userDetails.empId"/>
+</br>
+pic:
+</br>
+categories:
+<span ng-repeat="category in allCategories" ><input  id="{{category.name}}" type="checkbox" value="{{category}}"  ng-click="toggleSelection(category)"/><label for="{{category.name}}">{{category.name}} </label></span>

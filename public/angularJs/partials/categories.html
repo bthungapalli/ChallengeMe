@@ -2,7 +2,7 @@
 
 Add category:<input type="text" ng-model="category.name" />
 Add description:<input type="text" ng-model="category.description" />
-<input type="submit" value="Add Category" ng-click="addCategory();"/>
+<input type="submit" value="Add Category" ng-click="addCategory();" ng-disabled="!category.name"/>
 
 <span>{{category.errorMessage}}</span>
 

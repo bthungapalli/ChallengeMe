@@ -38,7 +38,8 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 				description :  $scope.category.description
 				};
 		$http.post("/categories",data).success(function(response){
-			$scope.category.errorMessage=""
+			$scope.category.errorMessage="";
+			$scope.category._id=response;
 			$scope.categories.push($scope.category);
 			$scope.initializeCategory();
 			}).error(function(error){
