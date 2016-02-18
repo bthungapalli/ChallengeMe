@@ -4,29 +4,14 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	$scope.userCategories=[];
 	$scope.selection=[];
 	$scope.locations=[];
+	$scope.editProfile=false;
 	
 	$scope.getAllCategories=function(){
 		
 		$http.get("/categories").success(function(response){
 			
-			/*var userCat=[{
-				    "_id" : "4",
-				    "name" : "ggqw",
-				    "description" : "gggqw",
-				    "updated_at" : "2016-02-17T11:04:29.608Z",
-				    "created_at" : "2016-02-17T11:04:29.608Z",
-				    "__v" : 0
-				}];
-			*/
-		//	$scope.userCategories=userDetails.categories;
+			$scope.userCategories=[{"_id":"4","name":"ggqw","description":"gggqw","__v":0,"updated_at":"2016-02-17T11:09:26.032Z","created_at":"2016-02-17T11:09:26.032Z"}];
 			
-		/*	angular.forEach($scope.userCategories,function(userCategory){
-				angular.forEach(response,function(allCategory,index){
-					if(allCategory.name===userCategory.name){
-						response.splice(index,1);
-					}
-				});
-			});*/
 			$scope.allCategories=response;
 			}).error(function(error){
 				$scope.category.errorMessage="Some thing went wrong.";
@@ -46,7 +31,12 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	$scope.getLocations();
 	
 	$scope.toggleSelection = function toggleSelection(category) {
-	    var idx = $scope.userCategories.indexOf(category);
+		var idx=-1;
+	    angular.forEach($scope.userCategories,function(userCategory,index){
+			if(userCategory._id===category._id){
+				idx=index;
+			}
+		});
 
 	    if (idx > -1) {
 	      $scope.userCategories.splice(idx, 1);
@@ -57,14 +47,28 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	  };
 	  
 	  $scope.checkCategory=function(categoryId){
+		  var checked=false;
 		  angular.forEach($scope.userCategories,function(category,index){
-				if(category._id==categoryId){
-					return true;
+				if(category._id===categoryId){
+					checked=true;
 				}
 			});
-	  }
-	
-	
+		  return checked;
+	  };
+	  
+	  $scope.updateProfile=function(){
+		  $scope.editProfile=false;
+		 /* $http.post("/updateUser").success(function(response){
+			  $scope.editProfile=false;
+				}).error(function(error){
+					$scope.category.errorMessage="Some thing went wrong.";
+				});*/
+	  };
+	  
+	  $scope.edit=function(){
+		  $scope.editProfile=true;
+	  };
+	  
 /*	$scope.handleDropInAllCategory = function(item) {
 		 var itemJson=  JSON.parse(item);
 		$scope.allCategories.push(itemJson);
