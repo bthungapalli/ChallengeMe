@@ -14,7 +14,7 @@ counter.save(function(err){
 
 var categorySchema = Schema({
     _id: {type: String, required: true,default:0},
-    name: { type: String, required: true},
+    name: { type: String},
     description:{type:String},
     created_at: {type: Date, default: Date.now},
     updated_at: {type: Date, default: Date.now}

@@ -1,6 +1,7 @@
 var userModel=require("../models/userModel");
+var catModel     = require("../models/catModel"); 
 var counterModel     = require("../models/counterModel"); 
-var catModel=require("../models/catModel");
+
 var userService =function(){
 
 return{
@@ -14,13 +15,24 @@ createOrSaveUser : function(userDetails,categories, callback){
         
         var user ;
         if(users!==null){
-        	console.log("categories:::",categories);
         	 var conditions = { "_id":users._id }; 
         	 var update = { $set: {"username": userDetails.username,"name": userDetails.name,"emailId":userDetails.emailId ,"title":userDetails.title,"phone":userDetails.phone,"businessUnit":userDetails.businessUnit,"adminIndicator":userDetails.adminIndicator}};
         	 userModel.update(conditions, update, callback1);
-
         	function callback1 (err, numAffected) {
-        		userModel.catModel.push(categories);
+        	 var category = catModel.find({"_id":{$in : categories}});
+        	 category.exec(function(err, cats){
+                    if(err)
+                    	callback(err);
+				console.log("Cats:::",cats); 
+				users.categories.remove();
+				//users.categories.push(cats);
+				users.save(function (err,updatedUser){
+					console.log("error",err);
+				callback(null,updatedUser);	
+				});
+			});	
+			
+        	
         		console.log(numAffected + "rows updates");
         	};
         	 

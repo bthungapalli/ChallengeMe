@@ -1,7 +1,7 @@
 var mongoose    = require('mongoose');
 var Schema      = mongoose.Schema;
 var counterModel     = require("./counterModel"); 
-var categorySchema = require("./catModel");
+var categorySchema = require("./catModel").schema;
 
 
 
@@ -22,10 +22,10 @@ var UserSchema = new Schema({
     workPhone:{type: String, required: false},
     location: {type: String, required: false},
     businessUnit:{type: String, required: false},
-    adminIndicator:{type: String, required: true},
+    adminIndicator:{type: Number, required: true},
     created_at: {type: Date, default: Date.now},
     updated_at: {type: Date, default: Date.now},
-    categories : [{ type:Schema.ObjectId, ref:'category'}]
+    categories : [categorySchema]
 });
 
 
