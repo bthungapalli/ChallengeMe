@@ -14,7 +14,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	
     $scope.getAllChallenges=function(){
 		
-		$http.get("/").success(function(response){
+		$http.get("/challenge").success(function(response){
 			$scope.challenges=response;
 			}).error(function(error){
 				$scope.category.errorMessage="Some thing went wrong.";

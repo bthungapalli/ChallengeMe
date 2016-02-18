@@ -1,2 +1,17 @@
 <header>  Challenges</header>
 
+<table>
+<thead>
+<tr>
+<th>Title</th><th>Posted By</th><th>Posted Date</th><th>status</th><th>Cut Off Time</th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="challenge in challenges">
+<th> <span ng-bind="challenge.title | camelCase" ></span></th><th> <span ng-bind="challenge.createdBy" ></span></th><th> <span ng-bind="challenge.created_at" ></span></th><th> <span ng-bind="challenge.status" ></span></th><th> <span ng-bind="challenge.date" ></span></th>
+</tr>
+</tbody>
+
+
+</table>
+
