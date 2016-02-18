@@ -11,4 +11,4 @@ cut off date
 prize
 <input type="text" ng-model="challenge.prize" />
 
-<input type="button" value="save" ng-click="challenge.status='draft';createChallenge()"/> <input type="button" value="submit" ng-click="challenge.status='create';createChallenge()"/>
+<input type="button" value="save" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0))" ng-click="challenge.status='draft';createChallenge()"/> <input type="button" value="submit" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0))" ng-click="challenge.status='create';createChallenge()"/>
