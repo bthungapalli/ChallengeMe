@@ -19,21 +19,14 @@ createOrSaveUser : function(userDetails,categories, callback){
         	 var update = { $set: {"username": userDetails.username,"name": userDetails.name,"emailId":userDetails.emailId ,"title":userDetails.title,"phone":userDetails.phone,"businessUnit":userDetails.businessUnit,"adminIndicator":userDetails.adminIndicator}};
         	 userModel.update(conditions, update, callback1);
         	function callback1 (err, numAffected) {
-        	 var category = catModel.find({"_id":{$in : categories}});
-        	 category.exec(function(err, cats){
-                    if(err)
-                    	callback(err);
-				console.log("Cats:::",cats); 
-				users.categories.remove();
-				//users.categories.push(cats);
-				users.save(function (err,updatedUser){
-					console.log("error",err);
-				callback(null,updatedUser);	
-				});
-			});	
-			
         	
         		console.log(numAffected + "rows updates");
+        		 var query = userModel.findOne({"emailId":userDetails.emailId});
+                 query.exec(function(err, updatedUser){
+                     if(err)
+                     	callback(err);
+                     callback(null,updatedUser);
+                 });
         	};
         	 
         }else{
@@ -55,9 +48,17 @@ createOrSaveUser : function(userDetails,categories, callback){
               });
         	});
         }
-         callback(null,users);
+         //callback(null,users);
     });
     
+},
+updateUser:function(userDetails){
+	 var conditions = { "_id":userDetails._id }; 
+	 var update = { $set: {"empId": userDetails.empId,"workPhone": userDetails.workPhone,"location":userDetails.location,"categories":userDetails.categories}};
+	 userModel.update(conditions, update, callback1);
+	function callback1 (err, numAffected) {
+		console.log(numAffected + "rows updates");
+	};
 }
 
 
@@ -67,48 +68,3 @@ createOrSaveUser : function(userDetails,categories, callback){
 
 
 module.exports=userService();
-
-
-/*exports.createOrSaveUser=function(userDetails,callback){
-	
-    var query = userModel.findOne({"emailId":userDetails.emailId});
-    
-    query.exec(function(err, users){
-        if(err)
-        	  callback(err);
-        
-        var user ;
-        if(users!==null){
-        	 var conditions = { "_id":users._id }; 
-        	 var update = { $set: {"username": userDetails.username,"name": userDetails.name,"emailId":userDetails.emailId ,"title":userDetails.title,"phone":userDetails.phone,"businessUnit":userDetails.businessUnit,"adminIndicator":userDetails.adminIndicator }};
-        	 userModel.update(conditions, update, callback1);
-
-        	function callback1 (err, numAffected) {
-        		console.log(numAffected + "rows updates");
-        	};
-        	 
-        }else{
-        	counterModel.findByIdAndUpdate({_id : "userId"}, {$inc: {seq: 1} }, function(error, counter)   {
-  		       if(error)
-  		            callback(err);
-  		       
-  		      user = new userModel({"_id":counter.seq ,"username": userDetails.username,"name": userDetails.name,"emailId":userDetails.emailId ,"title":userDetails.title,"phone":userDetails.phone,"businessUnit":userDetails.businessUnit,"adminIndicator":userDetails.adminIndicator});
-  		      user.save(function(err){
-                if(err)
-                	 callback(err);
-                
-                var query1 = userModel.findOne({"emailId":userDetails.emailId});
-                query1.exec(function(err, newUser){
-                    if(err)
-                     callback(err);
-                    callback(null,newUser);
-                });
-              });
-        	});
-        }
-        callback(null,users);
-    });
-    
-	};*/
-
-	

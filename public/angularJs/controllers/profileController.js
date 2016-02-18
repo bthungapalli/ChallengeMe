@@ -9,9 +9,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	$scope.getAllCategories=function(){
 		
 		$http.get("/categories").success(function(response){
-			
-			$scope.userCategories=[{"_id":"4","name":"ggqw","description":"gggqw","__v":0,"updated_at":"2016-02-17T11:09:26.032Z","created_at":"2016-02-17T11:09:26.032Z"}];
-			
+			$scope.userCategories=$scope.userDetails.categories;
 			$scope.allCategories=response;
 			}).error(function(error){
 				$scope.category.errorMessage="Some thing went wrong.";
@@ -19,7 +17,6 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 		};
 		
 		$scope.getLocations=function(){
-			
 			$http.get("/locations").success(function(response){
 				$scope.locations=response;
 				}).error(function(error){
@@ -57,12 +54,19 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	  };
 	  
 	  $scope.updateProfile=function(){
-		  $scope.editProfile=false;
-		 /* $http.post("/updateUser").success(function(response){
+		  
+		  var data={
+				  "_id":$scope.userDetails._id,
+				  "empId":$scope.userDetails.empId,
+				  "workPhone":$scope.userDetails.workPhone,
+				  "location":$scope.userDetails.location,
+				  "categories":$scope.userCategories
+		  };
+		 $http.post("/profile/update",data).success(function(response){
 			  $scope.editProfile=false;
 				}).error(function(error){
 					$scope.category.errorMessage="Some thing went wrong.";
-				});*/
+				});
 	  };
 	  
 	  $scope.edit=function(){

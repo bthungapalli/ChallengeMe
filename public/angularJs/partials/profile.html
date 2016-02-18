@@ -15,18 +15,25 @@ user Categories{{userCategories.length}}
 </div> -->
 
 
-name:        {{userDetails.name}}    
+name:   <input type="text" ng-model="userDetails.name" ng-disabled="true"/>      
 </br>
-work phone: <input type="text" ng-model="userDetails.workPhone" ng-disabled="!editProfile"/>  {{userDetails.workPhone}}  
+work phone: <input type="text" ng-model="userDetails.workPhone" ng-disabled="!editProfile"/>  
 </br>
-location:  <select ng-options="location._id as location.name for location in locations" ng-model="userDetails.location" ng-disabled="!editProfile"></select>  {{userDetails.location}}
+location:  <select ng-options="location._id as location.name for location in locations" ng-model="userDetails.location" ng-disabled="!editProfile"></select> 
 </br>
-empId: <input type="text" ng-model="userDetails.empId" ng-disabled="!editProfile" />  {{userDetails.empId}} 
+empId: <input type="text" ng-model="userDetails.empId" ng-disabled="!editProfile" /> 
 </br>
-pic:
+pic:<img src="\uploads\Chrysanthemum.jpg" style="height: 50px;width: 52px;"/>
 </br>
-categories: {{userCategories}} 
+categories:
 <span ng-repeat="category in allCategories" ><input  id="{{category.name}}" type="checkbox" value="{{category}}" ng-disabled="!editProfile" ng-checked="checkCategory(category._id);" ng-click="toggleSelection(category)"/><label for="{{category.name}}">{{category.name}} </label></span>
 
 <input type="button" value="Edit" ng-click="edit();" ng-show="!editProfile"/>
 <input type="button" value="update" ng-click="updateProfile();" ng-show="editProfile"/>
+
+</br>
+<!-- <form method="post" enctype="multipart/form-data" action="/profile/file-upload">
+ 
+    <input type="file" name="thumbnail">
+    <input type="submit">
+</form> -->

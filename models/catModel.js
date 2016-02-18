@@ -1,6 +1,4 @@
-/**
- * http://usejsdoc.org/
- */
+
 var mongoose    = require('mongoose');
 var counterModel     = require("./counterModel"); 
 var Schema      = mongoose.Schema;
