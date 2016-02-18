@@ -28,7 +28,7 @@ router.post('/authenticate', function(request, response,next) {
 		  });
 		  res.on('end', function(){
 			 var resBodyJson=  JSON.parse(resBody);
-			  userService.createOrSaveUser(resBodyJson.user.principal,function(err,userDetails){
+			  userService.createOrSaveUser(resBodyJson.user.principal,request.body.categories,function(err,userDetails){
 				  if(err)
 					  response.send("Invalid");
 				  response.send(userDetails);

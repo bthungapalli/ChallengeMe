@@ -12,7 +12,7 @@ counter.save(function(err){
     	return err;
 });
 
-var category = Schema({
+var categorySchema = Schema({
     _id: {type: String, required: true,default:0},
     name: { type: String, required: true},
     description:{type:String},
@@ -20,4 +20,4 @@ var category = Schema({
     updated_at: {type: Date, default: Date.now}
 });
 
-module.exports = mongoose.model('category', category);;
+module.exports = mongoose.model('category', categorySchema);;

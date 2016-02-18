@@ -1,6 +1,9 @@
 var mongoose    = require('mongoose');
 var Schema      = mongoose.Schema;
 var counterModel     = require("./counterModel"); 
+var categorySchema = require("./catModel");
+
+
 
 var counter = new counterModel({"_id":"userId","seq": 0});
 counter.save(function(err){
@@ -21,7 +24,8 @@ var UserSchema = new Schema({
     businessUnit:{type: String, required: false},
     adminIndicator:{type: String, required: true},
     created_at: {type: Date, default: Date.now},
-    updated_at: {type: Date, default: Date.now}
+    updated_at: {type: Date, default: Date.now},
+    categories : [{ type:Schema.ObjectId, ref:'category'}]
 });
 
 
@@ -35,5 +39,6 @@ var UserSchema = new Schema({
     }
     next();
 });
+var category = mongoose.model('category', categorySchema);
 
 module.exports = mongoose.model('users', UserSchema);
