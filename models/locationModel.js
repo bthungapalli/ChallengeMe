@@ -5,7 +5,7 @@ var Schema      = mongoose.Schema;
 
 
 var location = Schema({
-    _id: {type: String, required: true,default:0},
+    _id: {type: Number, required: true,default:0},
     name: { type: String, required: true}
 });
 
@@ -17,7 +17,7 @@ location.find(function(err,locations){
     	if(locations.length!==5){
     		
     	var location1 = new location({
-    		_id:"1",
+    		_id:1,
     		name: "Ruby Towers, Hyd"
     		});
     		 
@@ -27,7 +27,7 @@ location.find(function(err,locations){
     		});
 
     	var location2 = new location({
-    		_id:"2",
+    		_id:2,
     		name: "Krithika Layout, Hyd"
     		});
     		 
@@ -37,7 +37,7 @@ location.find(function(err,locations){
     		});
     	
     	var location3 = new location({
-    		_id:"3",
+    		_id:3,
     		name: "Pune Office"
     		});
     		 
@@ -47,7 +47,7 @@ location.find(function(err,locations){
     		});
 
     	var location4 = new location({
-    		_id:"4",
+    		_id:4,
     		name: "Jubilee Hills, Hyd"
     		});
     		 
@@ -57,7 +57,7 @@ location.find(function(err,locations){
     		});
     	
     	var location5 = new location({
-    		_id:"5",
+    		_id:5,
     		name: "Others"
     		});
     		 

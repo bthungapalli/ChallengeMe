@@ -23,7 +23,7 @@ location:  <select ng-options="location._id as location.name for location in loc
 </br>
 empId: <input type="text" ng-model="userDetails.empId" ng-disabled="!editProfile" /> 
 </br>
-pic:<img src="\uploads\Chrysanthemum.jpg" style="height: 50px;width: 52px;"/>
+pic:// need to work
 </br>
 categories:
 <span ng-repeat="category in allCategories" ><input  id="{{category.name}}" type="checkbox" value="{{category}}" ng-disabled="!editProfile" ng-checked="checkCategory(category._id);" ng-click="toggleSelection(category)"/><label for="{{category.name}}">{{category.name}} </label></span>

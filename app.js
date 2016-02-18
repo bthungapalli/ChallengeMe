@@ -14,6 +14,7 @@ var login = require('./routes/login');
 var categories = require('./routes/categories');
 var locations = require('./routes/locations');
 var profile = require('./routes/profile');
+var challenge = require('./routes/challenge');
 
 
 var app = express();
@@ -30,6 +31,7 @@ app.use('/', login);
 app.use('/categories', categories);
 app.use('/locations', locations);
 app.use('/profile', profile);
+app.use('/challenge', challenge);
 
 
 app.set('views', path.join(__dirname, 'views'));

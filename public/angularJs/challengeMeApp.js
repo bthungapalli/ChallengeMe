@@ -17,6 +17,18 @@ challengeMeApp.config(["$stateProvider",function($stateProvider){
 		url: "/profile",
 		controller:"profileController",
 		templateUrl : "angularjs/partials/profile.html",
+	}).state("main.createChallenge",{
+		url: "/createChallenge",
+		controller:"createChallengeController",
+		templateUrl : "angularjs/partials/createChallenge.html",
+	}).state("main.myChallenges",{
+		url: "/myChallenges",
+		controller:"challengesController",
+		templateUrl : "angularjs/partials/challenges.html",
+	}).state("main.allChallenges",{
+		url: "/allChallenges",
+		controller:"challengesController",
+		templateUrl : "angularjs/partials/challenges.html",
 	});
 	
 }]);
