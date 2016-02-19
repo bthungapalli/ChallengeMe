@@ -65,6 +65,8 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 			if($rootScope.previousOpenedChallengeIndex===-1){
 				$scope.challenges[challenge.index].collapse=!$scope.challenges[challenge.index].collapse;
 				$rootScope.previousOpenedChallengeIndex=challenge.index;
+			}else if($rootScope.previousOpenedChallengeIndex===challenge.index){
+				$scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse=!$scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse;
 			}else{
 				$scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse=false;
 				$rootScope.previousOpenedChallengeIndex=challenge.index;
