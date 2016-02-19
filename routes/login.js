@@ -8,7 +8,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/authenticate', function(request, response,next) {
-
 	var optionsget = {
 			host : 'impact.osius.com',
 			path : '/api/user/login', 
@@ -31,6 +30,7 @@ router.post('/authenticate', function(request, response,next) {
 			  userService.createOrSaveUser(resBodyJson.user.principal,request.body.categories,function(err,userDetails){
 				  if(err)
 					  response.send("Invalid");
+				  request.session.user = userDetails;
 				  response.send(userDetails);
 			  });
 		  });
@@ -42,6 +42,12 @@ router.post('/authenticate', function(request, response,next) {
 		});
 
 		req.end();
+	});
+
+router.get('/logout', function(request, response) {
+	request.session.reset();
+	console.log("logout.."+ request.session.user)
+	response.send('logout');
 	});
 
 module.exports = router;

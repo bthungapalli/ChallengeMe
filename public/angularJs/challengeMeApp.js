@@ -29,6 +29,9 @@ challengeMeApp.config(["$stateProvider",function($stateProvider){
 		url: "/allChallenges",
 		controller:"challengesController",
 		templateUrl : "angularjs/partials/challenges.html",
+	}).state("main.logout",{
+		url: "/",
+		controller:"mainController"
 	});
 	
 }]);

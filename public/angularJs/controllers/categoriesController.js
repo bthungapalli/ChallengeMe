@@ -16,6 +16,7 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 	$scope.getAllCategories=function(){
 		
 	$http.get("/categories").success(function(response){
+		$scope.redirectToLoginIfSessionExpires(response);
 		$scope.categories=response;
 		$scope.initializeCategory();
 		}).error(function(error){
@@ -38,6 +39,7 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 				description :  $scope.category.description
 				};
 		$http.post("/categories",data).success(function(response){
+			$scope.redirectToLoginIfSessionExpires(response);
 			$scope.category.errorMessage="";
 			$scope.category._id=response;
 			$scope.categories.push($scope.category);
@@ -58,6 +60,7 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 			};
 		if($scope.categories[index].edit){
 			$http.post("/categories",data).success(function(response){
+				$scope.redirectToLoginIfSessionExpires(response);
 			$scope.categories[index].edit=false;
 			}).error(function(error){
 				$scope.category.errorMessage="Some thing went wrong.";
@@ -70,6 +73,7 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 	$scope.deleteCategory=function(index,id){
 		
 	$http.delete("/categories/"+id).success(function(response){
+		$scope.redirectToLoginIfSessionExpires(response);
 		$scope.categories.splice(index,1);
 		}).error(function(error){
 			$scope.category.errorMessage="Some thing went wrong.";

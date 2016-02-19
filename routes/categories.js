@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var catService=require("../services/categoryService");
+var checkSession=require("../services/checkSessionService");
 var counterModel = require("../models/counterModel"); 
 var catModel = require("../models/catModel.js");
 
 
-router.get('/',function (req,res,next){
+router.get('/',checkSession.requireLogin,function (req,res,next){
 	catModel.find(function(err,users)
 		{
           if(err)
@@ -17,7 +18,7 @@ router.get('/',function (req,res,next){
 		});
 });
 
-router.post('/',function (req,res,next){
+router.post('/',checkSession.requireLogin,function (req,res,next){
 		var catid;
 		var categoryDetails = req.body;
 		
@@ -48,7 +49,7 @@ router.post('/',function (req,res,next){
 	
 });
 
-router.delete('/:id',function (req,res,next){
+router.delete('/:id',checkSession.requireLogin,function (req,res,next){
         if(req.params.id !== undefined){
         console.log('came in delete');
         catModel.remove({"_id":req.params.id},callback);

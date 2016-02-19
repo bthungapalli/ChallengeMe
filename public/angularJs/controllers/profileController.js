@@ -9,6 +9,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	$scope.getAllCategories=function(){
 		
 		$http.get("/categories").success(function(response){
+			$scope.redirectToLoginIfSessionExpires(response);
 			$scope.userCategories=$scope.userDetails.categories;
 			$scope.allCategories=response;
 			}).error(function(error){
@@ -63,6 +64,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 				  "categories":$scope.userCategories
 		  };
 		 $http.post("/profile/update",data).success(function(response){
+			 $scope.redirectToLoginIfSessionExpires(response);
 			 if(response==="updated"){
 				 $scope.editProfile=false;
 			 }else{

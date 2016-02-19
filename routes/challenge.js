@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 var http = require('http');
 var challengeService=require("../services/challengeService");
+var checkSession=require("../services/checkSessionService");
 
-router.post('/',function (request,response,next){
+router.post('/',checkSession.requireLogin,function (request,response,next){
 	var challenge=request.body;
 	challengeService.createOrSaveChallenge(challenge,function(err,status){
 		if(err)
@@ -15,14 +16,13 @@ router.post('/',function (request,response,next){
 	});
 });
 
-router.get('/:categories',function (request,response,next){
+router.get('/:categories',checkSession.requireLogin,function (request,response,next){
+	var user=request.session.user;
+	console.log("sess user"+user);
 	var categoriesJson = JSON.parse(request.params.categories);
 	var categories = [];
 	for (var prop in categoriesJson) {
 		var cat =categoriesJson[prop];
-		/*cat.created_at="ISODate("+cat.created_at+")";
-		cat.updated_at="ISODate("+cat.updated_at+")";
-		categories=categories+(JSON.stringify(cat))+",";*/
 		categories.push(categoriesJson[prop]._id);
 	}
 	challengeService.getAllChallenges(categories,function(err,challenges){
@@ -32,7 +32,7 @@ router.get('/:categories',function (request,response,next){
 	});
 });
 
-router.get('/mychallenges/:emailId',function (request,response,next){
+router.get('/mychallenges/:emailId',checkSession.requireLogin,function (request,response,next){
 	var emailId=request.params.emailId;
 	challengeService.getChallengeForEmailId(emailId,function(err,challenges){
 		if(err)
@@ -41,7 +41,7 @@ router.get('/mychallenges/:emailId',function (request,response,next){
 	});
 });
 
-router.get('/:id',function (request,response,next){
+router.get('/:id',checkSession.requireLogin,function (request,response,next){
 	var challengeId=request.params.id;
 	challengeService.getChallengeForChallengeId(challengeId,function(err,challenge){
 		if(err)

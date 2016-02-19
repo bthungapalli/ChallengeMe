@@ -29,6 +29,12 @@ angular.module("challengeMeApp").controller("loginController",["$scope","$http",
 			});
 			
 		};
+		
+		$scope.redirectToLoginIfSessionExpires=function(msg){
+			if(msg==="sessionExpired"){
+				$state.go("/");
+			};
+		};
 
 	$state.go("/");
 }]);

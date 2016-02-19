@@ -19,6 +19,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 	$scope.getAllCategories=function(){
 		
 		$http.get("/categories").success(function(response){
+			$scope.redirectToLoginIfSessionExpires(response);
 			$scope.categories=response;
 			}).error(function(error){
 				$scope.category.errorMessage="Some thing went wrong.";
@@ -30,6 +31,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		$scope.saveChallenge=function(){
 			$scope.errorMessage="";
 			$http.post("/challenge",$scope.challenge).success(function(response){
+				$scope.redirectToLoginIfSessionExpires(response);
 				if(response=="error"){
 					$scope.errorMessage="Some thing went wrong.";
 				}else{
@@ -75,6 +77,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 			}
 			
 				$http.get("/challenge/"+challenge._id).success(function(response){
+					$scope.redirectToLoginIfSessionExpires(response);
 					$scope.challenge=response[0];
 					$scope.challengeTemplate="angularjs/partials/viewChallenge.html";
 				}).error(function(error){

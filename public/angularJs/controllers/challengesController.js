@@ -15,6 +15,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	$scope.getMyChallenges=function(){
 		
 		$http.get("/challenge/mychallenges/"+$scope.userDetails.emailId).success(function(response){
+			$scope.redirectToLoginIfSessionExpires(response);
 			$scope.addAttributesToChallenge(response);
 			}).error(function(error){
 				$scope.category.errorMessage="Some thing went wrong.";
@@ -24,6 +25,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	$scope.getAllChallenges=function(){
 		
 		$http.get("/challenge/"+JSON.stringify($scope.userDetails.categories)).success(function(response){
+			$scope.redirectToLoginIfSessionExpires(response);
 			$scope.addAttributesToChallenge(response);
 			}).error(function(error){
 				$scope.category.errorMessage="Some thing went wrong.";

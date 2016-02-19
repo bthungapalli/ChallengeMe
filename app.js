@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var qt   = require('quickthumb');
+var session = require('client-sessions');
 
 
 mongoose.connect('mongodb://localhost/challengeMeDB');
@@ -23,7 +24,15 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-
+app.use(session({
+	  cookieName: 'session',
+	  secret: 'random_string_goes_here',
+	  duration: 30 * 60 * 1000,
+	  activeDuration: 5 * 60 * 1000,
+	  httpOnly: true,
+	  secure: true,
+	  ephemeral: true
+	}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(path.join(__dirname + '/node_modules')));
 

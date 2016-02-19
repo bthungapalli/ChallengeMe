@@ -64,7 +64,6 @@ updateUser:function(userDetails,callBackForUserUpdate){
 }
 
 
-
 };
 };
 
