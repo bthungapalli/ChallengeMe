@@ -12,7 +12,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 			$scope.userCategories=$scope.userDetails.categories;
 			$scope.allCategories=response;
 			}).error(function(error){
-				$scope.category.errorMessage="Some thing went wrong.";
+				$scope.errorMessage="Some thing went wrong.";
 			});
 		};
 		
@@ -20,7 +20,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 			$http.get("/locations").success(function(response){
 				$scope.locations=response;
 				}).error(function(error){
-					$scope.category.errorMessage="Some thing went wrong.";
+					$scope.errorMessage="Some thing went wrong.";
 				});
 		};
 	
@@ -63,9 +63,14 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 				  "categories":$scope.userCategories
 		  };
 		 $http.post("/profile/update",data).success(function(response){
-			  $scope.editProfile=false;
+			 if(response==="updated"){
+				 $scope.editProfile=false;
+			 }else{
+				 $scope.errorMessage="Dint not save";
+			 }
+			  
 				}).error(function(error){
-					$scope.category.errorMessage="Some thing went wrong.";
+					$scope.errorMessage="Some thing went wrong.";
 				});
 	  };
 	  

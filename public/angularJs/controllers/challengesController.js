@@ -23,7 +23,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	
 	$scope.getAllChallenges=function(){
 		
-		$http.get("/challenge").success(function(response){
+		$http.get("/challenge/"+JSON.stringify($scope.userDetails.categories)).success(function(response){
 			$scope.addAttributesToChallenge(response);
 			}).error(function(error){
 				$scope.category.errorMessage="Some thing went wrong.";

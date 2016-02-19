@@ -20,7 +20,7 @@ var UserSchema = new Schema({
     empId: {type: String, required: false},
     phone:{type: String, required: false},
     workPhone:{type: String, required: false},
-    location: {type: String, required: false},
+    location: {type: Number, required: false},
     businessUnit:{type: String, required: false},
     adminIndicator:{type: Number, required: true},
     created_at: {type: Date, default: Date.now},

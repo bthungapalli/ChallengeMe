@@ -41,9 +41,9 @@ getChallengeForEmailId:function(emailId,callbackForChallengesForEmailId){
         callbackForChallengesForEmailId(null,challenges);
     });
 },
-getAllChallenges:function(callbackForAllChallenges){
-	
-	var query = challengeModel.find();
+getAllChallenges:function(categories,callbackForAllChallenges){
+	console.log("categories"+categories);
+	var query = challengeModel.find({"categories._id":{$in:categories}});
     query.exec(function(err, challenges){
         if(err)
         	callbackForAllChallenges(err);

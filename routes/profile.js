@@ -8,11 +8,10 @@ var fs   = require('fs-extra');
 
 router.post('/update', function(request, response,next) {
 
-
-	  userService.updateUser(request.body,function(err,userDetails){
+	  userService.updateUser(request.body,function(err,rows){
 		  if(err)
 			  response.send("Invalid");
-		  response.send(userDetails);
+		  response.send("updated");
 	  });
 		
 	});

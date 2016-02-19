@@ -48,16 +48,18 @@ createOrSaveUser : function(userDetails,categories, callback){
               });
         	});
         }
-         //callback(null,users);
     });
     
 },
-updateUser:function(userDetails){
+updateUser:function(userDetails,callBackForUserUpdate){
 	 var conditions = { "_id":userDetails._id }; 
 	 var update = { $set: {"empId": userDetails.empId,"workPhone": userDetails.workPhone,"location":userDetails.location,"categories":userDetails.categories}};
 	 userModel.update(conditions, update, callback1);
 	function callback1 (err, numAffected) {
-		console.log(numAffected + "rows updates");
+		if(err)
+			callBackForUserUpdate(err);
+		console.log(numAffected.n + "rows updates");
+		callBackForUserUpdate(err,numAffected.n)
 	};
 }
 
