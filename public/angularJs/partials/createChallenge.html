@@ -1,7 +1,7 @@
 <header>Create Challenge</header>
 {{errorMessage}}
 categories:
-<span ng-repeat="category in categories" ><input  id="{{category.name}}" type="checkbox" value="{{category}}"   ng-click="toggleSelection(category)"/><label for="{{category.name}}">{{category.name}} </label></span>
+<span ng-repeat="category in categories" ><input  id="{{category.name}}" type="checkbox" value="{{category}}"  ng-checked="checkCategory(category._id);"  ng-click="toggleSelection(category)"/><label for="{{category.name}}">{{category.name}} </label></span>
 title
 <input type="text" ng-model="challenge.title" />
 description

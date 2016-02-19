@@ -6,9 +6,14 @@
 <th>Title</th><th>Posted By</th><th>Posted Date</th><th>status</th><th>Cut Off Time</th>
 </tr>
 </thead>
-<tbody>
-<tr ng-repeat="challenge in challenges">
-<th> <span ng-bind="challenge.title | camelCase" ></span></th><th> <span ng-bind="challenge.createdBy" ></span></th><th> <span ng-bind="challenge.created_at" ></span></th><th> <span ng-bind="challenge.status" ></span></th><th> <span ng-bind="challenge.date" ></span></th>
+<tbody ng-controller="viewChallengeController" ng-repeat="challengeObj in challenges" >
+<tr >
+<td ng-bind="challengeObj.title | camelCase" ng-click="getChallenge(challengeObj);"> </td><td ng-bind="challengeObj.createdBy" ng-click="getChallenge(challengeObj);"> </td><td ng-bind="challengeObj.created_at" ng-click="getChallenge(challengeObj);" ></td><td  ng-bind="challengeObj.status" ng-click="getChallenge(challengeObj);"> </td><td  ng-bind="challengeObj.date" ng-click="getChallenge(challengeObj);"> </td>
+</tr>
+<tr>
+<td colspan="5" >
+<div  ng-show="challengeObj.collapse" ng-include="challengeTemplate"  ></div>
+</td>
 </tr>
 </tbody>
 

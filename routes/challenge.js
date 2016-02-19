@@ -24,11 +24,20 @@ router.get('/',function (request,response,next){
 });
 
 router.get('/mychallenges/:emailId',function (request,response,next){
-	var emailid=request.params.emailId;
-	challengeService.getChallengeForEmailId(emailid,function(err,challenges){
+	var emailId=request.params.emailId;
+	challengeService.getChallengeForEmailId(emailId,function(err,challenges){
 		if(err)
 			response.send("error");
 		response.send(challenges);
+	});
+});
+
+router.get('/:id',function (request,response,next){
+	var challengeId=request.params.id;
+	challengeService.getChallengeForChallengeId(challengeId,function(err,challenge){
+		if(err)
+			response.send("error");
+		response.send(challenge);
 	});
 });
 

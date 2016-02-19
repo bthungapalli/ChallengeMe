@@ -9,9 +9,10 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 			"date":"",
 			"prize":"",
 			"status":"",
-			"emailId":$scope.userDetails.emailId,
-			"name":$scope.userDetails.name
+			"createdByEmailId":$scope.userDetails.emailId,
+			"createdBy":$scope.userDetails.name
 	};
+	
 	$scope.getAllCategories=function(){
 		
 		$http.get("/categories").success(function(response){
@@ -51,6 +52,5 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 		      $scope.challenge.categories.push(category);
 		    }
 		  };
-		
 		
 }]);
