@@ -1,5 +1,6 @@
 var challengeModel = require("../models/challengeModel");
 var counterModel = require("../models/counterModel"); 
+var subcribeChallengeModel = require("../models/subcribeChallengeModel"); 
 
 var categoryService =function(){
 
@@ -58,8 +59,39 @@ getChallengeForChallengeId:function(challengeId,callbackForchallenge){
         	callbackForchallenge(err);
         callbackForchallenge(null,challenge);
     });
-}
-	
+},
+subcribeChallenge:function(challengeId,emailId,callbackForSubcribe){
+
+ 	counterModel.findByIdAndUpdate({_id : "subcribeChallengeId"}, {$inc: {seq: 1} }, function(error, counter)   {
+	       if(error)
+	    	   callbackForSubcribe(error);
+ 	var subcribeChallenge = new subcribeChallengeModel({"_id":counter.seq, "challengeId": challengeId,"emailId": emailId});
+ 	subcribeChallenge.save(function(err){
+         if(err)
+        	 callbackForSubcribe(err);
+         callbackForSubcribe(null,"subcribed");
+     });
+ 	});
+},
+getSubcribedChallengeIds:function(emailId,callbackForSubcribedChallengeIds){
+console.log("in side getSubcribedChallengeIds" +emailId );
+	var query = subcribeChallengeModel.find({"emailId":emailId});
+    query.exec(function(err, challengeIds){
+        if(err)
+        	callbackForSubcribedChallengeIds(err);
+        callbackForSubcribedChallengeIds(null,challengeIds);
+    });
+},
+getSubcribedChallenges:function(ids,callbackForSubcribedChallenges){
+	console.log("in side getSubcribedChallenges" +ids );
+		var query = challengeModel.find({"_id":{$in:ids}});
+	    query.exec(function(err, challenges){
+	        if(err)
+	        	callbackForSubcribedChallenges(err);
+	        callbackForSubcribedChallenges(null,challenges);
+	    });
+	}
+
 }
 
 }

@@ -1,17 +1,22 @@
-<header>  Challenges</header>
-
+<header>  Challenges {{currentTab}}</header>
+{{errorMessage}}
 <table>
 <thead>
 <tr>
-<th>Title</th><th>Posted By</th><th>Posted Date</th><th>status</th><th>Cut Off Time</th>
+<th>Title</th><th>Posted By</th><th>Posted Date</th><th ng-show="currentTab!=='allChallenges'">status</th><th>Cut Off Time</th><th ng-show="currentTab==='allChallenges'">action</th>
 </tr>
 </thead>
 <tbody ng-controller="viewChallengeController" ng-repeat="challengeObj in challenges" >
 <tr >
-<td ng-bind="challengeObj.title | camelCase" ng-click="getChallenge(challengeObj);"> </td><td ng-bind="challengeObj.createdBy" ng-click="getChallenge(challengeObj);"> </td><td ng-bind="challengeObj.created_at" ng-click="getChallenge(challengeObj);" ></td><td  ng-bind="challengeObj.status" ng-click="getChallenge(challengeObj);"> </td><td  ng-bind="challengeObj.date" ng-click="getChallenge(challengeObj);"> </td>
+<td ng-bind="challengeObj.title | camelCase" ng-click="getChallenge(challengeObj);"> </td>
+<td ng-bind="challengeObj.createdBy" ng-click="getChallenge(challengeObj);"> </td>
+<td ng-bind="challengeObj.created_at" ng-click="getChallenge(challengeObj);" ></td>
+<td ng-show="currentTab!=='allChallenges'" ng-bind="challengeObj.status"  ng-click="getChallenge(challengeObj);"> </td>
+<td ng-bind="challengeObj.date" ng-click="getChallenge(challengeObj);"> </td>
+<td ng-show="currentTab==='allChallenges'"><input  ng-click="subcribeChallenge(challengeObj);"  type="button" value="subcribe" /></td>
 </tr>
 <tr>
-<td colspan="5" >
+<td colspan="{{colspan}}" >
 <div  ng-show="challengeObj.collapse" ng-include="challengeTemplate"  ></div>
 </td>
 </tr>

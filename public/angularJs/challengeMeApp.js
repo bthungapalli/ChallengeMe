@@ -32,6 +32,10 @@ challengeMeApp.config(["$stateProvider",function($stateProvider){
 	}).state("main.logout",{
 		url: "/",
 		controller:"mainController"
+	}).state("main.subcribedChallenges",{
+		url: "/subcribed",
+		controller:"challengesController",
+		templateUrl : "angularjs/partials/challenges.html"
 	});
 	
 }]);

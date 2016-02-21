@@ -16,7 +16,7 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 	});
 });
 
-router.get('/:categories',checkSession.requireLogin,function (request,response,next){
+router.get('/categories/:categories',checkSession.requireLogin,function (request,response,next){
 	var user=request.session.user;
 	console.log("sess user"+user);
 	var categoriesJson = JSON.parse(request.params.categories);
@@ -41,8 +41,8 @@ router.get('/mychallenges/:emailId',checkSession.requireLogin,function (request,
 	});
 });
 
-router.get('/:id',checkSession.requireLogin,function (request,response,next){
-	var challengeId=request.params.id;
+router.get('/:challengeId',checkSession.requireLogin,function (request,response,next){
+	var challengeId=request.params.challengeId;
 	challengeService.getChallengeForChallengeId(challengeId,function(err,challenge){
 		if(err)
 			response.send("error");

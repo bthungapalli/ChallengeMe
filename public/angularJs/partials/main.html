@@ -3,14 +3,13 @@
 
 <aside>
 
-<a ui-sref=".categories" >Create categories</a>
-<a ui-sref=".profile" >Edit Profile</a>
-<a ui-sref=".createChallenge" >Create Challenge</a>
-<a ui-sref=".myChallenges" >my Challenges</a>
-<a ui-sref=".allChallenges" >all Challenges</a>
+<a ui-sref=".categories" ng-click="setCurrentTab('categories');">Create categories</a>
+<a ui-sref=".profile" ng-click="setCurrentTab('profile');">Edit Profile</a>
+<a ui-sref=".createChallenge" ng-click="setCurrentTab('createChallenge;);">Create Challenge</a>
+<a ui-sref=".myChallenges" ng-click="setCurrentTab('myChallenges');">my Challenges</a>
+<a ui-sref=".allChallenges" ng-click="setCurrentTab('allChallenges');">all Challenges</a>
+<a ui-sref=".subcribedChallenges" ng-click="setCurrentTab('subcribedChallenges');">subcribed Challenges</a>
 <a ui-sref=".logout" >logout</a>
-
-
 
 
 </aside>
