@@ -10,10 +10,10 @@
 <tr >
 <td ng-bind="challengeObj.title | camelCase" ng-click="getChallenge(challengeObj);"> </td>
 <td ng-bind="challengeObj.createdBy" ng-click="getChallenge(challengeObj);"> </td>
-<td ng-bind="challengeObj.created_at" ng-click="getChallenge(challengeObj);" ></td>
+<td ng-bind="challengeObj.created_at | dateFormat" ng-click="getChallenge(challengeObj);" ></td>
 <td ng-show="currentTab!=='allChallenges'" ng-bind="challengeObj.status"  ng-click="getChallenge(challengeObj);"> </td>
-<td ng-bind="challengeObj.date" ng-click="getChallenge(challengeObj);"> </td>
-<td ng-show="currentTab==='allChallenges'"><input  ng-click="subcribeChallenge(challengeObj);"  type="button" value="subcribe" /> </td>
+<td ng-bind="challengeObj.date | dateFormat" ng-click="getChallenge(challengeObj);"> </td>
+<td ng-show="currentTab==='allChallenges'"><input  ng-click="subcribeChallenge(challengeObj);" ng-show="!challengeObj.closed" type="button" value="subcribe" /> <input   ng-show="challengeObj.closed" type="button" value="Closed" /> </td>
 </tr>
 <tr>
 <td colspan="{{colspan}}" >

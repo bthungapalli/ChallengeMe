@@ -14,6 +14,8 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 	$scope.challengeTemplate;
 	$scope.solutionTemplate;
 	$scope.solutionTemplateForView;
+	$scope.view=$state.current.name;
+	
 	$scope.getAllCategories=function(){
 		
 		$http.get("/categories").success(function(response){
@@ -80,7 +82,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 					$scope.redirectToLoginIfSessionExpires(response);
 					$scope.challenge=response;
 					$scope.challengeTemplate="angularjs/partials/viewChallenge.html";
-					if($scope.currentTab==="subcribedChallenges"){
+					if($scope.view==="main.subcribedChallenges"){
 						$scope.solutionTemplate="angularjs/partials/solution.html";
 					}else{
 						$scope.solutionTemplateForView="angularjs/partials/viewSolutions.html";

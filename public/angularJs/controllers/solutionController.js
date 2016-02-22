@@ -14,8 +14,8 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 		$http.get("/solution/"+$scope.challenge._id).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			console.log("inside response"+response);
-			if(response.length>0){
-				$scope.solutionObj=response[0];
+			if(response!==undefined){
+				$scope.solutionObj=response;
 			}
 			
 			}).error(function(error){

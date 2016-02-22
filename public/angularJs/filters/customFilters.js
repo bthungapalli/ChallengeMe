@@ -28,7 +28,7 @@ angular.module('challengeMeApp')
 			 
 			  return result;
 	  };
-	}).filter('delimiterForEdition', function() {
+}).filter('delimiterForEdition', function() {
 		  return function(input) {
 			  var result="";
 			 if(input!==undefined){
@@ -41,4 +41,13 @@ angular.module('challengeMeApp')
 				 
 				  return result;
 		  };
-		});
+ }).filter('dateFormat', function() {
+			  return function(input) {
+				  var months=["January", "February", "March", "April", "May",
+				              "June", "July", "August", "September", "October",
+				              "November", "December"];
+				  var inputArray=input.trim().split("T");
+				  var dates=inputArray[0].split("-");
+				  return dates[2]+" "+months[dates[1]-1]+" "+dates[0];
+			  };
+			});

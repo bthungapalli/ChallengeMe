@@ -7,8 +7,8 @@ title
 description
 <input type="text" ng-model="challenge.description" ng-show="editChallenge" /><span ng-show="!editChallenge">{{challenge.description}}</span>
 cut off date
-<input type="date" ng-model="challenge.date" ng-show="editChallenge" /><span ng-show="!editChallenge">{{challenge.date}}</span>
+<input type="date" ng-model="challenge.date" ng-show="editChallenge" /><span ng-show="!editChallenge">{{challenge.date | dateFormat}}</span>
 prize
 <input type="text" ng-model="challenge.prize"  ng-show="editChallenge" /><span ng-show="!editChallenge">{{challenge.prize}}</span>
-<input type="button" value="edit" ng-if="view==='main.myChallenges'" ng-show="!editChallenge" ng-click="showEditFields();"/>
+<input type="button" value="edit" ng-if="view==='main.myChallenges'" ng-show="!editChallenge && !challengeObj.closed" ng-click="showEditFields();"/>
 <input type="button" value="save" ng-if="view==='main.myChallenges'" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0))" ng-click="challenge.status='draft';saveChallenge();" ng-show="editChallenge"/> <input type="button" value="submit" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0))" ng-click="challenge.status='create';saveChallenge();" ng-show="editChallenge"/>

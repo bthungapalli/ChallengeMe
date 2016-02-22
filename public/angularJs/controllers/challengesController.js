@@ -8,6 +8,11 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 		angular.forEach(challenges,function(challenge,index){
 			challenge.collapse=false;
 			challenge.index=index;
+			if(new Date(challenge.date).getTime()>new Date().getTime()){
+				challenge.closed=false;
+			}else{
+				challenge.closed=true;
+			}
 		});
 		$scope.challenges=challenges;
 	};
