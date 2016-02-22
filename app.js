@@ -17,6 +17,7 @@ var locations = require('./routes/locations');
 var profile = require('./routes/profile');
 var challenge = require('./routes/challenge');
 var subcribeChallenge = require('./routes/subcribeChallenge');
+var solution = require('./routes/solution');
 
 
 var app = express();
@@ -43,6 +44,7 @@ app.use('/locations', locations);
 app.use('/profile', profile);
 app.use('/challenge', challenge);
 app.use('/subcribeChallenge', subcribeChallenge);
+app.use('/solution', solution);
 
 
 app.set('views', path.join(__dirname, 'views'));

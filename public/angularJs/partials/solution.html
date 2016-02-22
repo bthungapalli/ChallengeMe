@@ -1,0 +1,13 @@
+<div  ng-controller="solutionController">
+
+<header>solution </header>
+{{errorMessage}}
+solution
+<input type="text" ng-model="solutionObj.solution" />
+anonymous
+<input type="checkbox" ng-model="solutionObj.anonymous"  />
+
+<input type="button" value="save" ng-hide="hideEdit" ng-disabled="(solutionObj.solution.length===0)" ng-click="solutionObj.status='draft';saveSolution();" />
+ <input type="button" value="create" ng-disabled="(solutionObj.solution.length===0)" ng-click="solutionObj.status='create';saveSolution();"/>
+ 
+ </div>

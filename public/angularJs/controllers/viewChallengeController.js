@@ -15,7 +15,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 	$scope.editChallenge=false;
 	$scope.view=$state.current.name;;
 	$scope.challengeTemplate;
-	
+	$scope.solutionTemplate;
 	$scope.getAllCategories=function(){
 		
 		$http.get("/categories").success(function(response){
@@ -75,11 +75,14 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				$scope.challenges[challenge.index].collapse=true;
 				
 			}
-			
+			$scope.solutionTemplate="";
 				$http.get("/challenge/"+challenge._id).success(function(response){
 					$scope.redirectToLoginIfSessionExpires(response);
 					$scope.challenge=response[0];
 					$scope.challengeTemplate="angularjs/partials/viewChallenge.html";
+					if($scope.currentTab==="subcribedChallenges"){
+						$scope.solutionTemplate="angularjs/partials/solution.html";
+					};
 				}).error(function(error){
 						$scope.errorMessage="Some thing went wrong.";
 				});
