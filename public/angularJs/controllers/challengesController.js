@@ -22,7 +22,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	};
 	
 	$scope.getAllChallenges=function(){
-		$http.get("/challenge/categories/"+JSON.stringify($scope.userDetails.categories)).success(function(response){
+		$http.get("/challenge/categories").success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			$scope.addAttributesToChallenge(response);
 			}).error(function(error){

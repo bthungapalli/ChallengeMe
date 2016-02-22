@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var http = require('http');
 var userService=require("../services/userService");
+var checkSession=require("../services/checkSessionService");
 
 router.get('/', function(req, res, next) {
   res.sendFile('index.html');
@@ -48,6 +49,10 @@ router.get('/logout', function(request, response) {
 	request.session.reset();
 	console.log("logout.."+ request.session.user)
 	response.send('logout');
+	});
+
+router.get('/userDetails',checkSession.requireLogin, function(request, response) {
+	response.send(request.session.user);
 	});
 
 module.exports = router;

@@ -1,8 +1,16 @@
 angular.module("challengeMeApp").controller("mainController",["$scope","$http","$state","$rootScope",function($scope,$http,$state,$rootScope){
 	
 
-	$state.go("main.profile");
 	
+	$rootScope.userDetails;
+	$scope.getUserDetails=function(){
+		$http.get("/userDetails").success(function(response){
+			$rootScope.userDetails=response;
+			$state.go("main.allChallenges");
+			}).error(function(error){
+			});
+	};
+	$scope.getUserDetails();
 	$scope.setCurrentTab=function(tabName){
 		$scope.currentTab=tabName;
 	}

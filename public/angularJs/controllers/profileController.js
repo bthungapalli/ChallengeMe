@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("profileController",["$scope","$http",function($scope,$http){
+angular.module("challengeMeApp").controller("profileController",["$scope","$http","$rootScope",function($scope,$http,$rootScope){
 	
 	$scope.allCategories=[];
 	$scope.userCategories=[];
@@ -10,7 +10,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 		
 		$http.get("/categories").success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
-			$scope.userCategories=$scope.userDetails.categories;
+			$scope.userCategories=$rootScope.userDetails.categories;
 			$scope.allCategories=response;
 			}).error(function(error){
 				$scope.errorMessage="Some thing went wrong.";

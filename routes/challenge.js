@@ -18,12 +18,12 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 	});
 });
 
-router.get('/categories/:categories',checkSession.requireLogin,function (request,response,next){
+router.get('/categories',checkSession.requireLogin,function (request,response,next){
 	var user=request.session.user;
-	console.log("sess user"+user);
-	var categoriesJson = JSON.parse(request.params.categories);
+	console.log("sess user"+user.categories);
+	var categoriesJson = user.categories;
 	var categories = [];
-	for (var prop in categoriesJson) {
+	for (var prop in user.categories) {
 		var cat =categoriesJson[prop];
 		categories.push(categoriesJson[prop]._id);
 	}
