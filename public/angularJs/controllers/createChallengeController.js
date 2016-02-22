@@ -8,7 +8,7 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 			"description":"",
 			"date":"",
 			"prize":"",
-			"status":""
+			"status":"" 
 	};
 	
 	$scope.getAllCategories=function(){
