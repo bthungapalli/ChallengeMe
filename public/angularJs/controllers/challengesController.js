@@ -13,7 +13,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	};
 	
 	$scope.getMyChallenges=function(){
-		$http.get("/challenge/mychallenges/"+$scope.userDetails.emailId).success(function(response){
+		$http.get("/challenge/mychallenges").success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			$scope.addAttributesToChallenge(response);
 			}).error(function(error){

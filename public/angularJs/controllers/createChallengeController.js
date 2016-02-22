@@ -8,9 +8,7 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 			"description":"",
 			"date":"",
 			"prize":"",
-			"status":"",
-			"createdByEmailId":$scope.userDetails.emailId,
-			"createdBy":$scope.userDetails.name
+			"status":""
 	};
 	
 	$scope.getAllCategories=function(){

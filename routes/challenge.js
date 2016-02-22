@@ -7,7 +7,8 @@ var solutionService=require("../services/solutionService");
 
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var challenge=request.body;
-	challengeService.createOrSaveChallenge(challenge,function(err,status){
+	var user=request.session.user
+	challengeService.createOrSaveChallenge(challenge,user,function(err,status){
 		if(err)
 			response.send("error");
 		if(status==="create"){
@@ -33,8 +34,8 @@ router.get('/categories/:categories',checkSession.requireLogin,function (request
 	});
 });
 
-router.get('/mychallenges/:emailId',checkSession.requireLogin,function (request,response,next){
-	var emailId=request.params.emailId;
+router.get('/mychallenges',checkSession.requireLogin,function (request,response,next){
+	var emailId=request.session.user.emailId;
 	challengeService.getChallengeForEmailId(emailId,function(err,challenges){
 		if(err)
 			response.send("error");

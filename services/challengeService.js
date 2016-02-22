@@ -6,7 +6,7 @@ var categoryService =function(){
 
 return{
 
-createOrSaveChallenge : function(challenge,callbackForChallenge){
+createOrSaveChallenge : function(challenge,user,callbackForChallenge){
 	
         if(challenge._id !==""){
         console.log('came in update');
@@ -23,7 +23,7 @@ createOrSaveChallenge : function(challenge,callbackForChallenge){
         	counterModel.findByIdAndUpdate({_id : "challengeId"}, {$inc: {seq: 1} }, function(error, counter)   {
    		       if(error)
    		    	callbackForChallenge(error);
-        	var challenge1 = new challengeModel({"_id":counter.seq, "title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"createdByEmailId":challenge.createdByEmailId,"createdBy":challenge.createdBy});
+        	var challenge1 = new challengeModel({"_id":counter.seq, "title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"createdByEmailId":user.emailId,"createdBy":user.name});
         	challenge1.save(function(err){
                 if(err)
                 	callbackForChallenge(err);
