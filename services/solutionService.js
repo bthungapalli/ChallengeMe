@@ -34,7 +34,7 @@ return{
 },
 getSolution:function(challengeId,userEmailId,callbackForSolution){
 	
-	var query = solutionModel.find({"challengeId":challengeId,"solutionByEmailId":userEmailId});
+	var query = solutionModel.findOne({"challengeId":challengeId,"solutionByEmailId":userEmailId});
     query.exec(function(err, solution){
         if(err)
         	callbackForSolution(err);
@@ -42,7 +42,15 @@ getSolution:function(challengeId,userEmailId,callbackForSolution){
     });
 },
 
-
+getSolutionsForChallengeId:function(challengeId,callbackForSolutions){
+	var query = solutionModel.find({"challengeId":challengeId});
+    query.exec(function(err, solutions){
+        if(err)
+        	callbackForSolutions(err);
+        callbackForSolutions(null,solutions);
+    });
+}
+	
 }
 
 }

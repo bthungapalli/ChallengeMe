@@ -3,6 +3,7 @@ var router = express.Router();
 var http = require('http');
 var challengeService=require("../services/challengeService");
 var checkSession=require("../services/checkSessionService");
+var solutionService=require("../services/solutionService");
 
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var challenge=request.body;
@@ -46,7 +47,10 @@ router.get('/:challengeId',checkSession.requireLogin,function (request,response,
 	challengeService.getChallengeForChallengeId(challengeId,function(err,challenge){
 		if(err)
 			response.send("error");
-		response.send(challenge);
+		solutionService.getSolutionsForChallengeId(challenge[0]._id,function(err,solutions){
+			challenge[0].solutions=solutions;
+			response.send(challenge[0]);
+		});
 	});
 });
 

@@ -22,7 +22,8 @@ var challengeSchema = Schema({
     createdByEmailId:{type:String,required: true},
     createdBy:{type:String,required: true},
     created_at: {type: Date, default: Date.now},
-    updated_at: {type: Date, default: Date.now}
+    updated_at: {type: Date, default: Date.now},
+    solutions: {type: Array}
 });
 
 module.exports = mongoose.model('challenge', challengeSchema);;
