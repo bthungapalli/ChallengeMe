@@ -45,7 +45,20 @@ router.get('/categories',checkSession.requireLogin,function (request,response,ne
 	challengeService.getAllChallenges(categories,function(err,challenges){
 		if(err)
 			response.send("error");
-		response.send(challenges);
+		challengeService.getSubcribedChallengeIdsForEmail(user.emailId,function(err,challengeIds){
+			if(err)
+				response.send("error");
+			for( var challenge in challenges){
+				for( var id in challengeIds){
+					if(challengeIds[id].challengeId===challenges[challenge]._id){
+						challenges[challenge].isSubcribed=true;
+						break;
+					};
+				}
+			}
+			response.send(challenges);
+		});
+		
 	});
 });
 

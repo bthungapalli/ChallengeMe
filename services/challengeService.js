@@ -44,7 +44,7 @@ getChallengeForEmailId:function(emailId,callbackForChallengesForEmailId){
 },
 getAllChallenges:function(categories,callbackForAllChallenges){
 	console.log("categories"+categories);
-	var query = challengeModel.find({"categories._id":{$in:categories}});
+	var query = challengeModel.find({"categories._id":{$in:categories},"status":"create"});
     query.exec(function(err, challenges){
         if(err)
         	callbackForAllChallenges(err);
@@ -89,6 +89,15 @@ getSubcribedChallenges:function(ids,callbackForSubcribedChallenges){
 	        if(err)
 	        	callbackForSubcribedChallenges(err);
 	        callbackForSubcribedChallenges(null,challenges);
+	    });
+},
+getSubcribedChallengeIdsForEmail:function(emailId,callbackForSubcribedChallengeIdsForEmail){
+		var query = subcribeChallengeModel.find({"emailId":emailId},{"challengeId":1,"_id":0});
+	    query.exec(function(err, challengeIds){
+	        if(err)
+	        	callbackForSubcribedChallengeIdsForEmail(err);
+	        console.log("challengeIds"+challengeIds);
+	        callbackForSubcribedChallengeIdsForEmail(null,challengeIds);
 	    });
 	}
 

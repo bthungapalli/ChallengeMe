@@ -3,7 +3,7 @@
 categories:
 <span ng-repeat="category in categories" ><input ng-if="view==='main.myChallenges'" ng-disabled="!editChallenge"  id="{{category.name}}" type="checkbox" value="{{category}}"  ng-checked="checkCategory(category._id);"  ng-click="toggleSelection(category)"/><label for="{{category.name}}">{{category.name}} </label></span>
 title
-<input type="text" ng-model="challenge.title" ng-show="editChallenge"/><span ng-show="!editChallenge">{{challenge.title}}</span>
+<span >{{challenge.title}}</span>
 description
 <input type="text" ng-model="challenge.description" ng-show="editChallenge" /><span ng-show="!editChallenge">{{challenge.description}}</span>
 cut off date
@@ -11,4 +11,5 @@ cut off date
 prize
 <input type="text" ng-model="challenge.prize"  ng-show="editChallenge" /><span ng-show="!editChallenge">{{challenge.prize}}</span>
 <input type="button" value="edit" ng-if="view==='main.myChallenges'" ng-show="!editChallenge && !challengeObj.closed" ng-click="showEditFields();"/>
-<input type="button" value="save" ng-if="view==='main.myChallenges'" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0))" ng-click="challenge.status='draft';saveChallenge();" ng-show="editChallenge"/> <input type="button" value="submit" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0))" ng-click="challenge.status='create';saveChallenge();" ng-show="editChallenge"/>
+<input type="button" value="save" ng-if="view==='main.myChallenges'" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0))" ng-click="challenge.status='draft';saveChallenge();" ng-show="editChallenge"/> 
+<input type="button" value="submit" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0))" ng-click="challenge.status='create';saveChallenge();" ng-show="editChallenge"/>

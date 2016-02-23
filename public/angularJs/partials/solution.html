@@ -7,7 +7,7 @@ solution
 anonymous
 <input type="checkbox" ng-model="solutionObj.anonymous" ng-disabled="challengeObj.closed" />
 
-<input type="button" value="save" ng-hide="hideEdit || challengeObj.closed" ng-disabled="(solutionObj.solution.length===0)" ng-click="solutionObj.status='draft';saveSolution();" />
+<input type="button" value="save" ng-hide="hideEdit || challengeObj.closed || solutionObj.status==='create'" ng-disabled="(solutionObj.solution.length===0)" ng-click="solutionObj.status='draft';saveSolution();" />
  <input type="button" ng-hide=" challengeObj.closed" value="create" ng-disabled="(solutionObj.solution.length===0)" ng-click="solutionObj.status='create';saveSolution();"/>
  
  </div>
