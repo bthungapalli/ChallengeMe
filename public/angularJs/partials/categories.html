@@ -1,24 +1,75 @@
-<h1>Categories</h1>
-
-Add category:<input type="text" ng-model="category.name" />
-Add description:<input type="text" ng-model="category.description" />
-<input type="submit" value="Add Category" ng-click="addCategory();" ng-disabled="!category.name"/>
 
 <span>{{category.errorMessage}}</span>
 
+<div class="ui grid">
+	<div class="two wide column">
+			<div class="ui icon input">
+			  <input type="text" ng-model="search" placeholder="Search Categories...">
+			  <i class="inverted circular teal search link icon"></i>
+			</div>
+	</div>
+	<div class="eleven wide column"></div>
+	<div class="three wide column">
+			Categories Per Page:<select id="itemsPerPage" name="itemsPerPage" class="ui dropdown" ng-model="itemsPerPage">
+			  <option  value="5">5</option>
+			  <option value="10">10</option>
+			  <option value="25">25</option>
+			  <option value="50">50</option>
+			</select>
+	</div>
+</div>
 
-<table>
-<thead>
-<tr>
-<th>Name</th><th>Description</th><th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr ng-repeat="category in categories">
-<th><input type="text" ng-model="categories[$index].name " ng-show="categories[$index].edit" /> <span ng-bind="category.name | camelCase" ng-show="!categories[$index].edit"></span></th><th><input type="text" ng-model="categories[$index].description" ng-show="categories[$index].edit" /> <span ng-bind="category.description" ng-show="!categories[$index].edit"></span></th><th><input type="button" value="Update" ng-click="updateCategory($index);"/>/<input type="button" value="Delete" ng-click="deleteCategory($index,category._id);"/></th>
-</tr>
-</tbody>
-
-
+<table class="ui celled striped table">
+  <thead>
+    <tr>
+	    <th ng-click="sort('name')"  >Name <i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
+	    <th ng-click="sort('description')">Description  <i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
+	    <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr dir-paginate="category in categories|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage">
+		<th>
+			 <div class="ui input focus">
+		     <input type="text" ng-model="categories[$index].name" ng-show="categories[$index].edit" />
+		     </div>
+			 <span ng-bind="category.name | camelCase" ng-show="!categories[$index].edit"></span>
+		 </th>
+		<th>
+			 <div class="ui input focus">
+		     <input type="text" ng-model="categories[$index].description" ng-show="categories[$index].edit" />
+		     </div>
+			 <span ng-bind="category.description" ng-show="!categories[$index].edit"></span>
+		 </th>
+		<th style="padding-top: 10px;padding-bottom: 10px;">
+			<div class="ui mini buttons">
+			  <button class="ui positive button" ng-click="updateCategory($index);"  ng-disabled="!categories[$index].name">Update</button>
+			  <div class="or" data-text="Or" ></div>
+			  <button class="ui red button" ng-click="deleteCategory($index,category._id);">Delete</button>
+			</div>
+		</th> 
+  </tbody>
 </table>
+<!-- <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" ></dir-pagination-controls> -->
+
+<div class="ui stackable grid">
+     <div class="four wide column">
+     Category:
+     <div class="ui input focus">
+	  <input type="text" placeholder="Category..." ng-model="category.name">
+	</div>
+     </div>
+     <div class="four wide column">
+      Description:
+     <div class="ui input focus">
+	  <input type="text" placeholder="Description..." ng-model="category.description">
+	  </div>
+     </div>
+     <div class="four wide column">
+	 <button class="ui positive button" ng-click="addCategory();" ng-disabled="!category.name">
+	  <i class="add square icon"></i>Add Category
+	</button>
+     </div>
+     <div class="four wide column"></div>
+</div>
 

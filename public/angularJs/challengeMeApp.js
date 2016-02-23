@@ -1,4 +1,4 @@
-var challengeMeApp=angular.module('challengeMeApp',["ui.router"]);
+var challengeMeApp=angular.module('challengeMeApp',["ui.router","angularUtils.directives.dirPagination"]);
 
 challengeMeApp.config(["$stateProvider",function($stateProvider){
 	

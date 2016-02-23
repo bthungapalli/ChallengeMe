@@ -11,7 +11,7 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 	};
 	
 	$scope.categories=[];
-	
+	$scope.itemsPerPage="5";
 	
 	$scope.getAllCategories=function(){
 		
