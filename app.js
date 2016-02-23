@@ -8,7 +8,6 @@ var mongoose = require('mongoose');
 var qt   = require('quickthumb');
 var session = require('client-sessions');
 
-
 mongoose.connect('mongodb://localhost/challengeMeDB');
 
 var login = require('./routes/login');
@@ -18,6 +17,7 @@ var profile = require('./routes/profile');
 var challenge = require('./routes/challenge');
 var subcribeChallenge = require('./routes/subcribeChallenge');
 var solution = require('./routes/solution');
+var mailUtil = require('./routes/mailRoute');
 
 
 var app = express();
@@ -26,6 +26,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(logErrors);
+app.use(clientErrorHandler);
+app.use(errorHandler);
+
 app.use(session({
 	  cookieName: 'session',
 	  secret: 'random_string_goes_here',
@@ -39,6 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(path.join(__dirname + '/node_modules')));
 
 app.use('/', login);
+app.use('/mails', mailUtil);
 app.use('/categories', categories);
 app.use('/locations', locations);
 app.use('/profile', profile);
@@ -73,13 +78,31 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+/*app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
     error: {}
   });
-});
+});*/
+
+function logErrors(err, req, res, next) {
+	  console.error(err.stack);
+	  next(err);
+	}
+
+function clientErrorHandler(err, req, res, next) {
+	  if (req.xhr) {
+	    res.status(500).send({ error: 'Something failed!' });
+	  } else {
+	    next(err);
+	  }
+	}
+
+function errorHandler(err, req, res, next) {
+	  res.status(500);
+	  res.render('error', { error: err });
+	}
 
 app.listen("8123",function(){
 	console.info("server started...");

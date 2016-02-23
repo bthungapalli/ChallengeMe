@@ -15,7 +15,7 @@ var challengeSchema = Schema({
     _id: {type: Number, required: true,default:0},
     description:{type:String,required: true},
     title:{type:String,required: true},
-    date:{type:String,required: true},
+    date:{type:String},
     prize:{type:String},
     status:{type:String,required: true},
     categories : [categorySchema],

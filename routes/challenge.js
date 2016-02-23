@@ -4,15 +4,30 @@ var http = require('http');
 var challengeService=require("../services/challengeService");
 var checkSession=require("../services/checkSessionService");
 var solutionService=require("../services/solutionService");
+var mailUtil = require("../utils/MailUtil");
+var _ = require('underscore');
 
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var challenge=request.body;
 	var user=request.session.user
+	console.log("User Details:::::",user);
 	challengeService.createOrSaveChallenge(challenge,user,function(err,status){
 		if(err)
 			response.send("error");
 		if(status==="create"){
-			// logic for mail
+			var categoryNames = _.pluck(challenge.categories,'name');
+			console.log("categories Details:::::",categoryNames);
+			var context =  {
+					title : 'ChallengeMe',
+					username : user.name,
+					categoryName:categoryNames,
+					challengeName : challenge.title,
+					description : challenge.description,
+					prize : challenge.prize,
+					lastDate : challenge.date
+					
+				};
+			mailUtil.sendMail('bthungapalli@osius.com','bthungapalli@osius.com','Challenge Posted','ChallengeMe.html',context);
 		}
 		response.send("created");
 	});
@@ -53,6 +68,11 @@ router.get('/:challengeId',checkSession.requireLogin,function (request,response,
 			response.send(challenge[0]);
 		});
 	});
+});
+
+
+router.post('/',checkSession.requireLogin,function (request,response,next){
+	var challenge=request.body;
 });
 
 module.exports = router;

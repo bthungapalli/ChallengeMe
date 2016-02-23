@@ -53,6 +53,9 @@
     "run-sequence": "^1.1.5",
     "semantic-ui": "^2.1.8",
     "serve-favicon": "~2.3.0",
-    "yamljs": "^0.2.4"
+    "yamljs": "^0.2.4",
+    "nodemailer":"^1.0.0",
+    "swig-email-templates":"^2.0.0",
+    "underscore":"^1.8.0"
   }
 }
