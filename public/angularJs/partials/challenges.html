@@ -3,7 +3,7 @@
 <table>
 <thead>
 <tr>
-<th>Title</th><th>Posted By</th><th>Posted Date</th><th ng-show="currentTab!=='allChallenges'">status</th><th>Cut Off Time</th><th ng-show="currentTab==='allChallenges'">action</th>
+<th>Title</th><th>Posted By</th><th>Posted Date</th><th ng-show="currentTab!=='allChallenges'">status</th><th>Cut Off Time</th><th ng-show="currentTab==='allChallenges' ">action</th>
 </tr>
 </thead>
 <tbody ng-controller="viewChallengeController" ng-repeat="challengeObj in challenges" >
@@ -13,7 +13,7 @@
 <td ng-bind="challengeObj.created_at | dateFormat" ng-click="getChallenge(challengeObj);" ></td>
 <td ng-show="currentTab!=='allChallenges'" ng-bind="challengeObj.status"  ng-click="getChallenge(challengeObj);"> </td>
 <td ng-bind="challengeObj.date | dateFormat" ng-click="getChallenge(challengeObj);"> </td>
-<td ng-show="currentTab==='allChallenges'"><input  ng-click="subcribeChallenge(challengeObj);" ng-show="!challengeObj.closed" type="button" value="subcribe" /> <input   ng-show="challengeObj.closed" type="button" value="Closed" /> </td>
+<td ng-show="currentTab==='allChallenges'"><input  ng-click="subcribeChallenge(challengeObj);" ng-show="!challengeObj.closed" type="button" value="subcribe" ng-hide="challengeObj.isSubcribed" /> <input   ng-show="challengeObj.closed" type="button" value="Closed" /> </td>
 </tr>
 <tr>
 <td colspan="{{colspan}}" >
@@ -26,7 +26,7 @@
 </td>
 </tr>
 <tr>
-<td colspan="{{colspan}}" ng-if="currentTab!=='subcribedChallenges'">
+<td colspan="{{colspan}}" ng-if="((currentTab!=='allChallenges') || (currentTab!=='subcribedChallenges' && challengeObj.closed))">
 <div  ng-show="challengeObj.collapse" ng-repeat="solutionObj in challenge.solutions" ng-include="solutionTemplateForView" ></div>
 </td>
 </tr>

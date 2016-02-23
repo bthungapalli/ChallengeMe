@@ -23,7 +23,8 @@ var challengeSchema = Schema({
     createdBy:{type:String,required: true},
     created_at: {type: Date, default: Date.now},
     updated_at: {type: Date, default: Date.now},
-    solutions: {type: Array}
+    solutions: {type: Array},
+    isSubcribed: {type: Boolean}
 });
 
 module.exports = mongoose.model('challenge', challengeSchema);;
