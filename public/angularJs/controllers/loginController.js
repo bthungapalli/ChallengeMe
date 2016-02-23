@@ -4,12 +4,14 @@ angular.module("challengeMeApp").controller("loginController",["$scope","$http",
 	$scope.user={
 			userName:"apatha@osius.com",
 			password:"Cricket@100",
-			errorMessage:""
+			errorMessage:"",
+			invalidCredentials:false
 		};
 	
 		
 		$scope.authenticateUser=function(){
 			$scope.user.errorMessage="";
+			$scope.user.invalidCredentials=false;
 			var authenticateUserUrl = "/authenticate";
 			var data = {
 					userName : $scope.user.userName,
@@ -18,10 +20,12 @@ angular.module("challengeMeApp").controller("loginController",["$scope","$http",
 			$http.post(authenticateUserUrl,data).success(function(response){
 				
 				if(angular.isDefined(response._id)){
-					
 					$state.go("main");
 				}else if(response==="Not able to access server"){
 					$scope.user.errorMessage="Not able to access server";
+				}else if(response==="Invalid Credentials"){
+					$scope.user.errorMessage="Invalid Credentials";
+					$scope.user.invalidCredentials=true;
 				}
 			}).error(function(error){
 				$scope.user.errorMessage="Some thing went wrong.";

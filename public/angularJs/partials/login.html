@@ -4,6 +4,9 @@
       max-width: 450px;
       margin-top:15%;
     }
+    .floatRight{
+    text-align:right;
+    }
 </style>
 
 <div class="ui middle aligned center aligned grid">
@@ -15,24 +18,29 @@
     </h2>
     <form class="ui large form">
       <div class="ui piled segments segment">
-        <div class="field error" >
+        <div class="field"  ng-class="{error:user.invalidCredentials}">
           <div class="ui left icon input">
-            <i class="circular inverted red user icon"></i>
+            <i class="circular inverted  user icon" ng-class="{red:user.invalidCredentials,teal:!user.invalidCredentials}" ></i>
             <input type="text" id="email" name="email" placeholder="E-mail address"  ng-model="user.userName" >
           </div>
         </div>
-        <div class="field">
+        <div class="field" ng-class="{error:user.invalidCredentials}">
           <div class="ui left icon input">
-            <i class="circular inverted teal  lock icon"></i>
+            <i class="circular inverted  lock icon" ng-class="{red:user.invalidCredentials,teal:!user.invalidCredentials}"></i>
             <input type="password" name="password" ng-model="user.password"  placeholder="Password">
           </div>
         </div>
+         <div class="field" ng-class="{error:user.invalidCredentials}">
+           <label class="red">{{user.errorMessage}}</label>
+        </div>
+        
+        
         <button class="ui right labeled icon positive button large fluid " ng-click="authenticateUser()">
        <i class="arrow circle right white icon"></i>
         Login
       </button>
-      {{user.errorMessage}}
-	   <div style="text-align:right;"><a href="#" style="color:#00B5AD;">Forgot Password</a>
+      
+	   <div class="floatRight"><a href="#" >Forgot Password</a>
 	   </div>
       </div>
 

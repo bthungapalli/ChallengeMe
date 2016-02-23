@@ -27,13 +27,20 @@ router.post('/authenticate', function(request, response,next) {
 			  resBody += chunk;
 		  });
 		  res.on('end', function(){
-			 var resBodyJson=  JSON.parse(resBody);
-			  userService.createOrSaveUser(resBodyJson.user.principal,request.body.categories,function(err,userDetails){
-				  if(err)
-					  response.send("Invalid");
-				  request.session.user = userDetails;
-				  response.send(userDetails);
-			  });
+			  var resBodyJson;
+			  try {
+				   resBodyJson=  JSON.parse(resBody);
+				   userService.createOrSaveUser(resBodyJson.user.principal,request.body.categories,function(err,userDetails){
+						  if(err)
+							  response.send("Invalid");
+						  request.session.user = userDetails;
+						  response.send(userDetails);
+					  });
+				}
+				catch(err) {
+					  response.send("Invalid Credentials");
+				}
+			 
 		  });
 		});
 
