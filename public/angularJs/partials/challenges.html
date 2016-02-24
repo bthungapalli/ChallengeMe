@@ -1,4 +1,4 @@
-<header>  Challenges {{currentTab}}</header>
+
 {{errorMessage}}
 <table>
 <thead>
@@ -7,7 +7,7 @@
 </tr>
 </thead>
 <tbody ng-controller="viewChallengeController" ng-repeat="challengeObj in challenges" >
-<tr >
+<tr>
 <td ng-bind="challengeObj.title | camelCase" ng-click="getChallenge(challengeObj);"> </td>
 <td ng-bind="challengeObj.createdBy" ng-click="getChallenge(challengeObj);"> </td>
 <td ng-bind="challengeObj.created_at | dateFormat" ng-click="getChallenge(challengeObj);" ></td>
@@ -34,4 +34,58 @@
 
 
 </table>
+<div class="ui grid">
+	<div class="two wide column">
+			<div class="ui icon input">
+			  <input type="text" ng-model="search" placeholder="Search Categories...">
+			  <i class="inverted circular teal search link icon"></i>
+			</div>
+	</div>
+	<div class="ten wide column"></div>
+	<div class="four wide column">
+			Categories Per Page:<select id="itemsPerPage" name="itemsPerPage" class="ui dropdown" ng-model="itemsPerPage">
+			  <option  value="5">5</option>
+			  <option value="10">10</option>
+			  <option value="25">25</option>
+			  <option value="50">50</option>
+			</select>
+	</div>
+</div>
+<table class="ui five column single line celled padded striped compact teal table">
+  <thead>
+    <tr>
+	    <th ng-click="sort('title')"  >Title <i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
+	    <th ng-click="sort('createdBy')">Posted By  <i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
+	    <th ng-click="sort('created_at')">Posted Date  <i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
+	    <th ng-click="sort('status')" ng-show="currentTab!=='allChallenges'">status  <i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
+	    <th ng-click="sort('date')">Cut-off Time<i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
+	    <th ng-show="currentTab==='allChallenges'">Action<i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
+    </tr>
+  </thead>
+  <tbody ng-controller="viewChallengeController" dir-paginate="challengeObj in challenges|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage" >
+    <tr>
+<td ng-bind="challengeObj.title | camelCase" ng-click="getChallenge(challengeObj);"> </td>
+<td ng-bind="challengeObj.createdBy" ng-click="getChallenge(challengeObj);"> </td>
+<td ng-bind="challengeObj.created_at | dateFormat" ng-click="getChallenge(challengeObj);" ></td>
+<td ng-show="currentTab!=='allChallenges'" ng-bind="challengeObj.status"  ng-click="getChallenge(challengeObj);"> </td>
+<td ng-bind="challengeObj.date | dateFormat" ng-click="getChallenge(challengeObj);"> </td>
+<td ng-show="currentTab==='allChallenges'">
+<input  ng-click="subcribeChallenge(challengeObj);" ng-show="!challengeObj.closed" type="button" value="subcribe" ng-hide="challengeObj.isSubcribed" />
+ <input   ng-show="challengeObj.closed" type="button" value="Closed" />
+  </td>
+</tr>
+<tr>
+<td ng-show="challengeObj.collapse" colspan="{{colspan}}" >
+<div  ng-include="challengeTemplate"  ></div>
+</td>
+</tr>
+<tr>
+<td ng-show="challengeObj.collapse" colspan="{{colspan}}" >
+<div  ng-show="currentTab==='subcribedChallenges'" ng-include="solutionTemplate" ></div>
+<div  ng-show="((currentTab!=='allChallenges') || (currentTab!=='subcribedChallenges' && challengeObj.closed))" ng-repeat="solutionObj in challenge.solutions" ng-include="solutionTemplateForView" ></div>
+</td>
+</tr>
 
+  </tbody>
+</table>
+<dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" ></dir-pagination-controls>

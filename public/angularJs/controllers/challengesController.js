@@ -4,6 +4,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	$scope.challenges=[];
 	$rootScope.previousOpenedChallengeIndex=-1;
 	$scope.colspan=5;
+	$scope.itemsPerPage="5";
 	$scope.addAttributesToChallenge=function(challenges){
 		angular.forEach(challenges,function(challenge,index){
 			challenge.collapse=false;
