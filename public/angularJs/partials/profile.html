@@ -1,6 +1,8 @@
 <script>
   $(document).ready(function() {
+	  
 	  $(":file").jfilestyle({placeholder: "",buttonText: "Profile",'inputSize': '62%'});
+	  
 		  $('#uploadForm').submit(function() {
 		        $("#status").empty().text("File is uploading...");
 		        $(this).ajaxSubmit({
@@ -91,16 +93,16 @@
 					 
 					 </span>
 					</div>
+					<div class="sixteen wide center aligned column">
+						<button class="ui primary button" ng-click="edit();" ng-show="!editProfile">
+					  	<i class="write icon"></i>Edit
+						</button>
+						<button class="ui positive button" ng-click="updateProfile();" ng-show="editProfile">
+					  	<i class="checkmark icon"></i> Update
+						</button>
+					</div>
 		
 		</div>
-		
-		<button class="ui primary button" ng-click="edit();" ng-show="!editProfile">
-	  	<i class="write icon"></i>Edit
-		</button>
-		<button class="ui positive button" ng-click="updateProfile();" ng-show="editProfile">
-	  	<i class="checkmark icon"></i> Update
-		</button>
-		
 		
 		</div>
 		
