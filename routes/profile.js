@@ -1,11 +1,17 @@
 var express = require('express');
+var app = express();
 var router = express.Router();
 var http = require('http');
 var userService=require("../services/userService");
 var formidable = require('formidable');
 var util = require('util');
 var fs   = require('fs-extra');
+var  multer = require('multer');
+var busboy = require('connect-busboy');
+
+
 var checkSession=require("../services/checkSessionService");
+
 router.post('/update', checkSession.requireLogin,function(request, response,next) {
 
 	  userService.updateUser(request.body,function(err,rows){
@@ -16,6 +22,54 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 		
 	});
 
+   var storage =   multer.diskStorage({
+	  destination: function (req, file, callback) {
+		   var path = "../public/uploads/";
+	    callback(null, path);
+	  },
+	  filename: function (req, file, callback) {
+	    callback(null, file.fieldname + '-' + Date.now());
+	  }
+	});
+	var upload = multer({ storage : storage}).single('userPhoto');
+
+	app.get('/',function(req,res){
+	      res.sendFile(__dirname + "/index.html");
+	});
+	
+	
+	router.post('/upload',function(req,res){
+	    upload(req,res,function(err) {
+	        if(err) {
+	            return res.end("Error uploading file.");
+	        }
+	        res.end("File is uploaded");
+	    });
+	});
+
+
+
+
+
+
+/*router.post('/upload',function (req, res, next) {
+
+    var fstream;
+    req.pipe(req.busboy);
+    req.busboy.on('file', function (fieldname, file, filename) {
+        console.log("Uploading: " + filename);
+
+        //Path where image will be uploaded
+        var path = "/Users/bthungapalli/Documents/uploads/";
+        console.log("Path::",path);
+        fstream = fs.createWriteStream(path + filename);
+        file.pipe(fstream);
+        fstream.on('close', function () {    
+            console.log("Upload Finished of " + filename);     
+            res.json("uploading Finished");
+        });
+    });
+});*/
 /*
 router.post('/file-upload', function (req, res){
 	  var form = new formidable.IncomingForm();

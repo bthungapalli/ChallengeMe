@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var qt   = require('quickthumb');
 var session = require('client-sessions');
+var busboy = require('connect-busboy');
 
 mongoose.connect('mongodb://localhost/challengeMeDB');
 
@@ -29,6 +30,7 @@ app.use(cookieParser());
 app.use(logErrors);
 app.use(clientErrorHandler);
 app.use(errorHandler);
+app.use(busboy());
 
 app.use(session({
 	  cookieName: 'session',

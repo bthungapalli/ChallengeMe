@@ -1,3 +1,23 @@
+<script>
+  $(document).ready(function() {
+     $('#uploadForm').submit(function() {
+        $("#status").empty().text("File is uploading...");
+        $(this).ajaxSubmit({
+            error: function(xhr) {
+        	status('Error: ' + xhr.status);
+            },
+            success: function(response) {
+        $("#status").empty().text(response);
+                console.log(response);
+            }
+    });
+        //Very important line, it disable the page refresh.
+    return false;
+    });    
+});
+</script>
+
+
 <h1>Profile</h1>
 {{errorMessage}}
 
@@ -23,7 +43,14 @@ location:  <select ng-options="location._id as location.name for location in loc
 </br>
 empId: <input type="text" ng-model="userDetails.empId" ng-disabled="!editProfile" /> 
 </br>
-pic:// need to work
+ <form id="uploadForm"
+         enctype="multipart/form-data"
+         action="/profile/upload"
+         method="post">
+      <input type="file" name="userPhoto" />
+      <input type="submit" value="Upload Image" name="submit">
+      <span id = "status"></span>
+    </form>
 </br>
 categories:
 <span ng-repeat="category in allCategories" ><input  id="{{category.name}}" type="checkbox" value="{{category}}" ng-disabled="!editProfile" ng-checked="checkCategory(category._id);" ng-click="toggleSelection(category)"/><label for="{{category.name}}">{{category.name}} </label></span>
