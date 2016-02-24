@@ -1,14 +1,56 @@
-<header>Create Challenge</header>
 {{errorMessage}}
-categories:
-<span ng-repeat="category in categories" ><input  id="{{category.name}}" type="checkbox" value="{{category}}"  ng-checked="checkCategory(category._id);"  ng-click="toggleSelection(category)"/><label for="{{category.name}}">{{category.name}} </label></span>
-title
-<input type="text" ng-model="challenge.title" />
-description
-<input type="text" ng-model="challenge.description" />
-cut off date
-<input type="date" ng-model="challenge.date" />
-prize
-<input type="text" ng-model="challenge.prize" />
 
-<input type="button" value="save" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0))" ng-click="challenge.status='draft';createChallenge()"/> <input type="button" value="submit" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0))" ng-click="challenge.status='create';createChallenge()"/>
+
+<div class="ui stackable grid">
+		<div class="sixteen wide column"> 
+				<div class="ui fluid labeled input focus">
+				  <div class="ui teal label">
+				   Title
+				  </div>
+				  <input type="text" ng-model="challenge.title" />
+				</div>
+		 </div> 
+		 <div class="sixteen wide column">
+				 <div class="ui form">
+				  <div class="field">
+				    <label>Description</label>
+				    <textarea ng-model="challenge.description"></textarea>
+				  </div>
+				</div>
+		</div>
+		<div class="four wide column">
+			   <div class="ui labeled input focus">
+				  <div class="ui teal label">
+				   Cut-off Date
+				  </div>
+				 <input type="date" ng-model="challenge.date" /> 
+				</div> 	
+		</div>
+		<div class="one wide column"></div>
+		<div class="eleven wide column">
+			   <div class="ui fluid labeled input focus">
+				  <div class="ui teal label">
+				   Prize
+				  </div>
+				 <input type="text" ng-model="challenge.prize" /> 
+				</div> 	
+		</div>
+		<div class="sixteen wide column">
+				<div class="ui teal large label">
+				  Categories
+				</div>
+				 <span ng-repeat="category in categories" >
+					 <div class="ui toggle checkbox">
+					  <input id="{{category.name}}" type="checkbox" value="{{category}}"  ng-checked="checkCategory(category._id);"  ng-click="toggleSelection(category)"/>
+					  <label for="{{category.name}}" style="padding-left: 54px;padding-right: 20px;">{{category.name | camelCase}} </label>
+					</div>
+				</span>
+		</div>
+		<div class="sixteen wide center aligned column">
+				<div class="ui buttons">
+					  <button class="ui button" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0) || (challenge.categories.length===0))" ng-click="challenge.status='draft';createChallenge()">Draft</button>
+					  <div class="or"></div>
+					  <button class="ui positive button"  ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0) || (challenge.categories.length===0))" ng-click="challenge.status='create';createChallenge()">Create</button>
+				</div>
+		</div>
+</div>

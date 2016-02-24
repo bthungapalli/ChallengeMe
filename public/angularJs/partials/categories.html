@@ -54,18 +54,27 @@
 
 <div class="ui stackable grid">
      <div class="four wide column">
-     Category:
-     <div class="ui input focus">
-	  <input type="text" placeholder="Category..." ng-model="category.name">
-	</div>
-     </div>
-     <div class="four wide column">
-      Description:
-     <div class="ui input focus">
-	  <input type="text" placeholder="Description..." ng-model="category.description">
+    
+	<div class="ui labeled input focus">
+	  <div class="ui teal label">
+	   Category
 	  </div>
+	  <input type="text" placeholder="Category..." ng-model="category.name" />
+	</div>
+	
      </div>
      <div class="four wide column">
+	  
+	  <div class="ui labeled input focus">
+	  <div class="ui teal label">
+	    Description
+	  </div>
+	  <input type="text" placeholder="Description..." ng-model="category.description">
+	</div>
+	  
+     </div>
+      <div class="one wide column"></div>
+     <div class="three wide column">
 	 <button class="ui positive button" ng-click="addCategory();" ng-disabled="!category.name">
 	  <i class="add square icon"></i>Add Category
 	</button>
