@@ -1,66 +1,109 @@
 <script>
   $(document).ready(function() {
-     $('#uploadForm').submit(function() {
-        $("#status").empty().text("File is uploading...");
-        $(this).ajaxSubmit({
-            error: function(xhr) {
-        	status('Error: ' + xhr.status);
-            },
-            success: function(response) {
-        $("#status").empty().text(response);
-                console.log(response);
-            }
-    });
-        //Very important line, it disable the page refresh.
-    return false;
-    });    
+	  $(":file").jfilestyle({placeholder: "",buttonText: "Profile Pic",'inputSize': '100px'});
+		  $('#uploadForm').submit(function() {
+		        $("#status").empty().text("File is uploading...");
+		        $(this).ajaxSubmit({
+		            error: function(xhr) {
+		        	status('Error: ' + xhr.status);
+		            },
+		            success: function(response) {
+		        $("#status").empty().text(response);
+		                console.log(response);
+		            }
+		    });
+		        //Very important line, it disable the page refresh.
+		    return false;
+		    }); 
+      
 });
 </script>
 
-
-<h1>Profile</h1>
 {{errorMessage}}
 
 
-<!-- All Categories{{allCategories.length}}
-<div id="allCategories" droppable drop="handleDropInAllCategory" style="width:200px;height:200px;border:1px black solid;">
+<div class="ui stackable grid">
 
-<span ng-repeat="category in allCategories" id="{{category}}"  draggable>{{category.name}}</span>
+		<div class="three wide center aligned column">
+		<div class="ui segment">
+ 			 <img class="ui centered medium image" src="https://lh3.googleusercontent.com/-JFW5FonbZbc/Vh4Ixncha7I/AAAAAAAAAFY/-fNED-eFwuc/w1600-h900/Cool-Tiger-Wallpaper-1920x1080-HD.jpg">
+ 		</div>
+		
+		<form id="uploadForm"
+	         enctype="multipart/form-data"
+	         action="/profile/upload"
+	         method="post">
+	     <!--  <input type="file" name="userPhoto" /> -->
+	     <input type="file" class="jfilestyle" data-placeholder="My place holder">
+	      <button id="alok" type="submit" class="ui tiny yellow button">
+		  	<i class="upload icon"></i> UpLoad
+		</button>
+	      <span id = "status"></span>
+	    </form>
+		
+ 		
+		</div>
+		
+		<div class="thirteen wide column">
+		
+		<div class="ui grid">
+		
+					<div class="three wide column">
+					Name
+					</div>
+					<div  class="thirteen wide column">
+					 <div class="ui input focus">
+				     <input type="text" ng-model="userDetails.name" ng-disabled="true"/> 
+				     </div>
+					</div>
+					<div class="three wide column">
+					Work phone
+					</div>
+					<div  class="thirteen wide column">
+					<div class="ui input focus">
+					 <input type="text" ng-model="userDetails.workPhone" ng-disabled="!editProfile"/>   
+					 </div>
+					</div>
+					<div class="three wide column">
+					Location
+					</div>
+					<div  class="thirteen wide column">
+					  <select class="ui dropdown"  ng-options="location._id as location.name for location in locations" ng-model="userDetails.location" ng-disabled="!editProfile"></select>  
+					</div>
+					<div class="three wide column">
+					Employee Id
+					</div>
+					<div  class="thirteen wide column">
+					<div class="ui input focus">
+					  <input type="text" ng-model="userDetails.empId" ng-disabled="!editProfile" /> 
+					  </div>
+					</div>
+					<div class="three wide column">
+					Categories
+					</div>
+					<div  class="thirteen wide column">
+					 <span ng-repeat="category in allCategories" >
+					 
+					 <div class="ui toggle checkbox">
+					  <input id="{{category.name}}" type="checkbox" value="{{category}}" ng-disabled="!editProfile" ng-checked="checkCategory(category._id);" ng-click="toggleSelection(category)"/>
+					  <label for="{{category.name}}" style="padding-left: 54px;padding-right: 20px;">{{category.name | camelCase}} </label>
+					</div>
+					 
+					 </span>
+					</div>
+		
+		</div>
+		
+		<button class="ui primary button" ng-click="edit();" ng-show="!editProfile">
+	  	<i class="write icon"></i>Edit
+		</button>
+		<button class="ui positive button" ng-click="updateProfile();" ng-show="editProfile">
+	  	<i class="checkmark icon"></i> Update
+		</button>
+		
+		
+		</div>
+		
 
 </div>
-user Categories{{userCategories.length}}
-<div id="userCategories" droppable drop="handleDropInUserCategory" style="width:200px;height:200px;border:1px black solid;">
 
-<span ng-repeat="category in userCategories" id="{{category}}"  draggable>{{category.name}}</span>
-</div> -->
-
-
-name:   <input type="text" ng-model="userDetails.name" ng-disabled="true"/>      
-</br>
-work phone: <input type="text" ng-model="userDetails.workPhone" ng-disabled="!editProfile"/>  
-</br>
-location:  <select ng-options="location._id as location.name for location in locations" ng-model="userDetails.location" ng-disabled="!editProfile"></select> 
-</br>
-empId: <input type="text" ng-model="userDetails.empId" ng-disabled="!editProfile" /> 
-</br>
- <form id="uploadForm"
-         enctype="multipart/form-data"
-         action="/profile/upload"
-         method="post">
-      <input type="file" name="userPhoto" />
-      <input type="submit" value="Upload Image" name="submit">
-      <span id = "status"></span>
-    </form>
-</br>
-categories:
-<span ng-repeat="category in allCategories" ><input  id="{{category.name}}" type="checkbox" value="{{category}}" ng-disabled="!editProfile" ng-checked="checkCategory(category._id);" ng-click="toggleSelection(category)"/><label for="{{category.name}}">{{category.name}} </label></span>
-
-<input type="button" value="Edit" ng-click="edit();" ng-show="!editProfile"/>
-<input type="button" value="update" ng-click="updateProfile();" ng-show="editProfile"/>
-
-</br>
-<!-- <form method="post" enctype="multipart/form-data" action="/profile/file-upload">
- 
-    <input type="file" name="thumbnail">
-    <input type="submit">
-</form> -->
