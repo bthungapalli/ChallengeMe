@@ -58,7 +58,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr dir-paginate="category in categories|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage2">
+    <tr dir-paginate="category in categories|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage">
 		<td>
 			 <div class="ui input focus">
 		     <input type="text" ng-model="categories[$index].name" ng-show="categories[$index].edit" />
@@ -69,13 +69,13 @@
 			 <div class="ui input focus">
 		     <input type="text" ng-model="categories[$index].description" ng-show="categories[$index].edit" />
 		     </div>
-			 <spanclass="ui ribbon label" ng-bind="category.description" ng-show="!categories[$index].edit"></span>
+			 <span ng-bind="category.description" ng-show="!categories[$index].edit"></span>
 		 </td>
 		<td style="padding-top: 10px;padding-bottom: 10px;">
 			<div class="ui mini buttons">
-			  <button class="ui positive button" ng-click="updateCategory($index);"  ng-disabled="!categories[$index].name">Update</button>
+			  <button class="ui positive button" ng-click="updateCategory($index);"  ng-disabled="!categories[$index].name"><i class="write icon"></i>Update</button>
 			  <div class="or" data-text="Or" ></div>
-			  <button class="ui red button" ng-click="deleteCategory($index,category._id);">Delete</button>
+			  <button class="ui red button" ng-click="deleteCategory($index,category._id);"><i class="remove icon"></i>Delete</button>
 			</div>
 		</td> 
 		</tr>

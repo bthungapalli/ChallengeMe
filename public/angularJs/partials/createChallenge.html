@@ -42,7 +42,7 @@
 				 <span ng-repeat="category in categories" >
 					 <div class="ui toggle checkbox">
 					  <input id="{{category.name}}" type="checkbox" value="{{category}}"  ng-checked="checkCategory(category._id);"  ng-click="toggleSelection(category)"/>
-					  <label for="{{category.name}}" style="padding-left: 54px;padding-right: 20px;">{{category.name | camelCase}} </label>
+					  <label for="{{category.name}}" style="padding-left: 54px;padding-right: 20px;padding-bottom: 15px;">{{category.name | camelCase}} </label>
 					</div>
 				</span>
 		</div>

@@ -1,39 +1,6 @@
 
 {{errorMessage}}
-<table>
-<thead>
-<tr>
-<th>Title</th><th>Posted By</th><th>Posted Date</th><th ng-show="currentTab!=='allChallenges'">status</th><th>Cut Off Time</th><th ng-show="currentTab==='allChallenges' ">action</th>
-</tr>
-</thead>
-<tbody ng-controller="viewChallengeController" ng-repeat="challengeObj in challenges" >
-<tr>
-<td ng-bind="challengeObj.title | camelCase" ng-click="getChallenge(challengeObj);"> </td>
-<td ng-bind="challengeObj.createdBy" ng-click="getChallenge(challengeObj);"> </td>
-<td ng-bind="challengeObj.created_at | dateFormat" ng-click="getChallenge(challengeObj);" ></td>
-<td ng-show="currentTab!=='allChallenges'" ng-bind="challengeObj.status"  ng-click="getChallenge(challengeObj);"> </td>
-<td ng-bind="challengeObj.date | dateFormat" ng-click="getChallenge(challengeObj);"> </td>
-<td ng-show="currentTab==='allChallenges'"><input  ng-click="subcribeChallenge(challengeObj);" ng-show="!challengeObj.closed" type="button" value="subcribe" ng-hide="challengeObj.isSubcribed" /> <input   ng-show="challengeObj.closed" type="button" value="Closed" /> </td>
-</tr>
-<tr>
-<td colspan="{{colspan}}" >
-<div  ng-show="challengeObj.collapse" ng-include="challengeTemplate"  ></div>
-</td>
-</tr>
-<tr>
-<td colspan="{{colspan}}" ng-if="currentTab==='subcribedChallenges'">
-<div  ng-show="challengeObj.collapse" ng-include="solutionTemplate" ></div>
-</td>
-</tr>
-<tr>
-<td colspan="{{colspan}}" ng-if="((currentTab!=='allChallenges') || (currentTab!=='subcribedChallenges' && challengeObj.closed))">
-<div  ng-show="challengeObj.collapse" ng-repeat="solutionObj in challenge.solutions" ng-include="solutionTemplateForView" ></div>
-</td>
-</tr>
-</tbody>
 
-
-</table>
 <div class="ui grid">
 	<div class="two wide column">
 			<div class="ui icon input">
@@ -51,7 +18,7 @@
 			</select>
 	</div>
 </div>
-<table class="ui five column single line celled padded striped compact teal table">
+<table class="ui five column single line celled padded striped teal table" style="table-layout: fixed">
   <thead>
     <tr>
 	    <th ng-click="sort('title')"  >Title <i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
@@ -70,13 +37,19 @@
 <td ng-show="currentTab!=='allChallenges'" ng-bind="challengeObj.status"  ng-click="getChallenge(challengeObj);"> </td>
 <td ng-bind="challengeObj.date | dateFormat" ng-click="getChallenge(challengeObj);"> </td>
 <td ng-show="currentTab==='allChallenges'">
-<input  ng-click="subcribeChallenge(challengeObj);" ng-show="!challengeObj.closed" type="button" value="subcribe" ng-hide="challengeObj.isSubcribed" />
- <input   ng-show="challengeObj.closed" type="button" value="Closed" />
+		<button type="submit" class="ui small yellow button" ng-click="subcribeChallenge(challengeObj);" ng-show="!challengeObj.closed" type="button" ng-hide="challengeObj.isSubcribed">
+			  	<i class="thumbs outline up icon"></i> Accept
+		</button>
+		
+		<button type="submit" class="ui small red button" ng-show="challengeObj.closed">
+		  	<i class="ban icon"></i> Closed
+		</button>
+		<span ng-show="!challengeObj.closed && challengeObj.isSubcribed">No Actions left</span>
   </td>
 </tr>
 <tr>
 <td ng-show="challengeObj.collapse" colspan="{{colspan}}" >
-<div  ng-include="challengeTemplate"  ></div>
+<div  ng-include="challengeTemplate" ></div>
 </td>
 </tr>
 <tr>
