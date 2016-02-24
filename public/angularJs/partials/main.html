@@ -66,7 +66,7 @@
 			 <div class="ui small breadcrumb">
 			<strong>History:</strong>	
 				 <label ng-click="setCurrentTab(n);" ng-repeat="n in history.slice(history.length-5<0?0:history.length-5,history.length); track by $index"> 
-				  <a  ui-sref=".{{n}}" class="section">{{n}}</a>
+				  <a  ui-sref=".{{n}}" class="section">{{n | camelCase}}</a>
 				  <i class="right chevron icon divider"></i>
 				  </label>
 			</div>
