@@ -12,7 +12,7 @@ var path = require('path');
 
 
 var checkSession=require("../services/checkSessionService");
-var filepath = "/Users/bthungapalli/Documents/uploads/";
+var filepath = "F:/";
 
 router.post('/update', checkSession.requireLogin,function(request, response,next) {
 	
@@ -40,6 +40,7 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 
 	router.get('/imagePath',checkSession.requireLogin,function(req,res){
 		var filename = req.session.user.emailId+".jpg";
+		console.log("image path............"+path.resolve(filepath+filename));
 	      res.sendFile(path.resolve(filepath+filename));
 	});
 	
@@ -49,7 +50,8 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 	        if(err) {
 	            return res.end("Error uploading file.");
 	        }
-	       return res.end("File Upload Success");
+	        var filename = req.session.user.emailId+".jpg";
+	       return res.sendFile(path.resolve(filepath+filename));
 	    });
 	});
 

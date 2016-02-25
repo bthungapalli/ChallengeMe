@@ -36,6 +36,10 @@ challengeMeApp.config(["$stateProvider",function($stateProvider){
 		url: "/subcribed",
 		controller:"challengesController",
 		templateUrl : "angularjs/partials/challenges.html"
+	}).state("main.contactUs",{
+		url: "/contactUs",
+		controller:"contactUsController",
+		templateUrl : "angularjs/partials/contactUs.html"
 	});
 	
 }]);

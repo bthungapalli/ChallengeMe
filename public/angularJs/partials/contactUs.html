@@ -1,0 +1,43 @@
+<div class="ui grid">
+
+<div class="eight wide column" style="padding-left: 28px;">
+				<div class="ui form ">
+				  <div class="field">
+				    <label>Name:</label>
+				    <input type="text" ng-disabled="true" ng-model="userDetails.name">
+				  </div>
+				</div>
+				<br>
+				<div class="ui form ">
+				  <div class="field">
+				    <label>Email:</label>
+				    <div class="ui labeled input focus">
+					  <div class="ui label">
+					 <i class="mail icon"></i>
+					  </div>
+					  <input type="text" ng-disabled="true" ng-model="userDetails.emailId">
+					</div>
+				  </div>
+				</div>
+				<br>
+				<div class="ui form">
+				  <div class="field">
+				    <label>Subject:</label>
+				    <input type="text" placeholder="subject...">
+				  </div>
+				</div>
+</div>
+<div class="eight wide column" style="padding-right: 28px;">
+ 				<div class="ui form ">
+				  <div class="field">
+				    <label>Query:</label>
+				    <textarea rows="10" placeholder="query..."></textarea>
+				  </div>
+				</div>
+</div>
+<div class="sixteen wide center aligned column">
+<button class="ui positive button" >
+					  	<i class="checkmark icon"></i> Send Query
+						</button>
+						</div>
+</div>

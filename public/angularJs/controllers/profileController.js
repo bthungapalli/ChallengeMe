@@ -89,25 +89,5 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 		  $scope.editProfile=true;
 	  };
 	  
-/*	$scope.handleDropInAllCategory = function(item) {
-		 var itemJson=  JSON.parse(item);
-		$scope.allCategories.push(itemJson);
-		angular.forEach($scope.userCategories,function(userCategory,index){
-			if(userCategory.name===itemJson.name){
-				$scope.userCategories.splice(index,1);
-			}
-		});
-	  };
-	
-	$scope.handleDropInUserCategory = function(item) {
-		 var itemJson=  JSON.parse(item);
-		$scope.userCategories.push(itemJson);
-		angular.forEach($scope.allCategories,function(allCategory,index){
-			if(allCategory.name===itemJson.name){
-				$scope.allCategories.splice(index,1);
-			}
-		});
-	  };*/
-
 	
 }]);
