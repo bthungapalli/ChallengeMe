@@ -23,6 +23,7 @@ var UserSchema = new Schema({
     location: {type: Number, required: false},
     businessUnit:{type: String, required: false},
     adminIndicator:{type: Number, required: true},
+    imagePath :{type:String},
     created_at: {type: Date, default: Date.now},
     updated_at: {type: Date, default: Date.now},
     categories : [categorySchema]

@@ -7,7 +7,7 @@ var userService =function(){
 return{
 
 createOrSaveUser : function(userDetails,categories, callback){
-	
+	 var path = "/Users/bthungapalli/Documents/uploads/";
     var query = userModel.findOne({"emailId":userDetails.emailId});
     query.exec(function(err, users){
         if(err)
@@ -25,6 +25,7 @@ createOrSaveUser : function(userDetails,categories, callback){
                  query.exec(function(err, updatedUser){
                      if(err)
                      	callback(err);
+                     	updatedUser.imagePath = path+updatedUser.emailId+".jpg";
                      callback(null,updatedUser);
                  });
         	};
@@ -43,6 +44,7 @@ createOrSaveUser : function(userDetails,categories, callback){
                 query.exec(function(err, newUser){
                     if(err)
                     	callback(err);
+                    	newUser.imagePath = path+newUser.emailId+".jpg";
                     callback(null,newUser);
                 });
               });

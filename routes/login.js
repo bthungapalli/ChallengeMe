@@ -34,6 +34,7 @@ router.post('/authenticate', function(request, response,next) {
 						  if(err)
 							  response.send("Invalid");
 						  request.session.user = userDetails;
+						  console.log("UserDetails::",userDetails);
 						  response.send(userDetails);
 					  });
 				}

@@ -10,7 +10,6 @@ var _ = require('underscore');
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var challenge=request.body;
 	var user=request.session.user
-	console.log("User Details:::::",user);
 	challengeService.createOrSaveChallenge(challenge,user,function(err,status){
 		if(err)
 			response.send("error");

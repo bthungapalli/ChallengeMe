@@ -5,6 +5,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	$scope.selection=[];
 	$scope.locations=[];
 	$scope.editProfile=false;
+	$scope.imagePath='';
 	
 	$scope.getAllCategories=function(){
 		
@@ -24,7 +25,15 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 					$scope.errorMessage="Some thing went wrong.";
 				});
 		};
-	
+		$scope.getImagePath = function(){
+			$scope.imagePath = "profile/imagePath";
+		};
+		$scope.updateImage = function(){
+			$scope.imagePath = "profile/imagePath";
+		}
+		
+		
+	$scope.getImagePath();
 	$scope.getAllCategories();
 	$scope.getLocations();
 	

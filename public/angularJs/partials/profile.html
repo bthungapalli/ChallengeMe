@@ -4,14 +4,13 @@
 	  $(":file").jfilestyle({placeholder: "",buttonText: "Profile",'inputSize': '62%'});
 	  
 		  $('#uploadForm').submit(function() {
-		        $("#status").empty().text("File is uploading...");
 		        $(this).ajaxSubmit({
 		            error: function(xhr) {
 		        	status('Error: ' + xhr.status);
 		            },
 		            success: function(response) {
-		        $("#status").empty().text(response);
 		                console.log(response);
+		                 $(profileImage).attr('src', profileImage + '?' + new Date().getTime());
 		            }
 		    });
 		        //Very important line, it disable the page refresh.
@@ -27,22 +26,22 @@
 <div class="ui stackable grid">
 
 		<div class="three wide center aligned column">
-		<div class="ui segment">
- 			 <img class="ui centered medium image" src="https://lh3.googleusercontent.com/-JFW5FonbZbc/Vh4Ixncha7I/AAAAAAAAAFY/-fNED-eFwuc/w1600-h900/Cool-Tiger-Wallpaper-1920x1080-HD.jpg">
+		<div class="ui segment" id="profileImage">
+ 			 <img class="ui centered medium image" src="{{imagePath}}">
  		</div>
 		
-		<form id="uploadForm"
+	<div id="upload">	<form id="uploadForm"
 	         enctype="multipart/form-data"
 	         action="/profile/upload"
-	         method="post">
+	         method="post"
+	         ng-controller="profileController">
 	     <!--  <input type="file" name="userPhoto" /> -->
-	     <input type="file" class="jfilestyle" data-placeholder="My place holder">
+	     <input type="file" class="jfilestyle" data-placeholder="My place holder" name=userPhoto>
 	      <button type="submit" class="ui tiny yellow button">
 		  	<i class="upload icon"></i> Upload
 		</button>
-	      <span id = "status"></span>
 	    </form>
-		
+		</div>
  		
 		</div>
 		

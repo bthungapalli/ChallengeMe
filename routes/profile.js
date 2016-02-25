@@ -8,9 +8,11 @@ var util = require('util');
 var fs   = require('fs-extra');
 var  multer = require('multer');
 var busboy = require('connect-busboy');
+var path = require('path');
 
 
 var checkSession=require("../services/checkSessionService");
+var filepath = "/Users/bthungapalli/Documents/uploads/";
 
 router.post('/update', checkSession.requireLogin,function(request, response,next) {
 
@@ -24,26 +26,29 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 
    var storage =   multer.diskStorage({
 	  destination: function (req, file, callback) {
-		   var path = "../public/uploads/";
-	    callback(null, path);
+		  
+	    callback(null, filepath);
 	  },
 	  filename: function (req, file, callback) {
-	    callback(null, file.fieldname + '-' + Date.now());
+		  var filename = req.session.user.emailId+".jpg";
+	    callback(null, filename);
 	  }
 	});
+
 	var upload = multer({ storage : storage}).single('userPhoto');
 
-	app.get('/',function(req,res){
-	      res.sendFile(__dirname + "/index.html");
+	router.get('/imagePath',checkSession.requireLogin,function(req,res){
+		var filename = req.session.user.emailId+".jpg";
+	      res.sendFile(path.resolve(filepath+filename));
 	});
 	
 	
-	router.post('/upload',function(req,res){
-	    upload(req,res,function(err) {
+	router.post('/upload',checkSession.requireLogin,function(req,res){
+	    upload(req,res,function(user,err) {
 	        if(err) {
 	            return res.end("Error uploading file.");
 	        }
-	        res.end("File is uploaded");
+	       return res.end("File Upload Success");
 	    });
 	});
 
