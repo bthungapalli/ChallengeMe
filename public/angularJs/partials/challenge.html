@@ -3,24 +3,15 @@
 
 <div class="ui stackable grid">
 		<div class="sixteen wide column"> 
-				<h2> {{challenge.description }}</h2>
+				<h1> {{challenge.description }}</h1>
 		 </div> 
 		 
 		<div class="sixteen wide column">
-				  
-			<button type="submit" class="ui small red button" ng-show="challengeObj.closed">
-		  	<i class="ban icon"></i> Closed
-		</button>
-		
-		<button type="submit" class="ui small positive button" ng-show="!challengeObj.closed">
-		  	Opened
-		</button>  {{challengeObj.createdBy}} created this challenge on {{challenge.date | dateFormat}}
+		  <a class="ui teal tag label">{{challenge.categories.name | camelCase}} </a>
+		  <strong>{{challengeObj.createdBy}} </strong>  created this challenge on {{challenge.created_at | dateFormat}}.
 		</div>
 		<div class="sixteen wide column" ng-show="challenge.prize">
-				 Prize for the solution:  {{challenge.prize}}
+				 <strong>Prize for the solution:</strong>  {{challenge.prize}}
 		</div>
-		<div class="sixteen wide column">
-				  Category:
-					  <a class="ui teal tag label">{{challenge.categories.name | camelCase}} </a>
-		</div>
+		
 </div>
