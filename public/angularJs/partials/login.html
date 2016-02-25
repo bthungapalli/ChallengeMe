@@ -35,7 +35,7 @@
         </div>
         
         
-        <button class="ui right labeled icon positive button large fluid " ng-click="authenticateUser()">
+        <button class="ui right labeled icon positive button large fluid" ng-disabled="user.userName.length===0 || user.password.length===0" ng-click="authenticateUser()">
        <i class="large sign in icon"></i>
         Login
       </button>

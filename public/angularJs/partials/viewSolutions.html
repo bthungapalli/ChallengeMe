@@ -1,10 +1,47 @@
-<div >
 
-<header>solutions view </header>
-{{errorMessage}}
+<style>
+#solution::before { 
+    content: " ";
+    background-color: teal;
+    width:2px;
+display:block;
+position:absolute;
+top:-12px;
+bottom:-12px;
+left:20px;
+}
 
-solution {{solutionObj.solution}}
 
-anonymous {{solutionObj.anonymous}}
- 
- </div>
+.v:before{
+       position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid teal;
+    border-left: 10px solid transparent;
+    display: block;
+    content: " ";
+    right: 100%;
+}
+
+</style>
+<div class="ui stackable grid">
+<div class="sixteen wide column">
+<strong>Solutions:</strong>
+</div>
+
+<div class="sixteen wide column">
+<div id="solutions" style="padding-left: 11%;">
+		<div  id="solution" class="ui segments" >
+		<a href="#"><img style="float: left;margin-left: -12%;border-radius: 10px;height: 60px;" class="ui tiny image" src="https://lh3.googleusercontent.com/-JFW5FonbZbc/Vh4Ixncha7I/AAAAAAAAAFY/-fNED-eFwuc/w1600-h900/Cool-Tiger-Wallpaper-1920x1080-HD.jpg"></a>
+		  <div class="ui secondary teal segment v">
+		    <p><strong ng-bind="!solutionObj.anonymous?solutionObj.solutionBy:'Anonymous'"></strong> gave solution on <strong>{{solutionObj.updated_at | dateFormat}}</strong></p> 
+		  </div>
+		  <div class="ui segment">
+		    <p>{{solutionObj.solution}}</p>
+		  </div>
+		</div>
+</div>
+</div>
+</div>

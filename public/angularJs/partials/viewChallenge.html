@@ -40,7 +40,8 @@
 				  Categories
 				</div>
 		</div>
-		<div class="fourteen wide column">
+		<div class="fourteen wide column" >
+				<div>
 				 <span ng-if="view!=='main.myChallenges'" ng-repeat="category in challenge.categories" >
 					 <div class="ui toggle checkbox">
 					  <input ng-disabled="!editChallenge"  id="{{category.name}}" type="checkbox"  ng-checked="true"  /> 
@@ -48,12 +49,13 @@
 					</div>
 				</span>
 				 <span ng-if="view==='main.myChallenges'" ng-repeat="category in categories" >
-					 <div class="ui toggle checkbox">
+					 <div class="ui toggle checkbox"  >
 					  <input  ng-disabled="!editChallenge"  id="{{category.name}}" type="checkbox" value="{{category}}"  ng-checked="checkCategory(category._id);"  ng-click="toggleSelection(category)"/>
 					  <label for="{{category.name}}" style="padding-left: 54px;padding-right: 20px;">{{category.name | camelCase}} </label>
 					</div>
 				</span>
 				 
+		</div>
 		</div>
 		<div class="sixteen wide center aligned column">
 			<button type="submit" class="ui yellow button" ng-if="view==='main.myChallenges'" ng-show="!editChallenge && !challengeObj.closed" ng-click="showEditFields();">

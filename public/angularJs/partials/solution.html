@@ -1,13 +1,30 @@
-<div  ng-controller="solutionController">
-
-<header>solution </header>
-{{errorMessage}}
-solution
-<input type="text" ng-model="solutionObj.solution" ng-disabled="challengeObj.closed" />
-anonymous
-<input type="checkbox" ng-model="solutionObj.anonymous" ng-disabled="challengeObj.closed" />
-
-<input type="button" value="save" ng-hide="hideEdit || challengeObj.closed || solutionObj.status==='create'" ng-disabled="(solutionObj.solution.length===0)" ng-click="solutionObj.status='draft';saveSolution();" />
- <input type="button" ng-hide=" challengeObj.closed" value="create" ng-disabled="(solutionObj.solution.length===0)" ng-click="solutionObj.status='create';saveSolution();"/>
  
- </div>
+ {{errorMessage}}
+ <div class="ui stackable grid" ng-controller="solutionController">
+
+		 <div class="sixteen wide column">
+				 <div class="ui form ">
+				  <div class="field">
+				    <label>Solution</label>
+				    <textarea ng-model="solutionObj.solution" ng-disabled="challengeObj.closed"></textarea>
+				  </div>
+				</div>
+		</div>
+		
+		<div class="three wide center aligned column">
+					 <div class="ui toggle checkbox">
+					  <input  id="Anonymous" type="checkbox" ng-model="solutionObj.anonymous" ng-disabled="challengeObj.closed" />
+					  <label for="Anonymous" style="padding-left: 54px;padding-right: 20px;padding-bottom: 15px;">Anonymous</label>
+					</div>
+		</div>
+		<div class="thirteen wide center aligned column">
+		<button type="submit" class="ui small primary button" ng-hide="hideEdit || challengeObj.closed || solutionObj.status==='create'" ng-disabled="(solutionObj.solution.length===0)" ng-click="solutionObj.status='draft';saveSolution();" >
+			  	<i class="ban icon"></i> Save
+			</button>
+			<button type="submit" class="ui small positive button"  ng-hide=" challengeObj.closed" value="create" ng-disabled="(solutionObj.solution.length===0)" ng-click="solutionObj.status='create';saveSolution();">
+			  	<i class="checkmark icon"></i> Submit
+			</button>
+		
+		</div>
+</div>
+ 

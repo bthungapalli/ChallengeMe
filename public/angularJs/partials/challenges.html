@@ -50,10 +50,6 @@
 <tr>
 <td ng-show="challengeObj.collapse" colspan="{{colspan}}" >
 <div  ng-include="challengeTemplate" ></div>
-</td>
-</tr>
-<tr>
-<td ng-show="challengeObj.collapse" colspan="{{colspan}}" >
 <div  ng-show="currentTab==='subcribedChallenges'" ng-include="solutionTemplate" ></div>
 <div  ng-show="((currentTab!=='allChallenges') || (currentTab!=='subcribedChallenges' && challengeObj.closed))" ng-repeat="solutionObj in challenge.solutions" ng-include="solutionTemplateForView" ></div>
 </td>
