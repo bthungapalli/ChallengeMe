@@ -30,6 +30,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		
 		$scope.saveChallenge=function(){
 			$scope.errorMessage="";
+			$scope.challenge.categories= JSON.parse($scope.challenge.categories);
 			$http.post("/challenge",$scope.challenge).success(function(response){
 				$scope.redirectToLoginIfSessionExpires(response);
 				if(response=="error"){
@@ -81,7 +82,12 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				$http.get("/challenge/"+challenge._id).success(function(response){
 					$scope.redirectToLoginIfSessionExpires(response);
 					$scope.challenge=response;
-					$scope.challengeTemplate="angularjs/partials/viewChallenge.html";
+					if($scope.view==="main.myChallenges"){
+						$scope.challengeTemplate="angularjs/partials/viewMyChallenge.html";
+					}else{
+						$scope.challengeTemplate="angularjs/partials/challenge.html";
+					}
+					
 					if($scope.view==="main.subcribedChallenges"){
 						$scope.solutionTemplate="angularjs/partials/solution.html";
 					}else{
@@ -97,11 +103,9 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		
 		$scope.checkCategory=function(categoryId){
 				  var checked=false;
-				  angular.forEach($scope.challenge.categories,function(category,index){
-						if(category._id===categoryId){
+						if($scope.challenge.categories._id===categoryId){
 							checked=true;
 						}
-					});
 				  return checked;
 		};
 		

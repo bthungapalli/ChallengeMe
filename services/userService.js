@@ -54,14 +54,20 @@ createOrSaveUser : function(userDetails,categories, callback){
     
 },
 updateUser:function(userDetails,callBackForUserUpdate){
-	 var conditions = { "_id":userDetails._id }; 
+	 var conditions = { "emailId":userDetails.emailId }; 
 	 var update = { $set: {"empId": userDetails.empId,"workPhone": userDetails.workPhone,"location":userDetails.location,"categories":userDetails.categories}};
 	 userModel.update(conditions, update, callback1);
 	function callback1 (err, numAffected) {
 		if(err)
 			callBackForUserUpdate(err);
+		
+		var query = userModel.findOne({"emailId":userDetails.emailId});
+        query.exec(function(err, updatedUser){
+            if(err)
+            	callback(err);
+            callBackForUserUpdate(err,updatedUser)
+        });
 		console.log(numAffected.n + "rows updates");
-		callBackForUserUpdate(err,numAffected.n)
 	};
 }
 

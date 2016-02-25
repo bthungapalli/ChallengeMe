@@ -15,10 +15,11 @@ var checkSession=require("../services/checkSessionService");
 var filepath = "/Users/bthungapalli/Documents/uploads/";
 
 router.post('/update', checkSession.requireLogin,function(request, response,next) {
-
-	  userService.updateUser(request.body,function(err,rows){
+	
+	  userService.updateUser(request.body,function(err,updatedUser){
 		  if(err)
 			  response.send("Invalid");
+		  request.session.user=updatedUser;
 		  response.send("updated");
 	  });
 		

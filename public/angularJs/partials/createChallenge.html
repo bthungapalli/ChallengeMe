@@ -40,15 +40,15 @@
 				  Categories
 				</div>
 				 <span ng-repeat="category in categories" >
-					 <div class="ui toggle checkbox">
-					  <input id="{{category.name}}" type="checkbox" value="{{category}}"  ng-checked="checkCategory(category._id);"  ng-click="toggleSelection(category)"/>
-					  <label for="{{category.name}}" style="padding-left: 54px;padding-right: 20px;padding-bottom: 15px;">{{category.name | camelCase}} </label>
+					 <div class="ui radio checkbox">
+					  <input id="{{category.name}}" type="radio" value="{{category}}" ng-model="challenge.categories"/>
+					  <label for="{{category.name}}" style="padding-right: 10px;padding-bottom: 15px;padding-left: 18px;">{{category.name | camelCase}} </label>
 					</div>
 				</span>
 		</div>
 		<div class="sixteen wide center aligned column">
 				<div class="ui buttons">
-					  <button class="ui button" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0) || (challenge.categories.length===0))" ng-click="challenge.status='draft';createChallenge()">Draft</button>
+					  <button class="ui button" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0) || (challenge.categories.length===0) )" ng-click="challenge.status='draft';createChallenge()">Draft</button>
 					  <div class="or"></div>
 					  <button class="ui positive button"  ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0) || (challenge.categories.length===0))" ng-click="challenge.status='create';createChallenge()">Create</button>
 				</div>

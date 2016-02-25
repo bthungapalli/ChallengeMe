@@ -26,6 +26,7 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 		$scope.createChallenge=function(){
 			$scope.errorMessage=""
 			console.log("challenge:::",$scope.challenge);
+			$scope.challenge.categories= JSON.parse($scope.challenge.categories);
 			$http.post("/challenge",$scope.challenge).success(function(response){
 				$scope.redirectToLoginIfSessionExpires(response);
 				if(response=="error"){

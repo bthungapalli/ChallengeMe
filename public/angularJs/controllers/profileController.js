@@ -66,7 +66,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	  $scope.updateProfile=function(){
 		  
 		  var data={
-				  "_id":$scope.userDetails._id,
+				  "emailId":$scope.userDetails.emailId,
 				  "empId":$scope.userDetails.empId,
 				  "workPhone":$scope.userDetails.workPhone,
 				  "location":$scope.userDetails.location,

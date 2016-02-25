@@ -7,7 +7,7 @@
 				  <div class="ui teal label">
 				   Title
 				  </div>
-				  <input type="text" ng-disabled="!editChallenge" ng-model="challenge.title" />
+				  <input type="text" ng-disabled="true" ng-model="challenge.title" />
 				</div>
 		 </div> 
 		 <div class="sixteen wide column">
@@ -35,27 +35,17 @@
 				 <input type="text" ng-model="challenge.prize"  ng-disabled="!editChallenge" /> 
 				</div> 	
 		</div>
-		<div class="two wide column">
-		<div class="ui teal large label">
-				  Categories
-				</div>
-		</div>
-		<div class="fourteen wide column" >
-				<div>
-				 <span ng-if="view!=='main.myChallenges'" ng-repeat="category in challenge.categories" >
-					 <div class="ui toggle checkbox">
-					  <input ng-disabled="!editChallenge"  id="{{category.name}}" type="checkbox"  ng-checked="true"  /> 
-					  <label for="{{category.name}}" style="padding-left: 54px;padding-right: 20px;">{{category.name | camelCase}} </label>
-					</div>
-				</span>
+		
+		<div class="sixteen wide column" >
+				<div class="ui teal large label">
+						  Category
+						</div>
 				 <span ng-if="view==='main.myChallenges'" ng-repeat="category in categories" >
-					 <div class="ui toggle checkbox"  >
-					  <input  ng-disabled="!editChallenge"  id="{{category.name}}" type="checkbox" value="{{category}}"  ng-checked="checkCategory(category._id);"  ng-click="toggleSelection(category)"/>
-					  <label for="{{category.name}}" style="padding-left: 54px;padding-right: 20px;">{{category.name | camelCase}} </label>
+					 <div class="ui radio checkbox" >
+					  <input  ng-disabled="challenge.status==='create' || !editChallenge"  id="{{category.name}}" type="radio" value="{{category}}"  ng-model="challenge.categories" ng-checked="checkCategory(category._id);"  />
+					  <label for="{{category.name}}" style="padding-right: 10px;padding-bottom: 15px;padding-left: 18px;">{{category.name | camelCase}} </label>
 					</div>
 				</span>
-				 
-		</div>
 		</div>
 		<div class="sixteen wide center aligned column">
 			<button type="submit" class="ui yellow button" ng-if="view==='main.myChallenges'" ng-show="!editChallenge && !challengeObj.closed" ng-click="showEditFields();">

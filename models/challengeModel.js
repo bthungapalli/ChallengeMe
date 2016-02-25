@@ -18,7 +18,7 @@ var challengeSchema = Schema({
     date:{type:String},
     prize:{type:String},
     status:{type:String,required: true},
-    categories : [categorySchema],
+    categories : categorySchema,
     createdByEmailId:{type:String,required: true},
     createdBy:{type:String,required: true},
     created_at: {type: Date, default: Date.now},
