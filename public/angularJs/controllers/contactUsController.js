@@ -1,13 +1,14 @@
 angular.module("challengeMeApp").controller("contactUsController",["$scope","$http","$state","$rootScope",function($scope,$http,$state,$rootScope){
 	
-
+$scope.contactUs={
+		"subject":"",
+		"query":""
+}
 	
 	
-	$scope.getUserDetails=function(){
-		$http.get("/userDetails").success(function(response){
-			$rootScope.userDetails=response;
-			$state.go("main.allChallenges");
-			$scope.currentTab="allChallenges";
+	$scope.sendQuery=function(){
+		$http.post("/contactUs",$scope.contactUs).success(function(response){
+			alert(response);
 			}).error(function(error){
 			});
 	};

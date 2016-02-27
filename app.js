@@ -19,6 +19,7 @@ var challenge = require('./routes/challenge');
 var subcribeChallenge = require('./routes/subcribeChallenge');
 var solution = require('./routes/solution');
 var mailUtil = require('./routes/mailRoute');
+var contactUs = require('./routes/contactUs');
 
 
 var app = express();
@@ -52,6 +53,7 @@ app.use('/profile', profile);
 app.use('/challenge', challenge);
 app.use('/subcribeChallenge', subcribeChallenge);
 app.use('/solution', solution);
+app.use('/contactUs', contactUs);
 
 
 app.set('views', path.join(__dirname, 'views'));
