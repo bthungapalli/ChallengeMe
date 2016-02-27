@@ -1,9 +1,11 @@
 <header style="margin-bottom: 14px;">
 <div class="ui stackable menu">
-  <div class="item" style="width: 7.5em;">
-    <img src="images/logo.png" style="width:6em;">
+  <div class="item" style="width: 18%;">
+    <img src="images/logo.png" style="width:6em;"> <strong>Challenge Me</strong>
   </div>
-  
+  <div class="item" >
+  <i class="big align justify icon"></i>
+  </div>
   <div class="right menu">
     <a class="item" ui-sref=".logout" >Logout<i class="large red sign out icon"></i></a>
   </div>
@@ -12,7 +14,7 @@
 
 
 <div class="ui two column stackable grid" style="height:92vh;">
-  <div class="two wide column" style="background-color: #1D2939;border-right: 2px solid black;padding-right: 0px;padding-top: 0px;">
+  <div class="three wide column" style="background-color: #1D2939;border-right: 2px solid black;padding-right: 0px;padding-top: 0px;">
   	<aside>
 		
 		<div class="ui relaxed divided list">
@@ -22,52 +24,52 @@
 			      <div style="margin-top: 10px;"><a href="#">{{userDetails.name}}</a></div>
           </div>
 		  <div class="item" style="border-bottom: 2px solid white;">
-			    <i class="big add icon"></i>
-			    <a class="content" ui-sref=".categories" ng-click="setCurrentTab('categories');" style="vertical-align: bottom;">
-						    Add Categories
+			   
+			    <a class="content" ui-sref=".categories" ng-click="setCurrentTab('categories');" style="vertical-align: bottom;display: block;">
+					 <i class="big add icon"></i>	    Add Categories
 				</a>
 		  </div>
 		  <div class="item" style="border-bottom: 2px solid white;">
-			    <i class="big write icon"></i>
-			    <a  class="content" ui-sref=".profile" ng-click="setCurrentTab('profile');" style="vertical-align: bottom;">
-						    Edit Profile
+			    
+			    <a  class="content" ui-sref=".profile" ng-click="setCurrentTab('profile');" style="vertical-align: bottom;display: block;">
+					<i class="big write icon"></i>	    Edit Profile
 				</a>
 		  </div>
 		  <div class="item" style="border-bottom: 2px solid white;">
-			    <i class="big puzzle icon"></i>
-			    <a  class="content" ui-sref=".createChallenge" ng-click="setCurrentTab('createChallenge');" style="vertical-align: bottom;">
-						    Create Challenge
+			    
+			    <a  class="content" ui-sref=".createChallenge" ng-click="setCurrentTab('createChallenge');" style="vertical-align: bottom;display: block;">
+					<i class="big puzzle icon"></i>	    Create Challenge
 				</a>
 		  </div>
 		  <div class="item" style="border-bottom: 2px solid white;">
-			    <i class="big lab icon"></i>
-			     <a class="content" ui-sref=".myChallenges" ng-click="setCurrentTab('myChallenges');" style="vertical-align: bottom;">
-						    My Challenges
+			   
+			     <a class="content" ui-sref=".myChallenges" ng-click="setCurrentTab('myChallenges');" style="vertical-align: bottom;display: block;">
+						 <i class="big lab icon"></i>    My Challenges
+				</a>
+		  </div>
+		  <div class="item" style="border-bottom: 2px solid white;" >
+			   
+			     <a class="content" ui-sref=".allChallenges" ng-click="setCurrentTab('allChallenges');" style="vertical-align: bottom;display: block;">
+					 <i class="big archive icon"></i>	    All Challenges
 				</a>
 		  </div>
 		  <div class="item" style="border-bottom: 2px solid white;">
-			    <i class="big archive icon"></i>
-			     <a class="content" ui-sref=".allChallenges" ng-click="setCurrentTab('allChallenges');" style="vertical-align: bottom;">
-						    All Challenges
+			    
+			     <a class="content" ui-sref=".subcribedChallenges" ng-click="setCurrentTab('subcribedChallenges');" style="vertical-align: bottom;display: block;">
+						<i class="big privacy icon"></i>    Subcribed Challenges
 				</a>
 		  </div>
 		  <div class="item" style="border-bottom: 2px solid white;">
-			    <i class="big privacy icon"></i>
-			     <a class="content" ui-sref=".subcribedChallenges" ng-click="setCurrentTab('subcribedChallenges');" style="vertical-align: bottom;">
-						    Subcribed Challenges
-				</a>
-		  </div>
-		  <div class="item" style="border-bottom: 2px solid white;">
-			    <i class="big mail icon"></i>
-			     <a class="content" ui-sref=".contactUs" ng-click="setCurrentTab('contactUs');" style="vertical-align: bottom;">
-						    Contact Us
+			   
+			     <a class="content" ui-sref=".contactUs" ng-click="setCurrentTab('contactUs');" style="vertical-align: bottom;display: block;">
+						    <i class="big mail icon"></i> Contact Us
 				</a>
 		  </div>
 		</div>
          
 	</aside>
   </div>
-  <div class="fourteen wide column" style="padding-top: 0px;padding-left: 0px;">
+  <div class="thirteen wide column" style="padding-top: 0px;padding-left: 0px;">
   
 		 <section>
 			 <div class="ui small breadcrumb" style=" border-bottom: 2px solid lightgray;background-color: #1D2939;">
@@ -83,7 +85,7 @@
 		<div class="sixteen wide column" style="background-color: #F7F7F7;padding-bottom: 0px;padding-top: 3px;padding-left: 0px;margin-left: 15px;"><h1><i class="large level down icon icon"></i>{{currentTab | camelCase}}</h1></div>
 		</div>
 		
-  		<section><div ui-view style="margin-right: 30px;margin-left: 30px;"></div></section>
+  		<section><div ui-view style="margin-right: 30px;margin-left: 30px;margin-top: 25px;"></div></section>
   </div>
  
 </div>

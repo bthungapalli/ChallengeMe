@@ -17,7 +17,33 @@
 			  <option value="50">50</option>
 			</select>
 	</div>
+	<diV class="two wide column">Sort By:</div>
+	<div class="fourteen wide column" style="background-color: white;padding: 0px;">
+
+
+<div class="ui fluid five item secondary pointing menu">
+ <a ng-click="sort('title')" id="profile" class="item"  ng-class="{profileSelected:currentTab==='profile'}" >
+     Title<i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i>
+  </a>
+  <a  ng-click="sort('createdBy')" class="item" ui-sref=".categories" ng-click="setCurrentTab('categories');" ng-class="{categoriesSelected:currentTab==='categories'}">
+    Posted By<i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i>
+  </a>
+  <a  ng-show="currentTab==='myChallenges'" ng-click="sort('status')" class="item active" ui-sref=".createChallenge" ng-click="setCurrentTab('createChallenge');" ng-class="{createChallengeSelected:currentTab==='createChallenge'}">
+     Status<i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i>
+  </a>
+   <a  ng-click="sort('date')" class="item active" ui-sref=".allChallenges" ng-click="setCurrentTab('allChallenges');" ng-class="{allChallengesSelected:currentTab==='allChallenges'}">
+     Cut-off Time<i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i>
+  </a>
+   <a  ng-click="sort('created_at')" class="item active"  ui-sref=".myChallenges" ng-click="setCurrentTab('myChallenges');" ng-class="{myChallengesSelected:currentTab==='myChallenges'}">
+   Posted Date<i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i>
+  </a>
 </div>
+
+</div>
+</div>
+
+
+
 <table class="ui five column single line celled padded striped teal table" style="table-layout: fixed">
   <thead>
     <tr>

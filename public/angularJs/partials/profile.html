@@ -25,13 +25,13 @@
 
 <div class="ui stackable grid">
 
-		<div class="three wide center aligned column">
+		<div class="four wide center aligned column">
 		<div class="ui segment" id="profileImage">
  			 <img  class="ui centered medium image" src="{{imagePath}}">
  			<!--  <img ng-if="imagePath.length===0" class="ui centered medium image" src="images/default.png"> -->
  		</div>
 		
-	<div id="upload">	<form id="uploadForm"
+	<div id="upload" ng-show="editProfile">	<form id="uploadForm"
 	         enctype="multipart/form-data"
 	         action="/profile/upload"
 	         method="post"
@@ -45,7 +45,7 @@
  		
 		</div>
 		
-		<div class="thirteen wide column">
+		<div class="twelve wide column">
 		
 		<div class="ui grid">
 		
