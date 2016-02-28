@@ -1,21 +1,16 @@
 var express = require('express');
 var router = express.Router();
-var catService=require("../services/categoryService");
+var categoryService=require("../services/categoryService");
 var checkSession=require("../services/checkSessionService");
 var counterModel = require("../models/counterModel"); 
 var catModel = require("../models/catModel.js");
 
 
 router.get('/',checkSession.requireLogin,function (req,res,next){
-	catModel.find(function(err,users)
-		{
-          if(err)
-          		{
-                console.log('Came to Error');
-                res.send(err);
-                }
-                res.json(users);
-		});
+	 console.log('came in get categories');
+	categoryService.getCategories(function(categories){
+		 res.json(categories);
+	});
 });
 
 router.post('/',checkSession.requireLogin,function (req,res,next){
@@ -30,6 +25,10 @@ router.post('/',checkSession.requireLogin,function (req,res,next){
         	 
         	function callback (err, numAffected) {
         		console.log(numAffected + "rows updates");
+        		
+        		
+        		
+        		
         		res.json(categoryDetails.id);
         	};
         	 
@@ -50,18 +49,10 @@ router.post('/',checkSession.requireLogin,function (req,res,next){
 });
 
 router.delete('/:id',checkSession.requireLogin,function (req,res,next){
-        if(req.params.id !== undefined){
         console.log('came in delete');
-        catModel.remove({"_id":req.params.id},callback);
-        	function callback (err, numAffected) {
-        		console.log(numAffected+ "rows updates");
-        		}
-        		  res.json("success:Record deleted");
-        	}
-        	else
-	        	{
-	        		res.json("error:No record to delete");
-	        	}
+        categoryService.deleteCategory(req.params.id,function(response){
+        	res.json(response);
+        });
    });
 
 

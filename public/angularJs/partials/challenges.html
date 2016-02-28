@@ -1,4 +1,53 @@
 
+<style>
+
+.title{
+  border-bottom:2px solid #F6B33C !important;color: #F6B33C !important;
+}
+
+.createdBy{
+border-bottom:2px solid #3CBC8D !important;color: #3CBC8D !important;
+}
+
+.status{
+border-bottom:2px solid #EF8D24 !important;color: #EF8D24 !important;
+}
+
+.date{
+border-bottom:2px solid #EB5745 !important;color: #EB5745 !important;
+}
+
+.created_at{
+border-bottom:2px solid #2C5773 !important;color: #2C5773 !important;
+}
+
+
+.title:hover,.profileSelected{
+background-color:#F6B33C !important ;color: white !important;
+}
+
+
+.createdBy:hover,.categoriesSelected{
+background-color:#3CBC8D !important;color: white !important;
+}
+
+.status:hover,.createChallengeSelected{
+background-color:#EF8D24 !important ;color: white !important;
+}
+
+.date:hover,.allChallengesSelected{
+background-color:#EB5745 !important;color:white !important;
+}
+
+.created_at:hover,.myChallengesSelected{
+background-color: #2C5773 !important;color: white!important;
+}
+
+
+
+
+</style>
+
 {{errorMessage}}
 
 <div class="ui grid">
@@ -22,27 +71,48 @@
 
 
 <div class="ui fluid five item secondary pointing menu">
- <a ng-click="sort('title')" id="profile" class="item"  ng-class="{profileSelected:currentTab==='profile'}" >
+ <a  ng-click="sort('title')"  class="item title"  ng-class="{titleSelected:currentTab==='profile'}" >
      Title<i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i>
   </a>
-  <a  ng-click="sort('createdBy')" class="item" ui-sref=".categories" ng-click="setCurrentTab('categories');" ng-class="{categoriesSelected:currentTab==='categories'}">
+  <a  ng-click="sort('createdBy')" class="item createdBy"  ng-click="setCurrentTab('categories');" ng-class="{createdBySelected:currentTab==='categories'}">
     Posted By<i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i>
   </a>
-  <a  ng-show="currentTab==='myChallenges'" ng-click="sort('status')" class="item active" ui-sref=".createChallenge" ng-click="setCurrentTab('createChallenge');" ng-class="{createChallengeSelected:currentTab==='createChallenge'}">
+  <a ng-show="currentTab==='myChallenges'" ng-click="sort('status')" class="item status"  ng-class="{statusSelected:currentTab==='createChallenge'}">
      Status<i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i>
   </a>
-   <a  ng-click="sort('date')" class="item active" ui-sref=".allChallenges" ng-click="setCurrentTab('allChallenges');" ng-class="{allChallengesSelected:currentTab==='allChallenges'}">
-     Cut-off Time<i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i>
+   <a  ng-click="sort('date')" class="item date"   ng-class="{datesSelected:currentTab==='allChallenges'}">
+     Cut-off Date<i ng-class="{'sort numeric ascending icon':reverse,'sort numeric descending icon':!reverse}"></i>
   </a>
-   <a  ng-click="sort('created_at')" class="item active"  ui-sref=".myChallenges" ng-click="setCurrentTab('myChallenges');" ng-class="{myChallengesSelected:currentTab==='myChallenges'}">
-   Posted Date<i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i>
+   <a  ng-click="sort('created_at')" class="item created_at"  ng-class="{created_atSelected:currentTab==='myChallenges'}">
+   Posted Date<i ng-class="{'sort numeric ascending icon':reverse,'sort numeric descending icon':!reverse}"></i>
   </a>
 </div>
 
 </div>
 </div>
 
+<div class="ui grid"  ng-controller="viewChallengeController" dir-paginate="challengeObj in challenges|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage" >
 
+<div class="sixteen wide column" style="background-color: #F6B33C;color: white;border-bottom: 2px solid white;">
+
+<div class="ui grid">
+
+<div class="sixteen wide column">
+<h1>Title:{{challengeObj.title | camelCase}}</h1>
+<Strong>{{challengeObj.createdBy}}</Strong> posted challenge on <i class="calendar icon"></i>{{challengeObj.created_at | dateFormat}}, solutions can be given by <i class="calendar icon"></i>{{challengeObj.date | dateFormat}}
+</div>
+<!-- <div class="sixteen wide column">
+<Strong>{{challengeObj.createdBy}}</Strong> posted challenge on <i class="calendar icon"></i>{{challengeObj.created_at | dateFormat}} cut-off on <i class="calendar icon"></i>{{challengeObj.date | dateFormat}}
+</div> -->
+
+
+</div>
+
+</div>
+
+</div>
+
+<!-- 
 
 <table class="ui five column single line celled padded striped teal table" style="table-layout: fixed">
   <thead>
@@ -86,5 +156,5 @@
 </tr>
 
   </tbody>
-</table>
+</table> -->
 <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" ></dir-pagination-controls>

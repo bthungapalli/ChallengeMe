@@ -4,19 +4,13 @@ var counterModel = require("../models/counterModel");
 var categoryService =function(){
 
 return{
-	fetchCategories : function(){
-    var query = catModel.find();
-    query.exec(function(err, categories){
-        if(err)
-            res.send(err);
-        if(categories!==null){
-        	  return categories;
-        }else{
-        	res.send("No categories found");
-        }
-      
-    });
-    
+	
+getCategories : function(callbackForCategories){
+   catModel.find(function(err,categories){
+       if(err)
+    	   callbackForCategories(err);
+       callbackForCategories(categories);
+		});
 },
 
 createOrUpdateCategories : function(categoryDetails){
@@ -43,10 +37,19 @@ createOrUpdateCategories : function(categoryDetails){
                 	return err;
             });
         	});
-  		      
         }
+        
         return catid;
-    }
+},
+deleteCategory:function(categoryId,callbackForDeleteCategory){
+	catModel.remove({"_id":categoryId},function callback (err, numAffected) {
+		if(err)
+			callbackForDeleteCategory("error:No record to delete");
+		console.log(categoryId +"category deleted.");
+		callbackForDeleteCategory("success:Record deleted");
+	});
+	
+}
 	
 }
 

@@ -1,5 +1,5 @@
 <header style="margin-bottom: 14px;">
-<div class="ui stackable menu">
+<div class="ui stackable menu" style="background-color: #F7F7F7;">
   <div class="item" style="width: 18%;">
     <img src="images/logo.png" style="width:6em;"> <strong>Challenge Me</strong>
   </div>
@@ -14,55 +14,55 @@
 
 
 <div class="ui two column stackable grid" style="height:92vh;">
-  <div class="three wide column" style="background-color: #1D2939;border-right: 2px solid black;padding-right: 0px;padding-top: 0px;">
+  <div class="three wide column" style="background-color: teal;padding-right: 0px;padding-top: 0px;">
   	<aside>
 		
 		<div class="ui relaxed divided list">
 		  <div class="item" style="text-align: -webkit-center;border-bottom: 2px solid white;" >
-			     <img class="ui tiny circular image" src="/profile/imagePath" style="width: 40%;height: 79px;">
+			     <img class="ui tiny image" src="/profile/imagePath" style="width: 40%;height: 79px;border:2px solid white;">
 			    <!--  <img class="ui tiny image" src="images/default.png"> -->
-			      <div style="margin-top: 10px;"><a href="#">{{userDetails.name}}</a></div>
+			      <div style="margin-top: 10px;"><a href="#" style="color:white">{{userDetails.name}}</a></div>
           </div>
-		  <div class="item" style="border-bottom: 2px solid white;">
+		  <div class="item" style="border-bottom: 2px solid black;background-color:#F6B33C">
 			   
-			    <a class="content" ui-sref=".categories" ng-click="setCurrentTab('categories');" style="vertical-align: bottom;display: block;">
-					 <i class="big add icon"></i>	    Add Categories
+			    <a class="content" ui-sref=".categories" ng-click="setCurrentTab('categories');" style="vertical-align: bottom;display: block;color:white;">
+					 <i class="big add icon" style="color: black;"></i>	    Add Categories <div style="width:0px;height:0px;position: absolute;border-left: 17px solid #F6B33C;border-bottom: 15px solid transparent;border-top: 15px solid transparent;left: 100%;display: inline-block;"></div>
 				</a>
 		  </div>
-		  <div class="item" style="border-bottom: 2px solid white;">
+		  <div class="item" style="border-bottom: 2px solid black;background-color:#666699">
 			    
-			    <a  class="content" ui-sref=".profile" ng-click="setCurrentTab('profile');" style="vertical-align: bottom;display: block;">
-					<i class="big write icon"></i>	    Edit Profile
+			    <a  class="content" ui-sref=".profile" ng-click="setCurrentTab('profile');" style="vertical-align: bottom;display: block;color:white;">
+					<i class="big write icon" style="color: black;"></i>	    Edit Profile <div style="width:0px;height:0px;position: absolute;border-left: 17px solid #666699;border-bottom: 15px solid transparent;border-top: 15px solid transparent;left: 100%;display: inline-block;"></div>
 				</a>
 		  </div>
-		  <div class="item" style="border-bottom: 2px solid white;">
+		  <div class="item" style="border-bottom: 2px solid black;background-color:yellowgreen;">
 			    
-			    <a  class="content" ui-sref=".createChallenge" ng-click="setCurrentTab('createChallenge');" style="vertical-align: bottom;display: block;">
-					<i class="big puzzle icon"></i>	    Create Challenge
+			    <a  class="content" ui-sref=".createChallenge" ng-click="setCurrentTab('createChallenge');" style="vertical-align: bottom;display: block;color:white;">
+					<i class="big puzzle icon" style="color: black;"></i>	    Create Challenge <div style="width:0px;height:0px;position: absolute;border-left: 17px solid yellowgreen;border-bottom: 15px solid transparent;border-top: 15px solid transparent;left: 100%;display: inline-block;"></div>
 				</a>
 		  </div>
-		  <div class="item" style="border-bottom: 2px solid white;">
+		  <div class="item" style="border-bottom: 2px solid black;background-color:#EB5745;">
 			   
-			     <a class="content" ui-sref=".myChallenges" ng-click="setCurrentTab('myChallenges');" style="vertical-align: bottom;display: block;">
-						 <i class="big lab icon"></i>    My Challenges
+			     <a class="content" ui-sref=".myChallenges" ng-click="setCurrentTab('myChallenges');" style="vertical-align: bottom;display: block;color:white;">
+						 <i class="big lab icon" style="color: black;"></i>    My Challenges <div style="width:0px;height:0px;position: absolute;border-left: 17px solid #EB5745;border-bottom: 15px solid transparent;border-top: 15px solid transparent;left: 100%;display: inline-block;"></div>
 				</a>
 		  </div>
-		  <div class="item" style="border-bottom: 2px solid white;" >
+		  <div class="item" style="border-bottom: 2px solid black;background-color:#2C5773;" >
 			   
-			     <a class="content" ui-sref=".allChallenges" ng-click="setCurrentTab('allChallenges');" style="vertical-align: bottom;display: block;">
-					 <i class="big archive icon"></i>	    All Challenges
+			     <a class="content" ui-sref=".allChallenges" ng-click="setCurrentTab('allChallenges');" style="vertical-align: bottom;display: block;color:white;">
+					 <i class="big archive icon" style="color: black;"></i>	    All Challenges <div style="width:0px;height:0px;position: absolute;border-left: 17px solid #2C5773;border-bottom: 15px solid transparent;border-top: 15px solid transparent;left: 100%;display: inline-block;"></div>
 				</a>
 		  </div>
-		  <div class="item" style="border-bottom: 2px solid white;">
+		  <div class="item" style="border-bottom: 2px solid black;background-color: #3CBC8D;">
 			    
-			     <a class="content" ui-sref=".subcribedChallenges" ng-click="setCurrentTab('subcribedChallenges');" style="vertical-align: bottom;display: block;">
-						<i class="big privacy icon"></i>    Subcribed Challenges
+			     <a class="content" ui-sref=".subcribedChallenges" ng-click="setCurrentTab('subcribedChallenges');" style="vertical-align: bottom;display: block;color:white;">
+						<i class="big privacy icon" style="color: black;"></i>    Subcribed Challenges <div style="width:0px;height:0px;position: absolute;border-left: 17px solid #3CBC8D;border-bottom: 15px solid transparent;border-top: 15px solid transparent;left: 100%;display: inline-block;"></div>
 				</a>
 		  </div>
-		  <div class="item" style="border-bottom: 2px solid white;">
+		  <div class="item" style="border-bottom: 2px solid black;background-color:#3DBFD9">
 			   
-			     <a class="content" ui-sref=".contactUs" ng-click="setCurrentTab('contactUs');" style="vertical-align: bottom;display: block;">
-						    <i class="big mail icon"></i> Contact Us
+			     <a class="content" ui-sref=".contactUs" ng-click="setCurrentTab('contactUs');" style="vertical-align: bottom;display: block;color:white;">
+						    <i class="big mail icon" style="color: black;"></i> Contact Us <div style="width:0px;height:0px;position: absolute;border-left: 17px solid #3DBFD9;border-bottom: 15px solid transparent;border-top: 15px solid transparent;left: 100%;display: inline-block;"></div>
 				</a>
 		  </div>
 		</div>
@@ -72,10 +72,10 @@
   <div class="thirteen wide column" style="padding-top: 0px;padding-left: 0px;">
   
 		 <section>
-			 <div class="ui small breadcrumb" style=" border-bottom: 2px solid lightgray;background-color: #1D2939;">
+			 <div class="ui small breadcrumb" style=" border-bottom: 2px solid lightgray;background-color: teal;">
 			
 				 <label ng-click="setCurrentTab(n);" ng-repeat="n in history.slice(history.length-5<0?0:history.length-5,history.length); track by $index"> 
-				  <a  ui-sref=".{{n}}" class="section"><strong>{{n | camelCase}}</strong>	 <i class="angle big right icon"></i></a>
+				  <a  ui-sref=".{{n}}" class="section" style="color:white"><strong>{{n | camelCase}}</strong>	 <i class="angle big right icon"></i></a>
 				 
 				  </label>
 			</div>
