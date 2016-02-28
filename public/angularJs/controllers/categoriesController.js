@@ -12,12 +12,14 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 	
 	$scope.categories=[];
 	$scope.itemsPerPage="5";
+	var tempCategories=[];
 	
 	$scope.getAllCategories=function(){
 		
 	$http.get("/categories").success(function(response){
 		$scope.redirectToLoginIfSessionExpires(response);
 		$scope.categories=response;
+		tempCategories=angular.copy($scope.categories);
 		$scope.initializeCategory();
 		}).error(function(error){
 			$scope.category.errorMessage="Some thing went wrong.";
@@ -25,15 +27,21 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 	};
 	$scope.getAllCategories();
 	
-	$scope.addCategory=function(){
+	$scope.duplicateCheck=function(categoryToCheck){
 		var duplicateCategory=false;
-		angular.forEach($scope.categories,function(category,index){
-			if(category.name.toUpperCase()===$scope.category.name.toUpperCase()){
+		angular.forEach(tempCategories,function(category,index){
+			if(category.name.toUpperCase()===categoryToCheck.name.toUpperCase()){
 				duplicateCategory=true;
 				$scope.category.errorMessage="Category all ready exist.";
 			}
 		});
-		if(!duplicateCategory){
+		return duplicateCategory;
+	}
+	
+	$scope.addCategory=function(){
+		
+		var duplicateCheckFlag=$scope.duplicateCheck($scope.category);
+		if(!duplicateCheckFlag){
 		var data = {
 				name : $scope.category.name,
 				description :  $scope.category.description
@@ -53,21 +61,28 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 	};
 	
 	$scope.updateCategory=function(index){
+		$scope.category.errorMessage="";
 		var data = {
-				id:$scope.categories[index]._id,
+				_id:$scope.categories[index]._id,
 				name : $scope.categories[index].name,
 				description : $scope.categories[index].description
 			};
-		if($scope.categories[index].edit){
-			$http.post("/categories",data).success(function(response){
-				$scope.redirectToLoginIfSessionExpires(response);
-			$scope.categories[index].edit=false;
-			}).error(function(error){
-				$scope.category.errorMessage="Some thing went wrong.";
-			});
-		}else{
-			$scope.categories[index].edit=!$scope.categories[index].edit;
-		}
+		var duplicateCheckFlg=false
+		if($scope.categories[index].edit)
+		duplicateCheckFlg=$scope.duplicateCheck(data);
+		
+		if(!duplicateCheckFlg && $scope.categories[index].edit){
+				$http.post("/categories",data).success(function(response){
+					$scope.redirectToLoginIfSessionExpires(response);
+				$scope.categories[index].edit=false;
+				tempCategories=angular.copy($scope.categories);
+				}).error(function(error){
+					$scope.category.errorMessage="Some thing went wrong.";
+				});
+			}else if(!duplicateCheckFlg){
+				$scope.categories[index].edit=!$scope.categories[index].edit;
+			}
+		
 	};
 	
 	$scope.deleteCategory=function(index,id){
