@@ -10,6 +10,8 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 			"challengeId":$scope.challenge._id
 	};
 	$scope.getSolution=function(){
+		$scope.loadingMessage="fetching solution..";
+		$loading.start('solution');
 		console.log("inside getSolution");
 		$http.get(challengeMeConstants.solution+"/"+$scope.challenge._id).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
@@ -17,15 +19,18 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 			if(response!==undefined && response!==""){
 				$scope.solutionObj=response;
 			}
-			
+			$loading.finish('solution');
 			}).error(function(error){
 				$scope.errorMessage=challengeMeConstants.errorMessage;
+				$loading.finish('solution');
 			});
 	};
 
 	$scope.getSolution();
 	
 	$scope.saveSolution=function(){
+		$scope.loadingMessage="saving solution..";
+		$loading.start('solution');
 		$scope.errorMessage="";
 		$http.post(challengeMeConstants.solution,$scope.solutionObj).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
@@ -36,8 +41,10 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 			if($scope.solutionObj.status==="create"){
 				$scope.hideEdit=true;
 			}
+			$loading.finish('solution');
 			}).error(function(error){
 				$scope.errorMessage=challengeMeConstants.errorMessage;
+				$loading.finish('solution');
 			});
 	};
 	

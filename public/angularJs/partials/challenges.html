@@ -47,7 +47,7 @@ background-color: #2C5773 !important;color: white!important;
 
 
 </style>
-
+<div dw-loading="challenge" dw-loading-options="{text: loadingMessage}">
 {{errorMessage}}
 
 <div class="ui grid">
@@ -93,13 +93,13 @@ background-color: #2C5773 !important;color: white!important;
 
 <div class="ui grid"  ng-controller="viewChallengeController" dir-paginate="challengeObj in challenges|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage" >
 
-<div class="sixteen wide column" style="background-color: lightgray;color:black;border-bottom: 2px solid white;" ng-click="getChallenge(challengeObj);">
+<div class="sixteen wide column" style="background-color: lightgray;color:black;border-bottom: 2px solid white;" >
 
 <div class="ui grid" >
 
 <div class="sixteen wide column">
 
-<div class="ui grid" >
+<div class="ui grid" ng-click="getChallenge(challengeObj);">
 <div class="twelve wide column">
 <h1>Title:{{challengeObj.title | camelCase}}</h1>
 </div>
@@ -195,3 +195,4 @@ background-color: #2C5773 !important;color: white!important;
   </tbody>
 </table> -->
 <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" ></dir-pagination-controls>
+</div>
