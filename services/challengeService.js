@@ -35,7 +35,7 @@ createOrSaveChallenge : function(challenge,user,callbackForChallenge){
 },
 getChallengeForEmailId:function(emailId,callbackForChallengesForEmailId){
 	
-	var query = challengeModel.find({"createdByEmailId":emailId});
+	var query = challengeModel.find({"createdByEmailId":emailId}).sort({"created_at":-1});
     query.exec(function(err, challenges){
         if(err)
         	callbackForChallengesForEmailId(err);
@@ -44,7 +44,7 @@ getChallengeForEmailId:function(emailId,callbackForChallengesForEmailId){
 },
 getAllChallenges:function(categories,callbackForAllChallenges){
 	console.log("categories"+categories);
-	var query = challengeModel.find({"categories._id":{$in:categories},"status":"create"});
+	var query = challengeModel.find({"categories._id":{$in:categories},"status":"create"}).sort({"created_at":-1});
     query.exec(function(err, challenges){
         if(err)
         	callbackForAllChallenges(err);
@@ -75,7 +75,7 @@ subcribeChallenge:function(challengeId,emailId,callbackForSubcribe){
 },
 getSubcribedChallengeIds:function(emailId,callbackForSubcribedChallengeIds){
 console.log("in side getSubcribedChallengeIds" +emailId );
-	var query = subcribeChallengeModel.find({"emailId":emailId});
+	var query = subcribeChallengeModel.find({"emailId":emailId}).sort({"created_at":-1});
     query.exec(function(err, challengeIds){
         if(err)
         	callbackForSubcribedChallengeIds(err);

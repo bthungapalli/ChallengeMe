@@ -10,7 +10,7 @@ getCategories : function(callbackForCategories){
        if(err)
     	   callbackForCategories(err);
        callbackForCategories(categories);
-		});
+		}).sort({"created_at":-1});
 },
 
 createOrUpdateCategories : function(categoryDetails,callbackForCreateOrUpdateCategories){

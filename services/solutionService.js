@@ -43,7 +43,7 @@ getSolution:function(challengeId,userEmailId,callbackForSolution){
 },
 
 getSolutionsForChallengeId:function(challengeId,callbackForSolutions){
-	var query = solutionModel.find({"challengeId":challengeId});
+	var query = solutionModel.find({"challengeId":challengeId}).sort({"created_at":-1});
     query.exec(function(err, solutions){
         if(err)
         	callbackForSolutions(err);
