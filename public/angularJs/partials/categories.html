@@ -1,6 +1,10 @@
 <div dw-loading="category" dw-loading-options="{text: loadingMessage}">
-<span>{{category.errorMessage}}</span>
 
+<div  ng-if="category.errorMessage" class="ui red floating  message">
+<div class="header">
+{{category.errorMessage}}
+</div>
+</div>
 <div class="ui stackable grid">
      <div class="four wide column">
     

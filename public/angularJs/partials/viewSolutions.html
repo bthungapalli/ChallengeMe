@@ -27,6 +27,11 @@ left:20px;
 
 </style>
 <div dw-loading="challenges" dw-loading-options="{text: loadingMessage}">
+<div  ng-if="errorMessage" class="ui red floating  message">
+<div class="header">
+{{errorMessage}}
+</div>
+</div>
 <div class="ui stackable grid">
 <div class="sixteen wide column">
 <strong>Solutions:</strong>

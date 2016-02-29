@@ -12,7 +12,6 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 	$scope.categories=[];
 	$scope.itemsPerPage="5";
 	var tempCategories=[];
-	
 	$scope.getAllCategories=function(){
 		$scope.loadingMessage="fetching categories..";
 		$loading.start('category');
@@ -34,17 +33,18 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 		angular.forEach(tempCategories,function(category,index){
 			if(category.name.toUpperCase()===categoryToCheck.name.toUpperCase()){
 				duplicateCategory=true;
-				$scope.category.errorMessage="Category all ready exist.";
+				$scope.category.errorMessage="Category already exist.";
 			}
 		});
 		return duplicateCategory;
 	}
 	
 	$scope.addCategory=function(){
-		$scope.loadingMessage="Adding categories..";
-		$loading.start('category');
+		
 		var duplicateCheckFlag=$scope.duplicateCheck($scope.category);
 		if(!duplicateCheckFlag){
+			$scope.loadingMessage="Adding categories..";
+			$loading.start('category');
 		var data = {
 				name : $scope.category.name,
 				description :  $scope.category.description

@@ -48,7 +48,11 @@ background-color: #2C5773 !important;color: white!important;
 
 </style>
 <div dw-loading="challenge" dw-loading-options="{text: loadingMessage}">
+<div  ng-if="errorMessage" class="ui red floating  message">
+<div class="header">
 {{errorMessage}}
+</div>
+</div>
 
 <div class="ui grid">
 	<div class="two wide column">

@@ -1,7 +1,11 @@
 
 <div dw-loading="contactUs" dw-loading-options="{text: loadingMessage}">
 <h2>Feel free to contact us.</h2>
-
+<div  ng-if="errorMessage" class="ui red floating  message">
+<div class="header">
+{{errorMessage}}
+</div>
+</div>
 <div class="ui grid">
 
 <div class="eight wide column" style="padding-left: 28px;">

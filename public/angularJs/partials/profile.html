@@ -21,9 +21,14 @@
 });
 </script>
 
-{{errorMessage}}
+
 
 <div dw-loading="profile" dw-loading-options="{text: loadingMessage}">
+<div  ng-if="errorMessage" class="ui red floating  message">
+<div class="header">
+{{errorMessage}}
+</div>
+</div>
 <div class="ui stackable grid">
 
 		<div class="four wide center aligned column">
