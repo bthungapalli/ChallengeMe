@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("contactUsController",["$scope","$http","$state","$rootScope",function($scope,$http,$state,$rootScope){
+angular.module("challengeMeApp").controller("contactUsController",["$scope","$http","$state","challengeMeConstants",function($scope,$http,$state,challengeMeConstants){
 	
 $scope.contactUs={
 		"subject":"",
@@ -7,7 +7,7 @@ $scope.contactUs={
 	
 	
 	$scope.sendQuery=function(){
-		$http.post("/contactUs",$scope.contactUs).success(function(response){
+		$http.post(challengeMeConstants.contactUs,$scope.contactUs).success(function(response){
 			alert(response);
 			}).error(function(error){
 			});

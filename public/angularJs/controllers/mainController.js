@@ -1,10 +1,10 @@
-angular.module("challengeMeApp").controller("mainController",["$scope","$http","$state","$rootScope",function($scope,$http,$state,$rootScope){
+angular.module("challengeMeApp").controller("mainController",["$scope","$http","$state","$rootScope","challengeMeConstants",function($scope,$http,$state,$rootScope,challengeMeConstants){
 	
 
 	$rootScope.history=[];
 	$rootScope.userDetails;
 	$scope.getUserDetails=function(){
-		$http.get("/userDetails").success(function(response){
+		$http.get(challengeMeConstants.userDetails).success(function(response){
 			$rootScope.userDetails=response;
 			$state.go("main.allChallenges");
 			$scope.currentTab="allChallenges";
@@ -18,7 +18,7 @@ angular.module("challengeMeApp").controller("mainController",["$scope","$http","
 	}
 	
 	if($state.current.name==="main.logout"){
-		$http.get("/logout").success(function(response){
+		$http.get(challengeMeConstants.logout).success(function(response){
 			if(response==="logout"){
 				$state.go("/");
 			};

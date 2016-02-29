@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("viewChallengeController",["$scope","$http","$state","$rootScope",function($scope,$http,$state,$rootScope){
+angular.module("challengeMeApp").controller("viewChallengeController",["$scope","$http","$state","$rootScope","challengeMeConstants",function($scope,$http,$state,$rootScope,challengeMeConstants){
 	$scope.errorMessage;
 	$scope.categories=[];
     $scope.challenge={
@@ -18,11 +18,11 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 	
 	$scope.getAllCategories=function(){
 		
-		$http.get("/categories").success(function(response){
+		$http.get(challengeMeConstants.categoriesURL).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			$scope.categories=response;
 			}).error(function(error){
-				$scope.category.errorMessage="Some thing went wrong.";
+				$scope.category.errorMessage=challengeMeConstants.errorMessage;
 			});
 		};
 		
@@ -31,15 +31,15 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		$scope.saveChallenge=function(){
 			$scope.errorMessage="";
 			$scope.challenge.categories= (typeof $scope.challenge.categories === 'string') ?  JSON.parse($scope.challenge.categories) : $scope.challenge.categories;
-			$http.post("/challenge",$scope.challenge).success(function(response){
+			$http.post(challengeMeConstants.challenge,$scope.challenge).success(function(response){
 				$scope.redirectToLoginIfSessionExpires(response);
 				if(response=="error"){
-					$scope.errorMessage="Some thing went wrong.";
+					$scope.errorMessage=challengeMeConstants.errorMessage;
 				}else{
 					$scope.editChallenge=!$scope.editChallenge;
 				};
 				}).error(function(error){
-					$scope.errorMessage="Some thing went wrong.";
+					$scope.errorMessage=challengeMeConstants.errorMessage;
 				});
 		};
 		
@@ -79,7 +79,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 			if($scope.challenges[challenge.index].collapse){
 				$scope.solutionTemplate="";
 				$scope.solutionTemplateForView="";
-				$http.get("/challenge/"+challenge._id).success(function(response){
+				$http.get(challengeMeConstants.challenge+"/"+challenge._id).success(function(response){
 					$scope.redirectToLoginIfSessionExpires(response);
 					$scope.challenge=response;
 					if($scope.view==="main.myChallenges"){
@@ -94,7 +94,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 						$scope.solutionTemplateForView="angularjs/partials/viewSolutions.html";
 					};
 				}).error(function(error){
-						$scope.errorMessage="Some thing went wrong.";
+						$scope.errorMessage=challengeMeConstants.errorMessage;
 				});
 			}
 			

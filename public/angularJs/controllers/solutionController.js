@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("solutionController",["$scope","$http","$state","$rootScope",function($scope,$http,$state,$rootScope){
+angular.module("challengeMeApp").controller("solutionController",["$scope","$http","$state","$rootScope","challengeMeConstants",function($scope,$http,$state,$rootScope,challengeMeConstants){
 	
 	
 	$scope.errorMessage="";
@@ -11,7 +11,7 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 	};
 	$scope.getSolution=function(){
 		console.log("inside getSolution");
-		$http.get("/solution/"+$scope.challenge._id).success(function(response){
+		$http.get(challengeMeConstants.solution+"/"+$scope.challenge._id).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			console.log("inside response"+response);
 			if(response!==undefined && response!==""){
@@ -19,7 +19,7 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 			}
 			
 			}).error(function(error){
-				$scope.errorMessage="Some thing went wrong.";
+				$scope.errorMessage=challengeMeConstants.errorMessage;
 			});
 	};
 
@@ -27,17 +27,17 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 	
 	$scope.saveSolution=function(){
 		$scope.errorMessage="";
-		$http.post("/solution",$scope.solutionObj).success(function(response){
+		$http.post(challengeMeConstants.solution,$scope.solutionObj).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			if(response=="error"){
-				$scope.errorMessage="Some thing went wrong.";
+				$scope.errorMessage=challengeMeConstants.errorMessage;
 			};
 			$scope.solutionObj._id=response._id;
 			if($scope.solutionObj.status==="create"){
 				$scope.hideEdit=true;
 			}
 			}).error(function(error){
-				$scope.errorMessage="Some thing went wrong.";
+				$scope.errorMessage=challengeMeConstants.errorMessage;
 			});
 	};
 	

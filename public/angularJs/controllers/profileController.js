@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("profileController",["$scope","$http","$rootScope",function($scope,$http,$rootScope){
+angular.module("challengeMeApp").controller("profileController",["$scope","$http","$rootScope","challengeMeConstants",function($scope,$http,$rootScope,challengeMeConstants){
 	
 	$scope.allCategories=[];
 	$scope.userCategories=[];
@@ -9,20 +9,20 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	
 	$scope.getAllCategories=function(){
 		
-		$http.get("/categories").success(function(response){
+		$http.get(challengeMeConstants.categoriesURL).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			$scope.userCategories=$rootScope.userDetails.categories;
 			$scope.allCategories=response;
 			}).error(function(error){
-				$scope.errorMessage="Some thing went wrong.";
+				$scope.errorMessage=challengeMeConstants.errorMessage;
 			});
 		};
 		
 		$scope.getLocations=function(){
-			$http.get("/locations").success(function(response){
+			$http.get(challengeMeConstants.locations).success(function(response){
 				$scope.locations=response;
 				}).error(function(error){
-					$scope.errorMessage="Some thing went wrong.";
+					$scope.errorMessage=challengeMeConstants.errorMessage;
 				});
 		};
 		$scope.getImagePath = function(){
@@ -75,7 +75,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 				  "location":$scope.userDetails.location,
 				  "categories":$scope.userCategories
 		  };
-		 $http.post("/profile/update",data).success(function(response){
+		 $http.post(challengeMeConstants.profileUpdate,data).success(function(response){
 			 $scope.redirectToLoginIfSessionExpires(response);
 			 if(response==="updated"){
 				 $scope.editProfile=false;
@@ -84,7 +84,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 			 }
 			  
 				}).error(function(error){
-					$scope.errorMessage="Some thing went wrong.";
+					$scope.errorMessage=challengeMeConstants.errorMessage;
 				});
 	  };
 	  

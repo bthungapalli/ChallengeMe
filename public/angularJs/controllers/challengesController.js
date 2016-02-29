@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("challengesController",["$scope","$http","$state","$rootScope",function($scope,$http,$state,$rootScope){
+angular.module("challengeMeApp").controller("challengesController",["$scope","$http","$state","$rootScope","challengeMeConstants",function($scope,$http,$state,$rootScope,challengeMeConstants){
 	
 
 	$scope.challenges=[];
@@ -19,29 +19,29 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	};
 	
 	$scope.getMyChallenges=function(){
-		$http.get("/challenge/mychallenges").success(function(response){
+		$http.get(challengeMeConstants.myChallenges).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			$scope.addAttributesToChallenge(response);
 			}).error(function(error){
-				$scope.errorMessage="Some thing went wrong.";
+				$scope.errorMessage=challengeMeConstants.errorMessage;
 			});
 	};
 	
 	$scope.getAllChallenges=function(){
-		$http.get("/challenge/categories").success(function(response){
+		$http.get(challengeMeConstants.allChallenges).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			$scope.addAttributesToChallenge(response);
 			}).error(function(error){
-				$scope.errorMessage="Some thing went wrong.";
+				$scope.errorMessage=challengeMeConstants.errorMessage;
 			});
 	};
 	
 	   $scope.getSubcribeChallenges=function(){
-			$http.get("/subcribeChallenge").success(function(response){
+			$http.get(challengeMeConstants.subcribeChallenge).success(function(response){
 				$scope.redirectToLoginIfSessionExpires(response);
 				$scope.addAttributesToChallenge(response);
 				}).error(function(error){
-					$scope.errorMessage="Some thing went wrong.";
+					$scope.errorMessage=challengeMeConstants.errorMessage;
 				});
 		};
 
@@ -58,14 +58,14 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	
 	$scope.subcribeChallenge=function(challengeObj){
 		var data={"challengeId":challengeObj._id};
-		$http.post("/subcribeChallenge",data).success(function(response){
+		$http.post(challengeMeConstants.subcribeChallenge,data).success(function(response){
 		if(response==="subcribed"){
 			$state.go("main.subcribedChallenges");
 		}else{
-			$scope.errorMessage="Some thing went wrong.";
+			$scope.errorMessage=challengeMeConstants.errorMessage;
 		}
 			}).error(function(error){
-				$scope.errorMessage="Some thing went wrong.";
+				$scope.errorMessage=challengeMeConstants.errorMessage;
 			});
 	};
 	

@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("categoriesController",["$scope","$http",function($scope,$http){
+angular.module("challengeMeApp").controller("categoriesController",["$scope","$http","challengeMeConstants",function($scope,$http,challengeMeConstants){
 	
 	$scope.initializeCategory=function(){
 		$scope.category={
@@ -16,13 +16,13 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 	
 	$scope.getAllCategories=function(){
 		
-	$http.get("/categories").success(function(response){
+	$http.get(challengeMeConstants.categoriesURL).success(function(response){
 		$scope.redirectToLoginIfSessionExpires(response);
 		$scope.categories=response;
 		tempCategories=angular.copy($scope.categories);
 		$scope.initializeCategory();
 		}).error(function(error){
-			$scope.category.errorMessage="Some thing went wrong.";
+			$scope.category.errorMessage=challengeMeConstants.errorMessage;
 		});
 	};
 	$scope.getAllCategories();
@@ -46,14 +46,14 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 				name : $scope.category.name,
 				description :  $scope.category.description
 				};
-		$http.post("/categories",data).success(function(response){
+		$http.post(challengeMeConstants.categoriesURL,data).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			$scope.category.errorMessage="";
 			$scope.category._id=response;
 			$scope.categories.push($scope.category);
 			$scope.initializeCategory();
 			}).error(function(error){
-				$scope.category.errorMessage="Some thing went wrong.";
+				$scope.category.errorMessage=challengeMeConstants.errorMessage;
 			});
 		};
 		
@@ -72,12 +72,12 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 		duplicateCheckFlg=$scope.duplicateCheck(data);
 		
 		if(!duplicateCheckFlg && $scope.categories[index].edit){
-				$http.post("/categories",data).success(function(response){
+				$http.post(challengeMeConstants.categoriesURL,data).success(function(response){
 					$scope.redirectToLoginIfSessionExpires(response);
 				$scope.categories[index].edit=false;
 				tempCategories=angular.copy($scope.categories);
 				}).error(function(error){
-					$scope.category.errorMessage="Some thing went wrong.";
+					$scope.category.errorMessage=challengeMeConstants.errorMessage;
 				});
 			}else if(!duplicateCheckFlg){
 				$scope.categories[index].edit=!$scope.categories[index].edit;
@@ -87,11 +87,11 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 	
 	$scope.deleteCategory=function(index,id){
 		
-	$http.delete("/categories/"+id).success(function(response){
+	$http.delete(challengeMeConstants.categoriesURL+"/"+id).success(function(response){
 		$scope.redirectToLoginIfSessionExpires(response);
 		$scope.categories.splice(index,1);
 		}).error(function(error){
-			$scope.category.errorMessage="Some thing went wrong.";
+			$scope.category.errorMessage=challengeMeConstants.errorMessage;
 		});
 	};
 	

@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("loginController",["$scope","$http","$state","$rootScope",function($scope,$http,$state,$rootScope){
+angular.module("challengeMeApp").controller("loginController",["$scope","$http","$state","$rootScope","challengeMeConstants",function($scope,$http,$state,$rootScope,challengeMeConstants){
 	
 	
 	$scope.user={
@@ -7,17 +7,16 @@ angular.module("challengeMeApp").controller("loginController",["$scope","$http",
 			errorMessage:"",
 			invalidCredentials:false
 		};
-	
+	console.log(challengeMeConstants.authenticateUserUrl);
 		
 		$scope.authenticateUser=function(){
 			$scope.user.errorMessage="";
 			$scope.user.invalidCredentials=false;
-			var authenticateUserUrl = "/authenticate";
 			var data = {
 					userName : $scope.user.userName,
 					password :  $scope.user.password
 				};
-			$http.post(authenticateUserUrl,data).success(function(response){
+			$http.post(challengeMeConstants.authenticateUserUrl,data).success(function(response){
 				
 				if(angular.isDefined(response._id)){
 					$state.go("main");
@@ -28,7 +27,7 @@ angular.module("challengeMeApp").controller("loginController",["$scope","$http",
 					$scope.user.invalidCredentials=true;
 				}
 			}).error(function(error){
-				$scope.user.errorMessage="Some thing went wrong.";
+				$scope.user.errorMessage=challengeMeConstants.errorMessage;
 			});
 			
 		};
