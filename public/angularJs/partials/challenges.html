@@ -104,12 +104,19 @@ background-color: #2C5773 !important;color: white!important;
 <h1>Title:{{challengeObj.title | camelCase}}</h1>
 </div>
 <div class="four wide column" ng-show="(currentTab==='myChallenges')">
-Status:<button type="submit" class="ui mini positive button" >
-			  	 {{challengeObj.status}}
+<a class="ui teal tag label">{{challengeObj.categories.name | camelCase}} </a>
+Status:<button ng-if="challengeObj.status==='create'"  type="submit" class="ui mini positive button" >
+			  	 Created
 		</button>
+		<button ng-if="challengeObj.status==='draft'"  type="submit" class="ui mini positive button" >
+			  	 Draft
+		</button>
+		  
 		
 </div>
 <div class="four wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))">
+  <a class="ui teal tag label">{{challengeObj.categories.name | camelCase}} </a>
+
 <button type="submit" class="ui mini yellow button" ng-click="subcribeChallenge(challengeObj);" ng-show="!challengeObj.closed " type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') ">
 			  	<i class="thumbs outline up icon"></i> Accept
 		</button>
@@ -129,7 +136,7 @@ Status:<button type="submit" class="ui mini positive button" >
 
 </div>
 </div>
-<div class="sixteen wide column" ng-show="challengeObj.collapse" style="background-color: #F7F7F7;">
+<div class="sixteen wide column" ng-show="challengeObj.collapse" style="background-color: #F7F7F7;border-left: 2px solid teal;border-right: 2px solid teal;border-bottom: 2px solid teal;">
 
 <div  ng-include="challengeTemplate" ></div>
 <div  ng-show="currentTab==='subcribedChallenges'" ng-include="solutionTemplate" ></div>

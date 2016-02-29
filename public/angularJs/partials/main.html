@@ -13,8 +13,8 @@
 </header>
 
 
-<div class="ui two column stackable grid" style="height:92vh;">
-  <div class="three wide column" style="background-color: teal;padding-right: 0px;padding-top: 0px;">
+<div class="ui two column stackable grid" style="">
+  <div class="three wide column" style="background-color: teal;padding-right: 0px;padding-top: 0px;height:92vh;">
   	<aside>
 		
 		<div class="ui relaxed divided list">
@@ -69,9 +69,9 @@
          
 	</aside>
   </div>
-  <div class="thirteen wide column" style="padding-top: 0px;padding-left: 0px;">
+  <div class="thirteen wide column" style="padding-top: 0px;padding-left: 0px;max-height:90vh;overflow-y: scroll">
   
-		 <section>
+		 <section style="margin-right: -14px;">
 			 <div class="ui small breadcrumb" style=" border-bottom: 2px solid lightgray;background-color: teal;">
 			
 				 <label ng-click="setCurrentTab(n);" ng-repeat="n in history.slice(history.length-5<0?0:history.length-5,history.length); track by $index"> 
