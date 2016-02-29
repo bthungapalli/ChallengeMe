@@ -93,18 +93,48 @@ background-color: #2C5773 !important;color: white!important;
 
 <div class="ui grid"  ng-controller="viewChallengeController" dir-paginate="challengeObj in challenges|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage" >
 
-<div class="sixteen wide column" style="background-color: #F6B33C;color: white;border-bottom: 2px solid white;">
+<div class="sixteen wide column" style="background-color: lightgray;color:black;border-bottom: 2px solid white;" ng-click="getChallenge(challengeObj);">
 
-<div class="ui grid">
+<div class="ui grid" >
 
 <div class="sixteen wide column">
+
+<div class="ui grid" >
+<div class="twelve wide column">
 <h1>Title:{{challengeObj.title | camelCase}}</h1>
+</div>
+<div class="four wide column" ng-show="(currentTab==='myChallenges')">
+Status:<button type="submit" class="ui mini positive button" >
+			  	 {{challengeObj.status}}
+		</button>
+		
+</div>
+<div class="four wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))">
+<button type="submit" class="ui mini yellow button" ng-click="subcribeChallenge(challengeObj);" ng-show="!challengeObj.closed " type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') ">
+			  	<i class="thumbs outline up icon"></i> Accept
+		</button>
+		
+		<button type="submit" class="ui mini red button" ng-show="challengeObj.closed">
+		  	<i class="ban icon"></i> Closed
+		</button>
+		
+		<button type="submit" class="ui mini positive button" ng-show="!challengeObj.closed">
+		  	Opened
+		</button>
+</div>
+
+<div class="sixteen wide column">
 <Strong>{{challengeObj.createdBy}}</Strong> posted challenge on <i class="calendar icon"></i>{{challengeObj.created_at | dateFormat}}, solutions can be given by <i class="calendar icon"></i>{{challengeObj.date | dateFormat}}
 </div>
-<!-- <div class="sixteen wide column">
-<Strong>{{challengeObj.createdBy}}</Strong> posted challenge on <i class="calendar icon"></i>{{challengeObj.created_at | dateFormat}} cut-off on <i class="calendar icon"></i>{{challengeObj.date | dateFormat}}
-</div> -->
 
+</div>
+</div>
+<div class="sixteen wide column" ng-show="challengeObj.collapse" style="background-color: #F7F7F7;">
+
+<div  ng-include="challengeTemplate" ></div>
+<div  ng-show="currentTab==='subcribedChallenges'" ng-include="solutionTemplate" ></div>
+<div  ng-show="((currentTab!=='allChallenges') || (currentTab!=='subcribedChallenges' && challengeObj.closed))" ng-repeat="solutionObj in challenge.solutions" ng-include="solutionTemplateForView" ></div>
+</div>
 
 </div>
 
