@@ -12,7 +12,7 @@ var path = require('path');
 
 
 var checkSession=require("../services/checkSessionService");
-var filepath = "F:/";
+var filepath = "/Users/bthungapalli/Documents/uploads/";
 
 router.post('/update', checkSession.requireLogin,function(request, response,next) {
 	
@@ -38,11 +38,19 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 
 	var upload = multer({ storage : storage}).single('userPhoto');
 
-	router.get('/imagePath',checkSession.requireLogin,function(req,res){
+	router.get('/imagePath',checkSession.requireLogin,function(req,res,err){
 		var filename = req.session.user.emailId+".jpg";
-		console.log("image path............"+path.resolve(filepath+filename));
-	      res.sendFile(path.resolve(filepath+filename));
-	});
+		var defaultPic = 'default.jpg';
+		var absolutePath = filepath+filename;
+		
+		fs.access(absolutePath, fs.R_OK | fs.W_OK, function(err) {
+			if (!err) { 
+				res.sendFile(path.resolve(absolutePath));
+				} else{
+		      res.sendFile(path.resolve(filepath+defaultPic));
+					}
+				});
+			});
 	
 	
 	router.post('/upload',checkSession.requireLogin,function(req,res){
@@ -51,7 +59,7 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 	            return res.end("Error uploading file.");
 	        }
 	        var filename = req.session.user.emailId+".jpg";
-	       return res.sendFile(path.resolve(filepath+filename));
+	        	return res.json('profile/imagePath');
 	    });
 	});
 

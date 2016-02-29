@@ -28,8 +28,11 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 		$scope.getImagePath = function(){
 			$scope.imagePath = "profile/imagePath";
 		};
-		$scope.updateImage = function(){
-			$scope.imagePath = "profile/imagePath";
+		$scope.updateImage = function( response){
+			  $scope.$apply(function () {
+				  console.log("came to update");
+				  $scope.imagePath = "profile/imagePath";
+		        });
 		}
 		
 		
