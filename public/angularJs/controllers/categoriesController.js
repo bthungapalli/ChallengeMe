@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("categoriesController",["$scope","$http","challengeMeConstants",function($scope,$http,challengeMeConstants){
+angular.module("challengeMeApp").controller("categoriesController",["$scope","$http","challengeMeConstants","$loading",function($scope,$http,challengeMeConstants,$loading){
 	
 	$scope.initializeCategory=function(){
 		$scope.category={
@@ -9,20 +9,22 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 				"errorMessage":""
 		};
 	};
-	
 	$scope.categories=[];
 	$scope.itemsPerPage="5";
 	var tempCategories=[];
 	
 	$scope.getAllCategories=function(){
-		
+		$scope.loadingMessage="fetching categories..";
+		$loading.start('category');
 	$http.get(challengeMeConstants.categoriesURL).success(function(response){
 		$scope.redirectToLoginIfSessionExpires(response);
 		$scope.categories=response;
 		tempCategories=angular.copy($scope.categories);
 		$scope.initializeCategory();
+		$loading.finish('category');
 		}).error(function(error){
 			$scope.category.errorMessage=challengeMeConstants.errorMessage;
+			$loading.finish('category');
 		});
 	};
 	$scope.getAllCategories();
@@ -39,7 +41,8 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 	}
 	
 	$scope.addCategory=function(){
-		
+		$scope.loadingMessage="Adding categories..";
+		$loading.start('category');
 		var duplicateCheckFlag=$scope.duplicateCheck($scope.category);
 		if(!duplicateCheckFlag){
 		var data = {
@@ -52,8 +55,10 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 			$scope.category._id=response;
 			$scope.categories.push($scope.category);
 			$scope.initializeCategory();
+			$loading.finish('category');
 			}).error(function(error){
 				$scope.category.errorMessage=challengeMeConstants.errorMessage;
+				$loading.finish('category');
 			});
 		};
 		
@@ -61,6 +66,7 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 	};
 	
 	$scope.updateCategory=function(index){
+		
 		$scope.category.errorMessage="";
 		var data = {
 				_id:$scope.categories[index]._id,
@@ -72,12 +78,16 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 		duplicateCheckFlg=$scope.duplicateCheck(data);
 		
 		if(!duplicateCheckFlg && $scope.categories[index].edit){
+			$scope.loadingMessage="Updating categories..";
+			$loading.start('category');
 				$http.post(challengeMeConstants.categoriesURL,data).success(function(response){
 					$scope.redirectToLoginIfSessionExpires(response);
 				$scope.categories[index].edit=false;
 				tempCategories=angular.copy($scope.categories);
+				$loading.finish('category');
 				}).error(function(error){
 					$scope.category.errorMessage=challengeMeConstants.errorMessage;
+					$loading.finish('category');
 				});
 			}else if(!duplicateCheckFlg){
 				$scope.categories[index].edit=!$scope.categories[index].edit;
@@ -86,12 +96,15 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 	};
 	
 	$scope.deleteCategory=function(index,id){
-		
+		$scope.loadingMessage="Deleting categories..";
+		$loading.start('category');
 	$http.delete(challengeMeConstants.categoriesURL+"/"+id).success(function(response){
 		$scope.redirectToLoginIfSessionExpires(response);
 		$scope.categories.splice(index,1);
+		$loading.finish('category');
 		}).error(function(error){
 			$scope.category.errorMessage=challengeMeConstants.errorMessage;
+			$loading.finish('category');
 		});
 	};
 	
