@@ -75,7 +75,7 @@
 <div class="four wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))"  style="padding-bottom: 0px;">
   <a class="ui teal tag label">{{challengeObj.categories.name | camelCase}} </a>
 
-		<button type="submit" class="ui mini yellow button" ng-click="subcribeChallenge(challengeObj);"  type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') || challengeObj.closed || challengeObj.learning">
+		<button type="submit" class="ui mini yellow button" ng-click="subcribeChallenge(challengeObj);"  type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') || challengeObj.closed || challengeObj.learning || challengeObj.createdByEmailId===userDetails.emailId">
 			  	<i class="thumbs outline up icon"></i> Accept
 		</button>
 		 <button ng-if="challengeObj.learning"  type="submit" class="ui mini yellow button" >
