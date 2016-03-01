@@ -40,14 +40,14 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 
 	router.get('/imagePath',checkSession.requireLogin,function(req,res,err){
 		var filename = req.session.user.emailId+".jpg";
-		var defaultPic = 'default.jpg';
+		var defaultPic = "/../public/images/defaultphoto.jpg";
 		var absolutePath = filepath+filename;
 		
 		fs.access(absolutePath, fs.R_OK | fs.W_OK, function(err) {
 			if (!err) { 
 				res.sendFile(path.resolve(absolutePath));
 				} else{
-		      res.sendFile(path.resolve(filepath+defaultPic));
+					res.sendFile(path.resolve(__dirname+defaultPic));
 					}
 				});
 			});
@@ -59,7 +59,7 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 	            return res.end("Error uploading file.");
 	        }
 	        var filename = req.session.user.emailId+".jpg";
-	        	return res.json('profile/imagePath');
+	        	return res.send("<div  class='ui segment' id='profileImage'> <img  class='ui centered medium image' src='/profile/imagePath'></div>");
 	    });
 	});
 

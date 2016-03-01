@@ -14,7 +14,7 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 		if(err)
 			response.send("error");
 		if(status==="create"){
-			var categoryNames = _.pluck(challenge.categories,'name');
+			var categoryNames = challenge.categories.name;
 			console.log("categories Details:::::",categoryNames);
 			var context =  {
 					title : 'ChallengeMe',
