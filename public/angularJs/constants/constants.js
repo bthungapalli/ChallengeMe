@@ -12,4 +12,6 @@ angular.module('challengeMeApp').constant("challengeMeConstants", {
         "profileUpdate":"/profile/update",
         "solution":"/solution",
         "errorMessage":"Some thing went wrong."
+    }).constant("loadingMessages", {
+        "loginLoadMessage": "authenticating users..."
     })

@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("challengesController",["$scope","$http","$state","$rootScope","challengeMeConstants",function($scope,$http,$state,$rootScope,challengeMeConstants){
+angular.module("challengeMeApp").controller("challengesController",["$scope","$http","$state","$rootScope","challengeMeConstants","$loading",function($scope,$http,$state,$rootScope,challengeMeConstants,$loading){
 	
 
 	$scope.challenges=[];
@@ -19,29 +19,41 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	};
 	
 	$scope.getMyChallenges=function(){
+		$scope.loadingMessage="fetching my challenges...";
+		$loading.start('challenge');
 		$http.get(challengeMeConstants.myChallenges).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			$scope.addAttributesToChallenge(response);
+			$loading.finish('challenge');
 			}).error(function(error){
 				$scope.errorMessage=challengeMeConstants.errorMessage;
+				$loading.finish('challenge');
 			});
 	};
 	
 	$scope.getAllChallenges=function(){
+		$scope.loadingMessage="fetching all challenges...";
+		$loading.start('challenge');
 		$http.get(challengeMeConstants.allChallenges).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			$scope.addAttributesToChallenge(response);
+			$loading.finish('challenge');
 			}).error(function(error){
 				$scope.errorMessage=challengeMeConstants.errorMessage;
+				$loading.finish('challenge');
 			});
 	};
 	
 	   $scope.getSubcribeChallenges=function(){
+		   $scope.loadingMessage="fetching subcribed challenges...";
+			$loading.start('challenge');
 			$http.get(challengeMeConstants.subcribeChallenge).success(function(response){
 				$scope.redirectToLoginIfSessionExpires(response);
 				$scope.addAttributesToChallenge(response);
+				$loading.finish('challenge');
 				}).error(function(error){
 					$scope.errorMessage=challengeMeConstants.errorMessage;
+					$loading.finish('challenge');
 				});
 		};
 
@@ -57,6 +69,8 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	}
 	
 	$scope.subcribeChallenge=function(challengeObj){
+		$scope.loadingMessage=" subcribing challenge...";
+		$loading.start('challenge');
 		var data={"challengeId":challengeObj._id};
 		$http.post(challengeMeConstants.subcribeChallenge,data).success(function(response){
 		if(response==="subcribed"){
@@ -64,8 +78,10 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 		}else{
 			$scope.errorMessage=challengeMeConstants.errorMessage;
 		}
+		$loading.finish('challenge');
 			}).error(function(error){
 				$scope.errorMessage=challengeMeConstants.errorMessage;
+				$loading.finish('challenge');
 			});
 	};
 	

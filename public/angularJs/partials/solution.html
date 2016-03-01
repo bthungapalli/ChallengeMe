@@ -1,5 +1,9 @@
- 
- {{errorMessage}}
+ <div dw-loading="solution" dw-loading-options="{text: loadingMessage}">
+<div  ng-if="errorMessage" class="ui red floating  message">
+<div class="header">
+{{errorMessage}}
+</div>
+</div>
  <div class="ui stackable grid" ng-controller="solutionController">
 
 		 <div class="sixteen wide column">
@@ -27,4 +31,4 @@
 		
 		</div>
 </div>
- 
+ </div>

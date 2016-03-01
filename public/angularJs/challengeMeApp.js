@@ -1,4 +1,4 @@
-var challengeMeApp=angular.module('challengeMeApp',["ui.router","angularUtils.directives.dirPagination"]);
+var challengeMeApp=angular.module('challengeMeApp',["ui.router","angularUtils.directives.dirPagination","darthwade.loading"]);
 
 challengeMeApp.config(["$stateProvider",function($stateProvider){
 	

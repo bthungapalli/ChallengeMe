@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("loginController",["$scope","$http","$state","$rootScope","challengeMeConstants",function($scope,$http,$state,$rootScope,challengeMeConstants){
+angular.module("challengeMeApp").controller("loginController",["$scope","$http","$state","$rootScope","challengeMeConstants","$loading","loadingMessages",function($scope,$http,$state,$rootScope,challengeMeConstants,$loading,loadingMessages){
 	
 	
 	$scope.user={
@@ -7,9 +7,13 @@ angular.module("challengeMeApp").controller("loginController",["$scope","$http",
 			errorMessage:"",
 			invalidCredentials:false
 		};
+	$scope.loadingMessage=loadingMessages.loginLoadMessage;
+	$loading.setDefaultOptions({text: $scope.loadingMessage});
+	
 	console.log(challengeMeConstants.authenticateUserUrl);
 		
 		$scope.authenticateUser=function(){
+			$loading.start('authenticate');
 			$scope.user.errorMessage="";
 			$scope.user.invalidCredentials=false;
 			var data = {
@@ -26,8 +30,10 @@ angular.module("challengeMeApp").controller("loginController",["$scope","$http",
 					$scope.user.errorMessage="Invalid Credentials";
 					$scope.user.invalidCredentials=true;
 				}
+				$loading.finish('authenticate');
 			}).error(function(error){
 				$scope.user.errorMessage=challengeMeConstants.errorMessage;
+				$loading.finish('authenticate');
 			});
 			
 		};

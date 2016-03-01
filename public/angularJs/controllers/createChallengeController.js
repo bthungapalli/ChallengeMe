@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("createChallengeController",["$scope","$http","$state","$rootScope","challengeMeConstants",function($scope,$http,$state,$rootScope,challengeMeConstants){
+angular.module("challengeMeApp").controller("createChallengeController",["$scope","$http","$state","$rootScope","challengeMeConstants","$loading",function($scope,$http,$state,$rootScope,challengeMeConstants,$loading){
 	$scope.errorMessage;
 	$scope.categories=[];
 	$scope.challenge={
@@ -24,6 +24,8 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 		$scope.getAllCategories();
 		
 		$scope.createChallenge=function(){
+			$scope.loadingMessage=$scope.challenge.status==="create"?"Creating challenge":"Saving challenge";
+			$loading.start('createChallenge');
 			$scope.errorMessage=""
 			console.log("challenge:::",$scope.challenge);
 			$scope.challenge.categories= JSON.parse($scope.challenge.categories);
@@ -34,8 +36,10 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 				}else{
 					$state.go("main.myChallenges");
 				};
+				$loading.finish('createChallenge');
 				}).error(function(error){
 					$scope.errorMessage=challengeMeConstants.errorMessage;
+					$loading.finish('createChallenge');
 				});
 		};
 		

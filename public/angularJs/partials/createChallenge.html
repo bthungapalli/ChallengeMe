@@ -1,5 +1,10 @@
-{{errorMessage}}
 
+<div dw-loading="createChallenge" dw-loading-options="{text: loadingMessage}">
+<div  ng-if="errorMessage" class="ui red floating  message">
+<div class="header">
+{{errorMessage}}
+</div>
+</div>
 
 <div class="ui stackable grid">
 		<div class="sixteen wide column"> 
@@ -53,4 +58,5 @@
 					  <button class="ui positive button"  ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0) || (challenge.categories.length===0))" ng-click="challenge.status='create';createChallenge()">Create</button>
 				</div>
 		</div>
+</div>
 </div>

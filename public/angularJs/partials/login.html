@@ -10,12 +10,15 @@
 </style>
 
 <div class="ui middle aligned center aligned grid">
+
   <div class="column" >
+   <div dw-loading="authenticate" >
     <h2 class="ui teal  header">
       <div class="content">
         Log-in to your account
       </div>
     </h2>
+   
     <form class="ui large form">
       <div class="ui piled segments segment">
         <div class="field"  ng-class="{error:user.invalidCredentials}">
@@ -47,7 +50,7 @@
       
 
     </form>
-
+</div>
     
   </div>
 </div>

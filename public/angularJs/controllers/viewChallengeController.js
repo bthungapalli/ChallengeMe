@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("viewChallengeController",["$scope","$http","$state","$rootScope","challengeMeConstants",function($scope,$http,$state,$rootScope,challengeMeConstants){
+angular.module("challengeMeApp").controller("viewChallengeController",["$scope","$http","$state","$rootScope","challengeMeConstants","$loading",function($scope,$http,$state,$rootScope,challengeMeConstants,$loading){
 	$scope.errorMessage;
 	$scope.categories=[];
     $scope.challenge={
@@ -29,6 +29,9 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		$scope.getAllCategories();
 		
 		$scope.saveChallenge=function(){
+			$scope.loadingMessage="saving challenge..";
+			$loading.start('challenges');
+			
 			$scope.errorMessage="";
 			$scope.challenge.categories= (typeof $scope.challenge.categories === 'string') ?  JSON.parse($scope.challenge.categories) : $scope.challenge.categories;
 			$http.post(challengeMeConstants.challenge,$scope.challenge).success(function(response){
@@ -38,8 +41,10 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				}else{
 					$scope.editChallenge=!$scope.editChallenge;
 				};
+				$loading.finish('challenges');
 				}).error(function(error){
 					$scope.errorMessage=challengeMeConstants.errorMessage;
+					$loading.finish('challenges');
 				});
 		};
 		
@@ -64,7 +69,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		  };
 		  
 		$scope.getChallenge=function(challenge){
-				
+			
 			if($rootScope.previousOpenedChallengeIndex===-1){
 				$scope.challenges[challenge.index].collapse=!$scope.challenges[challenge.index].collapse;
 				$rootScope.previousOpenedChallengeIndex=challenge.index;
@@ -79,6 +84,8 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 			if($scope.challenges[challenge.index].collapse){
 				$scope.solutionTemplate="";
 				$scope.solutionTemplateForView="";
+				$scope.loadingMessage="fetching challenge..";
+				$loading.start('challenges');
 				$http.get(challengeMeConstants.challenge+"/"+challenge._id).success(function(response){
 					$scope.redirectToLoginIfSessionExpires(response);
 					$scope.challenge=response;
@@ -93,8 +100,10 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 					}else{
 						$scope.solutionTemplateForView="angularjs/partials/viewSolutions.html";
 					};
+					$loading.finish('challenges');
 				}).error(function(error){
 						$scope.errorMessage=challengeMeConstants.errorMessage;
+						$loading.finish('challenges');
 				});
 			}
 			

@@ -14,13 +14,13 @@
 
 
 <div class="ui two column stackable grid" style="">
-  <div class="three wide column" style="background-color: teal;padding-right: 0px;padding-top: 0px;height:92vh;">
+  <div class="three wide column" style="background-color: #1D2939;padding-right: 0px;padding-top: 0px;height:92vh;">
   	<aside>
 		
-		<div class="ui relaxed divided list">
+		<!-- <div class="ui relaxed divided list">
 		  <div class="item" style="text-align: -webkit-center;border-bottom: 2px solid white;" >
 			     <img class="ui tiny image" src="/profile/imagePath" style="width: 40%;height: 79px;border:2px solid white;">
-			    <!--  <img class="ui tiny image" src="images/default.png"> -->
+			     <img class="ui tiny image" src="images/default.png">
 			      <div style="margin-top: 10px;"><a href="#" style="color:white">{{userDetails.name}}</a></div>
           </div>
 		  <div class="item" style="border-bottom: 2px solid black;background-color:#F6B33C">
@@ -65,17 +65,70 @@
 						    <i class="big mail icon" style="color: black;"></i> Contact Us <div style="width:0px;height:0px;position: absolute;border-left: 17px solid #3DBFD9;border-bottom: 15px solid transparent;border-top: 15px solid transparent;left: 100%;display: inline-block;"></div>
 				</a>
 		  </div>
-		</div>
+		</div> -->
+         
+         
+         <div class="ui relaxed divided list">
+		  <div class="item" style="text-align: -webkit-center;border-bottom: 2px solid black;" >
+			     <img class="ui tiny image" src="/profile/imagePath" style="width: 40%;height: 79px;border:2px solid white;">
+			    
+			      <div style="margin-top: 10px;"><a href="#" style="color:white">{{userDetails.name}}</a></div>
+          </div>
+		  <div class="item" style=" border-bottom: 2px solid black; background-color: #1AAF98;margin-left: 5px;margin-right: 5px;border-radius: 5px;">
+			   
+			    <a class="content" ui-sref=".categories" ng-click="setCurrentTab('categories');" style="vertical-align: bottom;display: block;color: white;">
+					 <i class="big add icon" style="color: white;"></i>	    Add Categories 
+				</a>
+		  </div>
+		  <div class="item" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;">
+			    
+			    <a  class="content" ui-sref=".profile" ng-click="setCurrentTab('profile');" style="vertical-align: bottom;display: block;color:#C6D1E6;">
+					<i class="big write icon" style="color: #C6D1E6;"></i>	    Edit Profile 
+				</a>
+		  </div>
+		  <div class="item" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;">
+			    
+			    <a  class="content" ui-sref=".createChallenge" ng-click="setCurrentTab('createChallenge');" style="vertical-align: bottom;display: block;color:#C6D1E6;">
+					<i class="big puzzle icon" style="color: #C6D1E6;"></i>	    Create Challenge 
+				</a>
+		  </div>
+		  <div class="item" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;">
+			   
+			     <a class="content" ui-sref=".myChallenges" ng-click="setCurrentTab('myChallenges');" style="vertical-align: bottom;display: block;color:#C6D1E6;">
+						 <i class="big lab icon" style="color: #C6D1E6;"></i>    My Challenges 
+				</a>
+		  </div>
+		  <div class="item" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;" >
+			   
+			     <a class="content" ui-sref=".allChallenges" ng-click="setCurrentTab('allChallenges');" style="vertical-align: bottom;display: block;color:#C6D1E6;">
+					 <i class="big archive icon" style="color: #C6D1E6;"></i>	    All Challenges 
+				</a>
+		  </div>
+		  <div class="item" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;">
+			    
+			     <a class="content" ui-sref=".subcribedChallenges" ng-click="setCurrentTab('subcribedChallenges');" style="vertical-align: bottom;display: block;color:#C6D1E6;">
+						<i class="big privacy icon" style="color: #C6D1E6;"></i>    Subcribed Challenges 
+				</a>
+		  </div>
+		  <div class="item" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;">
+			   
+			     <a class="content" ui-sref=".contactUs" ng-click="setCurrentTab('contactUs');" style="vertical-align: bottom;display: block;color:#C6D1E6;">
+						    <i class="big mail icon" style="color: #C6D1E6;"></i> Contact Us 
+				</a>
+		  </div>
+		</div> 
+         
+         
          
 	</aside>
   </div>
   <div class="thirteen wide column" style="padding-top: 0px;padding-left: 0px;max-height:90vh;overflow-y: scroll">
   
 		 <section style="margin-right: -14px;">
-			 <div class="ui small breadcrumb" style=" border-bottom: 2px solid lightgray;background-color: teal;">
+			 <div class="ui small breadcrumb" style=" border-bottom: 2px solid lightgray;background-color:  #1D2939;">
 			
 				 <label ng-click="setCurrentTab(n);" ng-repeat="n in history.slice(history.length-5<0?0:history.length-5,history.length); track by $index"> 
-				  <a  ui-sref=".{{n}}" class="section" style="color:white"><strong>{{n | camelCase}}</strong>	 <i class="angle big right icon"></i></a>
+				  <a  ui-sref=".{{n}}" class="section" style="color:#C6D1E6"><strong>{{n | camelCase}}</strong>	 <i class="angle big right icon"></i></a>
 				 
 				  </label>
 			</div>

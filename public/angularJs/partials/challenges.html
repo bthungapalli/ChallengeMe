@@ -1,7 +1,7 @@
 
 <style>
 
-.title{
+/* .title{
   border-bottom:2px solid #F6B33C !important;color: #F6B33C !important;
 }
 
@@ -42,22 +42,26 @@ background-color:#EB5745 !important;color:white !important;
 .created_at:hover,.myChallengesSelected{
 background-color: #2C5773 !important;color: white!important;
 }
-
+ */
 
 
 
 </style>
-
+<div dw-loading="challenge" dw-loading-options="{text: loadingMessage}">
+<div  ng-if="errorMessage" class="ui red floating  message">
+<div class="header">
 {{errorMessage}}
+</div>
+</div>
 
 <div class="ui grid">
-	<div class="two wide column">
+	<div class="four wide column">
 			<div class="ui icon input">
 			  <input type="text" ng-model="search" placeholder="Search Categories...">
 			  <i class="inverted circular teal search link icon"></i>
 			</div>
 	</div>
-	<div class="ten wide column"></div>
+	<div class="eight wide column"> </div>
 	<div class="four wide column">
 			Categories Per Page:<select id="itemsPerPage" name="itemsPerPage" class="ui dropdown" ng-model="itemsPerPage">
 			  <option  value="5">5</option>
@@ -93,13 +97,13 @@ background-color: #2C5773 !important;color: white!important;
 
 <div class="ui grid"  ng-controller="viewChallengeController" dir-paginate="challengeObj in challenges|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage" >
 
-<div class="sixteen wide column" style="background-color: lightgray;color:black;border-bottom: 2px solid white;" ng-click="getChallenge(challengeObj);">
+<div class="sixteen wide column" style="background-color: lightgray;color:black;border-bottom: 2px solid white;" >
 
 <div class="ui grid" >
 
 <div class="sixteen wide column">
 
-<div class="ui grid" >
+<div class="ui grid" ng-click="getChallenge(challengeObj);">
 <div class="twelve wide column">
 <h1>Title:{{challengeObj.title | camelCase}}</h1>
 </div>
@@ -108,7 +112,7 @@ background-color: #2C5773 !important;color: white!important;
 <button ng-if="challengeObj.status==='create'"  type="submit" class="ui mini positive button" >
 			  	 Created
 		</button>
-		<button ng-if="challengeObj.status==='draft'"  type="submit" class="ui mini positive button" >
+		<button ng-if="challengeObj.status==='draft'"  type="submit" class="ui mini primary button" >
 			  	 Draft
 		</button>
 		  
@@ -195,3 +199,4 @@ background-color: #2C5773 !important;color: white!important;
   </tbody>
 </table> -->
 <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" ></dir-pagination-controls>
+</div>

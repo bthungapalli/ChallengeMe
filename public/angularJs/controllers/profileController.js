@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("profileController",["$scope","$http","$rootScope","challengeMeConstants",function($scope,$http,$rootScope,challengeMeConstants){
+angular.module("challengeMeApp").controller("profileController",["$scope","$http","$rootScope","challengeMeConstants","$loading",function($scope,$http,$rootScope,challengeMeConstants,$loading){
 	
 	$scope.allCategories=[];
 	$scope.userCategories=[];
@@ -35,10 +35,12 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 		        });
 		}
 		
-		
+		$scope.loadingMessage="loading profile..";
+		$loading.start('profile');
 	$scope.getImagePath();
 	$scope.getAllCategories();
 	$scope.getLocations();
+	$loading.finish('profile');
 	
 	$scope.toggleSelection = function toggleSelection(category) {
 		var idx=-1;
@@ -67,7 +69,8 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	  };
 	  
 	  $scope.updateProfile=function(){
-		  
+		  $scope.loadingMessage="updating profile..";
+			$loading.start('profile');
 		  var data={
 				  "emailId":$scope.userDetails.emailId,
 				  "empId":$scope.userDetails.empId,
@@ -82,9 +85,10 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 			 }else{
 				 $scope.errorMessage="Dint not save";
 			 }
-			  
+			 $loading.finish('profile');
 				}).error(function(error){
 					$scope.errorMessage=challengeMeConstants.errorMessage;
+					$loading.finish('profile');
 				});
 	  };
 	  
