@@ -4,7 +4,6 @@
 background-color: #1AAF98;
 border-radius: 5px;
 color:#ffffff !important;
-
     position: relative;
     left: 30px;
     z-index: 10000;
@@ -13,6 +12,9 @@ color:#ffffff !important;
 .activeSideMenu{
 background-color: #1AAF98;
 border-radius: 5px;
+}
+
+.activeSideMenuColor{
 color:#ffffff !important;
 }
 
@@ -21,7 +23,7 @@ color:#ffffff !important;
 }
 
 .silver{
-color:#C6D1E6 !important;
+color:#C6D1E6 ;
 }
 
 
@@ -106,42 +108,42 @@ color:#C6D1E6 !important;
           </div>
 		  <div class="item sideMenu" style=" border-bottom: 2px solid black;;margin-left: 5px;margin-right: 5px;"  ng-class="{activeSideMenu:currentTab==='categories'}">
 			   
-			    <a class="silver" ui-sref=".categories" ng-click="setCurrentTab('categories');"  style="vertical-align: bottom;display: block;" ng-class="{activeSideMenu:currentTab==='categories'}">
+			    <a class="silver" ui-sref=".categories" ng-click="setCurrentTab('categories');"  style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='categories'}">
 					 <i class="large add icon " ></i>	    Add Categories 
 				</a>
 		  </div>
 		  <div class="item sideMenu" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;" ng-class="{activeSideMenu:currentTab==='profile'}">
-			    <a  class="silver" ui-sref=".profile" ng-click="setCurrentTab('profile');" style="vertical-align: bottom;display: block">
+			    <a  class="silver" ui-sref=".profile" ng-click="setCurrentTab('profile');" style="vertical-align: bottom;display: block" ng-class="{activeSideMenuColor:currentTab==='profile'}">
 					<i class="large write icon sideMenu" ></i>	    Edit Profile 
 				</a>
 		  </div>
 		  <div class="item sideMenu" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;" ng-class="{activeSideMenu:currentTab==='createChallenge'}">
 			    
-			    <a  class="silver " ui-sref=".createChallenge" ng-click="setCurrentTab('createChallenge');" style="vertical-align: bottom;display: block;color:#C6D1E6;">
+			    <a  class="silver " ui-sref=".createChallenge" ng-click="setCurrentTab('createChallenge');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='createChallenge'}" >
 					<i class="large puzzle icon sideMenu" ></i>	    Create Challenge 
 				</a>
 		  </div>
 		  <div class="item sideMenu" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;" ng-class="{activeSideMenu:currentTab==='myChallenges'}">
 			   
-			     <a class="silver " ui-sref=".myChallenges" ng-click="setCurrentTab('myChallenges');" style="vertical-align: bottom;display: block;color:#C6D1E6;">
+			     <a class="silver " ui-sref=".myChallenges" ng-click="setCurrentTab('myChallenges');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenu:currentTab==='myChallenges'}" >
 						 <i class="large lab icon sideMenu" ></i>    My Challenges 
 				</a>
 		  </div>
 		  <div class="item sideMenu" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;" ng-class="{activeSideMenu:currentTab==='allChallenges'}">
 			   
-			     <a class="silver " ui-sref=".allChallenges" ng-click="setCurrentTab('allChallenges');" style="vertical-align: bottom;display: block;color:#C6D1E6;">
+			     <a class="silver " ui-sref=".allChallenges" ng-click="setCurrentTab('allChallenges');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='allChallenges'}">
 					 <i class="large archive icon sideMenu" ></i>	    All Challenges 
 				</a>
 		  </div>
 		  <div class="item sideMenu" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;" ng-class="{activeSideMenu:currentTab==='subcribedChallenges'}">
 			    
-			     <a class="silver " ui-sref=".subcribedChallenges" ng-click="setCurrentTab('subcribedChallenges');" style="vertical-align: bottom;display: block;color:#C6D1E6;">
+			     <a class="silver " ui-sref=".subcribedChallenges" ng-click="setCurrentTab('subcribedChallenges');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='subcribedChallenges'}">
 						<i class="large privacy icon sideMenu" ></i>    Subcribed Challenges 
 				</a>
 		  </div>
 		  <div class="item sideMenu" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;" ng-class="{activeSideMenu:currentTab==='contactUs'}">
 			   
-			     <a class="silver " ui-sref=".contactUs" ng-click="setCurrentTab('contactUs');" style="vertical-align: bottom;display: block;color:#C6D1E6;">
+			     <a class="silver " ui-sref=".contactUs" ng-click="setCurrentTab('contactUs');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='contactUs'}">
 						    <i class="large mail icon sideMenu" ></i> Contact Us 
 				</a>
 		  </div>
