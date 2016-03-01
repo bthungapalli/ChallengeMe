@@ -1,52 +1,4 @@
 
-<style>
-
-/* .title{
-  border-bottom:2px solid #F6B33C !important;color: #F6B33C !important;
-}
-
-.createdBy{
-border-bottom:2px solid #3CBC8D !important;color: #3CBC8D !important;
-}
-
-.status{
-border-bottom:2px solid #EF8D24 !important;color: #EF8D24 !important;
-}
-
-.date{
-border-bottom:2px solid #EB5745 !important;color: #EB5745 !important;
-}
-
-.created_at{
-border-bottom:2px solid #2C5773 !important;color: #2C5773 !important;
-}
-
-
-.title:hover,.profileSelected{
-background-color:#F6B33C !important ;color: white !important;
-}
-
-
-.createdBy:hover,.categoriesSelected{
-background-color:#3CBC8D !important;color: white !important;
-}
-
-.status:hover,.createChallengeSelected{
-background-color:#EF8D24 !important ;color: white !important;
-}
-
-.date:hover,.allChallengesSelected{
-background-color:#EB5745 !important;color:white !important;
-}
-
-.created_at:hover,.myChallengesSelected{
-background-color: #2C5773 !important;color: white!important;
-}
- */
-
-
-
-</style>
 <div dw-loading="challenge" dw-loading-options="{text: loadingMessage}">
 <div  ng-if="errorMessage" class="ui red floating  message">
 <div class="header">
@@ -54,7 +6,7 @@ background-color: #2C5773 !important;color: white!important;
 </div>
 </div>
 
-<div class="ui grid">
+<div class="ui grid" ng-show="challenges.length>0">
 	<div class="four wide column">
 			<div class="ui icon input">
 			  <input type="text" ng-model="search" placeholder="Search Categories...">
@@ -142,6 +94,9 @@ background-color: #2C5773 !important;color: white!important;
 
 <div class="sixteen wide column"  style="padding-top: 0px;">
 <Strong>{{challengeObj.createdBy}}</Strong> posted challenge on <i class="calendar icon"></i>{{challengeObj.created_at | dateFormat}}, solutions can be given by <i class="calendar icon"></i>{{challengeObj.date | dateFormat}}
+<div ng-show="challengeObj.prize">
+				 <strong>Prize:</strong>  {{challengeObj.prize}}
+		</div>
 </div>
 
 </div>

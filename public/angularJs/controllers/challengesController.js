@@ -24,6 +24,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 		$http.get(challengeMeConstants.myChallenges).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			$scope.addAttributesToChallenge(response);
+			if(response.length===0)$scope.errorMessage=challengeMeConstants.noChallengeMessage;
 			$loading.finish('challenge');
 			}).error(function(error){
 				$scope.errorMessage=challengeMeConstants.errorMessage;
@@ -37,6 +38,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 		$http.get(challengeMeConstants.allChallenges).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			$scope.addAttributesToChallenge(response);
+			if(response.length===0)$scope.errorMessage=challengeMeConstants.noChallengeMessage;
 			$loading.finish('challenge');
 			}).error(function(error){
 				$scope.errorMessage=challengeMeConstants.errorMessage;
@@ -50,6 +52,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 			$http.get(challengeMeConstants.subcribeChallenge).success(function(response){
 				$scope.redirectToLoginIfSessionExpires(response);
 				$scope.addAttributesToChallenge(response);
+				if(response.length===0)$scope.errorMessage=challengeMeConstants.noChallengeMessage;
 				$loading.finish('challenge');
 				}).error(function(error){
 					$scope.errorMessage=challengeMeConstants.errorMessage;

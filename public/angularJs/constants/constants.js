@@ -11,7 +11,8 @@ angular.module('challengeMeApp').constant("challengeMeConstants", {
         "locations":"/locations",
         "profileUpdate":"/profile/update",
         "solution":"/solution",
-        "errorMessage":"Some thing went wrong."
+        "errorMessage":"Some thing went wrong.",
+        "noChallengeMessage":"No challenges are available."
     }).constant("loadingMessages", {
         "loginLoadMessage": "authenticating users..."
     })
