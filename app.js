@@ -23,6 +23,36 @@ var contactUs = require('./routes/contactUs');
 
 
 var app = express();
+
+
+/*try {
+	  config = require(config_file);
+	} catch (err) {
+	  if (err.code && err.code === 'MODULE_NOT_FOUND') {
+	    console.error('No config file matching NODE_ENV=' + process.env.NODE_ENV 
+	      + '. Requires "' + __dirname + '/' + process.env.NODE_ENV + '.js"');
+	    process.exit(1);
+	  } else {
+	    throw err;
+	  }
+	}*/
+
+
+var nconf = require('nconf');
+var environmentPropertyFile="";
+if(process.env.NODE_ENV!=='development' && process.env.NODE_ENV!=='testing' && process.env.NODE_ENV!=='production'){
+	environmentPropertyFile="./config/development.json";
+}else{
+	environmentPropertyFile="./config/"+process.env.NODE_ENV+".json";
+}
+
+nconf.argv()
+     .env()
+     .file({ file:environmentPropertyFile
+     });
+
+var port=nconf.get('port');
+
 app.use(qt.static(__dirname + '/'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -108,8 +138,8 @@ function errorHandler(err, req, res, next) {
 	  res.render('error', { error: err });
 	}
 
-app.listen("8123",function(){
-	console.info("server started...");
+app.listen(port,function(){
+	console.info("server started...on port:"+port);
 });
 
 module.exports = app;
