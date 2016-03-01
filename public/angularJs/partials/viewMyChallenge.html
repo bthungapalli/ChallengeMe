@@ -22,7 +22,7 @@
 				  </div>
 				</div>
 		</div>
-		<div class="four wide column">
+		<div class="five wide column">
 			   <div class="ui labeled input focus">
 				  <div class="ui teal label">
 				   Cut-off Date
@@ -30,8 +30,7 @@
 				 <input type="date" ng-model="challenge.date" ng-disabled="!editChallenge"/> 
 				</div> 	
 		</div>
-		<div class="one wide column"></div>
-		<div class="eleven wide column">
+		<div class="eight wide column">
 			   <div class="ui fluid labeled input focus">
 				  <div class="ui teal label">
 				   Prize
@@ -39,6 +38,12 @@
 				 <input type="text" ng-model="challenge.prize"  ng-disabled="!editChallenge" /> 
 				</div> 	
 		</div>
+		<div class="two wide column" style="position: relative;top: 7px;" ng-hide="challenge.status==='create'">
+				<div class="ui toggle checkbox">
+					  <input id="learning" type="checkbox" ng-model="challenge.learning" ng-disabled="!editChallenge"  />
+					  <label for="learning" >Learning</label>
+					</div>
+		</div>	
 		
 		<div class="sixteen wide column" >
 				<div class="ui teal large label">

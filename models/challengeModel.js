@@ -20,6 +20,7 @@ var challengeSchema = Schema({
     status:{type:String,required: true},
     categories : categorySchema,
     createdByEmailId:{type:String,required: true},
+    learning:{type:Boolean,default:false},
     createdBy:{type:String,required: true},
     created_at: {type: Date, default: Date.now},
     updated_at: {type: Date, default: Date.now},

@@ -12,7 +12,7 @@ var path = require('path');
 
 
 var checkSession=require("../services/checkSessionService");
-var filepath = "/Users/bthungapalli/Documents/uploads/";
+var filepath = "F:/";
 
 router.post('/update', checkSession.requireLogin,function(request, response,next) {
 	
