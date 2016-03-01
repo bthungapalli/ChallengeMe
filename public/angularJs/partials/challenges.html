@@ -56,10 +56,10 @@
 <div class="sixteen wide column">
 
 <div class="ui grid" ng-click="getChallenge(challengeObj);">
-<div class="twelve wide column" style="padding-bottom: 0px;">
-<h3>Title:{{challengeObj.title | camelCase}}</h3>
+<div class="twelve wide column" style="padding-bottom: 0px;padding-top: 5px;">
+<h3>{{challengeObj.title | camelCase}}</h3>
 </div>
-<div class="four wide column" ng-show="(currentTab==='myChallenges')"  style="padding-bottom: 0px;">
+<div class="four wide column" ng-show="(currentTab==='myChallenges')"  style="padding-top: 5px;padding-bottom: 0px;">
 <a class="ui teal tag label">{{challengeObj.categories.name | camelCase}} </a>
 <button ng-if="challengeObj.status==='create'"  type="submit" class="ui mini positive button" >
 			  	 Created
@@ -72,7 +72,7 @@
 		</button>
 		
 </div>
-<div class="four wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))"  style="padding-bottom: 0px;">
+<div class="four wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))"  style="padding-top: 5px;padding-bottom: 0px;">
   <a class="ui teal tag label">{{challengeObj.categories.name | camelCase}} </a>
 
 		<button type="submit" class="ui mini yellow button" ng-click="subcribeChallenge(challengeObj);"  type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') || challengeObj.closed || challengeObj.learning || challengeObj.createdByEmailId===userDetails.emailId">
@@ -92,11 +92,9 @@
 		</span>
 </div>
 
-<div class="sixteen wide column"  style="padding-top: 0px;">
-<Strong>{{challengeObj.createdBy}}</Strong> posted challenge on <i class="calendar icon"></i>{{challengeObj.created_at | dateFormat}}, solutions can be given by <i class="calendar icon"></i>{{challengeObj.date | dateFormat}}
-<div ng-show="challengeObj.prize">
-				 <strong>Prize:</strong>  {{challengeObj.prize}}
-		</div>
+<div class="sixteen wide column"  style="padding-top: 0px;padding-bottom: 5px;">
+<Strong>{{challengeObj.createdBy}}</Strong> posted on <i class="calendar icon"></i>{{challengeObj.created_at | dateFormat}}, solutions can be given by <i class="calendar icon"></i>{{challengeObj.date | dateFormat}}
+				<strong ng-show="challengeObj.prize"><i class=" large gift red icon"></i></strong>  {{challengeObj.prize}}
 </div>
 
 </div>
