@@ -6,29 +6,40 @@ var checkSession=require("../services/checkSessionService");
 var solutionService=require("../services/solutionService");
 var mailUtil = require("../utils/MailUtil");
 var _ = require('underscore');
+var categoryService=require("../services/categoryService");
 
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var challenge=request.body;
-	var user=request.session.user
+	var user=request.session.user;
 	challengeService.createOrSaveChallenge(challenge,user,function(err,status){
 		if(err)
 			response.send("error");
-		if(status==="create"){
-			var categoryNames = challenge.categories.name;
-			console.log("categories Details:::::",categoryNames);
-			var context =  {
-					title : 'ChallengeMe',
-					username : user.name,
-					categoryName:categoryNames,
-					challengeName : challenge.title,
-					description : challenge.description,
-					prize : challenge.prize,
-					lastDate : challenge.date
-					
-				};
-			mailUtil.sendMail('bthungapalli@osius.com','bthungapalli@osius.com','Challenge Posted','ChallengeMe.html',context);
-		}
-		response.send("created");
+			if(status==="create"){
+				categoryService.getEmailIdsForCategories(challenge.categories,function(err,emailIds){
+					if(err==="error")
+						response.send("error");
+					var ids=_.pluck(emailIds, 'emailId');
+					console.log("emailIds...................."+ids);
+				var categoryNames = challenge.categories.name;
+				console.log("categories Details:::::",categoryNames);
+				var context =  {
+						title : 'ChallengeMe',
+						username : user.name,
+						categoryName:categoryNames,
+						challengeName : challenge.title,
+						description : challenge.description,
+						prize : challenge.prize,
+						lastDate : challenge.date
+						
+					};
+				if(ids.length>0)
+				mailUtil.sendMail('bthungapalli@osius.com','bthungapalli@osius.com','Challenge Posted','ChallengeMe.html',context);
+				response.send("created");
+			 });
+			}else{
+				response.send("created");
+			}
+		
 	});
 });
 
