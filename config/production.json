@@ -1,3 +1,28 @@
-/**
- * http://usejsdoc.org/
- */
+ {
+  "port": "8123",
+   "sessionDetails":{
+	   "cookieName":"session",
+	   "secretKey":"challengeMe",
+	   "duration":1800000,
+	   "activeDuration":30000,
+	   "httpOnly":true,
+	   "secure":true,
+	   "ephemeral":true
+   },
+   "mongoDbConnection":{
+	   "host":"localhost",
+	   "Db":"challengeMeDB"
+   },
+   "routes":{
+	   "login":"/",
+	   "mailUtil":"/mails",
+	   "categories":"/categories",
+	   "locations":"/locations",
+	   "profile":"/profile",
+	   "challenge":"/challenge",
+	   "subcribeChallenge":"/subcribeChallenge",
+	   "solution":"/solution",
+	   "contactUs":"/contactUs"
+   }
+   
+}

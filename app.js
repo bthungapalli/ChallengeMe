@@ -9,8 +9,6 @@ var qt   = require('quickthumb');
 var session = require('client-sessions');
 var busboy = require('connect-busboy');
 
-mongoose.connect('mongodb://localhost/challengeMeDB');
-
 var login = require('./routes/login');
 var categories = require('./routes/categories');
 var locations = require('./routes/locations');
@@ -21,23 +19,9 @@ var solution = require('./routes/solution');
 var mailUtil = require('./routes/mailRoute');
 var contactUs = require('./routes/contactUs');
 
-
 var app = express();
 
-
-/*try {
-	  config = require(config_file);
-	} catch (err) {
-	  if (err.code && err.code === 'MODULE_NOT_FOUND') {
-	    console.error('No config file matching NODE_ENV=' + process.env.NODE_ENV 
-	      + '. Requires "' + __dirname + '/' + process.env.NODE_ENV + '.js"');
-	    process.exit(1);
-	  } else {
-	    throw err;
-	  }
-	}*/
-
-
+/************  Loading property file based on env  ****************/
 var nconf = require('nconf');
 var environmentPropertyFile="";
 if(process.env.NODE_ENV!=='development' && process.env.NODE_ENV!=='testing' && process.env.NODE_ENV!=='production'){
@@ -51,7 +35,13 @@ nconf.argv()
      .file({ file:environmentPropertyFile
      });
 
+/************   properties from env based properties  ****************/
 var port=nconf.get('port');
+var sessionDetials=nconf.get('sessionDetails');
+var mongoDbConnection=nconf.get('mongoDbConnection');
+var routes=nconf.get('routes');
+/************   mongo connection  ****************/
+mongoose.connect('mongodb://'+mongoDbConnection.host+'/'+mongoDbConnection.Db);
 
 app.use(qt.static(__dirname + '/'));
 app.use(logger('dev'));
@@ -63,29 +53,31 @@ app.use(clientErrorHandler);
 app.use(errorHandler);
 app.use(busboy());
 
+/************   session  ****************/
 app.use(session({
-	  cookieName: 'session',
-	  secret: 'random_string_goes_here',
-	  duration: 30 * 60 * 1000,
-	  activeDuration: 5 * 60 * 1000,
-	  httpOnly: true,
-	  secure: true,
-	  ephemeral: true
+	  cookieName: sessionDetials.cookieName,
+	  secret: sessionDetials.secretKey,
+	  duration: sessionDetials.duration,
+	  activeDuration: sessionDetials.activeDuration,
+	  httpOnly: sessionDetials.httpOnly,
+	  secure: sessionDetials.secure,
+	  ephemeral: sessionDetials.ephemeral
 	}));
+
+/************   configuring routes   ****************/
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(path.join(__dirname + '/node_modules')));
+app.use(routes.login, login);
+app.use(routes.mailUtil, mailUtil);
+app.use(routes.categories, categories);
+app.use(routes.locations, locations);
+app.use(routes.profile, profile);
+app.use(routes.challenge, challenge);
+app.use(routes.subcribeChallenge, subcribeChallenge);
+app.use(routes.solution, solution);
+app.use(routes.contactUs, contactUs);
 
-app.use('/', login);
-app.use('/mails', mailUtil);
-app.use('/categories', categories);
-app.use('/locations', locations);
-app.use('/profile', profile);
-app.use('/challenge', challenge);
-app.use('/subcribeChallenge', subcribeChallenge);
-app.use('/solution', solution);
-app.use('/contactUs', contactUs);
-
-
+/************   configuring views for errors   ****************/
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
