@@ -102,8 +102,10 @@
 <div class="sixteen wide column" ng-show="challengeObj.collapse" style="background-color: #F7F7F7;border-left: 2px solid teal;border-right: 2px solid teal;border-bottom: 2px solid teal;color:black">
 
 <div  ng-include="challengeTemplate" ></div>
+<div  ng-include="challengeCommentsTemplate"></div>
+<div  ng-show="((currentTab!=='allChallenges') || (currentTab!=='subcribedChallenges' && challengeObj.closed))"  ng-include="solutionTemplateForView" ></div>
 <div  ng-show="currentTab==='subcribedChallenges'" ng-include="solutionTemplate" ></div>
-<div  ng-show="((currentTab!=='allChallenges') || (currentTab!=='subcribedChallenges' && challengeObj.closed))" ng-repeat="solutionObj in challenge.solutions" ng-include="solutionTemplateForView" ></div>
+
 </div>
 
 </div>

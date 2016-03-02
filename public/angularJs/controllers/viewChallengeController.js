@@ -91,6 +91,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				$http.get(challengeMeConstants.challenge+"/"+challenge._id).success(function(response){
 					$scope.redirectToLoginIfSessionExpires(response);
 					$scope.challenge=response;
+					$scope.challengeCommentsTemplate="angularjs/partials/challengeComments.html";
 					if($scope.view==="main.myChallenges"){
 						$scope.challengeTemplate="angularjs/partials/viewMyChallenge.html";
 					}else{
@@ -125,7 +126,6 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		};
 		
 		$scope.addChallengeComment=function(challenge){
-			debugger;
 			var data={"challengeId":challenge._id,"comment":$("#commentTextArea").val()}
 			$http.post(challengeMeConstants.challenge+"/"+challengeMeConstants.challengeComment,data).success(function(response){
 				$scope.redirectToLoginIfSessionExpires(response);
