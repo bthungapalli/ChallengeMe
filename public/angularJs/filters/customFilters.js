@@ -50,4 +50,23 @@ angular.module('challengeMeApp')
 				  var dates=inputArray[0].split("-");
 				  return dates[2]+" "+months[dates[1]-1]+" "+dates[0];
 			  };
-			});
+})
+.filter('displayTab', function() {
+			  return function(input) {
+				var tabName=""
+					if(input==="allChallenges"){
+						tabName="All Challenges";
+					}else if(input==="myChallenges"){
+						tabName="My Challenges";
+					}else if(input==="subcribedChallenges"){
+						tabName="Subcribed Challenges";
+					}else if(input==="contactUs"){
+						tabName="Contact Us";
+					}else if(input==="createChallenge"){
+						tabName="Create Challenge";
+					}else{
+						tabName=input;
+					}
+				  return tabName
+			  };
+});

@@ -8,7 +8,7 @@
 		 <div class="sixteen wide column" ng-show="viewSolutionComments"> 
 		    
 			<div class="ui threaded comments" style="max-width:100%">
- 				 <h3 class="ui dividing header">Comment's on solution</h3>
+ 				 <h3 ng-show="challenge.comments.length>0" class="ui dividing header">Comment's on solution</h3>
 				  <div class="comment" ng-repeat="comment in challenge.comments">
 				    <div class="content">
 				      <a class="author">{{comment.userName}}</a>
