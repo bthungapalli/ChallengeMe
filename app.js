@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var qt   = require('quickthumb');
 var session = require('client-sessions');
-var busboy = require('connect-busboy');
+//var busboy = require('connect-busboy');
 
 var login = require('./routes/login');
 var categories = require('./routes/categories');
@@ -16,7 +16,6 @@ var profile = require('./routes/profile');
 var challenge = require('./routes/challenge');
 var subcribeChallenge = require('./routes/subcribeChallenge');
 var solution = require('./routes/solution');
-var mailUtil = require('./routes/mailRoute');
 var contactUs = require('./routes/contactUs');
 
 var app = express();
@@ -52,7 +51,7 @@ app.use(cookieParser());
 app.use(logErrors);
 app.use(clientErrorHandler);
 app.use(errorHandler);
-app.use(busboy());
+//app.use(busboy());
 
 /************   session  ****************/
 app.use(session({
@@ -69,7 +68,6 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(path.join(__dirname + '/node_modules')));
 app.use(routes.login, login);
-app.use(routes.mailUtil, mailUtil);
 app.use(routes.categories, categories);
 app.use(routes.locations, locations);
 app.use(routes.profile, profile);

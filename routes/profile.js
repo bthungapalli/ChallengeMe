@@ -3,16 +3,15 @@ var app = express();
 var router = express.Router();
 var http = require('http');
 var userService=require("../services/userService");
-var formidable = require('formidable');
 var util = require('util');
 var fs   = require('fs-extra');
 var  multer = require('multer');
-var busboy = require('connect-busboy');
+//var busboy = require('connect-busboy');
 var path = require('path');
 
 
 var checkSession=require("../services/checkSessionService");
-var filepath = "F:/";
+var filepath = "F:\\";
 
 router.post('/update', checkSession.requireLogin,function(request, response,next) {
 	

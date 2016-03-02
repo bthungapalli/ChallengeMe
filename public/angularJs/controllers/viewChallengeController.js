@@ -133,7 +133,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 					$scope.errorMessage=challengeMeConstants.errorMessage;
 				}else{
 					
-					var commentData={"comment":$("#commentTextArea").val(),"userName":$scope.userDetails.username,"emailId":$scope.userDetails.emailId,"commentedDate":new Date().toISOString()}
+					var commentData={"comment":$("#commentTextArea").val(),"userName":$scope.userDetails.name,"emailId":$scope.userDetails.emailId,"commentedDate":new Date().toISOString()}
 					$scope.challenge.comments.push(commentData);
 					$scope.challengeComment="";
 					$("#commentTextArea").val("")
