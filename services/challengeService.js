@@ -99,9 +99,37 @@ getSubcribedChallengeIdsForEmail:function(emailId,callbackForSubcribedChallengeI
 	        console.log("challengeIds"+challengeIds);
 	        callbackForSubcribedChallengeIdsForEmail(null,challengeIds);
 	    });
-	}
+	},
+	
 
-}
+updateComments : function(challengeId, comment, user,
+				callbackForComments) {
+			// var query = challengeModel.insert({})
+			counterModel.findByIdAndUpdate({
+				_id : "commentId"
+			}, {
+				$inc : {
+					seq : 1
+				}
+			}, function(error, counter) {
+				if (error)
+					callbackForChallenge(error);
+				challengeModel.findById(challengeId, function(err, challenge) {
+					challenge.comments.push({
+						_id:counter.seq,
+						comment : comment,
+						userName : user.emailId
+					});
+
+					challenge.save(function(err, item) {
+						if (err)
+							return console.log("Error occured", err);
+						callbackForComments(err, item);
+					});
+				}); // end item.save
+			});
+		}
+	}
 
 }
 

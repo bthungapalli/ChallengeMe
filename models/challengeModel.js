@@ -2,6 +2,7 @@
 var mongoose    = require('mongoose');
 var counterModel     = require("./counterModel"); 
 var categorySchema = require("./catModel").schema;
+var comments = require("./commentsModel");
 var Schema      = mongoose.Schema;
 
 
@@ -25,7 +26,8 @@ var challengeSchema = Schema({
     created_at: {type: Date, default: Date.now},
     updated_at: {type: Date, default: Date.now},
     solutions: {type: Array},
-    isSubcribed: {type: Boolean}
+    isSubcribed: {type: Boolean},
+    comments :{type: Array}
 });
 
 module.exports = mongoose.model('challenge', challengeSchema);;
