@@ -1,5 +1,4 @@
-<script>
-  $(document).ready(function() {
+<script type="text/javascript">
 	  
 	  $(":file").jfilestyle({placeholder: "",buttonText: "Profile",'inputSize': '62%'});
 	  
@@ -9,16 +8,14 @@
 		        	status('Error: ' + xhr.status);
 		            },
 		            success: function(response) {
-		                 //$(profileImage).attr('src', profileImage + '?' + new Date().getTime());
-		                // angular.element(document.getElementById('profileImage')).scope().updateImage(response);
-		                
+		            	$("#profileImage > img").attr("src","/profile/updatedImagePath");
+		            	$("#userDetails > img").attr("src","/profile/updatedImagePath");
 		                }
 		    });
 		        //Very important line, it disable the page refresh.
 		    return false;
 		    }); 
       
-});
 </script>
 
 
@@ -31,9 +28,9 @@
 </div>
 <div class="ui stackable grid">
 
-		<div class="four wide center aligned column">
+		<div id="aaa" class="four wide center aligned column">
 		<div  class="ui segment" id="profileImage"  ng-controller="profileController">
- 			 <img  class="ui centered medium image" src="{{imagePath}}">
+ 			 <img  class="ui centered medium image"  ng-src="{{imagePath}}">
  			<!--  <img ng-if="imagePath.length===0" class="ui centered medium image" src="images/default.png"> -->
  		</div>
 		

@@ -49,6 +49,13 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 					res.sendFile(path.resolve(__dirname+defaultPic));
 					}
 				});
+		res.sendFile(path.resolve(absolutePath));
+			});
+	
+	router.get('/updatedImagePath',checkSession.requireLogin,function(req,res,err){
+		var filename = req.session.user.emailId+".jpg";
+		var absolutePath = filepath+filename;
+		res.sendFile(path.resolve(absolutePath));
 			});
 	
 	
