@@ -1,0 +1,36 @@
+<div class="ui stackable grid">
+		<div class="sixteen wide column" > 
+				<button class="ui tiny primary button" ng-click="viewSolutionComments=!viewSolutionComments"  >
+					  	<i class="reply all icon"></i>Comment on solution <i ng-show="!viewSolutionComments" class=" large angle down icon"></i><i ng-show="viewSolutionComments"class=" large angle up icon"></i>
+				</button>
+				
+		 </div> 
+		 <div class="sixteen wide column" ng-show="viewSolutionComments"> 
+		    
+			<div class="ui threaded comments" style="max-width:100%">
+ 				 <h3 class="ui dividing header">Comment's on solution</h3>
+				  <div class="comment" ng-repeat="comment in challenge.comments">
+				    <div class="content">
+				      <a class="author">{{comment.userName}}</a>
+				      <div class="metadata">
+				        <span class="date">{{comment.commentedDate | dateFormat}}</span>
+				      </div>
+				      <div class="text">
+				        {{comment.comment}}
+				      </div>
+				    </div>
+				  </div>
+                 <div class="ui form ">
+				  <div class="field">
+				    <textarea id="commentTextArea" rows="2" placeholder="comment..." ng-model="challengeComment"></textarea>
+				  </div>
+				 <div class="ui blue labeled submit icon button" ng-show="challengeComment" ng-click="addSolutionComment(challengeObj);">
+                 <i class="icon edit" ></i> Add Comment
+                </div>
+				</div>
+
+            </div>
+		 </div>
+		 
+		 
+</div>

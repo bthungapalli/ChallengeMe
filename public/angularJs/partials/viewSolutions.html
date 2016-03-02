@@ -26,7 +26,7 @@ left:20px;
 }
 
 </style>
-<div dw-loading="challenges" dw-loading-options="{text: loadingMessage}">
+<div dw-loading="challenges" dw-loading-options="{text: loadingMessage}" ng-hide="challenge.solutions.length===0">
 <div  ng-if="errorMessage" class="ui red floating  message">
 <div class="header">
 {{errorMessage}}
@@ -39,14 +39,16 @@ left:20px;
 
 <div class="sixteen wide column" style="border-top: 2px solid teal;padding-top: 0px;" >
 <div id="solutions" style="padding-left: 11%;margin-top: 12px;" ng-repeat="solutionObj in challenge.solutions">
-		<div  id="solution" class="ui segments" >
+		<div  id="solution" class="ui raised segments" >
 		<a href="#"><img style="float: left;margin-left: -12%;border-radius: 10px;height: 60px;" class="ui tiny image" src="https://lh3.googleusercontent.com/-JFW5FonbZbc/Vh4Ixncha7I/AAAAAAAAAFY/-fNED-eFwuc/w1600-h900/Cool-Tiger-Wallpaper-1920x1080-HD.jpg"></a>
 		  <div class="ui secondary teal segment v">
 		    <p><strong ng-bind="!solutionObj.anonymous?solutionObj.solutionBy:'Anonymous'"></strong> gave solution on <strong>{{solutionObj.updated_at | dateFormat}}</strong></p> 
 		  </div>
 		  <div class="ui segment">
 		    <p>{{solutionObj.solution}}</p>
+		    <div  ng-include="solutionCommentTemplate" ></div>
 		  </div>
+		  
 		</div>
 </div>
 </div>

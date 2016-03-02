@@ -14,6 +14,8 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 	$scope.challengeTemplate;
 	$scope.solutionTemplate;
 	$scope.solutionTemplateForView;
+	$scope.challengeCommentsTemplate;
+	$scope.solutionCommentTemplate="angularjs/partials/solutionComments.html";
 	$scope.view=$state.current.name;
 	$scope.viewComments=false;
 	$scope.challengeComment="";
