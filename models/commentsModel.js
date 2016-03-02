@@ -12,7 +12,8 @@ counter.save(function(err){
 var comments = Schema({
     _id: {type: Number, required: true,default:0},
     userName:{type:String,required: true}, 
-    comment : { type: String, required: true}
+    comment : { type: String, required: true},
+    commentedDate : { type: Date, default: Date.now}
 });
 
 

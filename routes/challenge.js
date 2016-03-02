@@ -110,7 +110,7 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 						ownerName : challenge.createdByEmailId.substr(0,challenge.createdByEmailId.indexOf('@')),
 						challengeTitle : challenge.title,
 						userName : user.name,
-						comments : postedComment.comment
+						comments : postedComment
 					};
 				mailUtil.sendMail(challenge.createdByEmailId,'bthungapalli@osius.com','New Comment posted','Comments.html',context);
 				response.json(challenge);

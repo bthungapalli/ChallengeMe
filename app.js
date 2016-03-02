@@ -40,6 +40,7 @@ var port=nconf.get('port');
 var sessionDetials=nconf.get('sessionDetails');
 var mongoDbConnection=nconf.get('mongoDbConnection');
 var routes=nconf.get('routes');
+
 /************   mongo connection  ****************/
 mongoose.connect('mongodb://'+mongoDbConnection.host+'/'+mongoDbConnection.Db);
 

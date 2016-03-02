@@ -15,6 +15,8 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 	$scope.solutionTemplate;
 	$scope.solutionTemplateForView;
 	$scope.view=$state.current.name;
+	$scope.viewComments=false;
+	$scope.challengeComment="";
 	
 	$scope.getAllCategories=function(){
 		
@@ -117,5 +119,29 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 						}
 				  return checked;
 		};
+		
+		$scope.showComments=function(){
+			$scope.viewComments=!$scope.viewComments;
+		};
+		
+		$scope.addChallengeComment=function(challenge){
+			debugger;
+			var data={"challengeId":challenge._id,"comment":$("#commentTextArea").val()}
+			$http.post(challengeMeConstants.challenge+"/"+challengeMeConstants.challengeComment,data).success(function(response){
+				$scope.redirectToLoginIfSessionExpires(response);
+				if(response==="error"){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				}else{
+					
+					var commentData={"comment":$("#commentTextArea").val(),"userName":$scope.userDetails.username,"emailId":$scope.userDetails.emailId,"commentedDate":new Date().toISOString()}
+					$scope.challenge.comments.push(commentData);
+					$scope.challengeComment="";
+					$("#commentTextArea").val("")
+				};
+				}).error(function(error){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				});
+		};
+		
 		
 }]);

@@ -118,13 +118,15 @@ updateComments : function(challengeId, comment, user,
 					challenge.comments.push({
 						_id:counter.seq,
 						comment : comment,
-						userName : user.emailId
+						emailId : user.emailId,
+						userName : user.name,
+						commentedDate:new Date()
 					});
 
 					challenge.save(function(err, item) {
 						if (err)
-							return console.log("Error occured", err);
-						callbackForComments(err, item);
+							callbackForComments("error");
+						callbackForComments(null, item);
 					});
 				}); // end item.save
 			});
