@@ -40,6 +40,10 @@ challengeMeApp.config(["$stateProvider",function($stateProvider){
 		url: "/contactUs",
 		controller:"contactUsController",
 		templateUrl : "angularjs/partials/contactUs.html"
+	}).state("main.faq",{
+		url: "/faq",
+		controller:"faqController",
+		templateUrl : "angularjs/partials/FAQ.html"
 	});
 	
 }]);

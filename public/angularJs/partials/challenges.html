@@ -61,6 +61,13 @@
 </div>
 <div class="four wide column" ng-show="(currentTab==='myChallenges')"  style="padding-top: 5px;padding-bottom: 0px;cursor: pointer">
 <a class="ui teal tag label">{{challengeObj.categories.name | camelCase}} </a>
+<button type="submit" class="ui mini red button" ng-show="challengeObj.closed">
+		  	<i class="ban icon"></i> Closed
+		</button>
+		
+		<button type="submit" class="ui mini positive button" ng-show="!challengeObj.closed">
+		  	Open
+		</button>
 <button ng-if="challengeObj.status==='create'"  type="submit" class="ui mini positive button" >
 			  	 Created
 		</button>
@@ -70,6 +77,7 @@
 		 <button ng-if="challengeObj.learning"  type="submit" class="ui mini yellow button" >
 			  	 Learning
 		</button>
+		
 		
 </div>
 <div class="four wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))"  style="padding-top: 5px;padding-bottom: 0px;cursor: pointer">
@@ -87,7 +95,7 @@
 		</button>
 		
 		<button type="submit" class="ui mini positive button" ng-show="!challengeObj.closed">
-		  	Opened
+		  	Open
 		</button>
 		</span>
 </div>
