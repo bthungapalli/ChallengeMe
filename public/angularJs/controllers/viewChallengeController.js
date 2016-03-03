@@ -145,5 +145,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				});
 		};
 		
-		
+		$scope.getProfilePathForSolutions=function(solutionObj){
+			$scope.solutionUserImagePath= "profile/imagePath/emailId/"+solutionObj.solutionByEmailId+"/number/"+Math.random() ;
+		};
 }]);

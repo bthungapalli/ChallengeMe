@@ -39,8 +39,8 @@ left:20px;
 
 <div class="sixteen wide column" style="border-top: 2px solid teal;padding-top: 0px;" >
 <div id="solutions" style="padding-left: 11%;margin-top: 12px;" ng-repeat="solutionObj in challenge.solutions">
-		<div  id="solution" class="ui raised segments" >
-		<a href="#"><img style="float: left;margin-left: -12%;border-radius: 10px;height: 60px;" class="ui tiny image" src="https://lh3.googleusercontent.com/-JFW5FonbZbc/Vh4Ixncha7I/AAAAAAAAAFY/-fNED-eFwuc/w1600-h900/Cool-Tiger-Wallpaper-1920x1080-HD.jpg"></a>
+		<div  id="solution" class="ui raised segments" >  
+		<a href="#"><img style="float: left;margin-left: -12%;border-radius: 10px;height: 60px;" class="ui tiny image" ng-init="getProfilePathForSolutions(solutionObj)" ng-src="{{solutionUserImagePath}}"></a>
 		  <div class="ui secondary teal segment v">
 		    <p><strong ng-bind="!solutionObj.anonymous?solutionObj.solutionBy:'Anonymous'"></strong> gave solution on <strong>{{solutionObj.updated_at | dateFormat}}</strong></p> 
 		  </div>

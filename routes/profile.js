@@ -37,8 +37,8 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 
 	var upload = multer({ storage : storage}).single('userPhoto');
 
-	router.get('/imagePath',checkSession.requireLogin,function(req,res,err){
-		var filename = req.session.user.emailId+".jpg";
+	router.get('/imagePath/emailId/:emailId/number/:randomNumber',checkSession.requireLogin,function(req,res,err){
+		var filename = req.params.emailId+".jpg";
 		var defaultPic = "/../public/images/defaultphoto.jpg";
 		var absolutePath = filepath+filename;
 		
@@ -52,13 +52,6 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 		res.sendFile(path.resolve(absolutePath));
 			});
 	
-	router.get('/updatedImagePath',checkSession.requireLogin,function(req,res,err){
-		var filename = req.session.user.emailId+".jpg";
-		var absolutePath = filepath+filename;
-		res.sendFile(path.resolve(absolutePath));
-			});
-	
-	
 	router.post('/upload',checkSession.requireLogin,function(req,res){
 	    upload(req,res,function(user,err) {
 	        if(err) {
@@ -68,10 +61,6 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 	        	return res.send("<div  class='ui segment' id='profileImage'> <img  class='ui centered medium image' src='/profile/imagePath'></div>");
 	    });
 	});
-
-
-
-
 
 
 /*router.post('/upload',function (req, res, next) {

@@ -1,20 +1,7 @@
 	<script type="text/javascript">
 	  
-	  $(":file").jfilestyle({placeholder: "",buttonText: "Profile",'inputSize': '62%'});
+	 
 	  
-		  $('#uploadForm').submit(function() {
-		        $(this).ajaxSubmit({
-		            error: function(xhr) {
-		        	status('Error: ' + xhr.status);
-		            },
-		            success: function(response) {
-		            	$("#profileImage > img").attr("src","/profile/updatedImagePath");
-		            	$("#userDetails > img").attr("src","/profile/updatedImagePath");
-		                }
-		    });
-		        //Very important line, it disable the page refresh.
-		    return false;
-		    }); 
       
 </script>
 

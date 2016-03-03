@@ -6,6 +6,23 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	$scope.locations=[];
 	$scope.editProfile=false;
 	$scope.imagePath='';
+
+	 $(":file").jfilestyle({placeholder: "",buttonText: "Profile",'inputSize': '62%'});
+	
+	 $('#uploadForm').submit(function() {
+	        $(this).ajaxSubmit({
+	            error: function(xhr) {
+	        	status('Error: ' + xhr.status);
+	            },
+	            success: function(response) {
+	            	var randomNumber=Math.random();
+	            	$("#profileImage > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
+	            	$("#userDetails > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
+	                }
+	    });
+	        //Very important line, it disable the page refresh.
+	    return false;
+	    }); 
 	
 	$scope.getAllCategories=function(){
 		
@@ -26,7 +43,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 				});
 		};
 		$scope.getImagePath = function(){
-			$scope.imagePath = "profile/imagePath";
+			$scope.imagePath = "profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random();
 		};
 		$scope.updateImage = function( response){
 			  $scope.$apply(function () {

@@ -48,4 +48,5 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 			});
 	};
 	
+	
 }]);
