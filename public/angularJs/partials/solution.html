@@ -1,10 +1,15 @@
- <div dw-loading="solution" dw-loading-options="{text: loadingMessage}">
+ <div dw-loading="solution" dw-loading-options="{text: loadingMessage}" ng-controller="solutionController">
 <div  ng-if="errorMessage" class="ui red floating  message">
 <div class="header">
 {{errorMessage}}
 </div>
 </div>
- <div class="ui stackable grid" ng-controller="solutionController">
+<div  ng-if="successMessageForSolution" class="ui green floating  message">
+<div class="header">
+{{successMessageForSolution}}
+</div>
+</div>
+ <div class="ui stackable grid" >
 
 		 <div class="sixteen wide column">
 				 <div class="ui form ">

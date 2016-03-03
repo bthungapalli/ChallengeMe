@@ -6,7 +6,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	$scope.locations=[];
 	$scope.editProfile=false;
 	$scope.imagePath='';
-
+	$scope.successMessage="";
 	 $(":file").jfilestyle({placeholder: "",buttonText: "Profile",'inputSize': '62%'});
 	
 	 $('#uploadForm').submit(function() {
@@ -86,6 +86,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	  };
 	  
 	  $scope.updateProfile=function(){
+		  $scope.successMessage="";
 		  $scope.loadingMessage="updating profile..";
 			$loading.start('profile');
 		  var data={
@@ -98,12 +99,14 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 		 $http.post(challengeMeConstants.profileUpdate,data).success(function(response){
 			 $scope.redirectToLoginIfSessionExpires(response);
 			 if(response==="updated"){
+				 $scope.successMessage="Profile updated.";
 				 $scope.editProfile=false;
 			 }else{
-				 $scope.errorMessage="Dint not save";
+				 $scope.errorMessage="Did not save";
 			 }
 			 $loading.finish('profile');
 				}).error(function(error){
+					 $scope.successMessage="";
 					$scope.errorMessage=challengeMeConstants.errorMessage;
 					$loading.finish('profile');
 				});

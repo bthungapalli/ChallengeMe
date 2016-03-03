@@ -5,14 +5,17 @@ $scope.contactUs={
 		"query":""
 }
 	
-	
+$scope.successMessage="";
+$scope.errorMessage="";
 	$scope.sendQuery=function(){
+		$scope.successMessage="";
 	$scope.loadingMessage="sending mail..";
 	$loading.start('contactUs');
 		$http.post(challengeMeConstants.contactUs,$scope.contactUs).success(function(response){
-			alert(response);
+			$scope.successMessage="Mail sent."
 			$loading.finish('contactUs');
 			}).error(function(error){
+				$scope.errorMessage=challengeMeConstants.errorMessage;
 			});
 	};
 	

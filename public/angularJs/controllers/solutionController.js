@@ -2,6 +2,7 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 	
 	
 	$scope.errorMessage="";
+	$scope.successMessageForSolution="";
 	$scope.hideEdit=false;
 	$scope.solutionObj={
 			"_id":"",
@@ -29,6 +30,7 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 	$scope.getSolution();
 	
 	$scope.saveSolution=function(){
+		$scope.successMessageForSolution="";
 		$scope.loadingMessage="saving solution..";
 		$loading.start('solution');
 		$scope.errorMessage="";
@@ -41,8 +43,10 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 			if($scope.solutionObj.status==="create"){
 				$scope.hideEdit=true;
 			}
+			$scope.successMessageForSolution="solution updated."
 			$loading.finish('solution');
 			}).error(function(error){
+				$scope.successMessageForSolution="";
 				$scope.errorMessage=challengeMeConstants.errorMessage;
 				$loading.finish('solution');
 			});
