@@ -52,6 +52,7 @@ left:20px;
 		  </div>
 		  <div class="ui segment">
 		    <p>{{solutionObj.solution}}</p>
+		    <i ng-show="solutionObj.isCorrect && currentTab==='allChallenges'" class="huge check green circle icon" style="position: absolute;left: -92px;top: 26px;"></i>
 		    <div  ng-include="solutionCommentTemplate" ></div>
 		  </div>
 		  
