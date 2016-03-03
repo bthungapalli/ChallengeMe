@@ -1,5 +1,6 @@
 var EmailTemplates = require('swig-email-templates');
 var nodemailer = require('nodemailer');
+var path = require('path');
 var mailUtil = function() {
 
 	return {
@@ -15,7 +16,7 @@ var mailUtil = function() {
 			};
 			var transporter = nodemailer.createTransport(smtpConfig);
 			var templates = new EmailTemplates({
-				  root: '/Users/bthungapalli/Documents/impact/ChallengeMe/templates/'
+				  root: path.resolve(__dirname+'/../templates/')
 			});
 			templates.render(templateName, context,
 					function(err, html, text) {

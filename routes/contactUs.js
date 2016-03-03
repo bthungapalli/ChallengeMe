@@ -11,7 +11,7 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 			username : user.name,
 			query:contactUs.query
 		};
-	mailUtil.sendMail('apatha@osius.com',user.emailId,contactUs.subject,'contactUs.html',context);
+	mailUtil.sendMail('apatha@osius.com','bthungapalli@osius.com',contactUs.subject,'ContactUs.html',context);
 	response.send("Mail Sent.");
 });
 
