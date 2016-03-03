@@ -46,9 +46,14 @@ angular.module('challengeMeApp')
 				  var months=["January", "February", "March", "April", "May",
 				              "June", "July", "August", "September", "October",
 				              "November", "December"];
-				  var inputArray=input.trim().split("T");
-				  var dates=inputArray[0].split("-");
-				  return dates[2]+" "+months[dates[1]-1]+" "+dates[0];
+				  var inputArray=input.trim().split("/");
+				  if(inputArray.length>1){
+					  return inputArray[0]+" "+months[inputArray[1]-1]+" "+inputArray[2];
+				  }else{
+					  var inputArray=input.trim().split("T");
+					  var dates=inputArray[0].split("-");
+					  return dates[2]+" "+months[dates[1]-1]+" "+dates[0];
+				  }
 			  };
 })
 .filter('displayTab', function() {

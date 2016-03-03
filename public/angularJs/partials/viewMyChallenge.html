@@ -27,7 +27,7 @@
 				  <div class="ui teal label">
 				   Cut-off Date
 				  </div>
-				 <!-- <input type="date" ng-model="challenge.date" ng-disabled="!editChallenge"/>  -->
+				 <input type="text" uib-datepicker-popup="{{format}}" ng-model="challenge.date" is-open="popup1.opened" ng-click="open1()"  ng-disabled="!editChallenge" readonly datepicker/><br>
 				</div> 	
 		</div>
 		<div class="eight wide column">
