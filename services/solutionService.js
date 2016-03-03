@@ -53,7 +53,6 @@ getSolutionsForChallengeId:function(challengeId,callbackForSolutions){
 
 updateComments : function(solutionId, comment, user,
 		callbackForComments) {
-	// var query = challengeModel.insert({})
 	counterModel.findByIdAndUpdate({
 		_id : "commentId"
 	}, {
@@ -62,7 +61,7 @@ updateComments : function(solutionId, comment, user,
 		}
 	}, function(error, counter) {
 		if (error)
-			callbackForChallenge(error);
+			callbackForComments("error");
 		solutionModel.findById(solutionId, function(err, solution) {
 			solution.comments.push({
 				_id:counter.seq,

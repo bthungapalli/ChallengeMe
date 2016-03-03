@@ -145,6 +145,24 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				});
 		};
 		
+		$scope.addSolutionComment=function(challenge,solutionObj){
+			
+			var data={"solutionId":solutionObj._id,"challengeEmailId":challenge.createdByEmailId,"title":challenge.title,"comment":$("#commentTextAreaForSolution").val()}
+			$http.post(challengeMeConstants.solution+"/"+challengeMeConstants.solutionComment,data).success(function(response){
+				$scope.redirectToLoginIfSessionExpires(response);
+				if(response==="error"){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				}else{
+					var commentData={"comment":$("#commentTextAreaForSolution").val(),"userName":$scope.userDetails.name,"emailId":$scope.userDetails.emailId,"commentedDate":new Date().toISOString()}
+					solutionObj.comments.push(commentData);
+					$scope.solutionComment="";
+					$("#commentTextAreaForSolution").val("")
+				};
+				}).error(function(error){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				});
+		};
+		
 		$scope.getProfilePathForSolutions=function(solutionObj){
 			$scope.solutionUserImagePath= "profile/imagePath/emailId/"+solutionObj.solutionByEmailId+"/number/"+Math.random() ;
 		};

@@ -37,7 +37,7 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 						
 					};
 				if(ids.length>0)
-				mailUtil.sendMail('bthungapalli@osius.com','bthungapalli@osius.com','Challenge Posted','ChallengeMe.html',context);
+				mailUtil.sendMail(ids,'bthungapalli@osius.com','Challenge Posted','ChallengeMe.html',context);
 				response.send("created");
 			 });
 			}else{

@@ -12,6 +12,7 @@ angular.module('challengeMeApp').constant("challengeMeConstants", {
         "profileUpdate":"/profile/update",
         "solution":"/solution",
         "challengeComment":"/comment",
+        "solutionComment":"/comment",
         "errorMessage":"Some thing went wrong.",
         "noChallengeMessage":"No challenges are available."
     }).constant("loadingMessages", {
