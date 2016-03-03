@@ -112,7 +112,7 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 						userName : user.name,
 						comments : postedComment
 					};
-				mailUtil.sendMail(challenge.createdByEmailId,'bthungapalli@osius.com','New Comment posted','Comments.html',context);
+				mailUtil.sendMail(challenge.createdByEmailId,'bthungapalli@osius.com','New Comment posted','Comments_Challenges.html',context);
 				response.json(challenge);
 		
 	});

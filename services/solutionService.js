@@ -49,6 +49,36 @@ getSolutionsForChallengeId:function(challengeId,callbackForSolutions){
         	callbackForSolutions(err);
         callbackForSolutions(null,solutions);
     });
+},
+
+updateComments : function(solutionId, comment, user,
+		callbackForComments) {
+	// var query = challengeModel.insert({})
+	counterModel.findByIdAndUpdate({
+		_id : "commentId"
+	}, {
+		$inc : {
+			seq : 1
+		}
+	}, function(error, counter) {
+		if (error)
+			callbackForChallenge(error);
+		solutionModel.findById(solutionId, function(err, solution) {
+			solution.comments.push({
+				_id:counter.seq,
+				comment : comment,
+				emailId : user.emailId,
+				userName : user.name,
+				commentedDate:new Date()
+			});
+
+			solution.save(function(err, item) {
+				if (err)
+					callbackForComments("error");
+				callbackForComments(null, item);
+			});
+		}); // end item.save
+	});
 }
 	
 }

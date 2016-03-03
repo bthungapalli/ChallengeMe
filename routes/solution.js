@@ -3,6 +3,7 @@ var router = express.Router();
 var http = require('http');
 var solutionService=require("../services/solutionService");
 var checkSession=require("../services/checkSessionService");
+var mailUtil = require("../utils/MailUtil");
 
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var solutionObj=request.body;
@@ -22,6 +23,29 @@ router.get('/:challengeId',checkSession.requireLogin,function (request,response,
 		if(err)
 			response.send("error");
 		response.send(solution);
+	});
+});
+
+router.post('/comment',checkSession.requireLogin,function (request,response,next){
+	var solutionId = request.body.solutionId;
+	var postedComment = request.body.comment;
+	var user=request.session.user;
+	var challengeEmailId = request.body.challengeEmailId;
+	var challengeTitle = request.body.title;
+	
+	solutionService.updateComments(solutionId,postedComment,user,function(err,solution) {
+		if(err)
+			response.send("error");
+				var context =  {
+						title : 'ChallengeMe',
+						solutionBy : solution.solutionBy,
+						challengeTitle : challengeTitle,
+						userName : user.name,
+						comments : postedComment.comment
+					};
+				mailUtil.sendMail([solution.solutionByEmailId,challengeEmailId],'bthungapalli@osius.com','Comment posted','Comments_Solutions.html',context);
+				response.json(solution);
+		
 	});
 });
 

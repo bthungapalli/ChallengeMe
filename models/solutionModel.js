@@ -18,6 +18,7 @@ var solutionSchema = Schema({
     status:{type:String,required: true},
     solutionByEmailId:{type:String,required: true},
     solutionBy:{type:String,required: true},
+    comments :{type: Array},
     created_at: {type: Date, default: Date.now},
     updated_at: {type: Date, default: Date.now}
 });

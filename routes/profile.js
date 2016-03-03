@@ -11,7 +11,7 @@ var path = require('path');
 
 
 var checkSession=require("../services/checkSessionService");
-var filepath = "F:\\";
+var filepath = "/Users/bthungapalli/Documents/uploads/";
 
 router.post('/update', checkSession.requireLogin,function(request, response,next) {
 	
