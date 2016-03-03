@@ -5,13 +5,14 @@ var http = require('http');
 var userService=require("../services/userService");
 var util = require('util');
 var fs   = require('fs-extra');
+var fileSystem = require('fs');
 var  multer = require('multer');
 //var busboy = require('connect-busboy');
 var path = require('path');
 
 
 var checkSession=require("../services/checkSessionService");
-var filepath = "/Users/bthungapalli/Documents/uploads/";
+var filepath = "F:/";
 
 router.post('/update', checkSession.requireLogin,function(request, response,next) {
 	
@@ -42,14 +43,30 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 		var defaultPic = "/../public/images/defaultphoto.jpg";
 		var absolutePath = filepath+filename;
 		
-		fs.access(absolutePath, fs.R_OK | fs.W_OK, function(err) {
+		/*fs.access(absolutePath, fs.R_OK | fs.W_OK, function(err) {
 			if (!err) { 
 				res.sendFile(path.resolve(absolutePath));
 				} else{
 					res.sendFile(path.resolve(__dirname+defaultPic));
 					}
-				});
-		res.sendFile(path.resolve(absolutePath));
+				});*/
+		
+		/*if(fileSystem.existsSync(path.resolve(absolutePath))){
+			console.log("inside exist");
+			res.sendFile(path.resolve(absolutePath));
+		}else{
+			console.log("inside not exist");
+			res.sendFile(path.resolve(__dirname+defaultPic));
+		}*/
+		
+		try{
+			var fd=fileSystem.openSync(path.resolve(absolutePath),'r');
+			fileSystem.closeSync(fd);
+			res.sendFile(path.resolve(absolutePath));
+		}catch(err){
+			res.sendFile(path.resolve(__dirname+defaultPic));
+		}
+		
 			});
 	
 	router.post('/upload',checkSession.requireLogin,function(req,res){
