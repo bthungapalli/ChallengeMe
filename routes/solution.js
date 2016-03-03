@@ -49,5 +49,13 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 	});
 });
 
+router.put('/correctAnswer',checkSession.requireLogin,function (request,response,next){
+	var solutionObj=request.body;
+	solutionService.updateIsCorrectAnswer(solutionObj,function(err,updated){
+		if(err || response==="error")
+			response.send("error");
+		response.send(updated);
+	});
+});
 
 module.exports = router;

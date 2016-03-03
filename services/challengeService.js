@@ -2,7 +2,7 @@ var challengeModel = require("../models/challengeModel");
 var counterModel = require("../models/counterModel"); 
 var subcribeChallengeModel = require("../models/subcribeChallengeModel"); 
 
-var categoryService =function(){
+var challengeService =function(){
 
 return{
 
@@ -135,4 +135,4 @@ updateComments : function(challengeId, comment, user,
 
 }
 
-module.exports=categoryService();
+module.exports=challengeService();

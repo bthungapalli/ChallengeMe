@@ -163,6 +163,17 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				});
 		};
 		
+		$scope.updateCorrectAnswerOrNot=function(solutionObj){
+			$http.put(challengeMeConstants.solution+challengeMeConstants.solutionIsCorrect,solutionObj).success(function(response){
+				$scope.redirectToLoginIfSessionExpires(response);
+				if(response==="error"){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				}
+				}).error(function(error){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				});
+		}
+		
 		$scope.getProfilePathForSolutions=function(solutionObj){
 			$scope.solutionUserImagePath= "profile/imagePath/emailId/"+solutionObj.solutionByEmailId+"/number/"+Math.random() ;
 		};

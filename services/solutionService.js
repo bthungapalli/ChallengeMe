@@ -51,8 +51,7 @@ getSolutionsForChallengeId:function(challengeId,callbackForSolutions){
     });
 },
 
-updateComments : function(solutionId, comment, user,
-		callbackForComments) {
+updateComments : function(solutionId, comment, user,callbackForComments) {
 	counterModel.findByIdAndUpdate({
 		_id : "commentId"
 	}, {
@@ -77,6 +76,15 @@ updateComments : function(solutionId, comment, user,
 				callbackForComments(null, item);
 			});
 		}); // end item.save
+	});
+},
+
+updateIsCorrectAnswer:function(solutionObj,callbackForIsCorrectAnswer){
+	solutionModel.update({"_id":solutionObj._id},{$set:{"isCorrect":solutionObj.isCorrect}},function(err,item){
+		if(err)
+			callbackForIsCorrectAnswer("error");
+		console.log(item);
+		callbackForIsCorrectAnswer(null,"updated");
 	});
 }
 	
