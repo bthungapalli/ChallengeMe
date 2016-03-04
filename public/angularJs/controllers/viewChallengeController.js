@@ -43,6 +43,9 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				if(response=="error"){
 					$scope.errorMessage=challengeMeConstants.errorMessage;
 				}else{
+					if($scope.challenge.status==="create"){
+						$scope.challenge.isCreated=true;
+					}
 					$scope.editChallenge=!$scope.editChallenge;
 				};
 				$loading.finish('challenges');

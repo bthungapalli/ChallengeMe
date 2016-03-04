@@ -36,7 +36,7 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 						lastDate : challenge.date
 						
 					};
-				if(ids.length>0)
+				if(ids.length>0 && !challenge.isCreated)
 				mailUtil.sendMail(ids,'bthungapalli@osius.com','Challenge Posted','ChallengeMe.html',context);
 				response.send("created");
 			 });

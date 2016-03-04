@@ -10,8 +10,14 @@ createOrSaveChallenge : function(challenge,user,callbackForChallenge){
 	
         if(challenge._id !==""){
         console.log('came in update');
+        var isCreated;
+        if(challenge.status==="create"){
+        	isCreated=true;
+        }else {
+        	isCreated=false;
+		}
         	 var conditions = { "_id":challenge._id };
-        	 var update = { $set: {"title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories}};
+        	 var update = { $set: {"title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"isCreated":isCreated}};
         	 challengeModel.update(conditions, update, callback);
         	 
         	function callback (err, numAffected) {
