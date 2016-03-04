@@ -61,11 +61,11 @@
 </div>
 <div class="four wide column" ng-show="(currentTab==='myChallenges')"  style="padding-top: 5px;padding-bottom: 0px;cursor: pointer">
 <a class="ui teal tag label">{{challengeObj.categories.name | camelCase}} </a>
-<button type="submit" class="ui mini red button" ng-show="challengeObj.closed && !challengeObj.learning">
+<button type="submit" class="ui mini red button" ng-show="challengeObj.closed && !challengeObj.learning && challengeObj.status!=='draft'">
 		  	<i class="ban icon"></i> Closed
 		</button>
 		
-		<button type="submit" class="ui mini positive button" ng-show="!challengeObj.closed && !challengeObj.learning" >
+		<button type="submit" class="ui mini positive button" ng-show="!challengeObj.closed && !challengeObj.learning && challengeObj.status!=='draft'" >
 		  	<i class="checkmark icon"></i>	Open
 		</button>
 		 <button ng-if="challengeObj.learning"  type="submit" class="ui mini yellow button" >

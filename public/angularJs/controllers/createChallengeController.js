@@ -137,6 +137,14 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 		  $scope.updateMailGroups = function toggleSelection(category) {
 			  $scope.previousSelectedCategory= $scope.selectedCategory
 				$scope.selectedCategory=category;
+			  var idx=-1;
+			    angular.forEach($scope.challenge.mailGroups,function(mailGroup,index){
+					if(mailGroup._id===category._id){
+						idx=index;
+					}
+				});
+			  
+			  if(idx===-1)
 			  $scope.toggleSelection(category);
 			  $scope.toggleSelection( $scope.previousSelectedCategory);
 			  };

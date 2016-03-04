@@ -59,7 +59,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 			$scope.editChallenge=!$scope.editChallenge;
 		};
 		
-		$scope.toggleSelection = function toggleSelection(category) {
+		/*$scope.toggleSelection = function toggleSelection(category) {
 			var idx=-1;
 		    angular.forEach($scope.challenge.categories,function(allCategory,index){
 				if(allCategory._id===category._id){
@@ -73,7 +73,59 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		    else {
 		      $scope.challenge.categories.push(category);
 		    }
+		  };*/
+		
+		$scope.toggleSelection = function toggleSelection(category) {
+			var idx=-1;
+		    angular.forEach($scope.challenge.mailGroups,function(mailGroup,index){
+				if(mailGroup._id===category._id){
+					idx=index;
+				}
+			});
+
+		    if (idx > -1) {
+		      $scope.challenge.mailGroups.splice(idx, 1);
+		    }
+		    else {
+		      $scope.challenge.mailGroups.push(category);
+		    }
 		  };
+		  
+		  $scope.updateMailGroups = function toggleSelection(category) {
+			  $scope.previousSelectedCategory= $scope.selectedCategory
+				$scope.selectedCategory=category;
+			  
+			  var idx=-1;
+			    angular.forEach($scope.challenge.mailGroups,function(mailGroup,index){
+					if(mailGroup._id===category._id){
+						idx=index;
+					}
+				});
+			  
+			  if(idx===-1)
+			  $scope.toggleSelection(category);
+			  
+			  $scope.toggleSelection( $scope.previousSelectedCategory);
+			  };
+			  
+	  $scope.checkCategory=function(category){
+				  var checked=false;
+						if($scope.challenge.categories._id===category._id){
+							$scope.selectedCategory=category;
+							checked=true;
+						}
+				  return checked;
+		};
+		
+		$scope.checkCategoryForMailGroup=function(category){
+			  var checked=false;
+				    angular.forEach($scope.challenge.mailGroups,function(mailGroup,index){
+						if(mailGroup._id===category._id){
+							checked=true;
+						}
+					});
+			  return checked;
+	};
 		  
 		$scope.getChallenge=function(challenge){
 			
@@ -118,13 +170,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				
 		};
 		
-		$scope.checkCategory=function(categoryId){
-				  var checked=false;
-						if($scope.challenge.categories._id===categoryId){
-							checked=true;
-						}
-				  return checked;
-		};
+		
 		
 		$scope.showComments=function(){
 			$scope.viewComments=!$scope.viewComments;
