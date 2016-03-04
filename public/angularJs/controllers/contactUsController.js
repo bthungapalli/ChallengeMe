@@ -12,6 +12,7 @@ $scope.errorMessage="";
 	$scope.loadingMessage="sending mail..";
 	$loading.start('contactUs');
 		$http.post(challengeMeConstants.contactUs,$scope.contactUs).success(function(response){
+			$scope.redirectToLoginIfSessionExpires(response);
 			$scope.successMessage="Mail sent."
 			$loading.finish('contactUs');
 			}).error(function(error){
