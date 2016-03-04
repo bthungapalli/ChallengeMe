@@ -29,7 +29,7 @@ createOrSaveChallenge : function(challenge,user,callbackForChallenge){
         	counterModel.findByIdAndUpdate({_id : "challengeId"}, {$inc: {seq: 1} }, function(error, counter)   {
    		       if(error)
    		    	callbackForChallenge(error);
-        	var challenge1 = new challengeModel({"_id":counter.seq, "title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"createdByEmailId":user.emailId,"createdBy":user.name,"learning":challenge.learning});
+        	var challenge1 = new challengeModel({"_id":counter.seq, "title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"createdByEmailId":user.emailId,"createdBy":user.name,"learning":challenge.learning,"mailGroups":challenge.mailGroups});
         	challenge1.save(function(err){
                 if(err)
                 	callbackForChallenge(err);

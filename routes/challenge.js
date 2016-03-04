@@ -19,7 +19,12 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 		if(err)
 			response.send("error");
 			if(status==="create"){
-				categoryService.getEmailIdsForCategories(challenge.categories,function(err,emailIds){
+				var categoriesForMailGroup=[];
+				for(var i=0;i<challenge.mailGroups.length;i++){
+					categoriesForMailGroup.push(challenge.mailGroups[i].name)
+				}
+				console.log("categoriesForMailGroup:"+categoriesForMailGroup);
+				categoryService.getEmailIdsForCategories(categoriesForMailGroup,function(err,emailIds){
 					if(err==="error")
 						response.send("error");
 					var ids=_.pluck(emailIds, 'emailId');
