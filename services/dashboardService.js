@@ -21,23 +21,20 @@ var dashboardService = function() {
 
 		},
 		getLastSixMonths : function(callback) {
-//			var time = new Date().getTime() - 180 * 24 * 60 * 60 * 1000;
+			var time = new Date().getTime() - 180 * 24 * 60 * 60 * 1000;
 			challengeModel.aggregate(
-					
-//        	   { $limit: 6
-//	           },
-//	           	{
-//	        	   $sort: {
-//	               'created_at': -1
-//	               }
-//	           },
-				[ {
-				$group : { 
+				[
+				
+				
+				 { $match: {$and : [{created_at: {$gte: new Date(time)}},{status:'create'},{learning:false}]}},
+				 	{ $sort: {'created_at': -1}},
+				 	{$limit:6},
+				{ $group : { 
 			           _id : {year: { $year : "$created_at" }, month: { $month : "$created_at" }}, 
 			           count : { $sum : 1 }
 			           }
-			           
-			}],function(err, result) {
+				}       
+			],function(err, result) {
 				if (err) {
 					callback(err);
 				} else {
