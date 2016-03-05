@@ -13,14 +13,15 @@
 
   <div class="column" >
    <div dw-loading="authenticate" >
-    <h2 class="ui teal  header">
+    
+   
+    <form class="ui large form">
+      <div class="ui piled segments segment">
+      <h2 class="ui teal  header">
       <div class="content">
         Log-in to your account
       </div>
     </h2>
-   
-    <form class="ui large form">
-      <div class="ui piled segments segment">
         <div class="field"  ng-class="{error:user.invalidCredentials}">
           <div class="ui left icon input">
             <i class="circular inverted  user icon" ng-class="{red:user.invalidCredentials,teal:!user.invalidCredentials}" ></i>
