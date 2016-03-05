@@ -55,6 +55,12 @@ color:#C6D1E6 ;
 			    
 			      <div style="margin-top: 10px;"><a href="#" style="color:white">{{userDetails.name}}</a></div>
           </div>
+            <div class="item sideMenu" style=" border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"    ng-class="{activeSideMenu:currentTab==='dashboard'}">
+			   
+			    <a class="silver" ui-sref=".dashboard"  ng-click="setCurrentTab('dashboard');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='dashboard'}">
+					 <i class="large add icon " ></i>	  Dashboard
+				</a>
+		  </div>
 		  <div class="item sideMenu" style=" border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"    ng-class="{activeSideMenu:currentTab==='categories'}">
 			   
 			    <a class="silver" ui-sref=".categories"  ng-click="setCurrentTab('categories');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='categories'}">

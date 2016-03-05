@@ -17,6 +17,7 @@ var challenge = require('./routes/challenge');
 var subcribeChallenge = require('./routes/subcribeChallenge');
 var solution = require('./routes/solution');
 var contactUs = require('./routes/contactUs');
+var dashboard = require('./routes/dashboard');
 
 var app = express();
 
@@ -75,6 +76,7 @@ app.use(routes.challenge, challenge);
 app.use(routes.subcribeChallenge, subcribeChallenge);
 app.use(routes.solution, solution);
 app.use(routes.contactUs, contactUs);
+app.use(routes.dashboard,dashboard);
 
 /************   configuring views for errors   ****************/
 app.set('views', path.join(__dirname, 'views'));

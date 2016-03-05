@@ -22,7 +22,8 @@
 	   "challenge":"/challenge",
 	   "subcribeChallenge":"/subcribeChallenge",
 	   "solution":"/solution",
-	   "contactUs":"/contactUs"
+	   "contactUs":"/contactUs",
+	   "dashboard":"/dashboard"
    }
    
 }

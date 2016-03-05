@@ -1,4 +1,4 @@
-var challengeMeApp=angular.module('challengeMeApp',["ui.router","angularUtils.directives.dirPagination","darthwade.loading"]);
+var challengeMeApp=angular.module('challengeMeApp',["ui.router","angularUtils.directives.dirPagination","darthwade.loading","chart.js"]);
 
 challengeMeApp.config(["$stateProvider",function($stateProvider){
 	
@@ -9,7 +9,12 @@ challengeMeApp.config(["$stateProvider",function($stateProvider){
 		url: "/main",
 		controller:"mainController",
 		templateUrl : "angularjs/partials/main.html",
-	}).state("main.categories",{
+	}).state("main.dashboard",{
+		url: "/dashboard",
+		controller:"dashboardController",
+		templateUrl : "angularjs/partials/dashboard.html",
+	}).
+	state("main.categories",{
 		url: "/categories",
 		controller:"categoriesController",
 		templateUrl : "angularjs/partials/categories.html",
