@@ -7,17 +7,17 @@ var challengeService =function(){
 return{
 
 createOrSaveChallenge : function(challenge,user,callbackForChallenge){
-	
+	 var isCreated;
+     if(challenge.status==="create"){
+     	isCreated=true;
+     }else {
+     	isCreated=false;
+		}
         if(challenge._id !==""){
         console.log('came in update');
-        var isCreated;
-        if(challenge.status==="create"){
-        	isCreated=true;
-        }else {
-        	isCreated=false;
-		}
+       
         	 var conditions = { "_id":challenge._id };
-        	 var update = { $set: {"title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"isCreated":isCreated}};
+        	 var update = { $set: {"title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"isCreated":isCreated,"mailGroups":challenge.mailGroups}};
         	 challengeModel.update(conditions, update, callback);
         	 
         	function callback (err, numAffected) {
@@ -29,7 +29,7 @@ createOrSaveChallenge : function(challenge,user,callbackForChallenge){
         	counterModel.findByIdAndUpdate({_id : "challengeId"}, {$inc: {seq: 1} }, function(error, counter)   {
    		       if(error)
    		    	callbackForChallenge(error);
-        	var challenge1 = new challengeModel({"_id":counter.seq, "title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"createdByEmailId":user.emailId,"createdBy":user.name,"learning":challenge.learning});
+        	var challenge1 = new challengeModel({"_id":counter.seq, "title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"createdByEmailId":user.emailId,"createdBy":user.name,"learning":challenge.learning,"mailGroups":challenge.mailGroups,"isCreated":isCreated});
         	challenge1.save(function(err){
                 if(err)
                 	callbackForChallenge(err);
@@ -50,7 +50,7 @@ getChallengeForEmailId:function(emailId,callbackForChallengesForEmailId){
 },
 getAllChallenges:function(categories,callbackForAllChallenges){
 	console.log("categories"+categories);
-	var query = challengeModel.find({"categories._id":{$in:categories},"status":"create"}).sort({"created_at":-1});
+	var query = challengeModel.find({"mailGroups._id":{$in:categories},"status":"create"}).sort({"created_at":-1});
     query.exec(function(err, challenges){
         if(err)
         	callbackForAllChallenges(err);

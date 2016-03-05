@@ -51,10 +51,19 @@
 						</div>
 				 <span ng-if="view==='main.myChallenges'" ng-repeat="category in categories" >
 					 <div class="ui radio checkbox" >
-					  <input  ng-disabled="challenge.status==='create' || !editChallenge"  id="{{category.name}}" type="radio" value="{{category}}"  ng-model="challenge.categories" ng-checked="checkCategory(category._id);"  />
+					  <input  ng-disabled="challenge.status==='create' || !editChallenge"  id="{{category.name}}" type="radio" value="{{category}}"  ng-model="challenge.categories" ng-checked="checkCategory(category);" ng-click="updateMailGroups(category)" />
 					  <label for="{{category.name}}" style="padding-right: 10px;padding-bottom: 15px;padding-left: 18px;">{{category.name | camelCase}} </label>
 					</div>
 				</span>
+		</div>
+				<div class="sixteen wide column" style="padding-top: 0px;">
+				<div class="ui teal large label">
+				  Mail Groups 
+				</div>
+					 <div class="ui toggle checkbox" ng-repeat="category in categories">
+					  <input id="{{category._id}}"  type="checkbox" value="{{category}}"  ng-checked="checkCategoryForMailGroup(category);"  ng-click="toggleSelection(category)" ng-disabled="challenge.status==='create' || !editChallenge || selectedCategory===category"/>
+					  <label for="{{category._id}}" style="padding-left: 50px;padding-right: 8px;">{{category.name | camelCase}} </label>
+					</div>
 		</div>
 		<div class="sixteen wide center aligned column">
 			<button type="submit" class="ui yellow button" ng-if="view==='main.myChallenges'" ng-show="!editChallenge && !challengeObj.closed" ng-click="showEditFields();">

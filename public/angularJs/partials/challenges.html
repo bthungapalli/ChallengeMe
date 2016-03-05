@@ -61,12 +61,15 @@
 </div>
 <div class="four wide column" ng-show="(currentTab==='myChallenges')"  style="padding-top: 5px;padding-bottom: 0px;cursor: pointer">
 <a class="ui teal tag label">{{challengeObj.categories.name | camelCase}} </a>
-<button type="submit" class="ui mini red button" ng-show="challengeObj.closed">
+<button type="submit" class="ui mini red button" ng-show="challengeObj.closed && !challengeObj.learning && challengeObj.status!=='draft'">
 		  	<i class="ban icon"></i> Closed
 		</button>
 		
-		<button type="submit" class="ui mini positive button" ng-show="!challengeObj.closed">
-		  	Open
+		<button type="submit" class="ui mini positive button" ng-show="!challengeObj.closed && !challengeObj.learning && challengeObj.status!=='draft'" >
+		  	<i class="checkmark icon"></i>	Open
+		</button>
+		 <button ng-if="challengeObj.learning"  type="submit" class="ui mini yellow button" >
+			  	 Learning
 		</button>
 <button ng-if="challengeObj.status==='create'"  type="submit" class="ui mini positive button" >
 			  	 Created
@@ -74,9 +77,7 @@
 		<button ng-if="challengeObj.status==='draft'"  type="submit" class="ui mini primary button" >
 			  	 Draft
 		</button>
-		 <button ng-if="challengeObj.learning"  type="submit" class="ui mini yellow button" >
-			  	 Learning
-		</button>
+		
 		
 		
 </div>
@@ -95,13 +96,13 @@
 		</button>
 		
 		<button type="submit" class="ui mini positive button" ng-show="!challengeObj.closed">
-		  	Open
+		  	<i class="checkmark icon"></i>Open
 		</button>
 		</span>
 </div>
 
 <div class="sixteen wide column"  style="padding-top: 0px;padding-bottom: 5px;font-family: Georgia;cursor: pointer;padding-left: 8%;">
-<Strong>{{challengeObj.createdBy}}</Strong> posted on <i class="calendar icon"></i>{{challengeObj.created_at | dateFormat}}, solutions can be given by <i class="calendar icon"></i>{{challengeObj.date | dateFormat}}
+<Strong>{{challengeObj.createdBy}}</Strong> posted on <i class="calendar icon"></i>{{challengeObj.created_at | dateFormat}}   <label ng-hide="challengeObj.learning">, solutions can be given by <i class="calendar icon"></i>{{challengeObj.date | dateFormat}}</label>
 				<strong ng-show="challengeObj.prize"><i class=" large gift icon"></i></strong>  {{challengeObj.prize}}
 </div>
 

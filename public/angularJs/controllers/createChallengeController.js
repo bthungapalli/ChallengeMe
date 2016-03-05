@@ -9,7 +9,8 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 			"date":"",
 			"prize":"",
 			"status":"",
-			"learning":false
+			"learning":false,
+			"mailGroups":[]
 	};
 	
 	 var today = new Date();
@@ -119,18 +120,33 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 		
 		$scope.toggleSelection = function toggleSelection(category) {
 			var idx=-1;
-		    angular.forEach($scope.challenge.categories,function(allCategory,index){
-				if(allCategory._id===category._id){
+		    angular.forEach($scope.challenge.mailGroups,function(mailGroup,index){
+				if(mailGroup._id===category._id){
 					idx=index;
 				}
 			});
 
 		    if (idx > -1) {
-		      $scope.challenge.categories.splice(idx, 1);
+		      $scope.challenge.mailGroups.splice(idx, 1);
 		    }
 		    else {
-		      $scope.challenge.categories.push(category);
+		      $scope.challenge.mailGroups.push(category);
 		    }
 		  };
+		  
+		  $scope.updateMailGroups = function toggleSelection(category) {
+			  $scope.previousSelectedCategory= $scope.selectedCategory
+				$scope.selectedCategory=category;
+			  var idx=-1;
+			    angular.forEach($scope.challenge.mailGroups,function(mailGroup,index){
+					if(mailGroup._id===category._id){
+						idx=index;
+					}
+				});
+			  
+			  if(idx===-1)
+			  $scope.toggleSelection(category);
+			  $scope.toggleSelection( $scope.previousSelectedCategory);
+			  };
 		
 }]);

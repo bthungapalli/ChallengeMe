@@ -26,6 +26,7 @@ var challengeSchema = Schema({
     created_at: {type: Date, default: Date.now},
     updated_at: {type: Date, default: Date.now},
     solutions: {type: Array},
+    mailGroups: {type: Array},
     isSubcribed: {type: Boolean},
     isCreated: {type: Boolean,default:false},
     comments :{type: Array}
