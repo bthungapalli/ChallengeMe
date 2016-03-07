@@ -19,6 +19,7 @@ angular.module("challengeMeApp").controller("mainController",["$scope","$http","
 	$scope.setCurrentTab=function(tabName){
 		$scope.currentTab=tabName;
 		$rootScope.history.push(tabName);
+		 $scope.openCloseSideMenu(false,false);
 	}
 	
 	if($state.current.name==="main.logout"){
@@ -37,12 +38,18 @@ angular.module("challengeMeApp").controller("mainController",["$scope","$http","
 	 
 	 $scope.toggleSideMenu=function(){
 		 $scope.shortMenu=! $scope.shortMenu;
-		 if($scope.shortMenu){
+		 $scope.openCloseSideMenu( $scope.shortMenu,true);
+	 }
+	 
+	 $scope.openCloseSideMenu=function(shortMenu,collapse){
+		 if(shortMenu && collapse){
+			 $scope.shortMenu= shortMenu;
 			 $("#nav").removeAttr( "class" );
 			 $("#main").removeAttr( "class" );
 			 $( "#nav" ).attr( "class" ,"one wide column sideMenuBackGroundForShortMenu");
 			 $( "#main" ).attr( "class" ,"fifteen wide column mainContentBackGroundForShortMenu");
 		 }else{ 
+			 $scope.shortMenu= shortMenu;
 			 $("#nav").removeAttr( "class" );
 			 $("#main").removeAttr( "class" );
 			 $( "#nav" ).attr( "class" ,"three wide column sideMenuBackGround");
