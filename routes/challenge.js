@@ -7,7 +7,7 @@ var solutionService=require("../services/solutionService");
 var mailUtil = require("../utils/MailUtil");
 var _ = require('underscore');
 var categoryService=require("../services/categoryService");
-
+var nconf = require('nconf');
 String.prototype.toUpperCaseFirstChar = function() {
     return this.substr( 0, 1 ).toUpperCase() + this.substr( 1 );
 }
@@ -42,7 +42,7 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 						
 					};
 				if(ids.length>0 && !challenge.isCreated)
-			//	mailUtil.sendMail(ids,'bthungapalli@osius.com','Challenge Posted','ChallengeMe.html',context);
+			//	mailUtil.sendMail(ids,nconf.get('mail').challengeMeSupport,'Challenge Posted','ChallengeMe.html',context);
 				response.send("created");
 			 });
 			}else{
@@ -117,7 +117,7 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 						userName : user.name,
 						comments : postedComment
 					};
-				mailUtil.sendMail(challenge.createdByEmailId,'bthungapalli@osius.com','New Comment posted','Comments_Challenges.html',context);
+				mailUtil.sendMail(challenge.createdByEmailId,nconf.get('mail').challengeMeSupport,'New Comment posted','Comments_Challenges.html',context);
 				response.json(challenge);
 		
 	});
