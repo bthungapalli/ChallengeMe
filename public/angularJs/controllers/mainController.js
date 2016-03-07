@@ -7,8 +7,8 @@ angular.module("challengeMeApp").controller("mainController",["$scope","$http","
 		$http.get(challengeMeConstants.userDetails).success(function(response){
 			$rootScope.userDetails=response;
 			$scope.userPhotoPath="profile/imagePath/emailId/"+$rootScope.userDetails.username+"/number/"+Math.random();
-			$state.go("main.dashboard");
-			$scope.currentTab="dashboard";
+			$state.go("main.allChallenges");
+			$scope.currentTab="allChallenges";
 			}).error(function(error){
 			});
 	};

@@ -70,7 +70,7 @@ color:#C6D1E6 ;
 				</a>
 		  </div>
 		  <div class="item sideMenu" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"  ng-class="{activeSideMenu:currentTab==='profile'}">
-			    <a  class="silver" ui-sref=".profile"  style="vertical-align: bottom;display: block" ng-class="{activeSideMenuColor:currentTab==='profile'}">
+			    <a  class="silver" ui-sref=".profile" ng-click="setCurrentTab('profile');"  style="vertical-align: bottom;display: block" ng-class="{activeSideMenuColor:currentTab==='profile'}">
 					<i class="large write icon " ></i>	    Edit Profile 
 				</a>
 		  </div>
