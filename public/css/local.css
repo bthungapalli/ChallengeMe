@@ -1,5 +1,5 @@
 
-   /*login html css  */ 
+/*login html css  */ 
 .floatRight{
     text-align:right;
     }
@@ -36,11 +36,47 @@ color:#ffffff !important;
 color:#C6D1E6 ;
 }
 
+.headerBackGround{
+background-color: #F7F7F7 !important;
+}
+
+.sideMenuBackGroundColor{
+background-color: #2E4356 !important;
+}
+
+.sideMenuBackGround{
+background-color: #2E4356 !important;
+padding-right: 0px;
+padding-top: 0px;
+height:91vh;
+font-size: medium;
+font-weight: bolder;
+}
+
+.mainContentBackGround{
+	padding-top: 0px !important;
+	padding-left: 0px !important;
+	max-height:91vh;
+	overflow-y: overlay;
+	max-width:80.5%;
+	background-color: #F7F7F7;
+}
+
+.historyFontColor{
+	color:#C6D1E6
+}
+
+/* challenge html css  */
+.challengeBgColor{
+	background-color: #C8E1C1;
+}
+
 /* view solution html css  */
+
 #solution::before { 
-    content: " ";
-    background-color: teal;
-    width:2px;
+ content: " ";
+ background-color: teal;
+width:2px;
 display:block;
 position:absolute;
 top:-12px;

@@ -1,6 +1,6 @@
 
 <header style="margin-bottom: 14px;">
-<div class="ui stackable menu" style="background-color: #F7F7F7;">
+<div class="ui stackable menu headerBackGround" >
   <div class="item" style="width: 18%;">
     <img src="images/logo.png" style="width:6em;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>Challenge Me</strong>
   </div>
@@ -14,8 +14,8 @@
 </header>
 
 
-<div class="ui two column stackable grid" style="">
-  <div class="three wide column" style="background-color:#2E4356;padding-right: 0px;padding-top: 0px;height:91vh;font-size: medium;font-weight: bolder;">
+<div class="ui two column stackable grid">
+  <div class="three wide column sideMenuBackGround" style="">
   	<aside>   
          
          <div class="ui relaxed divided list">
@@ -83,20 +83,20 @@
          
 	</aside>
   </div>
-  <div class="thirteen wide column" style="padding-top: 0px;padding-left: 0px;max-height:91vh;overflow-y: overlay;max-width:80.5%;background-color: #F7F7F7;">
+  <div class="thirteen wide column mainContentBackGround" >
   
 		 <section style="margin-right: -14px;">
-			 <div class="ui small breadcrumb" style=" border-bottom: 2px solid lightgray;background-color: #2E4356;">
+			 <div class="ui small breadcrumb sideMenuBackGroundColor" style="border-bottom: 2px solid lightgray;">
 			
 				 <label ng-click="setCurrentTab(n);" ng-repeat="n in history.slice(history.length-5<0?0:history.length-5,history.length); track by $index"> 
-				  <a  ui-sref=".{{n}}" class="section" style="color:#C6D1E6"><strong>{{n | displayTab | camelCase}}</strong>	 <i class="angle big right icon"></i></a>
+				  <a  ui-sref=".{{n}}" class="section historyFontColor"><strong>{{n | displayTab | camelCase}}</strong>	 <i class="angle big right icon"></i></a>
 				 
 				  </label>
 			</div>
 		</section>
 		<div class="ui grid" style="margin-top: 0px;">
 		
-		<div class="sixteen wide column" style="background-color: #F7F7F7;padding-bottom: 0px;padding-top: 3px;padding-left: 0px;margin-left: 15px;border-bottom: 3px solid #2E4356;"><h1><i class="angle double right icon"></i>{{currentTab | displayTab | camelCase}}</h1></div>
+		<div class="sixteen wide column headerBackGround" style="padding-bottom: 0px;padding-top: 3px;padding-left: 0px;margin-left: 15px;border-bottom: 3px solid #2E4356;"><h1><i class="angle double right icon"></i>{{currentTab | displayTab | camelCase}}</h1></div>
 		</div>
 		
   		<section><div ui-view style="margin-right: 30px;margin-left: 30px;margin-top: 25px;"></div></section>

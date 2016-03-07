@@ -49,13 +49,13 @@
 
 <div class="ui grid"  ng-controller="viewChallengeController" dir-paginate="challengeObj in challenges|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage" >
 
-<div class="sixteen wide column" style="background-color: #C8E1C1;color:black;border-bottom: 2px solid white;" >
+<div class="sixteen wide column challengeBgColor" style="border-bottom: 2px solid white;" >
 
 <div class="ui grid" >
 
 <div class="sixteen wide column">
 
-<div class="ui grid" ng-click="getChallenge(challengeObj);">  <img class="ui tiny image" ng-src="profile/imagePath/emailId/{{challengeObj.createdByEmailId}}/number/12" style="position: absolute;width: 7%;height: 58px;padding-left: 0px;padding-right: 0px;">
+<div class="ui grid" ng-click="getChallenge(challengeObj);">  <img class="ui tiny image" ng-src="profile/imagePath/emailId/{{challengeObj.createdByEmailId}}/number/12" style="position: absolute;width: 7%;height: 59px;padding-left: 0px;padding-right: 0px;">
 <div class="eleven wide column" style="padding-bottom: 0px;padding-top: 5px;font-family: initial;cursor: pointer;padding-left: 8%;">
 <h2>{{challengeObj.title | camelCase}}</h2>
 </div>
@@ -106,7 +106,7 @@
 
 </div>
 </div>
-<div class="sixteen wide column" ng-show="challengeObj.collapse" style="background-color: #F7F7F7;border-left: 2px solid teal;border-right: 2px solid teal;border-bottom: 2px solid teal;color:black">
+<div class="sixteen wide column headerBackGround" ng-show="challengeObj.collapse" style="border-left: 2px solid teal;border-right: 2px solid teal;border-bottom: 2px solid teal;">
 
 <div  ng-include="challengeTemplate" style="font-family: Georgia;"></div>
 <div  ng-include="challengeCommentsTemplate" style="font-family: Georgia;"></div>
