@@ -32,8 +32,20 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 					$scope.errorMsg = "Something went wrong!!!";
 				});
 		};
-	
+
+			$scope.userCount = function(){
+				$http.get("dashboard/userCount")
+				.success(
+					function(response){
+						$scope.userCount = response;
+					})
+				.error(
+					function(xhr, status, err){
+						$scope.errorMsg = "Something went wrong!!!";
+					});
+			};
 	
 	$scope.getPieData();
 	$scope.getMonthData();
+	$scope.userCount();
 });

@@ -9,7 +9,7 @@ angular.module("challengeMeApp").directive('datepicker', function() {
         });
       };
       var options = {
-        dateFormat: "dd/mm/yy",
+        dateFormat: "mm/dd/yy",
         minDate:"0d",
         onSelect: function (dateText) {
           updateModel(dateText);

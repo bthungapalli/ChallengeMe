@@ -65,6 +65,17 @@ var checkSession=require("../services/checkSessionService");
 		
 			});
 	
-	
+	router.get('/userCount',checkSession.requireLogin,function(req,res,err){
+		dashboardService.getUserCount(function(err,data){
+			if(err){
+				console.log("Err",err);
+				res.send(err);
+			}
+			else{
+				res.json(data);
+			}
+		});
+		
+			});	
 
 module.exports = router;

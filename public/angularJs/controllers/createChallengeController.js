@@ -50,7 +50,7 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 	    startingDay: 1
 	  };
 
-	  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+	  $scope.formats = ['MM-dd-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 	  $scope.format = $scope.formats[0];
 
 	  var tomorrow = new Date();
