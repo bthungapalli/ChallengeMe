@@ -10,8 +10,7 @@ getCategories : function(callbackForCategories){
    catModel.find(function(err,categories){
        if(err)
     	   callbackForCategories("error");
-      // callbackForCategories(categories);
-       callbackForCategories("error");
+       callbackForCategories(categories);
 		}).sort({"created_at":-1});
 },
 
