@@ -3,6 +3,9 @@ angular.module("challengeMeApp").controller("mainController",["$scope","$http","
 
 	$rootScope.history=[];
 	$rootScope.userDetails;
+	$rootScope.shortMenu=false;
+	 $scope.sideMenuClass="three wide column sideMenuBackGround";
+	 $scope.mainContentClass="thirteen wide column mainContentBackGround";
 	$scope.getUserDetails=function(){
 		$http.get(challengeMeConstants.userDetails).success(function(response){
 			$rootScope.userDetails=response;
@@ -31,4 +34,19 @@ angular.module("challengeMeApp").controller("mainController",["$scope","$http","
 	        $scope.sortKey = keyname;   
 	        $scope.reverse = !$scope.reverse; 
 	    }
+	 
+	 $scope.toggleSideMenu=function(){
+		 $scope.shortMenu=! $scope.shortMenu;
+		 if($scope.shortMenu){
+			 $("#nav").removeAttr( "class" );
+			 $("#main").removeAttr( "class" );
+			 $( "#nav" ).attr( "class" ,"one wide column sideMenuBackGroundForShortMenu");
+			 $( "#main" ).attr( "class" ,"fifteen wide column mainContentBackGroundForShortMenu");
+		 }else{ 
+			 $("#nav").removeAttr( "class" );
+			 $("#main").removeAttr( "class" );
+			 $( "#nav" ).attr( "class" ,"three wide column sideMenuBackGround");
+			 $( "#main" ).attr( "class" ,"thirteen wide column mainContentBackGround");
+		 }
+	 }
 }]);

@@ -10,13 +10,20 @@
 
 /* main html css  */
 
+.profileDimensions{
+	width: 40% !important;
+	height: 79px !important;
+}
+
+.profileDimensionsForShortMenu{
+	width: 85% !important;
+	height: 60px !important;
+}
+ 
 .sideMenu:hover{
 background-color: #1AAF98;
 border-radius: 5px;
 color:#ffffff !important;
-    position: relative;
-    left: 30px;
-    z-index: 10000;
 }
 
 .activeSideMenu{
@@ -54,12 +61,32 @@ font-weight: bolder;
 overflow: auto;
 }
 
+.sideMenuBackGroundForShortMenu{
+background-color: #2E4356 !important;
+padding-right: 0px !important;
+padding-top: 0px !important;
+height:100vh;
+font-size: medium;
+font-weight: bolder;
+overflow: auto;
+text-align: center;
+}
+
 .mainContentBackGround{
 	padding-top: 0px !important;
 	padding-left: 0px !important;
 	max-height:91vh;
 	overflow-y: overlay;
 	max-width:80.5%;
+	background-color: #F7F7F7;
+}
+
+.mainContentBackGroundForShortMenu{
+		padding-top: 0px !important;
+	padding-left: 0px !important;
+	max-height:91vh;
+	overflow-y: overlay;
+	max-width:92.6%;
 	background-color: #F7F7F7;
 }
 
