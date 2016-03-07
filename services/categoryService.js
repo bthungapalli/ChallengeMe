@@ -9,8 +9,9 @@ return{
 getCategories : function(callbackForCategories){
    catModel.find(function(err,categories){
        if(err)
-    	   callbackForCategories(err);
-       callbackForCategories(categories);
+    	   callbackForCategories("error");
+      // callbackForCategories(categories);
+       callbackForCategories("error");
 		}).sort({"created_at":-1});
 },
 
@@ -22,8 +23,12 @@ createOrUpdateCategories : function(categoryDetails,callbackForCreateOrUpdateCat
         	 var conditions = { "_id":categoryDetails._id };
         	 var update = { $set: {"name": categoryDetails.name,"description": categoryDetails.description}};
         	 catModel.update(conditions, update, function callback (err, numAffected) {
+        		 if(err)
+        			 callbackForCreateOrUpdateCategories("error");
          		console.log(numAffected.n + "rows updates");
          		userModel.update( {"categories._id":categoryDetails._id},{$set:{"categories.$.name":categoryDetails.name}},{multi:true},function(err, numAffected){
+         			 if(err)
+            			 callbackForCreateOrUpdateCategories("error");
              		challengeModel.update({"mailGroups._id":categoryDetails._id},{$set:{"mailGroups.$.name":categoryDetails.name}},{multi:true},function(err,numAffected){
              			console.log("err:"+err);
              			console.log("numAffected:"+numAffected);
@@ -56,7 +61,7 @@ createOrUpdateCategories : function(categoryDetails,callbackForCreateOrUpdateCat
 deleteCategory:function(categoryId,callbackForDeleteCategory){
 	catModel.remove({"_id":categoryId},function callback (err, numAffected) {
 		if(err)
-			callbackForDeleteCategory("error:No record to delete");
+			callbackForDeleteCategory("error");
 		console.log(categoryId +"category deleted.");
 		callbackForDeleteCategory("success:Record deleted");
 	});
