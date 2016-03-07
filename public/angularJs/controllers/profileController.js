@@ -15,10 +15,15 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	        	status('Error: ' + xhr.status);
 	            },
 	            success: function(response) {
-	            	var randomNumber=Math.random();
-	            	$("#profileImage > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
-	            	$("#userDetails > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
-	                }
+	            	if(response==="error"){
+	            		$scope.errorMessage=challengeMeConstants.errorMessage;
+	            	}else{
+	            		var randomNumber=Math.random();
+		            	$("#profileImage > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
+		            	$("#userDetails > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
+		               
+	            	}
+	             }
 	    });
 	        //Very important line, it disable the page refresh.
 	    return false;
@@ -101,8 +106,8 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 			 if(response==="updated"){
 				 $scope.successMessage="Profile updated.";
 				 $scope.editProfile=false;
-			 }else{
-				 $scope.errorMessage="Did not save";
+			 }else if(response==="error"){
+				 $scope.errorMessage=challengeMeConstants.errorMessage;
 			 }
 			 $loading.finish('profile');
 				}).error(function(error){

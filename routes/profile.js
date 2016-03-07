@@ -17,7 +17,7 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 	
 	  userService.updateUser(request.body,function(err,updatedUser){
 		  if(err)
-			  response.send("Invalid");
+			  response.send("error");
 		  request.session.user=updatedUser;
 		  response.send("updated");
 	  });
@@ -56,7 +56,7 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 	router.post('/upload',checkSession.requireLogin,function(req,res){
 	    upload(req,res,function(user,err) {
 	        if(err) {
-	            return res.end("Error uploading file.");
+	            return res.end("error");
 	        }
 	        var filename = req.session.user.emailId+".jpg";
 	        	return res.send("<div  class='ui segment' id='profileImage'> <img  class='ui centered medium image' src='/profile/imagePath'></div>");
