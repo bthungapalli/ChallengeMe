@@ -78,8 +78,6 @@
 			  	 Draft
 		</button>
 		
-		
-		
 </div>
 <div class="five wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))"  style="padding-top: 5px;padding-bottom: 0px;cursor: pointer">
   <a class="ui teal tag label">{{challengeObj.categories.name | camelCase}} </a>
@@ -123,50 +121,5 @@
 
 </div>
 
-<!-- 
-
-<table class="ui five column single line celled padded striped teal table" style="table-layout: fixed">
-  <thead>
-    <tr>
-	    <th ng-click="sort('title')"  >Title <i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
-	    <th ng-click="sort('createdBy')">Posted By  <i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
-	    <th ng-click="sort('status')" ng-show="currentTab==='myChallenges'">status  <i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
-	    <th ng-click="sort('date')">Cut-off Time<i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
-	      <th ng-click="sort('created_at')">Posted Date  <i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
-	    <th ng-show="currentTab!=='myChallenges'">Action<i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
-    </tr>
-  </thead>
-  <tbody ng-controller="viewChallengeController" dir-paginate="challengeObj in challenges|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage" >
-    <tr>
-<td ng-bind="challengeObj.title | camelCase" ng-click="getChallenge(challengeObj);"> </td>
-<td ng-bind="challengeObj.createdBy" ng-click="getChallenge(challengeObj);"> </td>
-<td ng-show="currentTab==='myChallenges'" ng-bind="challengeObj.status"  ng-click="getChallenge(challengeObj);"> </td>
-
-<td ng-bind="challengeObj.date | dateFormat" ng-click="getChallenge(challengeObj);"> </td>
-<td ng-bind="challengeObj.created_at | dateFormat" ng-click="getChallenge(challengeObj);" ></td>
-<td ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))">
-		<button type="submit" class="ui small yellow button" ng-click="subcribeChallenge(challengeObj);" ng-show="!challengeObj.closed " type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') ">
-			  	<i class="thumbs outline up icon"></i> Accept
-		</button>
-		
-		<button type="submit" class="ui small red button" ng-show="challengeObj.closed">
-		  	<i class="ban icon"></i> Closed
-		</button>
-		
-		<button type="submit" class="ui small positive button" ng-show="!challengeObj.closed">
-		  	Opened
-		</button>
-  </td>
-</tr>
-<tr>
-<td ng-show="challengeObj.collapse" colspan="{{colspan}}" >
-<div  ng-include="challengeTemplate" ></div>
-<div  ng-show="currentTab==='subcribedChallenges'" ng-include="solutionTemplate" ></div>
-<div  ng-show="((currentTab!=='allChallenges') || (currentTab!=='subcribedChallenges' && challengeObj.closed))" ng-repeat="solutionObj in challenge.solutions" ng-include="solutionTemplateForView" ></div>
-</td>
-</tr>
-
-  </tbody>
-</table> -->
 <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" ></dir-pagination-controls>
 </div>
