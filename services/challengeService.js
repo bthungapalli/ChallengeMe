@@ -21,6 +21,8 @@ createOrSaveChallenge : function(challenge,user,callbackForChallenge){
         	 challengeModel.update(conditions, update, callback);
         	 
         	function callback (err, numAffected) {
+        		if(err)
+        			callbackForChallenge(err);
         		console.log(numAffected + "rows updates");
         		callbackForChallenge(null,challenge.status);
         	};
