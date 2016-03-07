@@ -69,8 +69,10 @@ deleteCategory:function(categoryId,callbackForDeleteCategory){
 getEmailIdsForCategories:function(categories,callbackFoEmailIdsForCategories){
 
 	userModel.find({"categories.name":{$in:categories}},{"emailId":1,"_id":0},function(err,emailIds){
-		if(err)
-			callbackFoEmailIdsForCategories("error");
+		 if(err){
+		    	   console.log("error:"+error);
+		    	   callbackFoEmailIdsForCategories(error);
+		       }
 		callbackFoEmailIdsForCategories(null,emailIds);
 	});
 

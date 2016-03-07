@@ -25,7 +25,7 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 				}
 				console.log("categoriesForMailGroup:"+categoriesForMailGroup);
 				categoryService.getEmailIdsForCategories(categoriesForMailGroup,function(err,emailIds){
-					if(err==="error")
+					if(err)
 						response.send("error");
 					var ids=_.pluck(emailIds, 'emailId');
 					console.log("emailIds...................."+ids);
@@ -96,6 +96,8 @@ router.get('/:challengeId',checkSession.requireLogin,function (request,response,
 		if(err)
 			response.send("error");
 		solutionService.getSolutionsForChallengeId(challenge[0]._id,function(err,solutions){
+			if(err)
+				response.send("error");
 			challenge[0].solutions=solutions;
 			response.send(challenge[0]);
 		});
