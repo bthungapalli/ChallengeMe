@@ -1,6 +1,7 @@
 var catModel = require("../models/catModel.js");
 var counterModel = require("../models/counterModel"); 
 var userModel=require("../models/userModel");
+var challengeModel=require("../models/challengeModel");
 var categoryService =function(){
 
 return{
@@ -23,6 +24,16 @@ createOrUpdateCategories : function(categoryDetails,callbackForCreateOrUpdateCat
         	 catModel.update(conditions, update, function callback (err, numAffected) {
          		console.log(numAffected.n + "rows updates");
          		userModel.update( {"categories._id":categoryDetails._id},{$set:{"categories.$.name":categoryDetails.name}},{multi:true},function(err, numAffected){
+             		challengeModel.update({"mailGroups._id":categoryDetails._id},{$set:{"mailGroups.$.name":categoryDetails.name}},{multi:true},function(err,numAffected){
+             			console.log("err:"+err);
+             			console.log("numAffected:"+numAffected);
+             			console.log("inside mailgroupos")
+             		});
+             		challengeModel.update({"categories._id":categoryDetails._id},{$set:{"categories.name":categoryDetails.name}},{multi:true},function(err,numAffected){
+             			console.log("err:"+err);
+             			console.log("numAffected:"+numAffected);
+             			console.log("inside categ")
+             		});
              		console.log("updated user model as well");
              		callbackForCreateOrUpdateCategories(categoryDetails._id );
          		});
