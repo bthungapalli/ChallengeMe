@@ -1,5 +1,7 @@
 var counterModel = require("../models/counterModel"); 
 var solutionModel = require("../models/solutionModel"); 
+var likesModel = require("../models/likesModel"); 
+var _ = require('underscore');
 
 var solutionService =function(){
 
@@ -42,12 +44,26 @@ getSolution:function(challengeId,userEmailId,callbackForSolution){
     });
 },
 
-getSolutionsForChallengeId:function(challengeId,callbackForSolutions){
+getSolutionsForChallengeId:function(challengeId,userId,callbackForSolutions){
 	var query = solutionModel.find({"challengeId":challengeId}).sort({"created_at":-1});
     query.exec(function(err, solutions){
-        if(err)
-        	callbackForSolutions(err);
-        callbackForSolutions(null,solutions);
+        if(err){
+        	callbackForSolutions(err);}else{
+        		var solutionIds = _.pluck(solutions,"_id");
+        		likesModel.find({"solutionId" :{$in:solutionIds}},function(err,likes){
+        			for(var i=0;i<solutions.length;i++){
+        				for(var j=0;j<likes.length;j++){
+        					if(likes[j].solutionId == solutions[i]._id){
+        						solutions[i].likes.push(likes[j]);
+        					}
+        				}
+        				
+        			}
+        			callbackForSolutions(null,solutions);	
+        		});
+        		
+        	}
+        
     });
 },
 
@@ -86,6 +102,17 @@ updateIsCorrectAnswer:function(solutionObj,callbackForIsCorrectAnswer){
 		console.log(item);
 		callbackForIsCorrectAnswer(null,"updated");
 	});
+},
+likeChallenge:function(solutionId,user,callbackForLikes){
+	var likes = new likesModel({"solutionId": solutionId,"emailId": user.emailId,"name":user.name});
+	likes.save(function(err){
+         if(err){
+        	 callbackForLikes(err);
+         }else{
+         callbackForLikes(null,"liked");
+         }
+     });
+	
 }
 	
 }

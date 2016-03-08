@@ -41,8 +41,9 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 						lastDate : challenge.date
 						
 					};
-				if(ids.length>0 && !challenge.isCreated)
+				if(ids.length>0 && !challenge.isCreated){
 			//	mailUtil.sendMail(ids,'bthungapalli@osius.com','Challenge Posted','ChallengeMe.html',context);
+				}
 				response.send("created");
 			 });
 			}else{
@@ -92,10 +93,11 @@ router.get('/mychallenges',checkSession.requireLogin,function (request,response,
 
 router.get('/:challengeId',checkSession.requireLogin,function (request,response,next){
 	var challengeId=request.params.challengeId;
+	var userId = request.session.user.emailId;
 	challengeService.getChallengeForChallengeId(challengeId,function(err,challenge){
 		if(err)
 			response.send("error");
-		solutionService.getSolutionsForChallengeId(challenge[0]._id,function(err,solutions){
+		solutionService.getSolutionsForChallengeId(challenge[0]._id,userId,function(err,solutions){
 			challenge[0].solutions=solutions;
 			response.send(challenge[0]);
 		});

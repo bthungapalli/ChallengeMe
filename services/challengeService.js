@@ -1,6 +1,7 @@
 var challengeModel = require("../models/challengeModel");
 var counterModel = require("../models/counterModel"); 
 var subcribeChallengeModel = require("../models/subcribeChallengeModel"); 
+var likesModel = require("../models/likesModel"); 
 
 var challengeService =function(){
 
@@ -52,9 +53,11 @@ getAllChallenges:function(categories,callbackForAllChallenges){
 	console.log("categories"+categories);
 	var query = challengeModel.find({"mailGroups._id":{$in:categories},"status":"create"}).sort({"created_at":-1});
     query.exec(function(err, challenges){
-        if(err)
+        if(err){
         	callbackForAllChallenges(err);
+        }else{
         callbackForAllChallenges(null,challenges);
+        }
     });
 },
 getChallengeForChallengeId:function(challengeId,callbackForchallenge){
@@ -63,7 +66,8 @@ getChallengeForChallengeId:function(challengeId,callbackForchallenge){
     query.exec(function(err, challenge){
         if(err)
         	callbackForchallenge(err);
-        callbackForchallenge(null,challenge);
+        	 callbackForchallenge(null,challenge);
+       
     });
 },
 subcribeChallenge:function(challengeId,emailId,callbackForSubcribe){

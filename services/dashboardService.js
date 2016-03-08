@@ -1,6 +1,7 @@
 var challengeModel = require("../models/challengeModel");
 var solutionsModel = require("../models/solutionModel");
 var userModel = require("../models/userModel");
+var date = require('../utils/date.js');
 
 var dashboardService = function() {
 
@@ -45,15 +46,19 @@ var dashboardService = function() {
 
 		},
 		
-		getStats : function(callbackStats){
+			getStats : function(callbackStats){
+			var dt = new Date().getTime();
+			console.log("Date::::",dt);
+		console.log("parsed::::",Date.parseExact('03/10/2016', "MM/dd/yyyy").getTime());;
 			challengeModel.aggregate([
-					{ "$group": {
+					{ 
+						"$group": {
 						"_id":null,
-					    "opened": { "$sum": {$cond:{ if: { $gte: [new Date("$date").getDate() , new Date()] }, then: 1, else: 0 } }},
-					    "closed": { "$sum": {$cond: { if: { $lt: [ new Date("$date").getDate(), new Date()] }, then: 1, else: 0 }}}
-					}  
+						 "opened": { $sum: {$cond: [ { $gte: [ Date.parseExact('$date', "MM/dd/yyyy").getTime(), dt ] }, 1, 0 ]}}
+//					    "opened": { "$sum": {$cond:{ $gte: [Date.parseExact("$date", "MM/dd/yyyy").getTime() , dt] ,1,0 } }}
+					   // "closed": { "$sum": {$cond: { if: { $lt: [ Date.parseExact("$date", "MM/dd/yyyy").getTime(),dt] }, then: 1, else: 0 }}}
+							}  
 					}
-					
 			], function(err,result){
 				if (err) {
 					callbackStats(err);
@@ -67,7 +72,7 @@ var dashboardService = function() {
 		getUserCount:function(callbackUserCount){
 		 userModel.count({},function(err,result){
 				if (err) {
-					callbackStats(err);
+					callbackUserCount(err);
 				} else {
 					callbackUserCount(null,result);
 				}

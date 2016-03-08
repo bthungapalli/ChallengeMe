@@ -58,4 +58,17 @@ router.put('/correctAnswer',checkSession.requireLogin,function (request,response
 	});
 });
 
+router.post('/likes',checkSession.requireLogin,function (request,response,next){
+	var challengeId=request.body.challengeId;
+	var user=request.session.user;
+	solutionService.likeChallenge(challengeId,user,function(err,like){
+		if(err){
+			response.send(err);
+		}else{
+		response.json(like);
+		}
+		
+	});
+});
+
 module.exports = router;
