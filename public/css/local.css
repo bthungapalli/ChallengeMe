@@ -1,4 +1,17 @@
+::-webkit-scrollbar {
+    width: 10px;
+    height:  10px;
+}
 
+::-webkit-scrollbar-button {
+    background: lightgrey; 
+}
+::-webkit-scrollbar-track-piece {
+    background: grey;
+}
+::-webkit-scrollbar-thumb {
+    background: #C8E1C1;
+}
 /*login html css  */ 
 .floatRight{
     text-align:right;
