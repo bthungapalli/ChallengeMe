@@ -10,7 +10,7 @@ getCategories : function(callbackForCategories){
    catModel.find(function(err,categories){
        if(err)
     	   callbackForCategories("error");
-       callbackForCategories(categories);
+       callbackForCategories(null,categories);
 		}).sort({"created_at":-1});
 },
 
@@ -39,7 +39,7 @@ createOrUpdateCategories : function(categoryDetails,callbackForCreateOrUpdateCat
              			console.log("inside categ")
              		});
              		console.log("updated user model as well");
-             		callbackForCreateOrUpdateCategories(categoryDetails._id );
+             		callbackForCreateOrUpdateCategories(null,categoryDetails._id );
          		});
          	});
         	 
@@ -52,7 +52,7 @@ createOrUpdateCategories : function(categoryDetails,callbackForCreateOrUpdateCat
         	category.save(function(err){
                 if(err)
                 	counterModel.findByIdAndUpdate({_id : "catId"}, {$inc: {seq: -1} }, function(error, counter){});
-                callbackForCreateOrUpdateCategories(catId);
+                callbackForCreateOrUpdateCategories(null,catId);
         	});
         });
         }
@@ -62,7 +62,7 @@ deleteCategory:function(categoryId,callbackForDeleteCategory){
 		if(err)
 			callbackForDeleteCategory("error");
 		console.log(categoryId +"category deleted.");
-		callbackForDeleteCategory("success:Record deleted");
+		callbackForDeleteCategory(null,"success:Record deleted");
 	});
 	
 },

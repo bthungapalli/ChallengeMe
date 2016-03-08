@@ -229,4 +229,55 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		$scope.getProfilePathForSolutions=function(solutionObj){
 			$scope.solutionUserImagePath= "profile/imagePath/emailId/"+solutionObj.solutionByEmailId+"/number/"+Math.random() ;
 		};
+		
+		
+		$scope.like=function(solutionObj){
+			var data={"solutionId":solutionObj._id};
+			$http.post(challengeMeConstants.solution+challengeMeConstants.like,data).success(function(response){
+				$scope.redirectToLoginIfSessionExpires(response);
+				if(response==="error"){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				}else{
+					$scope.userLiked=true;
+					solutionObj.likes.push(response);
+					$scope.showLikesCount(solutionObj.likes);
+				};
+				}).error(function(error){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				});
+		};
+		
+		$scope.showLikesCount=function(likes){
+			$scope.likesCount="";
+			$scope.userLiked=false;
+			for(var i=0;i<likes.length;i++){
+				if(likes[i].emailId==$scope.userDetails.emailId){
+					$scope.likesCount=likes.length===1?"You liked":"You and "+likes.length-1+" others liked";
+					$scope.userLiked=true;
+					break;
+				}
+			}
+			if($scope.likesCount.length===0)
+			$scope.likesCount=likes.length+" person liked";
+		};
+		
+		$scope.unLike=function(challenge,solutionObj){
+			var data={"solutionId":solutionObj._id};
+			$http.post(challengeMeConstants.solution+challengeMeConstants.unlike,data).success(function(response){
+				$scope.redirectToLoginIfSessionExpires(response);
+				if(response==="error"){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				}else{
+					$scope.userLiked=false;
+					for(var i=0;i<solutionObj.likes.length;i++){
+						if(solutionObj.likes[i].emailId===$scope.userDetails.emailId){
+							solutionObj.likes.splice(i,1);
+						}
+					}
+					$scope.showLikesCount(solutionObj.likes);
+				};
+				}).error(function(error){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				});
+		}
 }]);

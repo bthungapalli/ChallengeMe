@@ -19,7 +19,8 @@
 		    <div class="ui toggle checkbox" style="float: right;" ng-show="currentTab==='myChallenges'">
 					  <input id="correct" type="checkbox" ng-model="solutionObj.isCorrect" ng-click="updateCorrectAnswerOrNot(solutionObj)" />
 					  <label for="correct" >Correct</label>
-					</div>
+			</div>
+			<div style="float: right;" ng-show="solutionObj.likes.length>0" ng-init="showLikesCount(solutionObj.likes);"><strong>{{likesCount}}</strong></div>
 			 </div> 
 		  <img style="border-radius: 10px;height: 60px;position: absolute;left: -100px;top: 0px;" class="ui tiny image" ng-init="getProfilePathForSolutions(solutionObj)" ng-src="{{solutionUserImagePath}}">
 		  </div>

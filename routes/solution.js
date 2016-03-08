@@ -58,16 +58,28 @@ router.put('/correctAnswer',checkSession.requireLogin,function (request,response
 	});
 });
 
-router.post('/likes',checkSession.requireLogin,function (request,response,next){
-	var challengeId=request.body.challengeId;
+router.post('/like',checkSession.requireLogin,function (request,response,next){
+	var solutionId=request.body.solutionId;
 	var user=request.session.user;
-	solutionService.likeChallenge(challengeId,user,function(err,like){
+	solutionService.likeChallenge(solutionId,user,function(err,like){
 		if(err){
-			response.send(err);
+			response.send("error");
 		}else{
 		response.json(like);
 		}
-		
+	});
+});
+
+
+router.post('/unlike',checkSession.requireLogin,function (request,response,next){
+	var solutionId=request.body.solutionId;
+	var user=request.session.user;
+	solutionService.unlikeChallenge(solutionId,user,function(err,like){
+		if(err){
+			response.send("error");
+		}else{
+		response.json("unliked");
+		}
 	});
 });
 
