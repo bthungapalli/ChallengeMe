@@ -59,21 +59,6 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 			$scope.editChallenge=!$scope.editChallenge;
 		};
 		
-		/*$scope.toggleSelection = function toggleSelection(category) {
-			var idx=-1;
-		    angular.forEach($scope.challenge.categories,function(allCategory,index){
-				if(allCategory._id===category._id){
-					idx=index;
-				}
-			});
-
-		    if (idx > -1) {
-		      $scope.challenge.categories.splice(idx, 1);
-		    }
-		    else {
-		      $scope.challenge.categories.push(category);
-		    }
-		  };*/
 		
 		$scope.toggleSelection = function toggleSelection(category) {
 			var idx=-1;
@@ -135,7 +120,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				$scope.openCloseSideMenu(true,$scope.challenges[challenge.index].collapse);
 			}else if($rootScope.previousOpenedChallengeIndex===challenge.index){
 				$scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse=!$scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse;
-				$scope.openCloseSideMenu(false,$scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse);
+				$scope.openCloseSideMenu($scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse,$scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse);
 			}else{
 				$scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse=false;
 				$rootScope.previousOpenedChallengeIndex=challenge.index;
