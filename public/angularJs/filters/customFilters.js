@@ -48,7 +48,7 @@ angular.module('challengeMeApp')
 				              "November", "December"];
 				  var inputArray=input.trim().split("/");
 				  if(inputArray.length>1){
-					  return inputArray[0]+" "+months[inputArray[1]-1]+" "+inputArray[2];
+					  return inputArray[1]+" "+months[inputArray[0]-1]+" "+inputArray[2];
 				  }else{
 					  var inputArray=input.trim().split("T");
 					  var dates=inputArray[0].split("-");

@@ -1,44 +1,11 @@
-<style>
-
-.sideMenu:hover{
-background-color: #1AAF98;
-border-radius: 5px;
-color:#ffffff !important;
-    position: relative;
-    left: 30px;
-    z-index: 10000;
-}
-
-.activeSideMenu{
-background-color: #1AAF98;
-border-radius: 5px;
-}
-
-.activeSideMenuColor{
-color:#ffffff !important;
-}
-
-.silver:hover{
-color:#ffffff !important;
-}
-
-.silver{
-color:#C6D1E6 ;
-}
-
-
-
-
-</style>
-
 
 <header style="margin-bottom: 14px;">
-<div class="ui stackable menu" style="background-color: #F7F7F7;">
+<div class="ui stackable menu headerBackGround" >
   <div class="item" style="width: 18%;">
     <img src="images/logo.png" style="width:6em;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>Challenge Me</strong>
   </div>
-  <div class="item" >
-  <i class="big align justify icon"></i>
+  <div class="item" ng-click="toggleSideMenu();" style="cursor: pointer;">
+  <i class="big align justify icon" ></i>
   </div>
   <div class="right menu">
     <a class="item" ui-sref=".logout" >Logout<i class="large red sign out icon"></i></a>
@@ -47,67 +14,67 @@ color:#C6D1E6 ;
 </header>
 
 
-<div class="ui two column stackable grid" style="">
-  <div class="three wide column" style="background-color:#2E4356;padding-right: 0px;padding-top: 0px;height:91vh;font-size: medium;font-weight: bolder;">
+<div class="ui two column grid">
+  <div id="nav"  ng-class="sideMenuClass" >
   	<aside>   
          
          <div class="ui relaxed divided list">
 		  <div id="userDetails" class="item" style="text-align: -webkit-center;border-bottom: 2px solid black;" >
-			     <img class="ui tiny image" ng-src="{{userPhotoPath}}" style="width: 40%;height: 79px;border:2px solid white;">
+			     <img class="ui tiny image profileDimensions" ng-class="{profileDimensions:!shortMenu,profileDimensionsForShortMenu:shortMenu}"  ng-src="{{userPhotoPath}}" style="border:2px solid white;">
 			    
 			      <div style="margin-top: 10px;"><a href="#" style="color:white">{{userDetails.name}}</a></div>
           </div>
             <div class="item sideMenu" style=" border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"    ng-class="{activeSideMenu:currentTab==='dashboard'}">
 			   
 			    <a class="silver" ui-sref=".dashboard"  ng-click="setCurrentTab('dashboard');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='dashboard'}">
-					 <i class="large add icon " ></i>	  Dashboard
+					 <i class="large dashboard icon" title="Dashboard"></i>	  <span ng-hide="shortMenu">Dashboard</span>
 				</a>
 		  </div>
 		  <div class="item sideMenu" style=" border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"    ng-class="{activeSideMenu:currentTab==='categories'}">
 			   
 			    <a class="silver" ui-sref=".categories"  ng-click="setCurrentTab('categories');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='categories'}">
-					 <i class="large add icon " ></i>	 Add Categories
+					 <i class="large add icon" title="Add Categories"></i>	<span ng-hide="shortMenu"> Add Categories</span>
 				</a>
 		  </div>
 		  <div class="item sideMenu" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"  ng-class="{activeSideMenu:currentTab==='profile'}">
-			    <a  class="silver" ui-sref=".profile"  style="vertical-align: bottom;display: block" ng-class="{activeSideMenuColor:currentTab==='profile'}">
-					<i class="large write icon " ></i>	    Edit Profile 
+			    <a  class="silver" ui-sref=".profile" ng-click="setCurrentTab('profile');"  style="vertical-align: bottom;display: block" ng-class="{activeSideMenuColor:currentTab==='profile'}">
+					<i class="large write icon " title="Edit Profile"></i>	  <span ng-hide="shortMenu">Edit Profile </span>  
 				</a>
 		  </div>
 		  <div class="item sideMenu" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"  ng-class="{activeSideMenu:currentTab==='createChallenge'}">
 			    
 			    <a  class="silver " ui-sref=".createChallenge" ng-click="setCurrentTab('createChallenge');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='createChallenge'}" >
-					<i class="large puzzle icon " ></i>	    Create Challenge 
+					<i class="large puzzle icon " title="Create Challenge"></i>	   <span ng-hide="shortMenu">Create Challenge</span>  
 				</a>
 		  </div>
 		  <div class="item sideMenu" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"  ng-class="{activeSideMenu:currentTab==='myChallenges'}">
 			   
 			     <a class="silver " ui-sref=".myChallenges" ng-click="setCurrentTab('myChallenges');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='myChallenges'}" >
-						 <i class="large lab icon " ></i>    My Challenges 
+						 <i class="large lab icon " title="My Challenges"></i>   <span ng-hide="shortMenu">My Challenges </span> 
 				</a>
 		  </div>
 		  <div class="item sideMenu" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;" ng-class="{activeSideMenu:currentTab==='allChallenges'}">
 			   
 			     <a class="silver " ui-sref=".allChallenges"  ng-click="setCurrentTab('allChallenges');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='allChallenges'}">
-					 <i class="large archive icon " ></i>	    All Challenges 
+					 <i class="large archive icon " title="All Challenges"></i>	  <span ng-hide="shortMenu">All Challenges </span>  
 				</a>
-		  </div>
+		  </div> 
 		  <div class="item sideMenu" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"  ng-class="{activeSideMenu:currentTab==='subcribedChallenges'}">
 			    
 			     <a class="silver " ui-sref=".subcribedChallenges" ng-click="setCurrentTab('subcribedChallenges');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='subcribedChallenges'}">
-						<i class="large privacy icon " ></i>    Subcribed Challenges 
+						<i class="large privacy icon " title="Subcribed Challenges"></i>  <span ng-hide="shortMenu">Subcribed Challenges </span>  
 				</a>
 		  </div>
 		  <div class="item sideMenu" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;" ng-class="{activeSideMenu:currentTab==='contactUs'}">
 			   
 			     <a class="silver " ui-sref=".contactUs" ng-click="setCurrentTab('contactUs');"  style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='contactUs'}">
-						    <i class="large mail icon " ></i> Contact Us 
+						    <i class="large mail icon " title=" Contact Us"></i><span ng-hide="shortMenu"> Contact Us </span>
 				</a>
 		  </div>
 		  <div class="item sideMenu" style="border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;" ng-class="{activeSideMenu:currentTab==='faq'}">
 			   
 			     <a class="silver " ui-sref=".faq" ng-click="setCurrentTab('faq');"  style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='faq'}">
-						    <i class=" large help icon"></i>FAQ
+						    <i class=" large help icon" title="FAQ"></i><span ng-hide="shortMenu">FAQ</span>
 				</a>
 		  </div>		  
 		</div> 
@@ -116,20 +83,20 @@ color:#C6D1E6 ;
          
 	</aside>
   </div>
-  <div class="thirteen wide column" style="padding-top: 0px;padding-left: 0px;max-height:91vh;overflow-y: auto;max-width:80.5%">
+  <div id="main" ng-class="mainContentClass" >
   
 		 <section style="margin-right: -14px;">
-			 <div class="ui small breadcrumb" style=" border-bottom: 2px solid lightgray;background-color: #2E4356;">
+			 <div class="ui small breadcrumb sideMenuBackGroundColor" style="border-bottom: 2px solid lightgray;">
 			
 				 <label ng-click="setCurrentTab(n);" ng-repeat="n in history.slice(history.length-5<0?0:history.length-5,history.length); track by $index"> 
-				  <a  ui-sref=".{{n}}" class="section" style="color:#C6D1E6"><strong>{{n | displayTab | camelCase}}</strong>	 <i class="angle big right icon"></i></a>
+				  <a  ui-sref=".{{n}}" class="section historyFontColor"><strong>{{n | displayTab | camelCase}}</strong>	 <i class="angle big right icon"></i></a>
 				 
 				  </label>
 			</div>
 		</section>
 		<div class="ui grid" style="margin-top: 0px;">
 		
-		<div class="sixteen wide column" style="background-color: #F7F7F7;padding-bottom: 0px;padding-top: 3px;padding-left: 0px;margin-left: 15px;"><h1><i class="angle double right icon"></i>{{currentTab | displayTab | camelCase}}</h1></div>
+		<div class="sixteen wide column headerBackGround" style="padding-bottom: 0px;padding-top: 3px;padding-left: 0px;margin-left: 15px;border-bottom: 3px solid #2E4356;"><h1><i class="angle double right icon"></i>{{currentTab | displayTab | camelCase}}</h1></div>
 		</div>
 		
   		<section><div ui-view style="margin-right: 30px;margin-left: 30px;margin-top: 25px;"></div></section>

@@ -7,7 +7,7 @@ var solutionService=require("../services/solutionService");
 var mailUtil = require("../utils/MailUtil");
 var _ = require('underscore');
 var categoryService=require("../services/categoryService");
-
+var nconf = require('nconf');
 String.prototype.toUpperCaseFirstChar = function() {
     return this.substr( 0, 1 ).toUpperCase() + this.substr( 1 );
 }
@@ -25,7 +25,7 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 				}
 				console.log("categoriesForMailGroup:"+categoriesForMailGroup);
 				categoryService.getEmailIdsForCategories(categoriesForMailGroup,function(err,emailIds){
-					if(err==="error")
+					if(err)
 						response.send("error");
 					var ids=_.pluck(emailIds, 'emailId');
 					console.log("emailIds...................."+ids);
@@ -41,9 +41,9 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 						lastDate : challenge.date
 						
 					};
-				if(ids.length>0 && !challenge.isCreated){
-			//	mailUtil.sendMail(ids,'bthungapalli@osius.com','Challenge Posted','ChallengeMe.html',context);
-				}
+
+				if(ids.length>0 && !challenge.isCreated)
+			//	mailUtil.sendMail(ids,nconf.get('mail').challengeMeSupport,'Challenge Posted','ChallengeMe.html',context);
 				response.send("created");
 			 });
 			}else{
@@ -98,6 +98,8 @@ router.get('/:challengeId',checkSession.requireLogin,function (request,response,
 		if(err)
 			response.send("error");
 		solutionService.getSolutionsForChallengeId(challenge[0]._id,userId,function(err,solutions){
+			if(err)
+				response.send("error");
 			challenge[0].solutions=solutions;
 			response.send(challenge[0]);
 		});
@@ -119,7 +121,7 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 						userName : user.name,
 						comments : postedComment
 					};
-				mailUtil.sendMail(challenge.createdByEmailId,'bthungapalli@osius.com','New Comment posted','Comments_Challenges.html',context);
+				mailUtil.sendMail(challenge.createdByEmailId,nconf.get('mail').challengeMeSupport,'New Comment posted','Comments_Challenges.html',context);
 				response.json(challenge);
 		
 	});

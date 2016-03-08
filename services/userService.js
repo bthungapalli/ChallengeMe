@@ -59,12 +59,12 @@ updateUser:function(userDetails,callBackForUserUpdate){
 	 userModel.update(conditions, update, callback1);
 	function callback1 (err, numAffected) {
 		if(err)
-			callBackForUserUpdate(err);
+			callBackForUserUpdate("error");
 		
 		var query = userModel.findOne({"emailId":userDetails.emailId});
         query.exec(function(err, updatedUser){
             if(err)
-            	callback(err);
+            	callback("error");
             callBackForUserUpdate(err,updatedUser)
         });
 		console.log(numAffected.n + "rows updates");

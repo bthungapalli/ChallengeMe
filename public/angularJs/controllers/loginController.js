@@ -21,7 +21,6 @@ angular.module("challengeMeApp").controller("loginController",["$scope","$http",
 					password :  $scope.user.password
 				};
 			$http.post(challengeMeConstants.authenticateUserUrl,data).success(function(response){
-				
 				if(angular.isDefined(response._id)){
 					$state.go("main");
 				}else if(response==="Not able to access server"){

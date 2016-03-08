@@ -4,7 +4,7 @@ var http = require('http');
 var solutionService=require("../services/solutionService");
 var checkSession=require("../services/checkSessionService");
 var mailUtil = require("../utils/MailUtil");
-
+var nconf = require('nconf');
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var solutionObj=request.body;
 	var user=request.session.user;
@@ -43,7 +43,7 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 						userName : user.name,
 						comments : postedComment.comment
 					};
-				mailUtil.sendMail([solution.solutionByEmailId,challengeEmailId],'bthungapalli@osius.com','Comment posted','Comments_Solutions.html',context);
+				mailUtil.sendMail([solution.solutionByEmailId,challengeEmailId],nconf.get('mail').challengeMeSupport,'Comment posted','Comments_Solutions.html',context);
 				response.json(solution);
 		
 	});

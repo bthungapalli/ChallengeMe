@@ -15,7 +15,7 @@
 	</div>
 	<div class="eight wide column"> </div>
 	<div class="four wide column">
-			Categories Per Page:<select id="itemsPerPage" name="itemsPerPage" class="ui dropdown" ng-model="itemsPerPage">
+			Challenges Per Page:<select id="itemsPerPage" name="itemsPerPage" class="ui dropdown" ng-model="itemsPerPage">
 			  <option  value="5">5</option>
 			  <option value="10">10</option>
 			  <option value="25">25</option>
@@ -23,7 +23,7 @@
 			</select>
 	</div>
 	<diV class="two wide column">Sort By:</div>
-	<div class="fourteen wide column" style="background-color: white;padding: 0px;">
+	<div class="fourteen wide column" style="padding: 0px;">
 
 
 <div class="ui fluid five item secondary pointing menu">
@@ -49,13 +49,13 @@
 
 <div class="ui grid"  ng-controller="viewChallengeController" dir-paginate="challengeObj in challenges|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage" >
 
-<div class="sixteen wide column" style="background-color: #C8E1C1;color:black;border-bottom: 2px solid white;" >
+<div class="sixteen wide column challengeBgColor" style="border-bottom: 2px solid white;" >
 
 <div class="ui grid" >
 
 <div class="sixteen wide column">
 
-<div class="ui grid" ng-click="getChallenge(challengeObj);">  <img class="ui tiny image" ng-src="profile/imagePath/emailId/{{challengeObj.createdByEmailId}}/number/12" style="position: absolute;width: 7%;height: 58px;padding-left: 0px;padding-right: 0px;">
+<div class="ui grid" ng-click="getChallenge(challengeObj);">  <img class="ui tiny image" ng-src="profile/imagePath/emailId/{{challengeObj.createdByEmailId}}/number/12" style="position: absolute;width: 7%;height: 59px;padding-left: 0px;padding-right: 0px;">
 <div class="eleven wide column" style="padding-bottom: 0px;padding-top: 5px;font-family: initial;cursor: pointer;padding-left: 8%;">
 <h2>{{challengeObj.title | camelCase}}</h2>
 </div>
@@ -77,8 +77,6 @@
 		<button ng-if="challengeObj.status==='draft'"  type="submit" class="ui mini primary button" >
 			  	 Draft
 		</button>
-		
-		
 		
 </div>
 <div class="five wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))"  style="padding-top: 5px;padding-bottom: 0px;cursor: pointer">
@@ -102,13 +100,13 @@
 </div>
 
 <div class="sixteen wide column"  style="padding-top: 0px;padding-bottom: 5px;font-family: Georgia;cursor: pointer;padding-left: 8%;">
-<Strong>{{challengeObj.createdBy}}</Strong> posted on <i class="calendar icon"></i>{{challengeObj.created_at | dateFormat}}   <label ng-hide="challengeObj.learning">, solutions can be given by <i class="calendar icon"></i>{{challengeObj.date | dateFormat}}</label>
+<Strong>{{challengeObj.createdBy}}</Strong> posted on <i class="calendar green icon"></i>{{challengeObj.created_at | dateFormat}}   <label ng-hide="challengeObj.learning">, solutions can be given by <i class="calendar red icon"></i>{{challengeObj.date | dateFormat}}</label>
 				<strong ng-show="challengeObj.prize"><i class=" large gift icon"></i></strong>  {{challengeObj.prize}} 
 </div>
 
 </div>
 </div>
-<div class="sixteen wide column" ng-show="challengeObj.collapse" style="background-color: #F7F7F7;border-left: 2px solid teal;border-right: 2px solid teal;border-bottom: 2px solid teal;color:black">
+<div class="sixteen wide column headerBackGround" ng-show="challengeObj.collapse" style="border-left: 2px solid teal;border-right: 2px solid teal;border-bottom: 2px solid teal;">
 
 <div  ng-include="challengeTemplate" style="font-family: Georgia;"></div>
 <div  ng-include="challengeCommentsTemplate" style="font-family: Georgia;"></div>
@@ -123,50 +121,5 @@
 
 </div>
 
-<!-- 
-
-<table class="ui five column single line celled padded striped teal table" style="table-layout: fixed">
-  <thead>
-    <tr>
-	    <th ng-click="sort('title')"  >Title <i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
-	    <th ng-click="sort('createdBy')">Posted By  <i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
-	    <th ng-click="sort('status')" ng-show="currentTab==='myChallenges'">status  <i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
-	    <th ng-click="sort('date')">Cut-off Time<i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
-	      <th ng-click="sort('created_at')">Posted Date  <i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
-	    <th ng-show="currentTab!=='myChallenges'">Action<i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i></th>
-    </tr>
-  </thead>
-  <tbody ng-controller="viewChallengeController" dir-paginate="challengeObj in challenges|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage" >
-    <tr>
-<td ng-bind="challengeObj.title | camelCase" ng-click="getChallenge(challengeObj);"> </td>
-<td ng-bind="challengeObj.createdBy" ng-click="getChallenge(challengeObj);"> </td>
-<td ng-show="currentTab==='myChallenges'" ng-bind="challengeObj.status"  ng-click="getChallenge(challengeObj);"> </td>
-
-<td ng-bind="challengeObj.date | dateFormat" ng-click="getChallenge(challengeObj);"> </td>
-<td ng-bind="challengeObj.created_at | dateFormat" ng-click="getChallenge(challengeObj);" ></td>
-<td ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))">
-		<button type="submit" class="ui small yellow button" ng-click="subcribeChallenge(challengeObj);" ng-show="!challengeObj.closed " type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') ">
-			  	<i class="thumbs outline up icon"></i> Accept
-		</button>
-		
-		<button type="submit" class="ui small red button" ng-show="challengeObj.closed">
-		  	<i class="ban icon"></i> Closed
-		</button>
-		
-		<button type="submit" class="ui small positive button" ng-show="!challengeObj.closed">
-		  	Opened
-		</button>
-  </td>
-</tr>
-<tr>
-<td ng-show="challengeObj.collapse" colspan="{{colspan}}" >
-<div  ng-include="challengeTemplate" ></div>
-<div  ng-show="currentTab==='subcribedChallenges'" ng-include="solutionTemplate" ></div>
-<div  ng-show="((currentTab!=='allChallenges') || (currentTab!=='subcribedChallenges' && challengeObj.closed))" ng-repeat="solutionObj in challenge.solutions" ng-include="solutionTemplateForView" ></div>
-</td>
-</tr>
-
-  </tbody>
-</table> -->
 <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" ></dir-pagination-controls>
 </div>

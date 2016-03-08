@@ -90,9 +90,11 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 		
 		$http.get(challengeMeConstants.categoriesURL).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
+			if(response==="error")
+				$scope.errorMessage=challengeMeConstants.errorMessage;
 			$scope.categories=response;
 			}).error(function(error){
-				$scope.category.errorMessage=challengeMeConstants.errorMessage;
+				$scope.errorMessage=challengeMeConstants.errorMessage;
 			});
 		};
 		
@@ -106,7 +108,7 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 			$scope.challenge.categories= JSON.parse($scope.challenge.categories);
 			$http.post(challengeMeConstants.challenge,$scope.challenge).success(function(response){
 				$scope.redirectToLoginIfSessionExpires(response);
-				if(response=="error"){
+				if(response==="error"){
 					$scope.errorMessage=challengeMeConstants.errorMessage;
 				}else{
 					$state.go("main.myChallenges");

@@ -24,6 +24,18 @@
 	   "solution":"/solution",
 	   "contactUs":"/contactUs",
 	   "dashboard":"/dashboard"
+   },
+   "mail":{
+	   "challengeMeSupport":"bthungapalli@osius.com"
+   },
+   "profile":{
+	   "profilePath":"F:/"
+   },
+   "smtpConfig":{
+	   "host":"outlook.office365.com",
+	   "port":587,
+	   "authUser":"bthungapalli@osius.com",
+	   "authPassword":"Eeshu@05"
    }
    
 }

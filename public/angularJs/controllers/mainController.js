@@ -3,12 +3,15 @@ angular.module("challengeMeApp").controller("mainController",["$scope","$http","
 
 	$rootScope.history=[];
 	$rootScope.userDetails;
+	$rootScope.shortMenu=false;
+	 $scope.sideMenuClass="three wide column sideMenuBackGround";
+	 $scope.mainContentClass="thirteen wide column mainContentBackGround";
 	$scope.getUserDetails=function(){
 		$http.get(challengeMeConstants.userDetails).success(function(response){
 			$rootScope.userDetails=response;
 			$scope.userPhotoPath="profile/imagePath/emailId/"+$rootScope.userDetails.username+"/number/"+Math.random();
-			$state.go("main.dashboard");
-			$scope.currentTab="dashboard";
+			$state.go("main.allChallenges");
+			$scope.currentTab="allChallenges";
 			}).error(function(error){
 			});
 	};
@@ -16,6 +19,7 @@ angular.module("challengeMeApp").controller("mainController",["$scope","$http","
 	$scope.setCurrentTab=function(tabName){
 		$scope.currentTab=tabName;
 		$rootScope.history.push(tabName);
+		 $scope.openCloseSideMenu(false,false);
 	}
 	
 	if($state.current.name==="main.logout"){
@@ -31,4 +35,25 @@ angular.module("challengeMeApp").controller("mainController",["$scope","$http","
 	        $scope.sortKey = keyname;   
 	        $scope.reverse = !$scope.reverse; 
 	    }
+	 
+	 $scope.toggleSideMenu=function(){
+		 $scope.shortMenu=! $scope.shortMenu;
+		 $scope.openCloseSideMenu( $scope.shortMenu,true);
+	 }
+	 
+	 $scope.openCloseSideMenu=function(shortMenu,collapse){
+		 if(shortMenu && collapse){
+			 $scope.shortMenu= shortMenu;
+			 $("#nav").removeAttr( "class" );
+			 $("#main").removeAttr( "class" );
+			 $( "#nav" ).attr( "class" ,"one wide column sideMenuBackGroundForShortMenu");
+			 $( "#main" ).attr( "class" ,"fifteen wide column mainContentBackGroundForShortMenu");
+		 }else{ 
+			 $scope.shortMenu= shortMenu;
+			 $("#nav").removeAttr( "class" );
+			 $("#main").removeAttr( "class" );
+			 $( "#nav" ).attr( "class" ,"three wide column sideMenuBackGround");
+			 $( "#main" ).attr( "class" ,"thirteen wide column mainContentBackGround");
+		 }
+	 }
 }]);

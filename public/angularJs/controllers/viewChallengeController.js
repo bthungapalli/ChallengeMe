@@ -132,14 +132,17 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 			if($rootScope.previousOpenedChallengeIndex===-1){
 				$scope.challenges[challenge.index].collapse=!$scope.challenges[challenge.index].collapse;
 				$rootScope.previousOpenedChallengeIndex=challenge.index;
+				$scope.openCloseSideMenu(true,$scope.challenges[challenge.index].collapse);
 			}else if($rootScope.previousOpenedChallengeIndex===challenge.index){
 				$scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse=!$scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse;
+				$scope.openCloseSideMenu(false,$scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse);
 			}else{
 				$scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse=false;
 				$rootScope.previousOpenedChallengeIndex=challenge.index;
 				$scope.challenges[challenge.index].collapse=true;
-				
+				$scope.openCloseSideMenu(true,$scope.challenges[challenge.index].collapse);
 			}
+			
 			if($scope.challenges[challenge.index].collapse){
 				$scope.solutionTemplate="";
 				$scope.solutionTemplateForView="";

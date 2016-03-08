@@ -9,16 +9,15 @@ var fileSystem = require('fs');
 var  multer = require('multer');
 //var busboy = require('connect-busboy');
 var path = require('path');
-
-
 var checkSession=require("../services/checkSessionService");
-var filepath = "F:/";
+var nconf = require('nconf');
+
 
 router.post('/update', checkSession.requireLogin,function(request, response,next) {
 	
 	  userService.updateUser(request.body,function(err,updatedUser){
 		  if(err)
-			  response.send("Invalid");
+			  response.send("error");
 		  request.session.user=updatedUser;
 		  response.send("updated");
 	  });
@@ -27,8 +26,8 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 
    var storage =   multer.diskStorage({
 	  destination: function (req, file, callback) {
-		  
-	    callback(null, filepath);
+		  console.log("profile::::::::"+nconf.get("profile").profilePath)
+	    callback(null, nconf.get("profile").profilePath);
 	  },
 	  filename: function (req, file, callback) {
 		  var filename = req.session.user.emailId+".jpg";
@@ -41,23 +40,8 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 	router.get('/imagePath/emailId/:emailId/number/:randomNumber',checkSession.requireLogin,function(req,res,err){
 		var filename = req.params.emailId+".jpg";
 		var defaultPic = "/../public/images/defaultphoto.jpg";
-		var absolutePath = filepath+filename;
-		
-		/*fs.access(absolutePath, fs.R_OK | fs.W_OK, function(err) {
-			if (!err) { 
-				res.sendFile(path.resolve(absolutePath));
-				} else{
-					res.sendFile(path.resolve(__dirname+defaultPic));
-					}
-				});*/
-		
-		/*if(fileSystem.existsSync(path.resolve(absolutePath))){
-			console.log("inside exist");
-			res.sendFile(path.resolve(absolutePath));
-		}else{
-			console.log("inside not exist");
-			res.sendFile(path.resolve(__dirname+defaultPic));
-		}*/
+		console.log("profile::::::::"+nconf.get("profile").profilePath)
+		var absolutePath = nconf.get("profile").profilePath+filename;
 		
 		try{
 			var fd=fileSystem.openSync(path.resolve(absolutePath),'r');
@@ -72,7 +56,7 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 	router.post('/upload',checkSession.requireLogin,function(req,res){
 	    upload(req,res,function(user,err) {
 	        if(err) {
-	            return res.end("Error uploading file.");
+	            return res.end("error");
 	        }
 	        var filename = req.session.user.emailId+".jpg";
 	        	return res.send("<div  class='ui segment' id='profileImage'> <img  class='ui centered medium image' src='/profile/imagePath'></div>");

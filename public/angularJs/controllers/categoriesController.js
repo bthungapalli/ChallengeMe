@@ -18,6 +18,8 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 		$loading.start('category');
 	$http.get(challengeMeConstants.categoriesURL).success(function(response){
 		$scope.redirectToLoginIfSessionExpires(response);
+		if(response==="error")
+			$scope.category.errorMessage=challengeMeConstants.errorMessage;
 		$scope.categories=response;
 		tempCategories=angular.copy($scope.categories);
 		$scope.initializeCategory();
@@ -53,6 +55,8 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 				};
 		$http.post(challengeMeConstants.categoriesURL,data).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
+			if(response==="error")
+				$scope.category.errorMessage=challengeMeConstants.errorMessage;
 			$scope.category.errorMessage="";
 			$scope.category._id=response;
 			$scope.categories.push($scope.category);
@@ -87,6 +91,8 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 			$loading.start('category');
 				$http.post(challengeMeConstants.categoriesURL,data).success(function(response){
 					$scope.redirectToLoginIfSessionExpires(response);
+					if(response==="error")
+						$scope.category.errorMessage=challengeMeConstants.errorMessage;
 				$scope.categories[index].edit=false;
 				tempCategories=angular.copy($scope.categories);
 				$scope.successMessage="Category updated.";
@@ -108,6 +114,8 @@ angular.module("challengeMeApp").controller("categoriesController",["$scope","$h
 		$loading.start('category');
 	$http.delete(challengeMeConstants.categoriesURL+"/"+id).success(function(response){
 		$scope.redirectToLoginIfSessionExpires(response);
+		if(response==="error")
+			$scope.category.errorMessage=challengeMeConstants.errorMessage;
 		$scope.categories.splice(index,1);
 		$scope.successMessage="Category deleted.";
 		$loading.finish('category');

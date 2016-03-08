@@ -34,7 +34,7 @@ nconf.argv()
      .env()
      .file({ file:environmentPropertyFile
      });
-
+console.log(nconf.get('mail'))
 /************   properties from env based properties  ****************/
 var port=nconf.get('port');
 var sessionDetials=nconf.get('sessionDetails');

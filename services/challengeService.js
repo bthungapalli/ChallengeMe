@@ -22,14 +22,18 @@ createOrSaveChallenge : function(challenge,user,callbackForChallenge){
         	 challengeModel.update(conditions, update, callback);
         	 
         	function callback (err, numAffected) {
+        		if(err)
+        			callbackForChallenge(err);
         		console.log(numAffected + "rows updates");
         		callbackForChallenge(null,challenge.status);
         	};
         	 
         }else{
         	counterModel.findByIdAndUpdate({_id : "challengeId"}, {$inc: {seq: 1} }, function(error, counter)   {
-   		       if(error)
+   		       if(error){
+   		    	   console.log("error:"+error);
    		    	callbackForChallenge(error);
+   		       }
         	var challenge1 = new challengeModel({"_id":counter.seq, "title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"createdByEmailId":user.emailId,"createdBy":user.name,"learning":challenge.learning,"mailGroups":challenge.mailGroups,"isCreated":isCreated});
         	challenge1.save(function(err){
                 if(err)
@@ -44,8 +48,10 @@ getChallengeForEmailId:function(emailId,callbackForChallengesForEmailId){
 	
 	var query = challengeModel.find({"createdByEmailId":emailId}).sort({"created_at":-1});
     query.exec(function(err, challenges){
-        if(err)
-        	callbackForChallengesForEmailId(err);
+    	if(err){
+	    	   console.log("error:"+error);
+	    	   callbackForChallengesForEmailId(error);
+	       }
         callbackForChallengesForEmailId(null,challenges);
     });
 },
