@@ -4,8 +4,8 @@
 				<button class="ui tiny primary button" ng-click="viewSolutionComments=!viewSolutionComments"  >
 					  	<i class="reply all icon"></i>Comment on solution <i ng-show="!viewSolutionComments" class=" large angle down icon"></i><i ng-show="viewSolutionComments"class=" large angle up icon"></i>
 				</button>
-				<a href="#" ng-hide="userLiked" ng-click="like(solutionObj);"><i class="thumbs up blue icon"></i> Like</a>
-			<a href="#" ng-hide="!userLiked" ng-click="unLike(challenge,solutionObj);"><i class="thumbs down blue icon"></i> Unlike</a>
+				<a href="#" ng-hide="userLiked || currentTab==='subcribedChallenges'" ng-click="like(solutionObj);"><i class="thumbs up blue icon"></i> Like</a>
+			<a href="#" ng-hide="!userLiked || currentTab==='subcribedChallenges'" ng-click="unLike(challenge,solutionObj);"><i class="thumbs down blue icon"></i> Unlike</a>
 		 </div> 
 		 <div class="sixteen wide column" ng-show="viewSolutionComments"> 
 		    
