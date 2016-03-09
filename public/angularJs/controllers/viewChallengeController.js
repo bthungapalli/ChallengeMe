@@ -1,29 +1,6 @@
 angular.module("challengeMeApp").controller("viewChallengeController",["$scope","$http","$state","$rootScope","challengeMeConstants","$loading",function($scope,$http,$state,$rootScope,challengeMeConstants,$loading){
 
 	
-	 $(":file").jfilestyle({placeholder: "",buttonText: "File",'inputSize': '77%'});
-	 $('#uploadForm1').submit(function() {
-		 $scope.loadingMessage="saving file..";
-			$loading.start('challenges');
-	        $(this).ajaxSubmit({
-	            error: function(xhr) {
-	        	status('Error: ' + xhr.status);
-	            },
-	            success: function(response) {
-	            	if(response==="error"){
-	            		$scope.errorMessage=challengeMeConstants.errorMessage;
-	            	}else{
-	            		$scope.challenge.file=response;
-	            		$scope.successMessage="File uploaded";
-		            	//$("#profileImage > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
-	            		//$("#userDetails > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
-	            		$loading.finish('challenges');
-	            	}
-	             }
-	    });
-	        //Very important line, it disable the page refresh.
-	    return false;
-	    }); 
 	
 	$scope.errorMessage;
 	$scope.categories=[];
@@ -45,6 +22,30 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 	$scope.view=$state.current.name;
 	$scope.viewComments=false;
 	$scope.challengeComment="";
+	
+	
+	 $(":file").jfilestyle({placeholder: "",buttonText: "File",'inputSize': '77%'});
+	 $('#uploadForm1').submit(function() {
+		 $scope.loadingMessage="saving file..";
+			$loading.start('challenges');
+	        $(this).ajaxSubmit({
+	            error: function(xhr) {
+	        	status('Error: ' + xhr.status);
+	            },
+	            success: function(response) {
+	            	if(response==="error"){
+	            		$scope.errorMessage=challengeMeConstants.errorMessage;
+	            	}else{
+	            		$scope.challenge.file=response;
+	            		$scope.successMessage="File uploaded";
+	            		$loading.finish('challenges');
+	            	}
+	             }
+	    });
+	        //Very important line, it disable the page refresh.
+	    return false;
+	    }); 
+	
 	
 	$scope.getAllCategories=function(){
 		

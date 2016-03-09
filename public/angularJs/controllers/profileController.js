@@ -21,7 +21,8 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	            		var randomNumber=Math.random();
 		            	$("#profileImage > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
 		            	$("#userDetails > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
-		               
+		            	$scope.editProfile=false;
+		            	$scope.$digest();
 	            	}
 	             }
 	    });

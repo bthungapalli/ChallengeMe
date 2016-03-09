@@ -12,10 +12,8 @@
 		<div class="sixteen wide column"> 
 				<h3> {{challenge.description }}</h3>
 		 </div> 
-		 
-<div class="sixteen wide column"  style="cursor: pointer;">
-	<b>Attachment:</b><a href="{{challengeObj.file}}"> Download.</a>
-			
+<div class="sixteen wide column" ng-show="{{challenge.file.length>0}}"  style="cursor: pointer;">
+	<b>Attachment:</b><a href="{{challenge.file}}"> Download.</a>
 </div>
 </div>
 
