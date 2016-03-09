@@ -1,5 +1,6 @@
 angular.module("challengeMeApp").controller("createChallengeController",["$scope","$http","$state","$rootScope","challengeMeConstants","$loading",function($scope,$http,$state,$rootScope,challengeMeConstants,$loading){
 	$scope.errorMessage;
+	$scope.successMessage="";
 	$scope.categories=[];
 	$scope.challenge={
 			"_id":"",
@@ -12,7 +13,7 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 			"learning":false,
 			"mailGroups":[]
 	};
-	
+	 $(":file").jfilestyle({placeholder: "",buttonText: "File",'inputSize': '77%'});
 	 $('#uploadForm').submit(function() {
 	        $(this).ajaxSubmit({
 	            error: function(xhr) {
@@ -22,7 +23,8 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 	            	if(response==="error"){
 	            		$scope.errorMessage=challengeMeConstants.errorMessage;
 	            	}else{
-	            		var randomNumber=Math.random();
+	            		$scope.challenge.file=response;
+	            		$scope.successMessage="File uploaded";
 		            	//$("#profileImage > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
 	            		//$("#userDetails > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
 		               

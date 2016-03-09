@@ -13,20 +13,15 @@ var  multer = require('multer');
 var path = require('path');
 var nconf = require('nconf');
 
-
-
-String.prototype.toUpperCaseFirstChar = function() {
-    return this.substr( 0, 1 ).toUpperCase() + this.substr( 1 );
-}
-
-
+var filename="";
 var storage =   multer.diskStorage({
 	  destination: function (req, file, callback) {
 		  console.log("AttachmentPaht::::::::"+nconf.get("challenge").attachmentPath)
 	    callback(null, nconf.get("challenge").attachmentPath);
 	  },
 	  filename: function (req, file, callback) {
-		  var filename = req.session.user.emailId+"_"+file.name;
+		 filename=Math.random()+file.originalname;
+		  console.log("filename::::"+filename);
 	    callback(null, filename);
 	  }
 	});
@@ -34,12 +29,14 @@ var storage =   multer.diskStorage({
 	var upload = multer({ storage : storage}).single('attachment');
 
 	router.post('/upload',checkSession.requireLogin,function(req,res){
+		
 	    upload(req,res,function(user,err) {
 	        if(err) {
 	            return res.end("error");
 	        }
-	        var filename = req.session.user.emailId+"_"+req.file.name;
-	        	return res.send("uploadSuccess");
+	        console.log(user);
+	        console.log(err);
+	        	return res.send(filename);
 	    });
 	});
 	
