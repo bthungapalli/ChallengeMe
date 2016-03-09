@@ -13,6 +13,27 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 			"mailGroups":[]
 	};
 	
+	 $('#uploadForm').submit(function() {
+	        $(this).ajaxSubmit({
+	            error: function(xhr) {
+	        	status('Error: ' + xhr.status);
+	            },
+	            success: function(response) {
+	            	if(response==="error"){
+	            		$scope.errorMessage=challengeMeConstants.errorMessage;
+	            	}else{
+	            		var randomNumber=Math.random();
+		            	//$("#profileImage > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
+	            		//$("#userDetails > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
+		               
+	            	}
+	             }
+	    });
+	        //Very important line, it disable the page refresh.
+	    return false;
+	    }); 
+	
+	
 	 var today = new Date();
 	  today.setMonth(today.getMonth()+6);
 	  $scope.tre = today;
@@ -150,5 +171,9 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 			  $scope.toggleSelection(category);
 			  $scope.toggleSelection( $scope.previousSelectedCategory);
 			  };
+			  
+				$scope.getAttachmentPath = function(){
+					$scope.attachmentPath = "challenge/attachment/emailId/"+$scope.userDetails.usernams;
+				};
 		
 }]);

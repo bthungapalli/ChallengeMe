@@ -29,7 +29,8 @@ var challengeSchema = Schema({
     mailGroups: {type: Array},
     isSubcribed: {type: Boolean},
     isCreated: {type: Boolean,default:false},
-    comments :{type: Array}
+    comments :{type: Array},
+    file:{type:String}
 });
 
 module.exports = mongoose.model('challenge', challengeSchema);;

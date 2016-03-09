@@ -7,10 +7,57 @@ var solutionService=require("../services/solutionService");
 var mailUtil = require("../utils/MailUtil");
 var _ = require('underscore');
 var categoryService=require("../services/categoryService");
+var fs   = require('fs-extra');
+var fileSystem = require('fs');
+var  multer = require('multer');
+var path = require('path');
 var nconf = require('nconf');
+
+
+
 String.prototype.toUpperCaseFirstChar = function() {
     return this.substr( 0, 1 ).toUpperCase() + this.substr( 1 );
 }
+
+
+var storage =   multer.diskStorage({
+	  destination: function (req, file, callback) {
+		  console.log("AttachmentPaht::::::::"+nconf.get("challenge").attachmentPath)
+	    callback(null, nconf.get("challenge").attachmentPath);
+	  },
+	  filename: function (req, file, callback) {
+		  var filename = req.session.user.emailId+"_"+file.name;
+	    callback(null, filename);
+	  }
+	});
+
+	var upload = multer({ storage : storage}).single('attachment');
+
+	router.post('/upload',checkSession.requireLogin,function(req,res){
+	    upload(req,res,function(user,err) {
+	        if(err) {
+	            return res.end("error");
+	        }
+	        var filename = req.session.user.emailId+"_"+req.file.name;
+	        	return res.send("uploadSuccess");
+	    });
+	});
+	
+ router.get('/attachment/emailId/:emailId',checkSession.requireLogin,function(req,res,err){
+		var filename = req.params.emailId+"_undefined";
+		var absolutePath = nconf.get("challenge").attachmentPath+filename;
+		
+		try{
+			var fd=fileSystem.openSync(path.resolve(absolutePath),'r');
+			fileSystem.closeSync(fd);
+			res.sendFile(path.resolve(absolutePath));
+		}catch(err){
+			res.sendFile("");
+		}
+		
+			});	
+	
+	
 
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var challenge=request.body;
@@ -101,6 +148,19 @@ router.get('/:challengeId',checkSession.requireLogin,function (request,response,
 			if(err)
 				response.send("error");
 			challenge[0].solutions=solutions;
+			var absolutePath = nconf.get("challenge").attachmentPath + challenge[0]._id;
+			console.log("Absolute Path",absolutePath);	
+			try{
+			var fd=fileSystem.openSync(path.resolve(absolutePath),'r');
+			fileSystem.closeSync(fd);
+			challenge[0].file =  (path.resolve(absolutePath));
+		}catch(err){
+		
+			challenge[0].file = '';
+		}
+		
+			
+			
 			response.send(challenge[0]);
 		});
 	});
