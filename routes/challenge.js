@@ -28,15 +28,24 @@ var storage =   multer.diskStorage({
 
 	var upload = multer({ storage : storage}).single('attachment');
 
-	router.post('/upload',checkSession.requireLogin,function(req,res){
-		
+	router.post('/upload/:challengeId',checkSession.requireLogin,function(req,res){
+		var challengeId=req.params.challengeId;
+		console.log("challengeId::::::"+challengeId);
 	    upload(req,res,function(user,err) {
 	        if(err) {
-	            return res.end("error");
+	             res.end("error");
 	        }
-	        console.log(user);
-	        console.log(err);
-	        	return res.send(filename);
+	        if(challengeId!=="-1"){
+	        	console.log("inside:::: update for file");
+	        	challengeService.updateFilePath(challengeId,filename,function(err,response){
+	        		if(err)
+	        			res.end("error");
+	        		 res.send(filename);
+	        	});
+	        }else{
+	        	 res.send(filename);
+	        }
+	        	
 	    });
 	});
 	
@@ -145,19 +154,7 @@ router.get('/:challengeId',checkSession.requireLogin,function (request,response,
 			if(err)
 				response.send("error");
 			challenge[0].solutions=solutions;
-			var absolutePath = nconf.get("challenge").attachmentPath + challenge[0]._id;
-			console.log("Absolute Path",absolutePath);	
-			try{
-			var fd=fileSystem.openSync(path.resolve(absolutePath),'r');
-			fileSystem.closeSync(fd);
-			challenge[0].file =  (path.resolve(absolutePath));
-		}catch(err){
-		
-			challenge[0].file = '';
-		}
-		
-			
-			
+			console.log("challenge[0]::"+challenge[0]);
 			response.send(challenge[0]);
 		});
 	});

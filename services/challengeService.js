@@ -18,7 +18,7 @@ createOrSaveChallenge : function(challenge,user,callbackForChallenge){
         console.log('came in update');
        
         	 var conditions = { "_id":challenge._id };
-        	 var update = { $set: {"title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"isCreated":isCreated,"mailGroups":challenge.mailGroups}};
+        	 var update = { $set: {"title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"isCreated":isCreated,"mailGroups":challenge.mailGroups,"file":challenge.file}};
         	 challengeModel.update(conditions, update, callback);
         	 
         	function callback (err, numAffected) {
@@ -34,7 +34,7 @@ createOrSaveChallenge : function(challenge,user,callbackForChallenge){
    		    	   console.log("error:"+error);
    		    	callbackForChallenge(error);
    		       }
-        	var challenge1 = new challengeModel({"_id":counter.seq, "title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"createdByEmailId":user.emailId,"createdBy":user.name,"learning":challenge.learning,"mailGroups":challenge.mailGroups,"isCreated":isCreated});
+        	var challenge1 = new challengeModel({"_id":counter.seq, "title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"createdByEmailId":user.emailId,"createdBy":user.name,"learning":challenge.learning,"mailGroups":challenge.mailGroups,"isCreated":isCreated,"file":challenge.file});
         	challenge1.save(function(err){
                 if(err)
                 	callbackForChallenge(err);
@@ -120,7 +120,7 @@ getSubcribedChallengeIdsForEmail:function(emailId,callbackForSubcribedChallengeI
 
 updateComments : function(challengeId, comment, user,
 				callbackForComments) {
-			// var query = challengeModel.insert({})
+			
 			counterModel.findByIdAndUpdate({
 				_id : "commentId"
 			}, {
@@ -144,9 +144,21 @@ updateComments : function(challengeId, comment, user,
 							callbackForComments("error");
 						callbackForComments(null, item);
 					});
-				}); // end item.save
+				}); 
 			});
-		}
+},
+updateFilePath:function(challengeId, filePath,callbackForUpdateFile){
+	 var conditions = { "_id":challengeId };
+	 var update = { $set: {"file":filePath}};
+	 challengeModel.update(conditions, update,function(err,num){
+		 if(err)
+			 callbackForUpdateFile(err);
+		 callbackForUpdateFile(null,"updated");
+	 });
+}
+	
+	
+	
 	}
 
 }

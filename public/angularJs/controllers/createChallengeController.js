@@ -15,6 +15,8 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 	};
 	 $(":file").jfilestyle({placeholder: "",buttonText: "File",'inputSize': '77%'});
 	 $('#uploadForm').submit(function() {
+		 $scope.loadingMessage="Saving file..";
+			$loading.start('createChallenge');
 	        $(this).ajaxSubmit({
 	            error: function(xhr) {
 	        	status('Error: ' + xhr.status);
@@ -25,9 +27,7 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 	            	}else{
 	            		$scope.challenge.file=response;
 	            		$scope.successMessage="File uploaded";
-		            	//$("#profileImage > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
-	            		//$("#userDetails > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
-		               
+	            		$loading.finish('createChallenge');
 	            	}
 	             }
 	    });
