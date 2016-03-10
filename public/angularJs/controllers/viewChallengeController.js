@@ -1,8 +1,8 @@
 angular.module("challengeMeApp").controller("viewChallengeController",["$scope","$http","$state","$rootScope","challengeMeConstants","$loading",function($scope,$http,$state,$rootScope,challengeMeConstants,$loading){
 
 	
-	
 	$scope.errorMessage;
+	$scope.successMessage='';
 	$scope.categories=[];
     $scope.challenge={
 			"_id":"",
@@ -39,13 +39,14 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 	            		$scope.challenge.file=response;
 	            		$scope.successMessage="File uploaded";
 	            		$loading.finish('challenges');
+	            		
 	            	}
+	            	$scope.$digest();
 	             }
 	    });
 	        //Very important line, it disable the page refresh.
 	    return false;
 	    }); 
-	
 	
 	$scope.getAllCategories=function(){
 		
@@ -62,7 +63,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		$scope.saveChallenge=function(){
 			$scope.loadingMessage="saving challenge..";
 			$loading.start('challenges');
-			
+			$scope.successMessage="";
 			$scope.errorMessage="";
 			$scope.challenge.categories= (typeof $scope.challenge.categories === 'string') ?  JSON.parse($scope.challenge.categories) : $scope.challenge.categories;
 			$http.post(challengeMeConstants.challenge,$scope.challenge).success(function(response){
@@ -75,6 +76,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 					}
 					$scope.editChallenge=!$scope.editChallenge;
 				};
+				$scope.successMessage="saved";
 				$loading.finish('challenges');
 				}).error(function(error){
 					$scope.errorMessage=challengeMeConstants.errorMessage;
@@ -163,6 +165,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				$http.get(challengeMeConstants.challenge+"/"+challenge._id).success(function(response){
 					$scope.redirectToLoginIfSessionExpires(response);
 					$scope.challenge=response;
+					$scope.challengeIdForFileUpload=$scope.challenge._id;
 					$scope.challengeCommentsTemplate="angularjs/partials/challengeComments.html";
 					if($scope.view==="main.myChallenges"){
 						$scope.challengeTemplate="angularjs/partials/viewMyChallenge.html";

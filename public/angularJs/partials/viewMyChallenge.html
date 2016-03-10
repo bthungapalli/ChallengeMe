@@ -1,7 +1,14 @@
+
+
 <div dw-loading="challenges" dw-loading-options="{text: loadingMessage}">
 <div  ng-if="errorMessage" class="ui red floating  message">
 <div class="header">
 {{errorMessage}}
+</div>
+</div>
+<div  ng-if="successMessage" class="ui green floating  message">
+<div class="header">
+{{successMessage}}
 </div>
 </div>
 
@@ -9,7 +16,7 @@
 		<div class="eleven wide column"> 
 				<div class="ui fluid labeled input focus">
 				  <div class="ui teal label">
-				   Title
+				   Title {{successMessage}}
 				  </div>
 				  <input type="text" ng-disabled="true" ng-model="challenge.title" />
 				</div>
@@ -17,9 +24,9 @@
 		  <div class="five wide column" id="upload" >	
 		<form id="uploadForm1"
 	         enctype="multipart/form-data"
-	         action="{{'/challenge/upload/'+challenge._id}}"
+	         action="{{'/challenge/upload/'+challengeIdForFileUpload}}"
 	         method="post"
-	         ng-controller="viewChallengeController">
+	        ng-controller="viewChallengeController" >
 	     <input id="file" type="file" class="jfilestyle" data-placeholder="My place holder" name=attachment value="{{challenge.file}}">
 	      <button type="submit" class="ui tiny yellow button">
 		  	<i class="upload icon"></i> Upload 
