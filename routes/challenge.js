@@ -81,7 +81,7 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 					};
 
 				if(ids.length>0 && !challenge.isCreated)
-			//	mailUtil.sendMail(ids,nconf.get('mail').challengeMeSupport,'Challenge Posted','ChallengeMe.html',context);
+				mailUtil.sendMail(ids,nconf.get('mail').challengeMeSupport,'Challenge Posted','ChallengeMe.html',context);
 				response.send("created");
 			 });
 			}else{
@@ -171,7 +171,7 @@ router.get('/download/:fileName',function(request,response,next){
 	  var file = nconf.get("challenge").attachmentPath + fileName ;
 	  response.download(file,fileName,function(err){
 		  if(err)
-			  response.send("Error Occured while downloading");
+			  response.json("Error Occured while downloading");
 	  })
 	
 });

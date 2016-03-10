@@ -53,13 +53,22 @@ var checkSession=require("../services/checkSessionService");
 	});
 	
 	router.get('/stats',checkSession.requireLogin,function(req,res,err){
+		var counts = []
+		var openedCount;
 		dashboardService.getStats(function(err,data){
 			if(err){
 				console.log("Err",err);
 				res.send(err);
 			}
 			else{
-			res.send(data);
+			var time = new Date().getTime() - 1 * 24 * 60 * 60 * 1000;
+			openedCount = _.filter(data, function(challenge){ 
+				return new Date(challenge.date).getTime() >= time;
+			});
+			var closedCount = data.length - openedCount.length;
+			counts.push(openedCount.length);
+			counts.push(closedCount);
+			res.send(counts);
 			}
 		});
 		

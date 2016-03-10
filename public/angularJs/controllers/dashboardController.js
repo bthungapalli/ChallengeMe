@@ -1,12 +1,12 @@
 'use strict';
 angular.module("challengeMeApp").controller("dashboardController", function ($scope,$http,$state,$rootScope) {
 	
-	$scope.getPieData=function(){
+	$scope.donutData=function(){
 		$http.get("dashboard/byIntrest").success(
 				function(response){
 					$scope.redirectToLoginIfSessionExpires(response);
-					$scope.labels = response[0];
-					$scope.data = response[1];
+					$scope.donutLabel = response[0];
+					$scope.donutData = response[1];
 				     console.log($scope.labels);
 				     console.log($scope.data);
 						
@@ -45,6 +45,21 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 					});
 			};
 	
+		$scope.getPieData=function(){
+				$http.get("dashboard/stats")
+				.success(
+					function(response){
+						$scope.labels = ["OPEN","CLOSED"];
+						$scope.data = [response[0],response[1]];
+					})
+				.error(
+					function(xhr, status, err){
+						$scope.errorMsg = "Something went wrong!!!";
+					});
+			};
+			
+			
+	$scope.donutData();
 	$scope.getPieData();
 	$scope.getMonthData();
 	$scope.userCount();
