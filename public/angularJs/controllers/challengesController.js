@@ -16,7 +16,6 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 			}
 			if(challenge.learning){
 				challenge.challengeLearningStatus="Learning";
-				alert(challenge.challengeLearningStatus);
 			}
 		});
 		$scope.challenges=challenges;
