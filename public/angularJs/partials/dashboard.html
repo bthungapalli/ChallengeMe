@@ -1,6 +1,13 @@
 
 <div dw-loading="profile" dw-loading-options="{text: loadingMessage}">
 <div class="ui grid">
+<div ng-if="errorMessage" class="sixteen wide column">
+<div  class="ui red floating  message">
+<div  class="header">
+{{errorMessage}}
+</div>
+</div>
+</div>
 <div class="five wide column">
 					<canvas id="doughnut" class="chart-doughnut" chart-data="donutData" chart-labels="donutLabel" chart-legend="true" ></canvas>
  </div>

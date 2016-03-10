@@ -30,7 +30,7 @@ var checkSession=require("../services/checkSessionService");
 		dashboardService.getLastSixMonths(function(err,data){
 			if(err){
 				console.log("Err",err);
-				res.send(err);
+				res.send("error");
 			}
 			else{
 				var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -58,10 +58,12 @@ var checkSession=require("../services/checkSessionService");
 		dashboardService.getStats(function(err,data){
 			if(err){
 				console.log("Err",err);
-				res.send(err);
+				res.send("error");
 			}
 			else{
 			var time = new Date().getTime() - 1 * 24 * 60 * 60 * 1000;
+			console.log("data::"+data.length);
+			
 			openedCount = _.filter(data, function(challenge){ 
 				return new Date(challenge.date).getTime() >= time;
 			});
@@ -78,7 +80,7 @@ var checkSession=require("../services/checkSessionService");
 		dashboardService.getUserCount(function(err,data){
 			if(err){
 				console.log("Err",err);
-				res.send(err);
+				res.send("error");
 			}
 			else{
 				res.json(data);
