@@ -14,6 +14,10 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 			}else{
 				challenge.challengeStatus="Closed";
 			}
+			if(challenge.learning){
+				challenge.challengeLearningStatus="Learning";
+				alert(challenge.challengeLearningStatus);
+			}
 		});
 		$scope.challenges=challenges;
 	};

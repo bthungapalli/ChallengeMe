@@ -69,7 +69,7 @@
 		  	<i class="checkmark icon"></i>	{{challengeObj.challengeStatus}}
 		</button>
 		 <button ng-if="challengeObj.learning"  type="submit" class="ui mini yellow button" >
-			  	 Learning
+			  	 {{challengeObj.challengeLearningStatus}}
 		</button>
 <button ng-if="challengeObj.status==='create'"  type="submit" class="ui mini positive button" >
 			  	 Created
@@ -86,7 +86,7 @@
 			  	<i class="thumbs outline up icon"></i> Accept
 		</button>
 		 <button ng-if="challengeObj.learning"  type="submit" class="ui mini yellow button" >
-			  	 Learning
+			  	 {{challengeObj.challengeLearningStatus}}
 		</button>
 		<span ng-if="!challengeObj.learning" >
 		<button type="submit" class="ui mini red button" ng-show="challengeObj.challengeStatus==='Closed'">
