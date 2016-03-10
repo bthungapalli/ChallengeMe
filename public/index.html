@@ -33,11 +33,21 @@
    <link rel="stylesheet" type="text/css" href="css/angular-loading.css">
    <link rel="stylesheet" type="text/css" href="css/local.css">
    <link rel="stylesheet" type="text/css" href="../node_modules/angular-chart.js/dist/angular-chart.css" />
+
+<style type="text/css">
+    html, body {
+    	height: 100%;
+		margin: 0px;
+	}
+	.container {
+		height: 100%;
+	}
+</style>
   </head>
   
   
 <body ng-app="challengeMeApp" ng-controller="loginController" style="overflow: hidden;">
-<div ui-view></div>
+<div ui-view class="container"></div>
 </body>
 
 <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
