@@ -83,7 +83,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	$scope.subcribeChallenge=function(challengeObj){
 		$scope.loadingMessage=" subcribing challenge...";
 		$loading.start('challenge');
-		var data={"challengeId":challengeObj._id};
+		var data={"challenge":challengeObj};
 		$http.post(challengeMeConstants.subcribeChallenge,data).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 		if(response==="subcribed"){

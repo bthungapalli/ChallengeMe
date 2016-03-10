@@ -52,7 +52,7 @@ var dashboardService = function() {
 	    query.exec(function(err, challenges){
 	    	if(err){
 		    	   console.log("error:"+error);
-		    	   callbackStats(error);
+		    	   callbackStats("error");
 		       }
 	    	callbackStats(null,challenges);
 	    });
