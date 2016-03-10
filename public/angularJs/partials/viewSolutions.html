@@ -15,12 +15,12 @@
 		<div  id="solution" class="ui raised segments" >  
 		
 		  <div class="ui secondary teal segment arrow">
-		   <div style="margin-bottom:0px;"><strong ng-bind="!solutionObj.anonymous?solutionObj.solutionBy:'Anonymous'"></strong> gave solution on <strong>{{solutionObj.updated_at | dateFormat}}</strong>
+		   <div style="margin-bottom:0px;"><strong ng-bind="!solutionObj.anonymous?solutionObj.solutionBy:'Anonymous'"></strong> posted solution on <strong>{{solutionObj.updated_at | dateFormat}}</strong>
 		    <div class="ui toggle checkbox" style="float: right;" ng-show="currentTab==='myChallenges'">
 					  <input id="correct" type="checkbox" ng-model="solutionObj.isCorrect" ng-click="updateCorrectAnswerOrNot(solutionObj)" />
 					  <label for="correct" >Correct</label>
 			</div>
-			<div style="float: right;" ng-show="solutionObj.likes.length>0" ng-init="showLikesCount(solutionObj.likes);"><strong>{{likesCount}}</strong></div>
+			<div style="float: right;" ng-show="solutionObj.likes.length>0" ng-init="showLikesCount(solutionObj.likes);"><strong>{{solutionObj.likes.length}}</strong><i class="thumbs up blue icon"></i> </div>
 			 </div> 
 		  <img style="border-radius: 10px;height: 106%;position: absolute;left: -11%;top: 0px;width: 8%;" class="ui tiny image" ng-init="getProfilePathForSolutions(solutionObj)" ng-src="{{solutionUserImagePath}}">
 		  </div>

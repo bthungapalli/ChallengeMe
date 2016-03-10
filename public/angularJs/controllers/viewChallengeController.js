@@ -270,13 +270,13 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 			$scope.userLiked=false;
 			for(var i=0;i<likes.length;i++){
 				if(likes[i].emailId==$scope.userDetails.emailId){
-					$scope.likesCount=likes.length===1?"You liked":"You and "+likes.length-1+" others liked";
+					//$scope.likesCount=likes.length===1?"You liked":"You and "+likes.length-1+" others liked";
 					$scope.userLiked=true;
 					break;
 				}
 			}
-			if($scope.likesCount.length===0)
-			$scope.likesCount=likes.length+" person liked";
+			//if($scope.likesCount.length===0)
+			//$scope.likesCount=likes.length+" person liked";
 		};
 		
 		$scope.unLike=function(challenge,solutionObj){
