@@ -2,7 +2,7 @@
 <header style="margin-bottom: 14px;">
 <div class="ui stackable menu headerBackGround" >
   <div class="item" style="width: 18%;">
-    <img src="images/logo.png" style="width:6em;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>Challenge Me</strong>
+    <img src="images/logo.png" style="width:6em;"> <!-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>Challenge Me</strong> -->
   </div>
   <div class="item" ng-click="toggleSideMenu();" style="cursor: pointer;">
   <i class="big align justify icon" ></i>
@@ -88,9 +88,8 @@
 		 <section style="margin-right: -14px;">
 			 <div class="ui small breadcrumb sideMenuBackGroundColor" style="border-bottom: 2px solid lightgray;">
 			
-				 <label ng-click="setCurrentTab(n);" ng-repeat="n in history.slice(history.length-5<0?0:history.length-5,history.length); track by $index"> 
-				  <a  ui-sref=".{{n}}" class="section historyFontColor"><strong>{{n | displayTab | camelCase}}</strong>	 <i class="angle big right icon"></i></a>
-				 
+				 <label ng-click="setCurrentTab(n);" ng-repeat="n in history.slice(history.length-5<0?0:history.length-5,history.length) track by $index"> 
+				  <a  ui-sref=".{{n}}" href="#/main/{{n}}" class="section historyFontColor"><strong>{{n | displayTab | camelCase}}</strong>	 <i class="angle big right icon"></i></a>
 				  </label>
 			</div>
 		</section>
