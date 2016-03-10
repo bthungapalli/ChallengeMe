@@ -12,9 +12,12 @@
 		<div class="sixteen wide column"> 
 				<h3> {{challenge.description }}</h3>
 		 </div> 
+
+
 <div class="sixteen wide column" ng-show="{{challenge.file.length>0}}"  style="cursor: pointer;">
-	<b>Attachment:</b><a href="{{challenge.file}}"> Download.</a>
-</div>
+	<b>Attachment:</b>
+					<a href="challenge/download/{{challenge.file}}">Download.</a>
+			</div>
 </div>
 
 

@@ -49,21 +49,6 @@ var storage =   multer.diskStorage({
 	    });
 	});
 	
- router.get('/attachment/emailId/:emailId',checkSession.requireLogin,function(req,res,err){
-		var filename = req.params.emailId+"_undefined";
-		var absolutePath = nconf.get("challenge").attachmentPath+filename;
-		
-		try{
-			var fd=fileSystem.openSync(path.resolve(absolutePath),'r');
-			fileSystem.closeSync(fd);
-			res.sendFile(path.resolve(absolutePath));
-		}catch(err){
-			res.sendFile("");
-		}
-		
-			});	
-	
-	
 
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var challenge=request.body;
@@ -181,6 +166,15 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 	});
 });
 
+router.get('/download/:fileName',function(request,response,next){
+	var fileName = request.params.fileName;
+	  var file = nconf.get("challenge").attachmentPath + fileName ;
+	  response.download(file,fileName,function(err){
+		  if(err)
+			  response.send("Error Occured while downloading");
+	  })
+	
+});
 
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var challenge=request.body;
