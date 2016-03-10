@@ -146,15 +146,15 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 			if($rootScope.previousOpenedChallengeIndex===-1){
 				$scope.challenges[challenge.index].collapse=!$scope.challenges[challenge.index].collapse;
 				$rootScope.previousOpenedChallengeIndex=challenge.index;
-				$scope.openCloseSideMenu(true,$scope.challenges[challenge.index].collapse);
+				//$scope.openCloseSideMenu(true,$scope.challenges[challenge.index].collapse);
 			}else if($rootScope.previousOpenedChallengeIndex===challenge.index){
 				$scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse=!$scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse;
-				$scope.openCloseSideMenu($scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse,$scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse);
+				//$scope.openCloseSideMenu($scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse,$scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse);
 			}else{
 				$scope.challenges[$rootScope.previousOpenedChallengeIndex].collapse=false;
 				$rootScope.previousOpenedChallengeIndex=challenge.index;
 				$scope.challenges[challenge.index].collapse=true;
-				$scope.openCloseSideMenu(true,$scope.challenges[challenge.index].collapse);
+				//$scope.openCloseSideMenu(true,$scope.challenges[challenge.index].collapse);
 			}
 			
 			if($scope.challenges[challenge.index].collapse){
@@ -166,11 +166,14 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 					$scope.redirectToLoginIfSessionExpires(response);
 					$scope.challenge=response;
 					$scope.challengeIdForFileUpload=$scope.challenge._id;
-					$scope.challengeCommentsTemplate="angularjs/partials/challengeComments.html";
 					if($scope.view==="main.myChallenges"){
 						$scope.challengeTemplate="angularjs/partials/viewMyChallenge.html";
 					}else{
 						$scope.challengeTemplate="angularjs/partials/challenge.html";
+					}
+					
+					if($scope.view!=="main.subcribedChallenges"){
+						$scope.challengeCommentsTemplate="angularjs/partials/challengeComments.html";
 					}
 					
 					if($scope.view==="main.subcribedChallenges"){

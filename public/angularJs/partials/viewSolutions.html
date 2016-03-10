@@ -11,7 +11,7 @@
 </div>
 
 <div class="sixteen wide column" style="border-top: 2px solid teal;padding-top: 0px;" >
-<div id="solutions" style="padding-left: 11%;margin-top: 12px;" ng-repeat="solutionObj in challenge.solutions">
+<div id="solutions" style="padding-left: 11%;margin-top: 9px;" ng-repeat="solutionObj in challenge.solutions">
 		<div  id="solution" class="ui raised segments" >  
 		
 		  <div class="ui secondary teal segment arrow">
@@ -22,11 +22,11 @@
 			</div>
 			<div style="float: right;" ng-show="solutionObj.likes.length>0" ng-init="showLikesCount(solutionObj.likes);"><strong>{{likesCount}}</strong></div>
 			 </div> 
-		  <img style="border-radius: 10px;height: 60px;position: absolute;left: -100px;top: 0px;" class="ui tiny image" ng-init="getProfilePathForSolutions(solutionObj)" ng-src="{{solutionUserImagePath}}">
+		  <img style="border-radius: 10px;height: 106%;position: absolute;left: -11%;top: 0px;width: 8%;" class="ui tiny image" ng-init="getProfilePathForSolutions(solutionObj)" ng-src="{{solutionUserImagePath}}">
 		  </div>
 		  <div class="ui segment">
 		    <p>{{solutionObj.solution}}</p>
-		    <i ng-show="solutionObj.isCorrect && currentTab==='allChallenges'" class="huge check green circle icon" style="position: absolute;left: -92px;top: 26px;"></i>
+		    <i ng-show="solutionObj.isCorrect && currentTab==='allChallenges'" class="huge check green circle icon" style="position: absolute;left: -12%;top: 26px;"></i>
 		    <div  ng-include="solutionCommentTemplate" ></div>
 		  </div>
 		  
