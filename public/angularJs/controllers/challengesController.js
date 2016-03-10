@@ -10,9 +10,9 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 			challenge.collapse=false;
 			challenge.index=index;
 			if(new Date(challenge.date).getTime()>new Date().getTime()){
-				challenge.closed=false;
+				challenge.challengeStatus="Open"
 			}else{
-				challenge.closed=true;
+				challenge.challengeStatus="Closed";
 			}
 		});
 		$scope.challenges=challenges;

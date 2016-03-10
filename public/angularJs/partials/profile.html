@@ -71,7 +71,7 @@
 					<div  class="thirteen wide column">
 					 <span ng-repeat="category in allCategories" >
 					 
-					 <div class="ui toggle checkbox">
+					 <div class="ui toggle checkbox" style="margin: 5px 0px;">
 					  <input id="{{category.name}}" type="checkbox" value="{{category}}" ng-disabled="!editProfile" ng-checked="checkCategory(category._id);" ng-click="toggleSelection(category)"/>
 					  <label for="{{category.name}}" style="padding-left: 54px;padding-right: 20px;">{{category.name | camelCase}} </label>
 					</div>

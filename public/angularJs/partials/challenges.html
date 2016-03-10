@@ -61,12 +61,12 @@
 </div>
 <div class="five wide column" ng-show="(currentTab==='myChallenges')"  style="padding-top: 5px;padding-bottom: 0px;cursor: pointer">
 <a class="ui teal tag label">{{challengeObj.categories.name | camelCase}} </a>
-<button type="submit" class="ui mini red button" ng-show="challengeObj.closed && !challengeObj.learning && challengeObj.status!=='draft'">
-		  	<i class="ban icon"></i> Closed
+<button type="submit" class="ui mini red button" ng-show="challengeObj.challengeStatus==='Closed' && !challengeObj.learning && challengeObj.status!=='draft'">
+		  	<i class="ban icon"></i> {{challengeObj.challengeStatus}}
 		</button>
 		
-		<button type="submit" class="ui mini positive button" ng-show="!challengeObj.closed && !challengeObj.learning && challengeObj.status!=='draft'" >
-		  	<i class="checkmark icon"></i>	Open
+		<button type="submit" class="ui mini positive button" ng-show="challengeObj.challengeStatus==='Open' && !challengeObj.learning && challengeObj.status!=='draft'" >
+		  	<i class="checkmark icon"></i>	{{challengeObj.challengeStatus}}
 		</button>
 		 <button ng-if="challengeObj.learning"  type="submit" class="ui mini yellow button" >
 			  	 Learning
@@ -82,19 +82,19 @@
 <div class="five wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))"  style="padding-top: 5px;padding-bottom: 0px;cursor: pointer">
   <a class="ui teal tag label">{{challengeObj.categories.name | camelCase}} </a>
 
-		<button type="submit" class="ui mini yellow button" ng-click="subcribeChallenge(challengeObj);"  type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') || challengeObj.closed || challengeObj.learning || challengeObj.createdByEmailId===userDetails.emailId">
+		<button type="submit" class="ui mini yellow button" ng-click="subcribeChallenge(challengeObj);"  type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') || (challengeObj.challengeStatus==='Closed') || challengeObj.learning || challengeObj.createdByEmailId===userDetails.emailId">
 			  	<i class="thumbs outline up icon"></i> Accept
 		</button>
 		 <button ng-if="challengeObj.learning"  type="submit" class="ui mini yellow button" >
 			  	 Learning
 		</button>
 		<span ng-if="!challengeObj.learning" >
-		<button type="submit" class="ui mini red button" ng-show="challengeObj.closed">
-		  	<i class="ban icon"></i> Closed
+		<button type="submit" class="ui mini red button" ng-show="challengeObj.challengeStatus==='Closed'">
+		  	<i class="ban icon"></i> {{challengeObj.challengeStatus}}
 		</button>
 		
-		<button type="submit" class="ui mini positive button" ng-show="!challengeObj.closed">
-		  	<i class="checkmark icon"></i>Open
+		<button type="submit" class="ui mini positive button" ng-show="challengeObj.challengeStatus==='Open'">
+		  	<i class="checkmark icon"></i>{{challengeObj.challengeStatus}}
 		</button>
 		</span>
 </div>
@@ -110,7 +110,7 @@
 
 <div  ng-include="challengeTemplate" style="font-family: Georgia;"></div>
 <div  ng-include="challengeCommentsTemplate" style="font-family: Georgia;"></div>
-<div style="font-family: Georgia;"  ng-show="((currentTab!=='allChallenges') || (currentTab!=='subcribedChallenges' && challengeObj.closed))"  ng-include="solutionTemplateForView" ></div>
+<div style="font-family: Georgia;"  ng-show="((currentTab!=='allChallenges') || (currentTab!=='subcribedChallenges' && (challengeObj.challengeStatus==='Closed')))"  ng-include="solutionTemplateForView" ></div>
 <div style="font-family: Georgia;" ng-show="currentTab==='subcribedChallenges'" ng-include="solutionTemplate" ></div>
 
 </div>
