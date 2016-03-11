@@ -70,13 +70,12 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 		};
 
 	if($state.current.name==="main.myChallenges"){
-		//$scope.setCurrentTab("myChallenges");
 		$scope.getMyChallenges();
 	}else if($state.current.name==="main.allChallenges"){
-		//$scope.setCurrentTab("allChallenges");
-		$scope.getAllChallenges();
+		if($scope.currentTab===undefined)
+			$scope.setCurrentTab("allChallenges");
+		$scope.getAllChallenges()
 	}else if($state.current.name==="main.subcribedChallenges"){
-		//$scope.setCurrentTab("subcribedChallenges");
 		$scope.getSubcribeChallenges();
 	}
 	

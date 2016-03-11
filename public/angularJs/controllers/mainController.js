@@ -22,6 +22,10 @@ angular.module("challengeMeApp").controller("mainController",["$scope","$http","
 		 $scope.openCloseSideMenu(false,false);
 	}
 	
+	$scope.goToState=function(tabName){
+		$state.go("main."+tabName);
+	}
+	
 	if($state.current.name==="main.logout"){
 		$http.get(challengeMeConstants.logout).success(function(response){
 			if(response==="logout"){
