@@ -216,14 +216,17 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		};
 		
 		$scope.addSolutionComment=function(challenge,solutionObj){
-			
+			$scope.errorMessage="";
 			var data={"solutionId":solutionObj._id,"challengeEmailId":challenge.createdByEmailId,"title":challenge.title,"comment":$("#commentTextAreaForSolution").val()}
 			$http.post(challengeMeConstants.solution+"/"+challengeMeConstants.solutionComment,data).success(function(response){
 				$scope.redirectToLoginIfSessionExpires(response);
 				if(response==="error"){
 					$scope.errorMessage=challengeMeConstants.errorMessage;
+				}else if(response==="solution Needed"){
+					$scope.errorMessage="Please add solution to  comment.";
 				}else{
 					var commentData={"comment":$("#commentTextAreaForSolution").val(),"userName":$scope.userDetails.name,"emailId":$scope.userDetails.emailId,"commentedDate":new Date().toISOString()}
+					if(solutionObj.comments===undefined)solutionObj.comments=[];
 					solutionObj.comments.push(commentData);
 					$scope.solutionComment="";
 					$("#commentTextAreaForSolution").val("")

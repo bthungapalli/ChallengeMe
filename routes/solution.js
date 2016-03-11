@@ -36,14 +36,18 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 	solutionService.updateComments(solutionId,postedComment,user,function(err,solution) {
 		if(err)
 			response.send("error");
-				var context =  {
-						title : 'ChallengeMe',
-						solutionBy : solution.solutionBy,
-						challengeTitle : challengeTitle,
-						userName : user.name,
-						comments : postedComment.comment
-					};
-				mailUtil.sendMail([solution.solutionByEmailId,challengeEmailId],nconf.get('mail').challengeMeSupport,'Comment posted','Comments_Solutions.html',context);
+		
+		if(solution!=="solution Needed"){
+			var context =  {
+					title : 'ChallengeMe',
+					solutionBy : solution.solutionBy,
+					challengeTitle : challengeTitle,
+					userName : user.name,
+					comments : postedComment.comment
+				};
+			mailUtil.sendMail([solution.solutionByEmailId,challengeEmailId],nconf.get('mail').challengeMeSupport,'Comment posted','Comments_Solutions.html',context);
+			
+		}
 				response.json(solution);
 		
 	});

@@ -78,20 +78,26 @@ updateComments : function(solutionId, comment, user,callbackForComments) {
 		if (error)
 			callbackForComments("error");
 		solutionModel.findById(solutionId, function(err, solution) {
-			solution.comments.push({
-				_id:counter.seq,
-				comment : comment,
-				emailId : user.emailId,
-				userName : user.name,
-				commentedDate:new Date()
-			});
+			
+			if(solution===null){
+				callbackForComments(null,"solution Needed");
+			}else{
+				solution.comments.push({
+					_id:counter.seq,
+					comment : comment,
+					emailId : user.emailId,
+					userName : user.name,
+					commentedDate:new Date()
+				});
 
-			solution.save(function(err, item) {
-				if (err)
-					callbackForComments("error");
-				callbackForComments(null, item);
-			});
-		}); // end item.save
+				solution.save(function(err, item) {
+					if (err)
+						callbackForComments("error");
+					callbackForComments(null, item);
+				});
+			}
+			
+		}); 
 	});
 },
 
