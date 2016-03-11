@@ -18,7 +18,9 @@
     }
     
 .loginBackGround{
-	background-color:#C8E1C1
+	background-image: url(../images/loginBackground.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /* main html css  */
