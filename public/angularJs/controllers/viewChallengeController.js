@@ -18,7 +18,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 	$scope.solutionTemplate;
 	$scope.solutionTemplateForView;
 	$scope.challengeCommentsTemplate;
-	$scope.solutionCommentTemplate="angularjs/partials/solutionComments.html";
+	$scope.solutionCommentTemplate="angularJs/partials/solutionComments.html";
 	$scope.view=$state.current.name;
 	$scope.viewComments=false;
 	$scope.challengeComment="";
@@ -166,19 +166,19 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 					$scope.challenge=response;
 					$scope.challengeIdForFileUpload=$scope.challenge._id;
 					if($scope.view==="main.myChallenges"){
-						$scope.challengeTemplate="angularjs/partials/viewMyChallenge.html";
+						$scope.challengeTemplate="angularJs/partials/viewMyChallenge.html";
 					}else{
-						$scope.challengeTemplate="angularjs/partials/challenge.html";
+						$scope.challengeTemplate="angularJs/partials/challenge.html";
 					}
 					
 					if($scope.view!=="main.subcribedChallenges"){
-						$scope.challengeCommentsTemplate="angularjs/partials/challengeComments.html";
+						$scope.challengeCommentsTemplate="angularJs/partials/challengeComments.html";
 					}
 					
 					if($scope.view==="main.subcribedChallenges"){
-						$scope.solutionTemplate="angularjs/partials/solution.html";
+						$scope.solutionTemplate="angularJs/partials/solution.html";
 					}else{
-						$scope.solutionTemplateForView="angularjs/partials/viewSolutions.html";
+						$scope.solutionTemplateForView="angularJs/partials/viewSolutions.html";
 					};
 					$loading.finish('challenges');
 				}).error(function(error){
