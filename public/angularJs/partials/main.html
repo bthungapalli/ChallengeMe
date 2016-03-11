@@ -18,11 +18,11 @@
   <div id="nav"  ng-class="sideMenuClass" style="font-family:Goeria;" >
   	<aside>   
          
-         <div class="ui relaxed divided list">
+         <div class="ui relaxed divided list" >
 		  <div id="userDetails" class="item" style="text-align: -webkit-center;border-bottom: 2px solid black;" >
 			     <img class="ui tiny image profileDimensions" ng-class="{profileDimensions:!shortMenu,profileDimensionsForShortMenu:shortMenu}"  ng-src="{{userPhotoPath}}" style="border:2px solid white;">
 			    
-			      <div style="margin-top: 10px;"><a href="#" style="color:white">{{userDetails.name}}</a></div>
+			      <div style="margin-top: 10px;"><a href="#" style="color:white;word-wrap: break-word;">{{userDetails.name}}</a></div>
           </div>
             <div class="item sideMenu" style=" border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"    ng-class="{activeSideMenu:currentTab==='dashboard'}">
 			   
