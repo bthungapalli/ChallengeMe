@@ -39,7 +39,6 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 	            		$scope.challenge.file=response;
 	            		$scope.successMessage="File uploaded";
 	            		$loading.finish('challenges');
-	            		
 	            	}
 	            	$scope.$digest();
 	             }
