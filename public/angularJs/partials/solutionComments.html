@@ -1,16 +1,16 @@
 <div class="ui stackable grid">
-		<div class="sixteen wide column" > 
+		<div class="sixteen wide column" style="padding-bottom: 10px;" > 
 		 
-				<button class="ui tiny primary button" ng-click="viewSolutionComments=!viewSolutionComments"  >
-					  	<i class="reply all icon"></i>Comment on solution <i ng-show="!viewSolutionComments" class=" large angle down icon"></i><i ng-show="viewSolutionComments"class=" large angle up icon"></i>
+				<button class="ui mini primary button" ng-click="viewSolutionComments=!viewSolutionComments"  >
+					  {{solutionObj.comments.length}} <i class="comments outline icon"></i>Comments <i ng-show="!viewSolutionComments" class=" large angle down icon"></i><i ng-show="viewSolutionComments"class=" large angle up icon"></i>
 				</button>
 				<a href="#" ng-hide="userLiked || currentTab==='subcribedChallenges'" ng-click="like(solutionObj);"><i class="thumbs up blue icon"></i> Like</a>
 			<a href="#" ng-hide="!userLiked || currentTab==='subcribedChallenges'" ng-click="unLike(challenge,solutionObj);"><i class="thumbs down blue icon"></i> Unlike</a>
 		 </div> 
-		 <div class="sixteen wide column" ng-show="viewSolutionComments"> 
+		 <div class="sixteen wide column" ng-show="viewSolutionComments" style="padding-top: 0px;"> 
 		    
 			<div class="ui threaded comments" style="max-width:100%">
- 				 <h3 ng-show="challenge.comments.length>0" class="ui dividing header">Comment's on solution</h3>
+ 				 <h3 ng-show="solutionObj.comments.length>0" class="ui dividing header">Comments on solution</h3>
 				  <div class="comment" ng-repeat="comment in solutionObj.comments">
 				    <div class="content">
 				      <a class="author">{{comment.userName}}</a>
