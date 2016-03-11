@@ -24,9 +24,12 @@ var app = express();
 /************  Loading property file based on env  ****************/
 var nconf = require('nconf');
 var environmentPropertyFile="";
+
 if(process.env.NODE_ENV!=='development' && process.env.NODE_ENV!=='testing' && process.env.NODE_ENV!=='production'){
+	console.log("loading environment::::::::::development");
 	environmentPropertyFile="./config/development.json";
 }else{
+	console.log("loading environment::::::::::"+process.env.NODE_ENV);
 	environmentPropertyFile="./config/"+process.env.NODE_ENV+".json";
 }
 
