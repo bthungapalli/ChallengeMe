@@ -83,7 +83,7 @@
 				</div>
 					 <div class="ui toggle checkbox" ng-repeat="category in categories">
 					  <input id="{{category._id}}" type="checkbox" value="{{category}}" ng-checked="selectedCategory==category" ng-disabled="selectedCategory==category"  ng-click="toggleSelection(category)"/>
-					  <label for="{{category._id}}" style="padding-left: 50px;padding-right: 8px;">{{category.name | camelCase}} </label>
+					  <label for="{{category._id}}" style="padding-left: 50px;padding-right:12px;">{{category.name | camelCase}} </label>
 					</div>
 		</div>		
 		<div class="sixteen wide center aligned column" style="padding-top: 0px;">
