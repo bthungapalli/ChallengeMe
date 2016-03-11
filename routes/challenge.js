@@ -20,7 +20,7 @@ var storage =   multer.diskStorage({
 	    callback(null, nconf.get("challenge").attachmentPath);
 	  },
 	  filename: function (req, file, callback) {
-		 filename=Math.random()+file.originalname;
+		 filename=new Date().getDate()+"-"+new Date().getMonth()+"-"+new Date().getFullYear()+"_"+file.originalname;
 		  console.log("filename::::"+filename);
 	    callback(null, filename);
 	  }

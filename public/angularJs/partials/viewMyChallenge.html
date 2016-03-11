@@ -16,7 +16,7 @@
 		<div class="ten wide column"> 
 				<div class="ui fluid labeled input focus">
 				  <div class="ui teal label">
-				   Title {{successMessage}}
+				   Title 
 				  </div>
 				  <input type="text" ng-disabled="true" ng-model="challenge.title" />
 				</div>
@@ -32,7 +32,7 @@
 		  	<i class="upload icon"></i> Upload 
 		</button>
 	    </form>
-	    <span ng-show="{{challenge.file.length>0}}"  style="cursor: pointer;"><b>Attachment:</b><a href="{{challengeObj.file}}"> Download.</a> </span>
+	    <span ng-show="{{challenge.file.length>0}}"  style="cursor: pointer;"><b>Attachment:</b><a href="challenge/download/{{challengeObj.file}}"> {{challengeObj.file}}.</a> </span>
 		</div>
 		 <div class="sixteen wide column">
 				 <div class="ui form">
