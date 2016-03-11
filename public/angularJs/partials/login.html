@@ -3,6 +3,42 @@
       max-width: 450px;
     
     }
+    
+    #email:hover .emailToolTip{
+    visibility: visible;
+    }
+     #password:hover .passwordToolTip{
+    visibility: visible;
+    }
+    
+    .emailToolTip,.passwordToolTip{
+    visibility: hidden;
+    position:absolute;
+    width: 56%;
+    background-color:black;
+    color:white;
+    right: -58%;
+    top: 3px;
+    height: 91%;
+    padding-top: 7px;
+    border-radius: 5px;
+    }
+    
+   .emailToolTip:before,.passwordToolTip:before{
+       position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid black;
+    border-left: 10px solid transparent;
+    display: block;
+    content: " ";
+    right: 100%;
+}
+    
+    
+    
 </style>
 <div style="
     position: absolute;
@@ -28,16 +64,19 @@
         Log-in to your account
       </div>
     </h2>
-        <div class="field"  ng-class="{error:user.invalidCredentials}">
-          <div class="ui left icon input">
+        <div class="field" id="email"  ng-class="{error:user.invalidCredentials}">
+          <div class="ui left icon input" style="position:relative">
             <i class="circular inverted  user icon" ng-class="{red:user.invalidCredentials,teal:!user.invalidCredentials}" ></i>
-            <input type="text" id="email" name="email" placeholder="E-mail address"  ng-model="user.userName" >
+            <input type="text"   name="email" placeholder="E-mail address"  ng-model="user.userName" >
+            <div  class="emailToolTip" >Please enter OSI username.</div>
+            
           </div>
         </div>
-        <div class="field" ng-class="{error:user.invalidCredentials}">
+        <div class="field"  id="password" ng-class="{error:user.invalidCredentials}">
           <div class="ui left icon input">
             <i class="circular inverted  lock icon" ng-class="{red:user.invalidCredentials,teal:!user.invalidCredentials}"></i>
-            <input type="password" name="password" ng-model="user.password"  placeholder="Password">
+            <input id="password" type="password" name="password" ng-model="user.password"  placeholder="Password">
+             <div class="passwordToolTip">Please enter OSI password.</div>
           </div>
         </div>
          <div class="field" ng-class="{error:user.invalidCredentials}">
