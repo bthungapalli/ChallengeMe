@@ -4,51 +4,51 @@ challengeMeApp.config(["$stateProvider",function($stateProvider){
 	
 	$stateProvider.state("/",{
 		url: "/login",
-		templateUrl : "angularjs/partials/login.html",
+		templateUrl : "angularJs/partials/login.html",
 	}).state("main",{
 		url: "/main",
 		controller:"mainController",
-		templateUrl : "angularjs/partials/main.html",
+		templateUrl : "angularJs/partials/main.html",
 	}).state("main.dashboard",{
 		url: "/dashboard",
 		controller:"dashboardController",
-		templateUrl : "angularjs/partials/dashboard.html",
+		templateUrl : "angularJs/partials/dashboard.html",
 	}).
 	state("main.categories",{
 		url: "/categories",
 		controller:"categoriesController",
-		templateUrl : "angularjs/partials/categories.html",
+		templateUrl : "angularJs/partials/categories.html",
 	}).state("main.profile",{
 		url: "/profile",
 		controller:"profileController",
-		templateUrl : "angularjs/partials/profile.html",
+		templateUrl : "angularJs/partials/profile.html",
 	}).state("main.createChallenge",{
 		url: "/createChallenge",
 		controller:"createChallengeController",
-		templateUrl : "angularjs/partials/createChallenge.html",
+		templateUrl : "angularJs/partials/createChallenge.html",
 	}).state("main.myChallenges",{
 		url: "/myChallenges",
 		controller:"challengesController",
-		templateUrl : "angularjs/partials/challenges.html",
+		templateUrl : "angularJs/partials/challenges.html",
 	}).state("main.allChallenges",{
 		url: "/allChallenges",
 		controller:"challengesController",
-		templateUrl : "angularjs/partials/challenges.html",
+		templateUrl : "angularJs/partials/challenges.html",
 	}).state("main.logout",{
 		url: "/",
 		controller:"mainController"
 	}).state("main.subcribedChallenges",{
 		url: "/subcribed",
 		controller:"challengesController",
-		templateUrl : "angularjs/partials/challenges.html"
+		templateUrl : "angularJs/partials/challenges.html"
 	}).state("main.contactUs",{
 		url: "/contactUs",
 		controller:"contactUsController",
-		templateUrl : "angularjs/partials/contactUs.html"
+		templateUrl : "angularJs/partials/contactUs.html"
 	}).state("main.faq",{
 		url: "/faq",
 		controller:"faqController",
-		templateUrl : "angularjs/partials/FAQ.html"
+		templateUrl : "angularJs/partials/FAQ.html"
 	});
 	
 }]);
