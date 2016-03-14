@@ -146,6 +146,7 @@ left:20px;
 /*pagination css  */
 
  .pagination {
+ background-color: white;
   display: inline-block;
   padding-left: 0;
   margin: 20px 0;
@@ -164,9 +165,8 @@ left:20px;
   color: #428bca;
   text-decoration: none;
   background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-   margin-right: 4px;
+ border-radius: 100%;
+  
 }
 .pagination > li:first-child > a,
 .pagination > li:first-child > span {
@@ -186,7 +186,7 @@ left:20px;
   color: #2a6496;
   background-color: #eee;
   border-color: #ddd;
-  border-radius: 5px;
+  border-radius: 100%;
 }
 .pagination > .active > a,
 .pagination > .active > span,
