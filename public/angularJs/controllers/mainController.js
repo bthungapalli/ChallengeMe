@@ -19,7 +19,7 @@ angular.module("challengeMeApp").controller("mainController",["$scope","$http","
 	$scope.setCurrentTab=function(tabName){
 		$scope.currentTab=tabName;
 		$rootScope.history.push(tabName);
-		 $scope.openCloseSideMenu(false,false);
+		 //$scope.openCloseSideMenu(false,false);
 	}
 	
 	$scope.goToState=function(tabName){
