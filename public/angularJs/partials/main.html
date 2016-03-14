@@ -30,7 +30,7 @@
 					 <i class=" dashboard icon" title="Dashboard"></i>	  <span ng-hide="shortMenu" style="font-size: larger;">Dashboard</span>
 				</a>
 		  </div>
-		  <div class="item sideMenu" style=" border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"    ng-class="{activeSideMenu:currentTab==='categories'}">
+		  <div ng-show="userDetails.adminIndicator != 0" class="item sideMenu" style=" border-bottom: 2px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"    ng-class="{activeSideMenu:currentTab==='categories'}">
 			   
 			    <a class="silver" ui-sref=".categories"  ng-click="setCurrentTab('categories');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='categories'}">
 					 <i class=" add icon" title="Add Categories"></i>	<span ng-hide="shortMenu" style="font-size: larger;"> Add Categories</span>
