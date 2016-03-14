@@ -177,6 +177,32 @@ router.get('/download/:fileName',function(request,response,next){
 	
 });
 
+router.post('/like',checkSession.requireLogin,function (request,response,next){
+	var challengeId=request.body.challengeId;
+	var user=request.session.user;
+	challengeService.likeChallenge(challengeId,user,function(err,like){
+		if(err){
+			console.log("Error",err);
+			response.send("error");
+		}else{
+			response.json(like);
+		}
+	});
+});
+
+
+router.post('/unlike',checkSession.requireLogin,function (request,response,next){
+	var challengeId=request.body.challengeId;
+	var user=request.session.user;
+	challengeService.unlikeChallenge(challengeId,user,function(err,like){
+		if(err){
+			response.send("error");
+		}else{
+		response.json("unliked");
+		}
+	});
+});
+
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var challenge=request.body;
 });

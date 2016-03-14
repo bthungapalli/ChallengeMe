@@ -155,6 +155,33 @@ updateFilePath:function(challengeId, filePath,callbackForUpdateFile){
 			 callbackForUpdateFile(err);
 		 callbackForUpdateFile(null,"updated");
 	 });
+},
+
+likeChallenge:function(challengeId,user,callbackForLikes){
+	
+	
+	counterModel.findByIdAndUpdate({_id : "challengeId"}, {$inc: {seq: 1} }, function(error, counter)   {
+	       if(error)
+	    	   callbackForLikes(error);
+	var likes = new likesModel({"_id":counter.seq,"typeId": challengeId,"emailId": user.emailId,"name":user.name,"type":'C'});
+	   
+	likes.save(function(err){
+	            if(err)
+	           	 callbackForLikes(err);
+	            
+	            callbackForLikes(null,{"_id":counter.seq,"typeId": challengeId,"emailId": user.emailId,"name":user.name,"type":"C"});
+	        });
+	});
+	
+},
+unlikeChallenge:function(challengeId,user,callbackForUnLikes){
+	
+	likesModel.remove({"typeId":challengeId,"emailId":user.emailId,"type":"C"},function callback (err, numAffected) {
+		if(err)
+			callbackForUnLikes("error");
+		console.log(solutionId +"solutionId deleted.");
+		callbackForUnLikes(null,"deleted");
+	});
 }
 	
 	

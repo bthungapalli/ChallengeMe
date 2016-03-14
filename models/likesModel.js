@@ -12,9 +12,10 @@ counter.save(function(err){
 
 var likes = Schema({
 	_id: {type: Number, required: true,default:0},
-    solutionId:{type:String,required: true}, 
+    typeId:{type:String,required: true}, 
     emailId : { type: String, required: true},
-    name : {type:String,required: true}
+    name : {type:String,required: true},
+    type : {type:String,required:true}
 });
 
 module.exports = mongoose.model('likes', likes);

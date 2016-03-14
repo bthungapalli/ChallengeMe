@@ -115,20 +115,20 @@ likeChallenge:function(solutionId,user,callbackForLikes){
 	counterModel.findByIdAndUpdate({_id : "solutionId"}, {$inc: {seq: 1} }, function(error, counter)   {
 	       if(error)
 	    	   callbackForLikes(error);
-	var likes = new likesModel({"_id":counter.seq,"solutionId": solutionId,"emailId": user.emailId,"name":user.name});
+	var likes = new likesModel({"_id":counter.seq,"typeId": solutionId,"emailId": user.emailId,"name":user.name,"type":"S"});
 	   
 	likes.save(function(err){
 	            if(err)
 	           	 callbackForLikes(err);
 	            
-	            callbackForLikes(null,{"_id":counter.seq,"solutionId": solutionId,"emailId": user.emailId,"name":user.name});
+	            callbackForLikes(null,{"_id":counter.seq,"typeId": solutionId,"emailId": user.emailId,"name":user.name,"type":"S"});
 	        });
 	});
 	
 },
 unlikeChallenge:function(solutionId,user,callbackForUnLikes){
 	
-	likesModel.remove({"solutionId":solutionId,"emailId":user.emailId},function callback (err, numAffected) {
+	likesModel.remove({"typeId":solutionId,"emailId":user.emailId,"type":"S"},function callback (err, numAffected) {
 		if(err)
 			callbackForUnLikes("error");
 		console.log(solutionId +"solutionId deleted.");

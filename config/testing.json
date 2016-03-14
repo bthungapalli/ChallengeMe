@@ -29,7 +29,13 @@
 	   "challengeMeSupport":"bthungapalli@osius.com"
    },
    "profile":{
-	   "profilePath":"F:/"
+	   "profilePath":"/apps/ChallengeMe/uploads/"
+   },
+   "profile":{
+	   "profilePath":"/apps/ChallengeMe/uploads/profiles/"
+   },
+   "challenge":{
+	   "attachmentPath":"/apps/ChallengeMe/uploads/challenges/"
    },
    "smtpConfig":{
 	   "host":"outlook.office365.com",
