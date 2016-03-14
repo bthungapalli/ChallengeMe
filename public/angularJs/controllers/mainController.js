@@ -6,6 +6,7 @@ angular.module("challengeMeApp").controller("mainController",["$scope","$http","
 	$rootScope.shortMenu=false;
 	 $scope.sideMenuClass="three wide column sideMenuBackGround";
 	 $scope.mainContentClass="thirteen wide column mainContentBackGround";
+	 $scope.myStyle="darkgray";
 	$scope.getUserDetails=function(){
 		$http.get(challengeMeConstants.userDetails).success(function(response){
 			$rootScope.userDetails=response;
@@ -19,7 +20,7 @@ angular.module("challengeMeApp").controller("mainController",["$scope","$http","
 	$scope.setCurrentTab=function(tabName){
 		$scope.currentTab=tabName;
 		$rootScope.history.push(tabName);
-		 $scope.openCloseSideMenu(false,false);
+		 //$scope.openCloseSideMenu(false,false);
 	}
 	
 	$scope.goToState=function(tabName){
@@ -42,6 +43,11 @@ angular.module("challengeMeApp").controller("mainController",["$scope","$http","
 	 
 	 $scope.toggleSideMenu=function(){
 		 $scope.shortMenu=! $scope.shortMenu;
+		 if($scope.shortMenu){
+			 $scope.myStyle="teal";
+		 }else{
+			 $scope.myStyle="darkgray";
+		 }
 		 $scope.openCloseSideMenu( $scope.shortMenu,true);
 	 }
 	 
