@@ -30,7 +30,8 @@ var challengeSchema = Schema({
     isSubcribed: {type: Boolean},
     isCreated: {type: Boolean,default:false},
     comments :{type: Array},
-    file:{type:String}
+    file:{type:String},
+    likes :{type:Array},
 });
 
 module.exports = mongoose.model('challenge', challengeSchema);;

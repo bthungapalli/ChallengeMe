@@ -2,6 +2,7 @@ var challengeModel = require("../models/challengeModel");
 var counterModel = require("../models/counterModel"); 
 var subcribeChallengeModel = require("../models/subcribeChallengeModel"); 
 var likesModel = require("../models/likesModel"); 
+var _ = require('underscore');
 
 var challengeService =function(){
 
@@ -62,8 +63,19 @@ getAllChallenges:function(categories,callbackForAllChallenges){
         if(err){
         	callbackForAllChallenges(err);
         }else{
-        callbackForAllChallenges(null,challenges);
-        }
+    		var challengeIds = _.pluck(challenges,"_id");
+    		likesModel.find({"typeId" :{$in:challengeIds}},function(err,likes){
+    			for(var i=0;i<challenges.length;i++){
+    				for(var j=0;j<likes.length;j++){
+    					if(likes[j].typeId == challenges[i]._id && likes[j].type === 'C'){
+    						challenges[i].likes.push(likes[j]);
+    					}
+    				}
+    				
+    			}
+        })
+    		callbackForAllChallenges(null,challenges);
+       }
     });
 },
 getChallengeForChallengeId:function(challengeId,callbackForchallenge){
@@ -77,7 +89,6 @@ getChallengeForChallengeId:function(challengeId,callbackForchallenge){
     });
 },
 subcribeChallenge:function(challengeId,emailId,callbackForSubcribe){
-
  	counterModel.findByIdAndUpdate({_id : "subcribeChallengeId"}, {$inc: {seq: 1} }, function(error, counter)   {
 	       if(error)
 	    	   callbackForSubcribe(error);

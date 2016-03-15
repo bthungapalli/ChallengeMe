@@ -50,10 +50,10 @@ getSolutionsForChallengeId:function(challengeId,userId,callbackForSolutions){
         if(err){
         	callbackForSolutions(err);}else{
         		var solutionIds = _.pluck(solutions,"_id");
-        		likesModel.find({"solutionId" :{$in:solutionIds}},function(err,likes){
+        		likesModel.find({"typeId" :{$in:solutionIds}},function(err,likes){
         			for(var i=0;i<solutions.length;i++){
         				for(var j=0;j<likes.length;j++){
-        					if(likes[j].solutionId == solutions[i]._id){
+        					if(likes[j].typeId == solutions[i]._id && likes[j].type === 'S'){
         						solutions[i].likes.push(likes[j]);
         					}
         				}
