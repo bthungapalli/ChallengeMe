@@ -30,6 +30,7 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 					if(response==="error"){
 						 $scope.errorMessage=challengeMeConstants.errorMessage;
 					 }
+					$scope.redirectToLoginIfSessionExpires(response);
 					$scope.barData.months = response[0];
 					$scope.barData.count[0] = response[1];
 				})
@@ -46,6 +47,7 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 						if(response==="error"){
 							 $scope.errorMessage=challengeMeConstants.errorMessage;
 						 }
+						$scope.redirectToLoginIfSessionExpires(response);
 						$scope.userCount = response;
 					})
 				.error(
@@ -53,8 +55,8 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 						 $scope.errorMessage=challengeMeConstants.errorMessage;
 					});
 			};
-	
-		$scope.getPieData=function(){
+			
+			$scope.getPieData=function(){
 				$http.get("dashboard/stats")
 				.success(
 					function(response){
@@ -70,9 +72,46 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 					});
 			};
 			
+			$scope.solutionsCount = function(){
+				$http.get("dashboard/solutionCount")
+				.success(
+					function(response){
+						if(response==="error"){
+							 $scope.errorMessage=challengeMeConstants.errorMessage;
+						 }
+						$scope.redirectToLoginIfSessionExpires(response);
+						$scope.solutionCount = response;
+					})
+				.error(
+					function(xhr, status, err){
+						 $scope.errorMessage=challengeMeConstants.errorMessage;
+					});
+			};
+	
+			$scope.CLStats=function(){
+				$http.get("dashboard/CLStats").success(
+						function(response){
+							if(response==="error"){
+								 $scope.errorMessage=challengeMeConstants.errorMessage;
+							 }
+							$scope.redirectToLoginIfSessionExpires(response);
+							$scope.CLLabel = ['LEARNINGS', 'CHALLENGES'];
+							$scope.CLData = response[1];
+						     console.log($scope.labels);
+						     console.log($scope.data);
+								
+						})
+				.error(
+					function(xhr, status, err){
+						 $scope.errorMessage=challengeMeConstants.errorMessage;
+					});
+			};
+			
 			
 	$scope.donutData();
 	$scope.getPieData();
 	$scope.getMonthData();
 	$scope.userCount();
+	$scope.solutionsCount();
+	$scope.CLStats();
 });

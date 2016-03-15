@@ -16,7 +16,8 @@
  </div>
  
  <div class="three wide column">
-				<div class="ui tertiary segment">Total Users : <b>{{userCount}}</b></div>
+				<div class="ui tertiary segment">Total Users : <b>{{userCount}}</b></div><br>
+				<div class="ui tertiary segment">Total Solutions : <b>{{solutionCount}}</b></div>
 			</div>
 			
  <div class="ten wide column" >
@@ -24,7 +25,9 @@
 				<canvas id="bar" class="chart chart-bar" chart-data="barData.count" chart-labels="barData.months" style="width:100%; height:200px"></canvas>
 		</div>
 		
-
+<div class="five wide column">
+	<canvas id="pie" class="chart-pie" chart-data="CLData" chart-labels="CLLabel" chart-legend="true" ></canvas>
+ </div>
  
 </div>
 </div>

@@ -12,7 +12,7 @@ var checkSession=require("../services/checkSessionService");
 		dashboardService.getChallengesByIntrest(function(err,data){
 			if(err){
 				console.log("Err",err);
-				res.send(err);
+				res.send("error);
 			}
 			else{
 			var keys = _.pluck(data,'_id');
@@ -78,6 +78,37 @@ var checkSession=require("../services/checkSessionService");
 	
 	router.get('/userCount',checkSession.requireLogin,function(req,res,err){
 		dashboardService.getUserCount(function(err,data){
+			if(err){
+				console.log("Err",err);
+				res.send("error");
+			}
+			else{
+				res.json(data);
+			}
+		});
+		
+			});	
+	
+	router.get('/CLStats',checkSession.requireLogin,function(req,res,err){
+		dashboardService.getCLStats(function(err,data){
+			if(err){
+				console.log("Err",err);
+				res.send("error");
+			}
+			else{
+			var keys = _.pluck(data,'_id');
+			var count = _.pluck(data,'count');
+			var body = [];
+			body.push(keys);
+			body.push(count);
+			res.send(body);
+			}
+		});
+		
+			});
+	
+	router.get('/solutionCount',checkSession.requireLogin,function(req,res,err){
+		dashboardService.getSolutionsCount(function(err,data){
 			if(err){
 				console.log("Err",err);
 				res.send("error");
