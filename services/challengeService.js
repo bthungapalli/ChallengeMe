@@ -190,7 +190,7 @@ unlikeChallenge:function(challengeId,user,callbackForUnLikes){
 	likesModel.remove({"typeId":challengeId,"emailId":user.emailId,"type":"C"},function callback (err, numAffected) {
 		if(err)
 			callbackForUnLikes("error");
-		console.log(solutionId +"solutionId deleted.");
+		console.log(challengeId +"challengeId deleted.");
 		callbackForUnLikes(null,"deleted");
 	});
 }

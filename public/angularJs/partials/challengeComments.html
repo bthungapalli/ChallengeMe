@@ -3,7 +3,8 @@
 				<button class="ui mini primary button" ng-click="showComments()" >
 					  {{challenge.comments.length}}	<i class="comments outline icon"></i> comments <i ng-show="!viewComments" class=" large angle down icon"></i><i ng-show="viewComments"class=" large angle up icon"></i>
 				</button>
-				
+				<a href="#" ng-hide="userLikedChallenge || currentTab==='subcribedChallenges'" ng-click="likeChallenge(challengeObj);"><i class="thumbs up blue icon"></i> Like</a>
+			<a href="#"   ng-hide="!userLikedChallenge || currentTab==='subcribedChallenges'"  ng-click="unLikeChallenge(challengeObj);"><i class="thumbs down blue icon"></i> Unlike</a>
 		 </div> 
 		 <div class="sixteen wide column" ng-show="viewComments"> 
 		    

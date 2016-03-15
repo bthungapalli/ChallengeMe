@@ -147,6 +147,9 @@
 <div class="sixteen wide column"  style="padding-top: 0px;padding-bottom: 0px;font-family: Georgia;cursor: pointer;padding-left: 8%;">
 <Strong>{{challengeObj.createdBy}}</Strong> posted on <i class="calendar green icon"></i>{{challengeObj.created_at | dateFormat}}   <label ng-hide="challengeObj.learning"><strong>|</strong> solutions will be accepted untill <i class="calendar red icon"></i>{{challengeObj.date | dateFormat}}</label>
 				<strong ng-show="challengeObj.prize">| <i class=" large gift icon" style="line-height: inherit;"> </i>Win : </strong>  {{challengeObj.prize}} 
+				
+			<span style="float:right;" ng-init="showLikesCountForChallenge(challengeObj.likes);"><strong>{{challengeObj.likes.length}}</strong><i class="thumbs up blue icon"></i></span>	
+				
 </div>
 
 </div>

@@ -268,7 +268,6 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		};
 		
 		$scope.showLikesCount=function(likes){
-			$scope.likesCount="";
 			$scope.userLiked=false;
 			for(var i=0;i<likes.length;i++){
 				if(likes[i].emailId==$scope.userDetails.emailId){
@@ -279,6 +278,17 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 			}
 			//if($scope.likesCount.length===0)
 			//$scope.likesCount=likes.length+" person liked";
+		};
+		
+		
+		$scope.showLikesCountForChallenge=function(likes){
+			$scope.userLikedChallenge=false;
+			for(var i=0;i<likes.length;i++){
+				if(likes[i].emailId==$scope.userDetails.emailId){
+					$scope.userLikedChallenge=true;
+					break;
+				}
+			}
 		};
 		
 		$scope.unLike=function(challenge,solutionObj){
@@ -295,6 +305,42 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 						}
 					}
 					$scope.showLikesCount(solutionObj.likes);
+				};
+				}).error(function(error){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				});
+		};
+		
+		$scope.likeChallenge=function(challenge){
+			var data={"challengeId":challenge._id};
+			$http.post(challengeMeConstants.challenge+challengeMeConstants.like,data).success(function(response){
+				$scope.redirectToLoginIfSessionExpires(response);
+				if(response==="error"){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				}else{
+					$scope.userLikedChallenge=true;
+					challenge.likes.push(response);
+					$scope.showLikesCountForChallenge(challenge.likes);
+				};
+				}).error(function(error){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				});
+		}
+		
+        $scope.unLikeChallenge=function(challenge){
+        	var data={"challengeId":challenge._id};
+			$http.post(challengeMeConstants.challenge+challengeMeConstants.unlike,data).success(function(response){
+				$scope.redirectToLoginIfSessionExpires(response);
+				if(response==="error"){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				}else{
+					$scope.userLiked=false;
+					for(var i=0;i<challenge.likes.length;i++){
+						if(challenge.likes[i].emailId===$scope.userDetails.emailId){
+							challenge.likes.splice(i,1);
+						}
+					}
+					$scope.showLikesCountForChallenge(challenge.likes);
 				};
 				}).error(function(error){
 					$scope.errorMessage=challengeMeConstants.errorMessage;
