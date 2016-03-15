@@ -35,7 +35,7 @@
 		
 		<div class="ui grid">
 		
-					<div class="three wide column">
+					<div class="three wide column" style="padding-top: 24px;">
 					Name
 					</div>
 					<div  class="thirteen wide column">
@@ -44,20 +44,20 @@
 				     </div>
 					</div>
 					<div class="three wide column">
-					Work phone
+					Work phone(Extension)
 					</div>
 					<div  class="thirteen wide column">
 					<div class="ui input focus">
 					 <input type="text" ng-model="userDetails.workPhone" ng-disabled="!editProfile"/>   
 					 </div>
 					</div>
-					<div class="three wide column">
+					<div class="three wide column" style="padding-top: 24px;">
 					Location
 					</div>
 					<div  class="thirteen wide column">
 					  <select class="ui dropdown"  ng-options="location._id as location.name for location in locations" ng-model="userDetails.location" ng-disabled="!editProfile"></select>  
 					</div>
-					<div class="three wide column">
+					<div class="three wide column" style="padding-top: 24px;">
 					Employee Id
 					</div>
 					<div  class="thirteen wide column">
@@ -65,7 +65,7 @@
 					  <input type="text" ng-model="userDetails.empId" ng-disabled="!editProfile" /> 
 					  </div>
 					</div>
-					<div class="three wide column">
+					<div class="three wide column" >
 					Categories
 					</div>
 					<div  class="thirteen wide column">

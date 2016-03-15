@@ -9,19 +9,20 @@
 <div class="ui grid" ng-show="challenges.length>0">
 
 	<div class="six wide column" style="padding-bottom: 0px;">
-			<div class="ui  icon input">
-			  <input type="text" ng-model="search" placeholder="Search ...">
-			  <i class="inverted circular teal search link icon"></i>
-			</div>
-	</div>
-	<div class="five wide column" style="padding-bottom: 0px;"> </div>
-	<div class="five wide column" style="text-align: end;padding-bottom: 0px;">
-			Challenges Per Page:<select id="itemsPerPage" name="itemsPerPage" class="ui dropdown" ng-model="itemsPerPage" style="border-radius: 5px;">
+				Challenges Per Page:<select id="itemsPerPage" name="itemsPerPage" class="ui dropdown" ng-model="itemsPerPage" style="border-radius: 5px;">
 			  <option  value="5">5</option>
 			  <option value="10">10</option>
 			  <option value="25">25</option>
 			  <option value="50">50</option>
 			</select>
+	</div>
+	<div class="five wide column" style="padding-bottom: 0px;"> </div>
+	<div class="five wide column" style="text-align: end;padding-bottom: 0px;">
+		
+			<div class="ui  icon input">
+			  <input type="text" ng-model="search" placeholder="Search ...">
+			  <i class="inverted circular teal search link icon"></i>
+			</div>
 	</div>
 
 	<div class="sixteen wide column" style="padding-bottom: 7px;padding-top: 6px;">
@@ -49,7 +50,7 @@
 </div>
 </div>
 
-<div class="ui grid"  ng-controller="viewChallengeController" dir-paginate="challengeObj in challenges|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage" >
+<div class="ui grid"  ng-controller="viewChallengeController" style="font-family: Georgia;" dir-paginate="challengeObj in challenges|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage" >
 
 <div class="sixteen wide column challengeBgColor" style="border-bottom: 4px solid white;" >
 
@@ -58,7 +59,7 @@
 <div class="sixteen wide column">
 
 <div class="ui grid" ng-click="getChallenge(challengeObj);">  <img class="ui tiny image" ng-src="profile/imagePath/emailId/{{challengeObj.createdByEmailId}}/number/12" style="position: absolute;width: 7%;height:100%;padding-left: 0px;padding-right: 0px;">
-<div class="eleven wide column" style="padding-bottom: 0px;padding-top: 5px;font-family: initial;cursor: pointer;padding-left: 8%;">
+<div class="eleven wide column" style="padding-bottom: 0px;padding-top: 5px;cursor: pointer;padding-left: 8%;">
 <h3>{{challengeObj.title | camelCase}}</h3>
 </div>
 <div class="five wide column" ng-show="(currentTab==='myChallenges')"  style="cursor: default !important;text-align: -webkit-right;padding-top: 5px;padding-bottom: 0px;cursor: pointer">
@@ -73,36 +74,16 @@
 		  	<i class="checkmark icon"></i>	{{challengeObj.challengeStatus}}
 		 </div>
 		
-		<div ng-if="challengeObj.learning" class="ui small yellow label">
-		   {{challengeObj.challengeLearningStatus}}
-		 </div>
+	 <div ng-if="challengeObj.learning" class="ui yellow tag label"> {{challengeObj.challengeLearningStatus}} </div>
 		 
-		 <div ng-if="challengeObj.status==='create'" class="ui small green label">
+<!-- 		 <div ng-if="challengeObj.status==='create'" class="ui small green label">
 		    Created
-		 </div>
+		 </div> -->
 		 
 		 <div ng-if="challengeObj.status==='draft'" class="ui small blue label">
 		    Draft
 		 </div>
 		 
-		<!--  <button type="submit" class="ui mini red button" ng-show="challengeObj.challengeStatus==='Closed' && !challengeObj.learning && challengeObj.status!=='draft'">
-		  	<i class="ban icon"></i> {{challengeObj.challengeStatus}}
-		</button> -->
-		 
-		<!--  <button type="submit" class="ui mini positive button" ng-show="challengeObj.challengeStatus==='Open' && !challengeObj.learning && challengeObj.status!=='draft'" >
-		  	<i class="checkmark icon"></i>	{{challengeObj.challengeStatus}}
-		</button> -->
-		 
-		<!--  <button ng-if="challengeObj.learning"  type="submit" class="ui mini yellow button" >
-			  	 {{challengeObj.challengeLearningStatus}}
-		</button> -->
-		
-<!-- <button ng-if="challengeObj.status==='create'"  type="submit" class="ui mini positive button" >
-			  	 Created
-		</button> -->
-		<!-- <button ng-if="challengeObj.status==='draft'"  type="submit" class="ui mini primary button" >
-			  	 Draft
-		</button> -->
 		
 </div>
 <div class="five wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))"  style="cursor: default !important;text-align: -webkit-right;padding-top: 5px;padding-bottom: 0px;cursor: pointer">
@@ -112,43 +93,26 @@
 			  	<i class="thumbs outline up icon"></i> Accept
 		</button>
 		
-		<div ng-if="challengeObj.learning" class="ui small yellow label">
-		   {{challengeObj.challengeLearningStatus}}
-		 </div>
-		
-		<!--  <button ng-if="challengeObj.learning"  type="submit" class="ui mini yellow button" >
-			  	 {{challengeObj.challengeLearningStatus}}
-		</button> -->
-		
-		
-		
+		 <div ng-if="challengeObj.learning" class="ui yellow tag label"> {{challengeObj.challengeLearningStatus}} </div>
 		
 		<span ng-if="!challengeObj.learning" >
 		
 		<div ng-show="challengeObj.challengeStatus==='Closed'" class="ui small red label">
-		<i class="ban icon"></i> {{challengeObj.challengeStatus}}
+		<i class="ban icon" style="margin-right: 0px;"></i> {{challengeObj.challengeStatus}}
 		 </div>
 		 
 		 <div ng-show="challengeObj.challengeStatus==='Open'" class="ui small green label">
-		<i class="checkmark icon"></i>{{challengeObj.challengeStatus}}
+		<i class="checkmark icon" style="margin-right: 0px;"></i> {{challengeObj.challengeStatus}}
 		 </div>
 		 
-		 
-		<!-- <button type="submit" class="ui mini red button" ng-show="challengeObj.challengeStatus==='Closed'">
-		  	<i class="ban icon"></i> {{challengeObj.challengeStatus}}
-		</button>
-		 -->
-		<!-- <button type="submit" class="ui mini positive button" ng-show="challengeObj.challengeStatus==='Open'">
-		  	<i class="checkmark icon"></i>{{challengeObj.challengeStatus}}
-		</button> -->
 		</span>
 </div>
 
 <div class="sixteen wide column"  style="padding-top: 0px;padding-bottom: 0px;font-family: Georgia;cursor: pointer;padding-left: 8%;">
-<Strong>{{challengeObj.createdBy}}</Strong> posted on <i class="calendar green icon"></i>{{challengeObj.created_at | dateFormat}}   <label ng-hide="challengeObj.learning"><strong>|</strong> solutions will be accepted untill <i class="calendar red icon"></i>{{challengeObj.date | dateFormat}}</label>
+<Strong>{{challengeObj.createdBy}}</Strong> <i class="calendar green icon"></i>{{challengeObj.created_at | dateFormat}}   <label ng-hide="challengeObj.learning"><strong>|</strong> solutions accepted untill <i class="calendar red icon"></i>{{challengeObj.date | dateFormat}}</label>
 				<strong ng-show="challengeObj.prize">| <i class=" large gift icon" style="line-height: inherit;"> </i>Win : </strong>  {{challengeObj.prize}} 
 				
-			<span style="float:right;" ng-init="showLikesCountForChallenge(challengeObj.likes);"><strong>{{challengeObj.likes.length}}</strong><i class="thumbs up blue icon"></i></span>	
+			<span style="float:right;" ng-init="showLikesCountForChallenge(challengeObj.likes);"><strong>{{challengeObj.likes.length}}</strong><i class="thumbs up icon"></i></span>	
 				
 </div>
 
