@@ -68,7 +68,37 @@ var dashboardService = function() {
 			
 			});
 		 
-	 }
+	 },
+	 getSolutionsCount:function(callbackUserCount){
+		 solutionsModel.count({},function(err,result){
+					if (err) {
+						callbackUserCount(err);
+					} else {
+						callbackUserCount(null,result);
+					}
+				
+				});
+			 
+		 },
+	getCLStats : function(callback) {
+				challengeModel.aggregate([ {
+					$group : {
+						_id : '$learning', //$region is the column name in collection
+						count : {
+							$sum : 1
+						}
+					}
+				} ], function(err, result) {
+					if (err) {
+						callback(err);
+					} else {
+						callback(null,result);
+					}
+				});
+
+			}, 
+		 
+	 
 		}
 	}
 module.exports=dashboardService();
