@@ -147,7 +147,12 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		angular.forEach(challenge.solutions,function(solution,index){
 			solution.collapse=false;
 			solution.index=index;
-			solution.solutionUserImagePath="profile/imagePath/emailId/"+solution.solutionByEmailId+"/number/"+Math.random() ;
+			if(solution.anonymous){
+				solution.solutionUserImagePath="profile/imagePath/emailId/"+anonymous+"/number/"+Math.random() ;
+			}else{
+				solution.solutionUserImagePath="profile/imagePath/emailId/"+solution.solutionByEmailId+"/number/"+Math.random() ;
+			}
+			
 		});
 		
 	};
