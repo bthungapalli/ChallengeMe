@@ -29,7 +29,7 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 
 	$scope.getSolution();
 	
-	$scope.saveSolution=function(){
+	$scope.saveSolution=function(challenge){
 		$scope.successMessageForSolution="";
 		$scope.loadingMessage="saving solution..";
 		$loading.start('solution');
@@ -43,6 +43,7 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 			if($scope.solutionObj.status==="create"){
 				$scope.hideEdit=true;
 			}
+			challenge.collapse=false;
 			$scope.successMessageForSolution="solution updated."
 			$loading.finish('solution');
 			}).error(function(error){
