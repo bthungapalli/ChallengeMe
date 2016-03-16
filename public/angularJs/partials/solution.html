@@ -14,7 +14,12 @@
 		 <div class="sixteen wide column" ng-disabled="challengeObj.closed">
 				 <div class="ui form ">
 				  <div class="field">
-				    <label>Solution</label>
+				    <label style="display: -webkit-inline-box;"> Solution</label >
+				   
+				    <div style="float:right" ng-show="solutionObj.status==='draft'" class="ui small blue label">
+					<i class="save icon" style="margin-right: 0px;"></i>Draft
+					 </div>
+		 
 				    <textarea ng-model="solutionObj.solution" ng-disabled="challengeObj.challengeStatus==='Closed'"></textarea>
 				  </div>
 				</div>
@@ -27,10 +32,10 @@
 					</div>
 		</div>
 		<div class="fourteen wide center aligned column" style="padding-bottom: 0px;">
-		<button type="submit" class="ui small primary button" ng-hide="hideEdit || challengeObj.closed || solutionObj.status==='create'" ng-disabled="(solutionObj.solution.length===0)" ng-click="solutionObj.status='draft';saveSolution();" >
+		<button type="submit" class="ui small primary button" ng-hide="hideEdit || challengeObj.closed || solutionObj.status==='create'" ng-disabled="(solutionObj.solution.length===0)" ng-click="solutionObj.status='draft';saveSolution(challengeObj);" >
 			  	<i class="save icon"></i> Draft
 			</button>
-			<button type="submit" class="ui small positive button"  ng-hide=" challengeObj.challengeStatus==='Closed'" value="create" ng-disabled="(solutionObj.solution.length===0)" ng-click="solutionObj.status='create';saveSolution();">
+			<button type="submit" class="ui small positive button"  ng-hide=" challengeObj.challengeStatus==='Closed'" value="create" ng-disabled="(solutionObj.solution.length===0)" ng-click="solutionObj.status='create';saveSolution(challengeObj);">
 			  	<i class="checkmark icon"></i> Submit
 			</button>
 		

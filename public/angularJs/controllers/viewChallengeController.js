@@ -59,7 +59,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		
 		$scope.getAllCategories();
 		
-		$scope.saveChallenge=function(){
+		$scope.saveChallenge=function(parentChallenge){
 			$scope.loadingMessage="saving challenge..";
 			$loading.start('challenges');
 			$scope.successMessage="";
@@ -72,8 +72,10 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				}else{
 					if($scope.challenge.status==="create"){
 						$scope.challenge.isCreated=true;
+						parentChallenge.status="create";
 					}
 					$scope.editChallenge=!$scope.editChallenge;
+					
 				};
 				$scope.successMessage="saved";
 				$loading.finish('challenges');
@@ -139,6 +141,21 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 					});
 			  return checked;
 	};
+	
+	
+	$scope.addAttributesToSolution=function(challenge){
+		angular.forEach(challenge.solutions,function(solution,index){
+			solution.collapse=false;
+			solution.index=index;
+			if(solution.anonymous){
+				solution.solutionUserImagePath="profile/imagePath/emailId/"+anonymous+"/number/"+Math.random() ;
+			}else{
+				solution.solutionUserImagePath="profile/imagePath/emailId/"+solution.solutionByEmailId+"/number/"+Math.random() ;
+			}
+			
+		});
+		
+	};
 		  
 		$scope.getChallenge=function(challenge){
 			
@@ -164,6 +181,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				$http.get(challengeMeConstants.challenge+"/"+challenge._id).success(function(response){
 					$scope.redirectToLoginIfSessionExpires(response);
 					$scope.challenge=response;
+					$scope.addAttributesToSolution($scope.challenge);
 					$scope.challengeIdForFileUpload=$scope.challenge._id;
 					if($scope.view==="main.myChallenges"){
 						$scope.challengeTemplate="angularJs/partials/viewMyChallenge.html";

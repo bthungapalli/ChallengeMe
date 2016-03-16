@@ -48,7 +48,7 @@
     min-height: 7%;
 "> <img src="images/logo.png" style="width: 7%;margin-top: 7px;margin-left: 10px;margin-bottom: 1px;">
 
-<img src="images/OSI.png" style="width: 3%;margin-top: 7px;margin-right: 10px;margin-bottom: 1px;float:right">
+
 
 </div>
 <div class="ui middle aligned center aligned grid loginBackGround" style="height:105%">
@@ -64,6 +64,9 @@
         Log-in to your account
       </div>
     </h2>
+    <div class="field" ng-class="{error:user.invalidCredentials}">
+           <label class="red">{{user.errorMessage}}</label>
+        </div>
         <div class="field" id="email"  ng-class="{error:user.invalidCredentials}">
           <div class="ui left icon input" style="position:relative">
             <i class="circular inverted  user icon" ng-class="{red:user.invalidCredentials,teal:!user.invalidCredentials}" ></i>
@@ -72,25 +75,27 @@
             
           </div>
         </div>
-        <div class="field"  id="password" ng-class="{error:user.invalidCredentials}">
+        <div class="field"  id="password" ng-class="{error:user.invalidCredentials}" style="margin-bottom: 0px;">
           <div class="ui left icon input">
             <i class="circular inverted  lock icon" ng-class="{red:user.invalidCredentials,teal:!user.invalidCredentials}"></i>
             <input id="password" type="password" name="password" ng-model="user.password"  placeholder="Password">
              <div class="passwordToolTip">Please enter OSI password.</div>
           </div>
         </div>
-         <div class="field" ng-class="{error:user.invalidCredentials}">
-           <label class="red">{{user.errorMessage}}</label>
-        </div>
+         
         
         
-        <button class="ui right labeled icon positive button large fluid" ng-disabled="user.userName.length===0 || user.password.length===0" ng-click="authenticateUser()">
+      <!--   <button class="ui right labeled icon positive button large fluid" ng-disabled="user.userName.length===0 || user.password.length===0" ng-click="authenticateUser()">
        <i class="large sign in icon"></i>
         Login
-      </button>
+      </button> -->
       
-	   <div class="floatRight"><a href="#" >Forgot Password ?</a>
-	   </div>
+        <div class="floatRight"><a href="#" >Forgot Password ?</a></div>
+      
+      <button class="large fluid ui positive button" ng-disabled="user.userName.length===0 || user.password.length===0" ng-click="authenticateUser()">
+      <i class=" lock icon"></i>Login</button>
+      <span style="float: right;font-size: x-small;">By Logging in you agree to our <a href="#">T&C</a></span>
+	 
       </div>
 
       
@@ -100,12 +105,9 @@
     
   </div>
 </div>
-<div style="
-    position: absolute;
-    bottom: 0;
-    background-color: #f7f7f7;
-    min-width: 100%;
-    min-height: 5%;
-    text-align:center;
-    padding-top: 7px;
-"><strong>Copy right @2016</strong></div><!-- EF5C5C -->
+<div style="position: absolute;bottom: 0;background-color: #f7f7f7;min-width: 100%;min-height: 5%; text-align:center;padding-top: 7px;"> 
+<img src="images/OSI.png" style="width: 2.3%;margin-left: 10px;margin-bottom: 1px;float:left"> 
+<strong style="vertical-align: -webkit-baseline-middle;">@2016 OSI Technologies. All rights reserved</strong>
+   <span style="float:right;margin-top: 4px;opacity: 0.6;">Innovate Integrate Operate </span>
+
+</div><!-- EF5C5C -->
