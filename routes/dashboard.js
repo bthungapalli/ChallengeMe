@@ -12,7 +12,7 @@ var checkSession=require("../services/checkSessionService");
 		dashboardService.getChallengesByIntrest(function(err,data){
 			if(err){
 				console.log("Err",err);
-				res.send("error);
+				res.send("error");
 			}
 			else{
 			var keys = _.pluck(data,'_id');

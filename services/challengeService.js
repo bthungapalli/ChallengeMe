@@ -3,11 +3,15 @@ var counterModel = require("../models/counterModel");
 var subcribeChallengeModel = require("../models/subcribeChallengeModel"); 
 var likesModel = require("../models/likesModel"); 
 var _ = require('underscore');
+var likesUtil = require("../services/LikesUtil");
+
 
 var challengeService =function(){
 
 return{
 
+
+	
 createOrSaveChallenge : function(challenge,user,callbackForChallenge){
 	 var isCreated;
      if(challenge.status==="create"){
@@ -63,18 +67,12 @@ getAllChallenges:function(categories,callbackForAllChallenges){
         if(err){
         	callbackForAllChallenges(err);
         }else{
-    		var challengeIds = _.pluck(challenges,"_id");
-    		likesModel.find({"typeId" :{$in:challengeIds}},function(err,likes){
-    			for(var i=0;i<challenges.length;i++){
-    				for(var j=0;j<likes.length;j++){
-    					if(likes[j].typeId == challenges[i]._id && likes[j].type === 'C'){
-    						challenges[i].likes.push(likes[j]);
-    					}
-    				}
-    				
-    			}
-        })
-    		callbackForAllChallenges(null,challenges);
+        	   likesUtil.fetchLikes(challenges,function(err,challenges){
+   	        	if(err)
+   	        		callbackForAllChallenges(err);
+   	        	callbackForAllChallenges(null,challenges)
+   	        	
+   	        });
        }
     });
 },
@@ -115,7 +113,12 @@ getSubcribedChallenges:function(ids,callbackForSubcribedChallenges){
 	    query.exec(function(err, challenges){
 	        if(err)
 	        	callbackForSubcribedChallenges(err);
-	        callbackForSubcribedChallenges(null,challenges);
+	        likesUtil.fetchLikes(challenges,function(err,challenges){
+	        	if(err)
+	        		callbackForSubcribedChallenges(err);
+	        	callbackForSubcribedChallenges(null,challenges)
+	        	
+	        });
 	    });
 },
 getSubcribedChallengeIdsForEmail:function(emailId,callbackForSubcribedChallengeIdsForEmail){
