@@ -64,6 +64,9 @@
         Log-in to your account
       </div>
     </h2>
+    <div class="field" ng-class="{error:user.invalidCredentials}">
+           <label class="red">{{user.errorMessage}}</label>
+        </div>
         <div class="field" id="email"  ng-class="{error:user.invalidCredentials}">
           <div class="ui left icon input" style="position:relative">
             <i class="circular inverted  user icon" ng-class="{red:user.invalidCredentials,teal:!user.invalidCredentials}" ></i>
@@ -72,16 +75,14 @@
             
           </div>
         </div>
-        <div class="field"  id="password" ng-class="{error:user.invalidCredentials}">
+        <div class="field"  id="password" ng-class="{error:user.invalidCredentials}" style="margin-bottom: 0px;">
           <div class="ui left icon input">
             <i class="circular inverted  lock icon" ng-class="{red:user.invalidCredentials,teal:!user.invalidCredentials}"></i>
             <input id="password" type="password" name="password" ng-model="user.password"  placeholder="Password">
              <div class="passwordToolTip">Please enter OSI password.</div>
           </div>
         </div>
-         <div class="field" ng-class="{error:user.invalidCredentials}">
-           <label class="red">{{user.errorMessage}}</label>
-        </div>
+         
         
         
       <!--   <button class="ui right labeled icon positive button large fluid" ng-disabled="user.userName.length===0 || user.password.length===0" ng-click="authenticateUser()">
