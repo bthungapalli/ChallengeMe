@@ -59,7 +59,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		
 		$scope.getAllCategories();
 		
-		$scope.saveChallenge=function(){
+		$scope.saveChallenge=function(parentChallenge){
 			$scope.loadingMessage="saving challenge..";
 			$loading.start('challenges');
 			$scope.successMessage="";
@@ -72,8 +72,10 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				}else{
 					if($scope.challenge.status==="create"){
 						$scope.challenge.isCreated=true;
+						parentChallenge.status="create";
 					}
 					$scope.editChallenge=!$scope.editChallenge;
+					
 				};
 				$scope.successMessage="saved";
 				$loading.finish('challenges');

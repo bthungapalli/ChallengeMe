@@ -89,10 +89,10 @@
 			<button type="submit" class="ui yellow button" ng-if="view==='main.myChallenges'" ng-show="!editChallenge && (challengeObj.challengeStatus==='Open')" ng-click="showEditFields();">
 			  	<i class="write icon"></i> Edit
 			</button>
-			<button type="submit" class="ui small primary button"  ng-if="view==='main.myChallenges'" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0))" ng-click="challenge.status='draft';saveChallenge();" ng-show="editChallenge && challenge.status==='draft'">
+			<button type="submit" class="ui small primary button"  ng-if="view==='main.myChallenges'" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0))" ng-click="challenge.status='draft';saveChallenge(challengeObj);" ng-show="editChallenge && challenge.status==='draft'">
 			  	<i class="save icon"></i> Draft
 			</button>
-			<button type="submit" class="ui small positive button" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0) || (challenge.categories.length===0))" ng-click="challenge.status='create';saveChallenge();" ng-show="editChallenge">
+			<button type="submit" class="ui small positive button" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (challenge.date.length===0) || (challenge.categories.length===0))" ng-click="challenge.status='create';saveChallenge(challengeObj);" ng-show="editChallenge">
 			  	<i class="checkmark icon"></i> Submit
 			</button>
 		</div>
