@@ -3,11 +3,15 @@ var counterModel = require("../models/counterModel");
 var subcribeChallengeModel = require("../models/subcribeChallengeModel"); 
 var likesModel = require("../models/likesModel"); 
 var _ = require('underscore');
+var likesUtil = require("../services/LikesUtil");
+
 
 var challengeService =function(){
 
 return{
 
+
+	
 createOrSaveChallenge : function(challenge,user,callbackForChallenge){
 	 var isCreated;
      if(challenge.status==="create"){
@@ -19,7 +23,7 @@ createOrSaveChallenge : function(challenge,user,callbackForChallenge){
         console.log('came in update');
        
         	 var conditions = { "_id":challenge._id };
-        	 var update = { $set: {"title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"isCreated":isCreated,"mailGroups":challenge.mailGroups,"file":challenge.file}};
+        	 var update = { $set: {"title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"isCreated":isCreated,"mailGroups":challenge.mailGroups,"file":challenge.file,"anonymous":challenge.anonymous}};
         	 challengeModel.update(conditions, update, callback);
         	 
         	function callback (err, numAffected) {
@@ -35,7 +39,7 @@ createOrSaveChallenge : function(challenge,user,callbackForChallenge){
    		    	   console.log("error:"+error);
    		    	callbackForChallenge(error);
    		       }
-        	var challenge1 = new challengeModel({"_id":counter.seq, "title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"createdByEmailId":user.emailId,"createdBy":user.name,"learning":challenge.learning,"mailGroups":challenge.mailGroups,"isCreated":isCreated,"file":challenge.file});
+        	var challenge1 = new challengeModel({"_id":counter.seq, "title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"createdByEmailId":user.emailId,"createdBy":user.name,"learning":challenge.learning,"mailGroups":challenge.mailGroups,"isCreated":isCreated,"file":challenge.file,"anonymous":challenge.anonymous});
         	challenge1.save(function(err){
                 if(err)
                 	callbackForChallenge(err);
@@ -63,18 +67,12 @@ getAllChallenges:function(categories,callbackForAllChallenges){
         if(err){
         	callbackForAllChallenges(err);
         }else{
-    		var challengeIds = _.pluck(challenges,"_id");
-    		likesModel.find({"typeId" :{$in:challengeIds}},function(err,likes){
-    			for(var i=0;i<challenges.length;i++){
-    				for(var j=0;j<likes.length;j++){
-    					if(likes[j].typeId == challenges[i]._id && likes[j].type === 'C'){
-    						challenges[i].likes.push(likes[j]);
-    					}
-    				}
-    				
-    			}
-        })
-    		callbackForAllChallenges(null,challenges);
+        	   likesUtil.fetchLikes(challenges,function(err,challenges){
+   	        	if(err)
+   	        		callbackForAllChallenges(err);
+   	        	callbackForAllChallenges(null,challenges)
+   	        	
+   	        });
        }
     });
 },
@@ -115,7 +113,12 @@ getSubcribedChallenges:function(ids,callbackForSubcribedChallenges){
 	    query.exec(function(err, challenges){
 	        if(err)
 	        	callbackForSubcribedChallenges(err);
-	        callbackForSubcribedChallenges(null,challenges);
+	        likesUtil.fetchLikes(challenges,function(err,challenges){
+	        	if(err)
+	        		callbackForSubcribedChallenges(err);
+	        	callbackForSubcribedChallenges(null,challenges)
+	        	
+	        });
 	    });
 },
 getSubcribedChallengeIdsForEmail:function(emailId,callbackForSubcribedChallengeIdsForEmail){
