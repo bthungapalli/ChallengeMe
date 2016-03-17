@@ -11,6 +11,7 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 			"prize":"",
 			"status":"",
 			"learning":false,
+			"anonymous":false,
 			"mailGroups":[]
 	};
 	 $(":file").jfilestyle({placeholder: "",buttonText: "File",'inputSize': '77%'});

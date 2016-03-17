@@ -17,6 +17,9 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 			if(challenge.learning){
 				challenge.challengeLearningStatus="Learning";
 			}
+			if(challenge.anonymous){
+				challenge.createdByEmailId="Anonymous";
+			}
 		});
 		$scope.challenges=challenges;
 	};
