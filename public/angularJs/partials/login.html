@@ -55,7 +55,7 @@
       <div class="ui piled segments segment" style=" background-color: #f7f7f7;">
       <h2 class="ui teal  header">
       <div class="content">
-        Log-in to your account
+        Log in
       </div>
     </h2>
     <div class="field" ng-class="{error:user.invalidCredentials}">
@@ -84,7 +84,7 @@
         Login
       </button> -->
       
-        <div class="floatRight"><a href="#" >Forgot Password ?</a></div>
+        <div class="floatRight" style="padding-top:10px;padding-bottom:10px;"><a href="#" >Forgot Password ?</a></div>
       
       <button class="large fluid ui positive button" ng-disabled="user.userName.length===0 || user.password.length===0" ng-click="authenticateUser()">
       <i class=" lock icon"></i>Login</button>
