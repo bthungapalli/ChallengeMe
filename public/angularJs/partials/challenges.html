@@ -62,7 +62,7 @@
 <div class="eleven wide column" style="padding-bottom: 0px;padding-top: 5px;cursor: pointer;padding-left: 8%;">
 <h3>{{challengeObj.title | camelCase}}</h3>
 </div>
-<div class="five wide column" ng-show="(currentTab==='myChallenges')"  style="cursor: default !important;text-align: -webkit-right;padding-top: 5px;padding-bottom: 0px;cursor: pointer">
+<div class="five wide column" ng-show="(currentTab==='myChallenges')"  style="cursor: default !important;text-align: right;padding-top: 5px;padding-bottom: 0px;cursor: pointer">
 <div class="ui teal tag label">{{challengeObj.categories.name | camelCase}} </div>
 
 		
@@ -86,7 +86,7 @@
 		 
 		
 </div>
-<div class="five wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))"  style="cursor: default !important;text-align: -webkit-right;padding-top: 5px;padding-bottom: 0px;cursor: pointer">
+<div class="five wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))"  style="cursor: default !important;text-align: right;padding-top: 5px;padding-bottom: 0px;cursor: pointer">
   <div class="ui teal tag label">{{challengeObj.categories.name | camelCase}} </div>
 
 		<button type="submit" class="ui mini yellow button" ng-click="subcribeChallenge(challengeObj);"  type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') || (challengeObj.challengeStatus==='Closed') || challengeObj.learning || challengeObj.createdByEmailId===userDetails.emailId">
