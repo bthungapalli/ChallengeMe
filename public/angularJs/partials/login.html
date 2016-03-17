@@ -40,13 +40,7 @@
     
     
 </style>
-<div style="
-    position: absolute;
-    top: 0;
-    background-color: #f7f7f7;
-    min-width: 100%;
-    min-height: 7%;
-"> <img src="images/logo.png" style="width: 7%;margin-top: 7px;margin-left: 10px;margin-bottom: 1px;">
+<div style="position: absolute;top: 2px;background-color: #f7f7f7;min-width: 100%;min-height: 7%;"> <img src="images/logo.png" style="width: 7%;margin-top: 7px;margin-left: 10px;margin-bottom: 1px;">
 
 
 
@@ -94,7 +88,7 @@
       
       <button class="large fluid ui positive button" ng-disabled="user.userName.length===0 || user.password.length===0" ng-click="authenticateUser()">
       <i class=" lock icon"></i>Login</button>
-      <span style="float: right;font-size: x-small;">By Logging in you agree to our <a href="#">T&C</a></span>
+      <span style="float: right;font-size: x-small;">By Logging in you agree to our <a href="#" ng-click="showConditions();">T&C</a></span>
 	 
       </div>
 
@@ -105,9 +99,17 @@
     
   </div>
 </div>
-<div style="position: absolute;bottom: 0;background-color: #f7f7f7;min-width: 100%;min-height: 5%; text-align:center;padding-top: 7px;"> 
+<div style="position: absolute;bottom:-5px;background-color: #f7f7f7;min-width: 100%;min-height: 5%; text-align:center;padding-top: 7px;"> 
 <img src="images/OSI.png" style="width: 2.3%;margin-left: 10px;margin-bottom: 1px;float:left"> 
 <strong style="vertical-align: -webkit-baseline-middle;">@2016 OSI Technologies. All rights reserved</strong>
    <span style="float:right;margin-top: 4px;opacity: 0.6;">Innovate Integrate Operate </span>
 
 </div><!-- EF5C5C -->
+
+
+
+
+
+
+
+

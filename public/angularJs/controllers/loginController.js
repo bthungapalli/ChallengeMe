@@ -42,6 +42,11 @@ angular.module("challengeMeApp").controller("loginController",["$scope","$http",
 				$state.go("/");
 			};
 		};
+		
+		$scope.showConditions=function(){
+			$('#conditions').modal('setting', 'transition', 'horizontal flip').modal('show');
+		};
+
 
 	$state.go("/");
 }]);

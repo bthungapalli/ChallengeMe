@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Challenge Me</title>
   <link rel="shortcut icon" type="image/png" href="images/logo.png"/>
+    <link rel="stylesheet" type="text/css" href="../node_modules/semantic-ui/dist/semantic.css">
    <link rel="stylesheet" type="text/css" href="../node_modules/semantic-ui/dist/components/reset.css">
   <link rel="stylesheet" type="text/css" href="../node_modules/semantic-ui/dist/components/site.css">
   <link rel='stylesheet prefetch' href='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
@@ -18,7 +19,7 @@
   <link rel="stylesheet" type="text/css" href="../node_modules/semantic-ui/dist/components/menu.css">
 
   <link rel="stylesheet" type="text/css" href="../node_modules/semantic-ui/dist/components/divider.css">
-  <link rel="stylesheet" type="text/css" href="../node_modules/semantic-ui/dist/components/segment.css">
+<!--   <link rel="stylesheet" type="text/css" href="../node_modules/semantic-ui/dist/components/segment.css"> -->
   <link rel="stylesheet" type="text/css" href="../node_modules/semantic-ui/dist/components/form.css">
   <link rel="stylesheet" type="text/css" href="../node_modules/semantic-ui/dist/components/input.css">
   <link rel="stylesheet" type="text/css" href="../node_modules/semantic-ui/dist/components/button.css">
@@ -30,6 +31,7 @@
   <link rel="stylesheet" type="text/css" href="../node_modules/semantic-ui/dist/components/checkbox.css">
    <link rel="stylesheet" type="text/css" href="../node_modules/semantic-ui/dist/components/label.css">
    <link rel="stylesheet" type="text/css" href="../node_modules/semantic-ui/dist/components/comment.css">
+      
    <link rel="stylesheet" type="text/css" href="css/jquery-filestyle.min.css">
    <link rel="stylesheet" type="text/css" href="css/angular-loading.css">
    <link rel="stylesheet" type="text/css" href="css/local.css">
@@ -49,18 +51,35 @@
   
 <body ng-app="challengeMeApp" ng-controller="loginController" style="overflow: hidden;">
 <div ui-view class="container"></div>
+
+<div id="conditions" class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+   Terms And Conditions
+  </div>
+  <div class="image content">
+    
+    <div class="description">
+      
+    </div>
+  </div>
+  <div class="actions">
+   
+  </div>
+</div>
+
 </body>
 
 <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="../node_modules/semantic-ui/dist/components/form.js"></script>
 <script type="text/javascript" src="../node_modules/semantic-ui/dist/components/transition.js"></script>
 <script type="text/javascript" src="../node_modules/semantic-ui/dist/components/dropdown.js"></script>
+<script type="text/javascript" src="../node_modules/semantic-ui/dist/semantic.js"></script>
 <script type="text/javascript" src="../node_modules/jquery-form/jquery.form.js"></script>
 <script src='js/jquery-ui.min.js'></script>
 <script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
 <script type="text/javascript" src="../node_modules/chart.js/Chart.min.js"></script>
 <script type="text/javascript" src="../node_modules/angular-chart.js/angular-chart.js"></script>
-<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
 <script type="text/javascript" src="../node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script type="text/javascript" src="../node_modules/angular-utils-pagination/dirPagination.js"></script>
 <script type="text/javascript" src="js/jquery-filestyle.min.js"></script>

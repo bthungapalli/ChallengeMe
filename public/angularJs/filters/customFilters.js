@@ -71,6 +71,8 @@ angular.module('challengeMeApp')
 						tabName="Create Challenge";
 					}else if(input==="profile"){
 						tabName="My Profile";
+					}else if(input==="faq"){
+						tabName="Frequently Asked Questions";
 					}else{
 						tabName=input;
 					}

@@ -77,7 +77,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 					$scope.editChallenge=!$scope.editChallenge;
 					
 				};
-				$scope.successMessage="saved";
+				//$scope.successMessage="saved";
 				$loading.finish('challenges');
 				}).error(function(error){
 					$scope.errorMessage=challengeMeConstants.errorMessage;

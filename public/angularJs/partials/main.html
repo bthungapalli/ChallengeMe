@@ -85,8 +85,8 @@
   </div>
   <div id="main" ng-class="mainContentClass" >
   
-		 <section style="margin-right: -14px;">
-			 <div class="ui small breadcrumb sideMenuBackGroundColor" style="border-bottom: 2px solid lightgray;">
+		 <section style="margin-right: -14px;" class="sideMenuBackGroundColor">
+			 <div class="ui small breadcrumb" >
 			
 				 <label style="cursor: pointer;" ng-click="setCurrentTab(n);goToState(n);" ng-repeat="n in history.slice(history.length-5<0?0:history.length-5,history.length) track by $index"> 
 				  <span  class="section historyFontColor"><strong>{{n | displayTab | camelCase}}</strong>	 <i class="angle big right icon"></i></span>
