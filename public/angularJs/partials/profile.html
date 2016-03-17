@@ -43,26 +43,28 @@
 				     <input type="text" ng-model="userDetails.name" ng-disabled="true"/> 
 				     </div>
 					</div>
-					<div class="three wide column">
-					Work phone(Extension)
+					<div class="three wide column" style="padding-top: 24px;">
+					Work phone
 					</div>
 					<div  class="thirteen wide column">
 					<div class="ui input focus">
 					 <input type="text" ng-model="userDetails.workPhone" ng-disabled="!editProfile"/>   
-					 </div>
+					 </div> (Extn)
 					</div>
 					<div class="three wide column" style="padding-top: 24px;">
 					Location
 					</div>
 					<div  class="thirteen wide column">
-					  <select class="ui dropdown"  ng-options="location._id as location.name for location in locations" ng-model="userDetails.location" ng-disabled="!editProfile"></select>  
+					 <div class="ui input focus">
+						<input type="text" ng-model="userDetails.location" ng-disabled="true"/> 
+						</div>
 					</div>
 					<div class="three wide column" style="padding-top: 24px;">
 					Employee Id
 					</div>
 					<div  class="thirteen wide column">
 					<div class="ui input focus">
-					  <input type="text" ng-model="userDetails.empId" ng-disabled="!editProfile" /> 
+					  <input type="text" ng-model="userDetails.empId" ng-disabled=true /> 
 					  </div>
 					</div>
 					<div class="three wide column" >

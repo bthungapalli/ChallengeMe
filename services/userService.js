@@ -1,6 +1,7 @@
 var userModel=require("../models/userModel");
 var catModel     = require("../models/catModel"); 
 var counterModel     = require("../models/counterModel"); 
+var locationModel = require("../models/locationModel");
 
 var userService =function(){
 
@@ -35,7 +36,7 @@ createOrSaveUser : function(userDetails,categories, callback){
   		       if(error)
   		            callback(error);
   		       
-  		      user = new userModel({"_id":counter.seq ,"username": userDetails.username,"name": userDetails.name,"emailId":userDetails.emailId ,"title":userDetails.title,"phone":userDetails.phone,"businessUnit":userDetails.businessUnit,"adminIndicator":userDetails.adminIndicator});
+  		      user = new userModel({"_id":counter.seq ,"username": userDetails.username,"name": userDetails.name,"emailId":userDetails.emailId ,"title":userDetails.title,"phone":userDetails.phone,"businessUnit":userDetails.businessUnit,"adminIndicator":userDetails.adminIndicator,"location":userDetails.location,"empId": userDetails.empId});
   		      user.save(function(err){
                 if(err)
                 	callback(err);
@@ -55,7 +56,7 @@ createOrSaveUser : function(userDetails,categories, callback){
 },
 updateUser:function(userDetails,callBackForUserUpdate){
 	 var conditions = { "emailId":userDetails.emailId }; 
-	 var update = { $set: {"empId": userDetails.empId,"workPhone": userDetails.workPhone,"location":userDetails.location,"categories":userDetails.categories}};
+	 var update = { $set: {"empId": userDetails.empId,"workPhone": userDetails.workPhone,"categories":userDetails.categories}};
 	 userModel.update(conditions, update, callback1);
 	function callback1 (err, numAffected) {
 		if(err)
