@@ -264,11 +264,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				});
 		}
 		
-		$scope.getProfilePathForSolutions=function(solutionObj){
-			$scope.solutionUserImagePath= "profile/imagePath/emailId/"+solutionObj.solutionByEmailId+"/number/"+Math.random() ;
-		};
-		
-		
+	
 		$scope.like=function(solutionObj){
 			var data={"solutionId":solutionObj._id};
 			$http.post(challengeMeConstants.solution+challengeMeConstants.like,data).success(function(response){
@@ -276,26 +272,23 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				if(response==="error"){
 					$scope.errorMessage=challengeMeConstants.errorMessage;
 				}else{
-					$scope.userLiked=true;
+					solutionObj.userLiked=true;
 					solutionObj.likes.push(response);
-					$scope.showLikesCount(solutionObj.likes);
+					$scope.showLikesCount(solutionObj);
 				};
 				}).error(function(error){
 					$scope.errorMessage=challengeMeConstants.errorMessage;
 				});
 		};
 		
-		$scope.showLikesCount=function(likes){
-			$scope.userLiked=false;
-			for(var i=0;i<likes.length;i++){
-				if(likes[i].emailId==$scope.userDetails.emailId){
-					//$scope.likesCount=likes.length===1?"You liked":"You and "+likes.length-1+" others liked";
-					$scope.userLiked=true;
+		$scope.showLikesCount=function(solutionObj){
+			solutionObj.userLiked=false;
+			for(var i=0;i<solutionObj.likes.length;i++){
+				if(solutionObj.likes[i].emailId==$scope.userDetails.emailId){
+					solutionObj.userLiked=true;
 					break;
 				}
 			}
-			//if($scope.likesCount.length===0)
-			//$scope.likesCount=likes.length+" person liked";
 		};
 		
 		
@@ -316,13 +309,13 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				if(response==="error"){
 					$scope.errorMessage=challengeMeConstants.errorMessage;
 				}else{
-					$scope.userLiked=false;
+					solutionObj.userLiked=false;
 					for(var i=0;i<solutionObj.likes.length;i++){
 						if(solutionObj.likes[i].emailId===$scope.userDetails.emailId){
 							solutionObj.likes.splice(i,1);
 						}
 					}
-					$scope.showLikesCount(solutionObj.likes);
+					$scope.showLikesCount(solutionObj);
 				};
 				}).error(function(error){
 					$scope.errorMessage=challengeMeConstants.errorMessage;
