@@ -24,56 +24,56 @@
 			    
 			      <div style="margin-top: 10px;"><a href="#" style="color:white;word-wrap: break-word;">{{userDetails.name}}</a></div>
           </div>
-            <div class="item sideMenu" title="Dashboard" style=" border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"    ng-class="{activeSideMenu:currentTab==='dashboard'}">
+            <div class="item sideMenu" title="Dashboard" style=" border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;padding-bottom: 0px;padding-top: 0px;"    ng-class="{activeSideMenu:currentTab==='dashboard'}">
 			   
-			    <a class="silver" ui-sref=".dashboard"  ng-click="setCurrentTab('dashboard');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='dashboard'}">
+			    <a class="silver" ui-sref=".dashboard"  ng-click="setCurrentTab('dashboard');" style="vertical-align: bottom;display: block;padding-top: 10px;padding-bottom: 10px;" ng-class="{activeSideMenuColor:currentTab==='dashboard'}">
 					 <i class=" dashboard icon" ></i>	  <span ng-hide="shortMenu" style="font-size: medium;">Dashboard</span>
 				</a>
 		  </div>
-		  <div ng-show="userDetails.adminIndicator!==0"  title="Add Categories" class="item sideMenu" style=" border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"    ng-class="{activeSideMenu:currentTab==='categories'}">
+		  <div ng-show="userDetails.adminIndicator!==0"  title="Add Categories" class="item sideMenu" style=" border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;padding-bottom: 0px;padding-top: 0px;"    ng-class="{activeSideMenu:currentTab==='categories'}">
 			   
-			    <a class="silver" ui-sref=".categories"  ng-click="setCurrentTab('categories');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='categories'}">
+			    <a class="silver" ui-sref=".categories"  ng-click="setCurrentTab('categories');" style="vertical-align: bottom;display: block;padding-top: 10px;padding-bottom: 10px;" ng-class="{activeSideMenuColor:currentTab==='categories'}">
 					 <i class=" add icon"></i>	<span ng-hide="shortMenu" style="font-size: medium;"> Add Categories</span>
 				</a>
 		  </div>
-		  <div class="item sideMenu"  title="Edit Profile" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"  ng-class="{activeSideMenu:currentTab==='profile'}">
-			    <a  class="silver" ui-sref=".profile" ng-click="setCurrentTab('profile');"  style="vertical-align: bottom;display: block" ng-class="{activeSideMenuColor:currentTab==='profile'}">
+		  <div class="item sideMenu"  title="Edit Profile" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;padding-bottom: 0px;padding-top: 0px;"  ng-class="{activeSideMenu:currentTab==='profile'}">
+			    <a  class="silver" ui-sref=".profile" ng-click="setCurrentTab('profile');"  style="vertical-align: bottom;display: block;padding-top: 10px;padding-bottom: 10px;" ng-class="{activeSideMenuColor:currentTab==='profile'}">
 					<i class=" write icon " ></i>	  <span ng-hide="shortMenu" style="font-size: medium;">Edit Profile </span>  
 				</a>
 		  </div>
-		  <div class="item sideMenu" title="Create Challenge" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"  ng-class="{activeSideMenu:currentTab==='createChallenge'}">
+		  <div class="item sideMenu" title="Create Challenge" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;padding-bottom: 0px;padding-top: 0px;"  ng-class="{activeSideMenu:currentTab==='createChallenge'}">
 			    
-			    <a  class="silver " ui-sref=".createChallenge" ng-click="setCurrentTab('createChallenge');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='createChallenge'}" >
+			    <a  class="silver " ui-sref=".createChallenge" ng-click="setCurrentTab('createChallenge');" style="vertical-align: bottom;display: block;padding-top: 10px;padding-bottom: 10px;" ng-class="{activeSideMenuColor:currentTab==='createChallenge'}" >
 					<i class=" puzzle icon " ></i>	   <span ng-hide="shortMenu" style="font-size: medium;">Create Challenge</span>  
 				</a>
 		  </div>
-		  <div class="item sideMenu" title="My Challenges" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"  ng-class="{activeSideMenu:currentTab==='myChallenges'}">
+		  <div class="item sideMenu" title="My Challenges" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;padding-bottom: 0px;padding-top: 0px;"  ng-class="{activeSideMenu:currentTab==='myChallenges'}">
 			   
-			     <a class="silver " ui-sref=".myChallenges" ng-click="setCurrentTab('myChallenges');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='myChallenges'}" >
+			     <a class="silver " ui-sref=".myChallenges" ng-click="setCurrentTab('myChallenges');" style="vertical-align: bottom;display: block;padding-top: 10px;padding-bottom: 10px;" ng-class="{activeSideMenuColor:currentTab==='myChallenges'}" >
 						 <i class=" lab icon " ></i>   <span ng-hide="shortMenu" style="font-size: medium;">My Challenges </span> 
 				</a>
 		  </div>
-		  <div class="item sideMenu" title="All Challenges" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;" ng-class="{activeSideMenu:currentTab==='allChallenges'}">
+		  <div class="item sideMenu" title="All Challenges" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;padding-bottom: 0px;padding-top: 0px;" ng-class="{activeSideMenu:currentTab==='allChallenges'}">
 			   
-			     <a class="silver " ui-sref=".allChallenges"  ng-click="setCurrentTab('allChallenges');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='allChallenges'}">
+			     <a class="silver " ui-sref=".allChallenges"  ng-click="setCurrentTab('allChallenges');" style="vertical-align: bottom;display: block;padding-top: 10px;padding-bottom: 10px;" ng-class="{activeSideMenuColor:currentTab==='allChallenges'}">
 					 <i class=" archive icon " ></i>	  <span ng-hide="shortMenu" style="font-size: medium;">All Challenges </span>  
 				</a>
 		  </div> 
-		  <div class="item sideMenu" title="Subcribed Challenges" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;"  ng-class="{activeSideMenu:currentTab==='subcribedChallenges'}">
+		  <div class="item sideMenu" title="Subcribed Challenges" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;padding-bottom: 0px;padding-top: 0px;"  ng-class="{activeSideMenu:currentTab==='subcribedChallenges'}">
 			    
-			     <a class="silver " ui-sref=".subcribedChallenges" ng-click="setCurrentTab('subcribedChallenges');" style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='subcribedChallenges'}">
+			     <a class="silver " ui-sref=".subcribedChallenges" ng-click="setCurrentTab('subcribedChallenges');" style="vertical-align: bottom;display: block;padding-top: 10px;padding-bottom: 10px;" ng-class="{activeSideMenuColor:currentTab==='subcribedChallenges'}">
 						<i class=" privacy icon " ></i>  <span ng-hide="shortMenu" style="font-size: medium;">Subcribed Challenges </span>  
 				</a>
 		  </div>
-		  <div class="item sideMenu" title=" Contact Us" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;" ng-class="{activeSideMenu:currentTab==='contactUs'}">
+		  <div class="item sideMenu" title=" Contact Us" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;padding-bottom: 0px;padding-top: 0px;" ng-class="{activeSideMenu:currentTab==='contactUs'}">
 			   
-			     <a class="silver " ui-sref=".contactUs" ng-click="setCurrentTab('contactUs');"  style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='contactUs'}">
+			     <a class="silver " ui-sref=".contactUs" ng-click="setCurrentTab('contactUs');"  style="vertical-align: bottom;display: block;padding-top: 10px;padding-bottom: 10px;" ng-class="{activeSideMenuColor:currentTab==='contactUs'}">
 						    <i class=" mail icon " ></i><span ng-hide="shortMenu" style="font-size: medium;"> Contact Us </span>
 				</a>
 		  </div>
-		  <div class="item sideMenu" title="FAQ" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;" ng-class="{activeSideMenu:currentTab==='faq'}">
+		  <div class="item sideMenu" title="FAQ" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;padding-bottom: 0px;padding-top: 0px;" ng-class="{activeSideMenu:currentTab==='faq'}">
 			   
-			     <a class="silver " ui-sref=".faq" ng-click="setCurrentTab('faq');"  style="vertical-align: bottom;display: block;" ng-class="{activeSideMenuColor:currentTab==='faq'}">
+			     <a class="silver " ui-sref=".faq" ng-click="setCurrentTab('faq');"  style="vertical-align: bottom;display: block;padding-top: 10px;padding-bottom: 10px;" ng-class="{activeSideMenuColor:currentTab==='faq'}">
 						    <i class="  help icon" ></i><span ng-hide="shortMenu" style="font-size: medium;">FAQ</span>
 				</a>
 		  </div>		  

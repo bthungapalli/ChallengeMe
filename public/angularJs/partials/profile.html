@@ -40,7 +40,7 @@
 					</div>
 					<div  class="thirteen wide column">
 					 <div class="ui input focus">
-				     <input type="text" ng-model="userDetails.name" ng-disabled="true"/> 
+				     <input type="text" ng-model="userDetails.name" ng-disabled="!editProfile"/> 
 				     </div>
 					</div>
 					<div class="three wide column" style="padding-top: 24px;">
@@ -64,7 +64,7 @@
 					</div>
 					<div  class="thirteen wide column">
 					<div class="ui input focus">
-					  <input type="text" ng-model="userDetails.empId" ng-disabled=true /> 
+					  <input type="text" ng-model="userDetails.empId"  ng-disabled="!editProfile"/> 
 					  </div>
 					</div>
 					<div class="three wide column" >
