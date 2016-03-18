@@ -26,7 +26,10 @@
 	   "dashboard":"/dashboard"
    },
    "mail":{
-	   "challengeMeSupport":"bthungapalli@osius.com"
+	   "challengeMeSupport":"bthungapalli@osius.com",
+		"subject":"[ChallengeME] ",
+		"appURL" : "http://techwizz.osius.com",
+		"appName":"ChallengeMe"
    },
    "profile":{
 	   "profilePath":"/apps/ChallengeMe/uploads/"

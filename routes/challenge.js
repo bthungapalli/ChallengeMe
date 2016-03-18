@@ -70,19 +70,33 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 					console.log("emailIds...................."+ids);
 				var categoryNames = challenge.categories.name;
 				console.log("categories Details:::::",categoryNames);
+				var subject;
+				var template;
+					if(challenge.learning ){
+						subject =  nconf.get("mail").subject+"New Learning is shared";
+						template = "Learning.html";
+					}else{
+						subject = nconf.get("mail").subject+"New Challenge has been posted";
+						template = "Challenge.html";
+					}
+				
+						
 				var context =  {
 						title : 'ChallengeMe',
-						username : user.name,
+						username : challenge.anonymous ? "Anonymous":user.name,
 						categoryName:categoryNames,
 						challengeName : challenge.title,
 						description : challenge.description,
 						prize : challenge.prize,
-						lastDate : challenge.date
+						lastDate : challenge.date,
+						appURL : nconf.get("mail").appURL,
+						appName : nconf.get("mail").appName
 						
 					};
 
 				if(ids.length>0 && !challenge.isCreated)
-				mailUtil.sendMail(ids,nconf.get('mail').challengeMeSupport,'Challenge Posted','ChallengeMe.html',context);
+					
+				mailUtil.sendMail(ids,nconf.get('mail').challengeMeSupport,subject,template,context);
 				response.send("created");
 			 });
 			}else{
@@ -154,14 +168,20 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 	challengeService.updateComments(challengeId,postedComment,user,function(err,challenge){
 		if(err)
 			response.send("error");
+			var subject = nconf.get("mail").subject + 'New Comment posted';
+			var comments = _.pluck(challenge,'comments');
+			var ids = _.pluck(_.flatten(_.compact(comments)),'emailId');
+			ids.push(challenge.createdByEmailId);
+			
 				var context =  {
 						title : 'ChallengeMe',
 						ownerName : challenge.createdByEmailId.substr(0,challenge.createdByEmailId.indexOf('@')),
 						challengeTitle : challenge.title,
 						userName : user.name,
-						comments : postedComment
+						comments : postedComment,
+						appName : nconf.get("mail").appName
 					};
-				mailUtil.sendMail(challenge.createdByEmailId,nconf.get('mail').challengeMeSupport,'New Comment posted','Comments_Challenges.html',context);
+				mailUtil.sendMail(_.uniq(ids),nconf.get('mail').challengeMeSupport,subject,'Comments_Challenges.html',context);
 				response.json(challenge);
 		
 	});
