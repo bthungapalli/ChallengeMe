@@ -16,13 +16,13 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 			console.log("Error uis ::;;",err);
 			response.send("error");}
 		else{
-		var context =  {
+		/*var context =  {
 				title : 'ChallengeMe',
 				owner : challenge.createdBy,
 				challengeName : challenge.title,
 				user:user.name
 			};
-		mailUtil.sendMail(challenge.createdByEmailId,nconf.get('mail').challengeMeSupport,'Challenge Subscribed','Subscribe.html',context);
+		mailUtil.sendMail(challenge.createdByEmailId,nconf.get('mail').challengeMeSupport,'Challenge Subscribed','Subscribe.html',context);*/
 		response.send(createdMsg);
 			}
 	});
