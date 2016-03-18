@@ -28,11 +28,13 @@
 		</header>
 		<section id="profile" style="margin: 0;padding: 0">
 		<h2 style=" font-family: Garamond, Georgia, serif;color: #656565;font-size: 1.8em;margin-bottom: 6px">
-		A New Challenge has been Posted. Please find the details
+		A New Challenge has been Posted.
 		</h2>
 		<table style:"width:auto;border-collapse: collapse;">
 			<thead>
-				<tr><td>Title</td>
+				<tr>
+				<td>Owner</td>
+				<td>Title</td>
 				<td>Description</td>
 				<td>Categories</td>
 				<td>Prize</td>
@@ -40,6 +42,7 @@
 			</thead>
 			<tbody>
 				<tr>
+				<td>{{username}}</td>
 				<td>{{challengeName}}</td>
 				<td>{{description}}</td>
 				<td>{{categoryName}}</td>
@@ -49,14 +52,14 @@
 			</tbody>
 		</table>
 			
-			
+			For more details login to <span>{{appURL}}</span>
 			
 		</section><br style="margin: 0;padding: 0"/><br style="margin: 0;padding: 0"/><section id="skills" class="clearfix" style="margin: 0;padding: 0;display: inline-block"><p style="margin: 0;padding: 0;font-family: &quot;Balthazar&quot;, &quot;Droid Serif&quot;, serif;color: #565656;font-size: 2em;line-height: 1.4em;margin-bottom: 15px;padding-left: 35px">	
 			<section id="skills-left" style="margin: 0;padding: 0;display: block;float: left;margin-right: 30px">
 			<h2 style=" font-family: Garamond, Georgia, serif;color: #656565;font-size: 1.8em;margin-bottom: 6px">
 		
 					Thanks,<br/>
-					ChallengeMe Team
+					{{appName}} Team
 						
 			</h2>
 				

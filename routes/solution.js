@@ -5,6 +5,8 @@ var solutionService=require("../services/solutionService");
 var checkSession=require("../services/checkSessionService");
 var mailUtil = require("../utils/MailUtil");
 var nconf = require('nconf');
+var _ = require('underscore');
+
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var solutionObj=request.body;
 	var user=request.session.user;
@@ -37,15 +39,22 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 		if(err)
 			response.send("error");
 		
+		var subject = nconf.get("mail").subject + 'New Comment posted';
+		var comments = _.pluck(solution,'comments');
+		var ids = _.pluck(_.flatten(_.compact(comments)),'emailId');
+		ids.push(solution.solutionByEmailId);
+		ids.push(challengeEmailId);
+		
 		if(solution!=="solution Needed"){
 			var context =  {
 					title : 'ChallengeMe',
 					solutionBy : solution.solutionBy,
 					challengeTitle : challengeTitle,
 					userName : user.name,
-					comments : postedComment.comment
+					comments : postedComment,
+					appName : nconf.get("mail").appName
 				};
-			mailUtil.sendMail([solution.solutionByEmailId,challengeEmailId],nconf.get('mail').challengeMeSupport,'Comment posted','Comments_Solutions.html',context);
+			mailUtil.sendMail(_.uniq(ids),nconf.get('mail').challengeMeSupport,subject,'Comments_Solutions.html',context);
 			
 		}
 				response.json(solution);
