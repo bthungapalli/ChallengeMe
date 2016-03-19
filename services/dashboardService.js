@@ -97,8 +97,29 @@ var dashboardService = function() {
 					}
 				});
 
-			}, 
-		 
+			},
+	getBUData : function(callback) {
+		challengeModel.aggregate(
+			[
+			 { $match:  {status:'create'}},
+			 	{ $sort: {'created_at': -1}},
+			 	//,
+			{ $group : { 
+		           _id : '$location', 
+		           challenges : { $sum: { $cond: [ { $eq: [ "$learning", false ] } , 1, 0 ] } },
+		           learnings : { $sum: { $cond: [ { $eq: [ "$learning", true ] } , 1, 0 ] } },
+		           }
+			}  
+		
+		],function(err, result) {
+			if (err) {
+				callback(err);
+			} else {
+				callback(null,result);
+			}
+		});
+
+	}
 	 
 		}
 	}

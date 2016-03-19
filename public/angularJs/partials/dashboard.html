@@ -8,10 +8,10 @@
 </div>
 </div>
 </div>
-<div class="five wide column">
+<div class="four wide column">
 					<canvas id="doughnut" class="chart-doughnut" chart-data="donutData" chart-labels="donutLabel" chart-legend="true" ></canvas>
  </div>
-<div class="five wide column">
+<div class="four wide column">
 					<canvas id="pie" class="chart-pie" chart-data="data" chart-labels="labels" chart-legend="true" ></canvas>
  </div>
  
@@ -19,15 +19,19 @@
 				<div class="ui tertiary segment">Total Users : <b>{{userCount}}</b></div><br>
 				<div class="ui tertiary segment">Total Solutions : <b>{{solutionCount}}</b></div>
 			</div>
+<div class="four wide column">
+	<canvas id="pie" class="chart-pie" chart-data="CLData" chart-labels="CLLabel" chart-legend="true" ></canvas>
+ </div>			
 			
- <div class="ten wide column" >
+ <div class="eight wide column" >
 			<label>Challenges Posted In Last Six Months</label>
 				<canvas id="bar" class="chart chart-bar" chart-data="barData.data" chart-labels="barData.labels" chart-series="barData.series" style="width:100%; height:200px"></canvas>
-		</div>
-		
-<div class="five wide column">
-	<canvas id="pie" class="chart-pie" chart-data="CLData" chart-labels="CLLabel" chart-legend="true" ></canvas>
- </div>
+	</div>
+ <div class="eight wide column"  ng-show="userDetails.adminIndicator!==0">
+			<label>BU Wise Challenges Posted</label>
+				<canvas id="bar" class="chart chart-bar" chart-data="barBUData.data" chart-labels="barBUData.labels" chart-series="barBUData.series" style="width:100%; height:200px"></canvas>
+	</div>		
+
  
 </div>
 </div>

@@ -33,6 +33,7 @@ var challengeSchema = Schema({
     file:{type:String},
     likes :{type:Array},
     anonymous  :{type:Boolean,default: false},
+    location :{type:String}
 });
 
 module.exports = mongoose.model('challenge', challengeSchema);;

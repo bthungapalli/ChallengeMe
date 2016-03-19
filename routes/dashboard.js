@@ -121,5 +121,25 @@ var checkSession=require("../services/checkSessionService");
 		});
 		
 			});	
+	
+	router.get('/getBUData',checkSession.requireLogin,function(req,res,err){
+		dashboardService.getBUData(function(err,data){
+			if(err){
+				console.log("Err",err);
+				res.send("error");
+			}
+			else{
+				var locations = _.pluck(data,'_id');
+				var challenges = _.pluck(data,'challenges');
+				var learnings = _.pluck(data,'learnings');
+				var body = [];
+				body.push(locations);
+				body.push(challenges);
+				body.push(learnings);
+				res.send(body);
+			}
+		});
+		
+			});
 
 module.exports = router;

@@ -23,7 +23,7 @@ createOrSaveChallenge : function(challenge,user,callbackForChallenge){
         console.log('came in update');
        
         	 var conditions = { "_id":challenge._id };
-        	 var update = { $set: {"title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"isCreated":isCreated,"mailGroups":challenge.mailGroups,"file":challenge.file,"anonymous":challenge.anonymous}};
+        	 var update = { $set: {"title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"isCreated":isCreated,"mailGroups":challenge.mailGroups,"file":challenge.file,"anonymous":challenge.anonymous,"location":user.location}};
         	 challengeModel.update(conditions, update, callback);
         	 
         	function callback (err, numAffected) {
@@ -39,7 +39,7 @@ createOrSaveChallenge : function(challenge,user,callbackForChallenge){
    		    	   console.log("error:"+error);
    		    	callbackForChallenge(error);
    		       }
-        	var challenge1 = new challengeModel({"_id":counter.seq, "title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"createdByEmailId":user.emailId,"createdBy":user.name,"learning":challenge.learning,"mailGroups":challenge.mailGroups,"isCreated":isCreated,"file":challenge.file,"anonymous":challenge.anonymous});
+        	var challenge1 = new challengeModel({"_id":counter.seq, "title": challenge.title,"description": challenge.description,"date":challenge.date,"prize":challenge.prize,"status":challenge.status,"categories":challenge.categories,"createdByEmailId":user.emailId,"createdBy":user.name,"learning":challenge.learning,"mailGroups":challenge.mailGroups,"isCreated":isCreated,"file":challenge.file,"anonymous":challenge.anonymous,"location":user.location});
         	challenge1.save(function(err){
                 if(err)
                 	callbackForChallenge(err);

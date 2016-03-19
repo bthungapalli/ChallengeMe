@@ -34,7 +34,6 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 					$scope.redirectToLoginIfSessionExpires(response);
 					/*$scope.barData.months = response[0];
 					$scope.barData.count[0] = response[1];*/
-					console.log("Labels",response[0]);
 					 $scope.barData.labels = response[0];
 					  $scope.barData.series = ['Learnings', 'Challenges'];
 					  $scope.barData.data = [
@@ -96,7 +95,7 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 					});
 			};
 	
-			$scope.CLStats=function(){
+			$scope.getCLStats=function(){
 				$http.get("dashboard/CLStats").success(
 						function(response){
 							if(response==="error"){
@@ -113,10 +112,36 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 			};
 			
 			
+			$scope.barBUData = {
+					labels: [],
+					data: [],
+					series:[]
+				};
+		$scope.getBUData = function(){
+			$http.get("dashboard/getBUData").success(
+					function(response){
+						if(response==="error"){
+							 $scope.errorMessage=challengeMeConstants.errorMessage;
+						 }
+						$scope.redirectToLoginIfSessionExpires(response);
+						console.log("Labels:::",response[0]);
+						$scope.barBUData.labels = response[0];
+						$scope.barBUData.series = ['Challenges', ' Learnings'];
+						$scope.barBUData.data =[response[1],response[2]];
+					})
+			.error(
+				function(xhr, status, err){
+					 $scope.errorMessage=challengeMeConstants.errorMessage;
+				});
+			
+		}
+			
+			
 	$scope.donutData();
 	$scope.getPieData();
 	$scope.getMonthData();
 	$scope.userCount();
 	$scope.solutionsCount();
-	$scope.CLStats();
+	$scope.getCLStats();
+	$scope.getBUData();
 });
