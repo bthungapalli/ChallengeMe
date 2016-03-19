@@ -36,7 +36,8 @@ var checkSession=require("../services/checkSessionService");
 				var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun",
 				                   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 			var id = _.pluck(data,"_id").reverse().slice(0,6);
-			var count =_.pluck(data,'count').reverse().slice(0,6);
+			var learnings =_.pluck(data,'learnings').reverse().slice(0,6);
+			var challenges =_.pluck(data,'challenges').reverse().slice(0,6);
 			var dates = [];
 			var body=[];
 			for(var i=0;i<id.length;i++)
@@ -45,7 +46,8 @@ var checkSession=require("../services/checkSessionService");
 				dates.push((month+'-'+id[i].year));
 			}
 			body.push(dates);
-			body.push(count);
+			body.push(learnings);
+			body.push(challenges);
 			res.send(body);
 			}
 		});

@@ -20,8 +20,9 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 			});
 	};
 	$scope.barData = {
-			count: [],
-			months: []
+			labels: [],
+			data: [],
+			series:[]
 		};
 		$scope.getMonthData = function(){
 			$http.get("dashboard/lastsixmonths")
@@ -31,8 +32,15 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 						 $scope.errorMessage=challengeMeConstants.errorMessage;
 					 }
 					$scope.redirectToLoginIfSessionExpires(response);
-					$scope.barData.months = response[0];
-					$scope.barData.count[0] = response[1];
+					/*$scope.barData.months = response[0];
+					$scope.barData.count[0] = response[1];*/
+					console.log("Labels",response[0]);
+					 $scope.barData.labels = response[0];
+					  $scope.barData.series = ['Learnings', 'Challenges'];
+					  $scope.barData.data = [
+					    response[1],response[2]
+					  ];
+					
 				})
 			.error(
 				function(xhr, status, err){
@@ -97,9 +105,6 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 							$scope.redirectToLoginIfSessionExpires(response);
 							$scope.CLLabel = ['LEARNINGS', 'CHALLENGES'];
 							$scope.CLData = response[1];
-						     console.log($scope.labels);
-						     console.log($scope.data);
-								
 						})
 				.error(
 					function(xhr, status, err){

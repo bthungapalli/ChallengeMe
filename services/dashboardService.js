@@ -28,12 +28,13 @@ var dashboardService = function() {
 			var time = new Date().getTime() - 200 * 24 * 60 * 60 * 1000;
 			challengeModel.aggregate(
 				[
-				 { $match: {$and : [{created_at: {$gte: new Date(time)}},{status:'create'},{learning:false}]}},
+				 { $match: {$and : [{created_at: {$gte: new Date(time)}},{status:'create'}]}},
 				 	{ $sort: {'created_at': -1}},
 				 	//,
 				{ $group : { 
 			           _id : {year: { $year : "$created_at" }, month: { $month : "$created_at" }}, 
-			           count : { $sum : 1 }
+			           challenges : { $sum: { $cond: [ { $eq: [ "$learning", false ] } , 1, 0 ] } },
+			           learnings : { $sum: { $cond: [ { $eq: [ "$learning", true ] } , 1, 0 ] } },
 			           }
 				}  
 			
