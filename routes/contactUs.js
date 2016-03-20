@@ -7,12 +7,14 @@ var nconf = require('nconf');
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var contactUs=request.body;
 	var user=request.session.user;
+	subject =  nconf.get("mail").subject+contactUs.subject;
 	var context =  {
 			title : 'ChallengeMe',
 			username : user.name,
-			query:contactUs.query
+			query:contactUs.query,
+			appName : nconf.get("mail").appName
 		};
-	mailUtil.sendMail(nconf.get('mail').challengeMeSupport,nconf.get('mail').challengeMeSupport,contactUs.subject,'ContactUs.html',context);
+	mailUtil.sendMail(nconf.get('mail').challengeMeSupport,nconf.get('mail').challengeMeSupport,subject,'ContactUs.html',context);
 	response.send("Mail Sent.");
 });
 

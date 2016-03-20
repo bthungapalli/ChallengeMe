@@ -3,6 +3,7 @@ var router = express.Router();
 var http = require('http');
 var userService=require("../services/userService");
 var checkSession=require("../services/checkSessionService");
+var nconf = require('nconf');
 
 router.get('/', function(req, res, next) {
   res.sendFile('index.html');
@@ -10,7 +11,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/authenticate', function(request, response,next) {
 	var optionsget = {
-			host : 'impact.osius.com',
+			host : nconf.get('impact').URL,
 			path : '/api/user/login', 
 			method : 'GET',
 			headers : {

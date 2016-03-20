@@ -13,6 +13,9 @@
 	   "host":"localhost",
 	   "Db":"challengeMeDB"
    },
+   "impact":{
+	   "URL":"impact.osius.com"
+   },
    "routes":{
 	   "login":"/",
 	   "mailUtil":"/mails",
