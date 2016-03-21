@@ -90,6 +90,7 @@
 				<div class="ui teal large label" style="width: 9.8%;margin-right: 5px;">
 				  Categories*
 				</div>
+				<span ng-if="categories.length==0">No Categories are created.</span>
 				 <span ng-repeat="category in categories" >
 					 <div class="ui radio checkbox">
 					  <input id="{{category.name}}" type="radio" value="{{category}}" ng-model="challenge.categories" ng-click="updateMailGroups(category)"/>
@@ -101,6 +102,7 @@
 				<div class="ui teal large label" style="width:10%;margin-right: 5px;">
 				  Mail Groups
 				</div>
+				<span ng-if="categories.length==0">No Categories are created.</span>
 					 <div class="ui toggle checkbox" ng-repeat="category in categories">
 					  <input id="{{category._id}}" type="checkbox" value="{{category}}" ng-checked="selectedCategory==category" ng-disabled="selectedCategory==category"  ng-click="toggleSelection(category)"/>
 					  <label for="{{category._id}}" style="padding-left: 50px;padding-right:12px;">{{category.name | camelCase}} </label>
