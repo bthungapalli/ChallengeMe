@@ -14,7 +14,7 @@
 			  <option value="10">10</option>
 			  <option value="25">25</option>
 			  <option value="50">50</option>
-			</select>Challenges Per Page
+			</select> Challenges Per Page
 	</div>
 	<div class="five wide column" style="padding-bottom: 0px;"> </div>
 	<div class="five wide column" style="text-align: end;padding-bottom: 0px;padding-right: 0px;">
@@ -89,8 +89,8 @@
 <div class="five wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))"  style="cursor: default !important;text-align: right;padding-top: 5px;padding-bottom: 0px;cursor: pointer">
   <div class="ui teal tag label">{{challengeObj.categories.name | camelCase}} </div>
 
-		<button type="submit" class="ui mini green button" ng-click="subcribeChallenge(challengeObj);"  type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') || (challengeObj.challengeStatus==='Closed') || challengeObj.learning || challengeObj.createdByEmailId===userDetails.emailId">
-			  	<i class="thumbs outline up icon"></i> Accept
+		<button type="submit" class="ui mini green button" ng-click="subcribeChallenge(challengeObj);"  type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') || (challengeObj.challengeStatus==='Closed') || challengeObj.learning || challengeObj.createdBy===userDetails.name">
+			  	<i class="thumbs up icon"></i> Accept
 		</button>
 		
 		 <div ng-if="challengeObj.learning" class="ui teal tag label">{{challengeObj.challengeLearningStatus}} </div>

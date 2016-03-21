@@ -11,26 +11,26 @@
 <div class="five wide column">
 					<canvas id="doughnut" class="chart-doughnut" chart-data="donutData" chart-labels="donutLabel" chart-legend="true" ></canvas>
  </div>
-<div class="four wide column">
+<div class="five wide column">
 					<canvas id="pie" class="chart-pie" chart-data="data" chart-labels="labels" chart-legend="true" ></canvas>
  </div>
  
- <div class="four wide column">
+ <div class="five wide column ">
 	<canvas id="pie" class="chart-pie" chart-data="CLData" chart-labels="CLLabel" chart-legend="true" ></canvas>
  </div>	
  
- <div class="three wide column">
-				<div class="ui tertiary segment">Total Users : <b>{{userCount}}</b></div><br>
-				<div class="ui tertiary segment">Total Solutions : <b>{{solutionCount}}</b></div>
-			</div>
 			
  <div class="ten wide column ui secondary segment"  >
 				<canvas id="bar" class="chart chart-bar" chart-data="barData.data" chart-labels="barData.labels" chart-series="barData.series" style="width:100%; height:200px"></canvas>
-	<label>Challenges/Learnings Posted In Last Six Months</label>
+	<p></p><label><b>Challenges/Learnings Posted In Last Six Months</b></label>
 	</div>
- <div class="ten wide column ui secondary segment"  ng-show="userDetails.adminIndicator===0">
+	 <div class="three wide column">
+				<div class="ui secondary segment">Total Users : <b>{{userCount}}</b></div><br>
+				<div class="ui secondary segment">Total Solutions : <b>{{solutionCount}}</b></div>
+			</div>
+ <div class="ten wide column ui secondary segment"  ng-show="userDetails.adminIndicator!==0">
 				<canvas id="bar" class="chart chart-bar" chart-data="barBUData.data" chart-labels="barBUData.labels" chart-series="barBUData.series" style="width:100%; height:200px"></canvas>
-	<label>Challenges/Learnings Posted by Location</label>
+	<p></p><label><b>Challenges/Learnings Posted by Location</b></label>
 	</div>		
 
  
