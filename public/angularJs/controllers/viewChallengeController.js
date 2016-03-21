@@ -24,7 +24,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 	$scope.challengeComment="";
 	
 	
-	 $(":file").jfilestyle({placeholder: "",buttonText: "Browse",'inputSize': '40%'});
+	 $(":file").jfilestyle({placeholder: "",buttonText: "Browse",'inputSize': '60%'});
 	 $('#uploadForm1').submit(function() {
 		 $scope.loadingMessage="saving file..";
 			$loading.start('challenges');
