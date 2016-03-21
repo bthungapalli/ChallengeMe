@@ -14,7 +14,7 @@
 
 		<div id="aaa" class="four wide center aligned column">
 		<div  class="ui segment" id="profileImage"  ng-controller="profileController">
- 			 <img  class="ui centered medium image"  ng-src="{{imagePath}}">
+ 			 <img  class="ui centered medium image"  ng-src="{{imagePath}}" style="height: 200px;">
  		</div>
 		
 	<div  id="upload" ng-show="editProfile">	<form id="uploadForm"
@@ -23,8 +23,8 @@
 	         method="post"
 	         ng-controller="profileController">
 	     <input type="file" class="jfilestyle" data-placeholder="My place holder" name=userPhoto>
-	      <button type="submit" class="ui tiny yellow button">
-		  	<i class="upload icon"></i> Upload
+	      <button type="submit" class="ui tiny green button">
+		  	<i class="upload icon"  style="margin-right: 0px;"></i> Upload
 		</button>
 	    </form>
 		</div>
@@ -48,7 +48,7 @@
 					</div>
 					<div  class="thirteen wide column">
 					<div class="ui input focus">
-					 <input type="text" ng-model="userDetails.workPhone" ng-disabled="!editProfile"/>   
+					 <input type="text" ng-model="userDetails.workPhone" ng-disabled="!editProfile" maxlength="4"/>   
 					 </div> (Extn)
 					</div>
 					<div class="three wide column" style="padding-top: 24px;">
@@ -68,7 +68,7 @@
 					  </div>
 					</div>
 					<div class="three wide column" >
-					Categories
+					Subcribe to
 					</div>
 					<div  class="thirteen wide column">
 					<span ng-if="allCategories.length==0">No Categories are created.</span>
@@ -83,10 +83,10 @@
 					</div>
 					<div class="sixteen wide center aligned column">
 						<button class="ui primary button" ng-click="edit();" ng-show="!editProfile">
-					  	<i class="write icon"></i>Edit
+					  	<i class="write icon"  style="margin-right: 0px;"></i>Edit
 						</button>
 						<button class="ui positive button" ng-click="updateProfile();" ng-show="editProfile">
-					  	<i class="checkmark icon"></i> Update
+					  	<i class="checkmark icon"  style="margin-right: 0px;"></i> Update
 						</button>
 					</div>
 		

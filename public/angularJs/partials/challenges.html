@@ -8,16 +8,16 @@
 
 <div class="ui grid" ng-show="challenges.length>0">
 
-	<div class="six wide column" style="padding-bottom: 0px;">
-				Challenges Per Page:<select id="itemsPerPage" name="itemsPerPage" class="ui dropdown" ng-model="itemsPerPage" style="border-radius: 5px;">
+	<div class="six wide column" style="padding-bottom: 0px;padding-left: 0px;">
+				<select id="itemsPerPage" name="itemsPerPage" class="ui dropdown" ng-model="itemsPerPage" style="border-radius: 5px;">
 			  <option  value="5">5</option>
 			  <option value="10">10</option>
 			  <option value="25">25</option>
 			  <option value="50">50</option>
-			</select>
+			</select>Challenges Per Page
 	</div>
 	<div class="five wide column" style="padding-bottom: 0px;"> </div>
-	<div class="five wide column" style="text-align: end;padding-bottom: 0px;">
+	<div class="five wide column" style="text-align: end;padding-bottom: 0px;padding-right: 0px;">
 		
 			<div class="ui  icon input">
 			  <input type="text" ng-model="search" placeholder="Search ...">
@@ -25,7 +25,7 @@
 			</div>
 	</div>
 
-	<div class="sixteen wide column" style="padding-bottom: 7px;padding-top: 6px;">
+	<div class="sixteen wide column" style="padding-bottom: 7px;padding-top: 6px;padding-left: 0px;padding-right: 0px;">
 
 
 <div class="ui fluid five item secondary pointing menu">
@@ -67,21 +67,21 @@
 
 		
 		<div ng-show="challengeObj.challengeStatus==='Closed' && !challengeObj.learning && challengeObj.status!=='draft'" class="ui small red label">
-		  	<i class="ban icon"></i> {{challengeObj.challengeStatus}}
+		  	<i class="ban icon" style="margin-right: 0px;"></i>{{challengeObj.challengeStatus}}
 		 </div>
 		
 		<div ng-show="challengeObj.challengeStatus==='Open' && !challengeObj.learning && challengeObj.status!=='draft'" class="ui small green label">
-		  	<i class="checkmark icon"></i>	{{challengeObj.challengeStatus}}
+		  	<i class="checkmark icon" style="margin-right: 0px;"></i>{{challengeObj.challengeStatus}}
 		 </div>
 		
-	 <div ng-if="challengeObj.learning" class="ui yellow tag label"> {{challengeObj.challengeLearningStatus}} </div>
+	 <div ng-if="challengeObj.learning" class="ui teal tag label"> {{challengeObj.challengeLearningStatus}} </div>
 		 
 <!-- 		 <div ng-if="challengeObj.status==='create'" class="ui small green label">
 		    Created
 		 </div> -->
 		 
 		 <div ng-if="challengeObj.status==='draft'" class="ui small blue label">
-		    Draft
+		   <i class="save icon" style="margin-right: 0px;"></i> Draft
 		 </div>
 		 
 		
@@ -89,16 +89,16 @@
 <div class="five wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))"  style="cursor: default !important;text-align: right;padding-top: 5px;padding-bottom: 0px;cursor: pointer">
   <div class="ui teal tag label">{{challengeObj.categories.name | camelCase}} </div>
 
-		<button type="submit" class="ui mini yellow button" ng-click="subcribeChallenge(challengeObj);"  type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') || (challengeObj.challengeStatus==='Closed') || challengeObj.learning || challengeObj.createdByEmailId===userDetails.emailId">
+		<button type="submit" class="ui mini green button" ng-click="subcribeChallenge(challengeObj);"  type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') || (challengeObj.challengeStatus==='Closed') || challengeObj.learning || challengeObj.createdByEmailId===userDetails.emailId">
 			  	<i class="thumbs outline up icon"></i> Accept
 		</button>
 		
-		 <div ng-if="challengeObj.learning" class="ui yellow tag label"> {{challengeObj.challengeLearningStatus}} </div>
+		 <div ng-if="challengeObj.learning" class="ui teal tag label">{{challengeObj.challengeLearningStatus}} </div>
 		
 		<span ng-if="!challengeObj.learning" >
 		
 		<div ng-show="challengeObj.challengeStatus==='Closed'" class="ui small red label">
-		<i class="ban icon" style="margin-right: 0px;"></i> {{challengeObj.challengeStatus}}
+		<i class="ban icon" style="margin-right: 0px;"></i>{{challengeObj.challengeStatus}}
 		 </div>
 		 
 		 <div ng-show="challengeObj.challengeStatus==='Open'" class="ui small green label">
@@ -109,10 +109,11 @@
 </div>
 
 <div class="sixteen wide column"  style="padding-top: 0px;padding-bottom: 0px;font-family: Georgia;cursor: pointer;padding-left: 8%;">
-	<Strong ng-bind="!challengeObj.anonymous?challengeObj.createdBy:'Anonymous'"> </Strong> <i class="calendar green icon"></i>{{challengeObj.created_at | dateFormat}}   <label ng-hide="challengeObj.learning"><strong>|</strong> solutions accepted untill <i class="calendar red icon"></i>{{challengeObj.date | dateFormat}}</label>
-				<strong ng-show="challengeObj.prize">| <i class=" large gift icon" style="line-height: inherit;"> </i>Win : </strong>  {{challengeObj.prize}} 
-			<!-- 	<span style="float:right;">| <strong>{{challengeObj.solutions.length}} </strong>solutions</span> -->
-			<span style="float:right;" ng-init="showLikesCountForChallenge(challengeObj.likes);"><strong>{{challengeObj.likes.length}}</strong><i class="thumbs up icon"></i></span>	
+	<span ng-bind="!challengeObj.anonymous?challengeObj.createdBy:'Anonymous'"> </span> <i class="calendar green icon"></i>{{challengeObj.created_at | dateFormat}}   <label ng-hide="challengeObj.learning"><strong>|</strong> solutions accepted untill <i class="calendar red icon"></i>{{challengeObj.date | dateFormat}}</label>
+				<span  ng-show="challengeObj.prize"><strong>| <i class=" large gift icon" style="line-height: inherit;"> </i></strong>Win :   {{challengeObj.prize}} </span>
+				<span ng-show="(currentTab==='myChallenges') || (challengeObj.challengeStatus==='Closed' && currentTab!=='myChallenges')"><strong >| </strong>{{challengeObj.solutions.length}} solutions</span> 
+		
+			<span style="float:right;" ng-init="showLikesCountForChallenge(challengeObj.likes);">{{challengeObj.likes.length}}<i class="thumbs up icon"></i></span>	
 				
 </div>
 
@@ -132,6 +133,6 @@
 </div>
 
 </div>
-<dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" ></dir-pagination-controls>
+<dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" style="position: relative;left: -14px;"></dir-pagination-controls>
 
 </div>

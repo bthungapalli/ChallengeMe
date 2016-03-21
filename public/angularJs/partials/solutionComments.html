@@ -10,7 +10,7 @@
 		 <div class="sixteen wide column" ng-show="viewSolutionComments" style="padding-top: 0px;"> 
 		    
 			<div class="ui threaded comments" style="max-width:100%">
- 				 <h3 ng-show="solutionObj.comments.length>0" class="ui dividing header">Comments on solution</h3>
+ 				<!--  <h3 ng-show="solutionObj.comments.length>0" class="ui dividing header">Comments on solution</h3> -->
 				  <div class="comment" ng-repeat="comment in solutionObj.comments">
 				    <div class="content">
 				      <a class="author">{{comment.userName}}</a>
@@ -24,11 +24,16 @@
 				  </div>
                  <div class="ui form ">
 				  <div class="field">
-				    <textarea id="commentTextAreaForSolution" rows="2" placeholder="comment..." ng-model="solutionComment"></textarea>
+				    <textarea id="commentTextAreaForSolution" rows="2" placeholder="comment on solution.." ng-model="solutionComment"></textarea>
 				  </div>
-				 <div class="ui blue labeled submit icon button" ng-show="solutionComment" ng-click="addSolutionComment(challengeObj,solutionObj);">
+			<!-- 	 <div class="ui blue labeled submit icon button" ng-show="solutionComment" ng-click="addSolutionComment(challengeObj,solutionObj);">
                  <i class="icon edit" ></i> Add Comment
-                </div>
+                </div> -->
+                
+                <button class="ui tiny primary button"  ng-show="solutionComment" ng-click="addSolutionComment(challengeObj,solutionObj);">
+					  <i class="icon edit" style="margin-right: 0px;" ></i> Add Comment
+				</button>
+                
 				</div>
 
             </div>

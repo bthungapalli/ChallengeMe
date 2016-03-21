@@ -1,7 +1,7 @@
 <div class="ui stackable grid">
 		<div class="sixteen wide column" > 
 				<button class="ui tiny primary button" ng-click="showComments()" style="padding-right: 0px;padding-left: 11px;" >
-					 	<i class="comments outline icon"></i> comments ({{challenge.comments.length}})<i ng-show="!viewComments" class=" large angle down icon"></i><i ng-show="viewComments"class=" large angle up icon"></i>
+					 	<i class="comments outline icon"></i> Comments ({{challenge.comments.length}})<i ng-show="!viewComments" class=" large angle down icon"></i><i ng-show="viewComments"class=" large angle up icon"></i>
 				</button>
 				<a href="#" ng-hide="userLikedChallenge || currentTab==='subcribedChallenges'" ng-click="likeChallenge(challengeObj);"><i class="thumbs up blue icon"></i> Like</a>
 			<a href="#"   ng-hide="!userLikedChallenge || currentTab==='subcribedChallenges'"  ng-click="unLikeChallenge(challengeObj);"><i class="thumbs down blue icon"></i> Unlike</a>
@@ -23,7 +23,7 @@
 				  </div>
                  <div class="ui form ">
 				  <div class="field">
-				    <textarea id="commentTextArea" rows="2" placeholder="comment..." ng-model="challengeComment"></textarea>
+				    <textarea id="commentTextArea" rows="2" placeholder="comment on challenge..." ng-model="challengeComment"></textarea>
 				  </div>
 				 <div class="ui blue labeled submit icon button" ng-show="challengeComment" ng-click="addChallengeComment(challengeObj);">
                  <i class="icon edit" ></i> Add Comment

@@ -7,7 +7,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	$scope.editProfile=false;
 	$scope.imagePath='';
 	$scope.successMessage="";
-	 $(":file").jfilestyle({placeholder: "",buttonText: "Profile",'inputSize': '62%'});
+	 $(":file").jfilestyle({placeholder: "",buttonText: "Browse",'inputSize': '62%'});
 	
 	 $('#uploadForm').submit(function() {
 	        $(this).ajaxSubmit({

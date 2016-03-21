@@ -1,4 +1,4 @@
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 17px;
     height:  12px;
 }
@@ -11,8 +11,12 @@
 }
 ::-webkit-scrollbar-thumb {
     background: teal;
+} */
+/*login html css  */
+.boldText{
+	font-weight: bold;
 }
-/*login html css  */ 
+
 .floatRight{
     text-align:right;
     }

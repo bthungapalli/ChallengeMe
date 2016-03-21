@@ -27,12 +27,14 @@
 	         method="post"
 	         >
 	     <input type="file" class="jfilestyle" data-placeholder="My place holder" name=attachment>
-	      <button type="submit" class="ui tiny yellow button">
-		  	<i class="upload icon"></i> Upload
+	      <button type="submit" class="ui tiny green button">
+		  	<i class="upload icon" style="margin-right: 0px;"></i> Upload
 		</button>
 		
 	    </form>
+	    
 	    {{challenge.file}}
+	    
 		</div>
 		 <div class="sixteen wide column">
 				 <div class="ui form ">
@@ -43,26 +45,21 @@
 				</div>
 		</div>
 		
-		<div class="six wide column">
-			  <!--  <div class="ui labeled input focus">
-				  <div class="ui teal label">
-				   Cut-off Date<span ng-show="!challenge.learning">*</span>
-				  </div>
-			<input type="text" placeholder="cut-off date" uib-datepicker-popup="{{format}}" ng-model="challenge.date" is-open="popup1.opened" ng-click="open1()"  readonly datepicker ng-disabled="challenge.learning"/><br>
-			
-			
-				</div> 	 -->
-				<div class="ui labeled input focus">
-				  <div class="ui teal label">
-				   Cut-off Date<span ng-show="!challenge.learning">*</span>
-				  </div>
-				</div>
-			 	<div class="ui  icon input">
-			  <input style="border-left-width: 0px;" type="text" placeholder="cut-off date" uib-datepicker-popup="{{format}}" ng-model="challenge.date" is-open="popup1.opened" ng-click="open1()"  readonly datepicker ng-disabled="challenge.learning">
-			  <i class="calendar green icon"></i>
-			</div>
+      <div class="four wide column" style="position: relative;top: 7px;">
+       <label for="learning" style="padding-right: 15px;" ng-class="{boldText:!challenge.learning}" >Challenge</label> 
+				<div class="ui toggle checkbox">
+					  <input id="learning" type="checkbox" ng-model="challenge.learning"  />
+					  <label for="learning" ng-class="{boldText:challenge.learning}">Learning</label>
+					</div>
 		</div>
-		<div class="five wide column">
+		
+		<div class="three wide column" style="position: relative;top: 7px;">
+				<div class="ui toggle checkbox">
+					  <input id="Anonymous" type="checkbox" ng-model="challenge.anonymous"  />
+					  <label for="Anonymous" ><strong>Anonymous</strong></label>
+					</div>
+		</div>
+		<div class="three wide column">
 			   <div class="ui fluid labeled input focus">
 				  <div class="ui teal label">
 				   Prize
@@ -70,20 +67,18 @@
 				 <input type="text" ng-model="challenge.prize" ng-disabled="challenge.learning"/> 
 				</div> 	
 		</div>
+		
+	<div class="six wide column">
 
-		
-      <div class="two wide column" style="position: relative;top: 7px;">
-				<div class="ui toggle checkbox">
-					  <input id="learning" type="checkbox" ng-model="challenge.learning"  />
-					  <label for="learning" ><strong>Learning</strong></label>
-					</div>
-		</div>
-		
-		<div class="two wide column" style="position: relative;top: 7px;">
-				<div class="ui toggle checkbox">
-					  <input id="Anonymous" type="checkbox" ng-model="challenge.anonymous"  />
-					  <label for="Anonymous" ><strong>Anonymous</strong></label>
-					</div>
+				<div class="ui labeled input focus">
+				  <div class="ui teal label">
+				   Cut-off Date<span ng-show="!challenge.learning">*</span>
+				  </div>
+				</div>
+			 	<div class="ui  icon input">
+			  <input style="border-left-width: 0px;" type="text" placeholder="Select date" uib-datepicker-popup="{{format}}" ng-model="challenge.date" is-open="popup1.opened" ng-click="open1()"  readonly datepicker ng-disabled="challenge.learning">
+			  <i class="calendar green icon"></i>
+			</div>
 		</div>
 		
 		<div class="sixteen wide column">
@@ -108,10 +103,10 @@
 					  <label for="{{category._id}}" style="padding-left: 50px;padding-right:12px;">{{category.name | camelCase}} </label>
 					</div>
 		</div>		
-		<div class="sixteen wide center aligned column" style="padding-top: 0px;">
+		<div class="sixteen wide center aligned column" >
 
 				<div class="ui buttons">
-					  <button class="ui button" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (!challenge.learning?challenge.date.length===0:false) || (challenge.categories.length===0) )" ng-click="challenge.status='draft';createChallenge()">Draft</button>
+					  <button class="ui blue button" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (!challenge.learning?challenge.date.length===0:false) || (challenge.categories.length===0) )" ng-click="challenge.status='draft';createChallenge()">Draft</button>
 					  <div class="or"></div>
 					  <button class="ui positive button"  ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (!challenge.learning?challenge.date.length===0:false) || (challenge.categories.length===0))" ng-click="challenge.status='create';createChallenge()">Create</button>
 				</div>
