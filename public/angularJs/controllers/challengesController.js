@@ -9,7 +9,10 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 		angular.forEach(challenges,function(challenge,index){
 			challenge.collapse=false;
 			challenge.index=index;
-			if(new Date(challenge.date).getTime()>new Date().getTime()){
+			debugger;
+			var date=challenge.date.split("/");
+			var closedDate=new Date(date[2], date[0]-1,  date[1] , "23", "59", "59" );
+			if(closedDate.getTime()>new Date().getTime()){
 				challenge.challengeStatus="Open"
 			}else{
 				challenge.challengeStatus="Closed";
