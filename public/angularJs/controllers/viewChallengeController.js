@@ -74,6 +74,14 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 						$scope.challenge.isCreated=true;
 						parentChallenge.status="create";
 					}
+					parentChallenge.date=$scope.challenge.date;
+					parentChallenge.anonymous=$scope.challenge.anonymous;
+					if($scope.challenge.learning){
+						parentChallenge.challengeLearningStatus="Learning";
+					}else{
+						parentChallenge.challengeLearningStatus="";
+					}
+					parentChallenge.learning=$scope.challenge.learning;
 					$scope.editChallenge=!$scope.editChallenge;
 					
 				};

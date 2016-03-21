@@ -25,9 +25,13 @@
 				  <div class="field">
 				    <textarea id="commentTextArea" rows="2" placeholder="comment on challenge..." ng-model="challengeComment"></textarea>
 				  </div>
-				 <div class="ui blue labeled submit icon button" ng-show="challengeComment" ng-click="addChallengeComment(challengeObj);">
+				 <!-- <div class="ui blue labeled submit icon button" ng-show="challengeComment" ng-click="addChallengeComment(challengeObj);">
                  <i class="icon edit" ></i> Add Comment
-                </div>
+                </div> -->
+                
+                 <button class="ui tiny primary button"  ng-show="challengeComment" ng-click="addChallengeComment(challengeObj);">
+					  <i class="icon edit" style="margin-right: 0px;" ></i> Add Comment
+				</button>
 				</div>
 
             </div>

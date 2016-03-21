@@ -111,7 +111,7 @@
 <div class="sixteen wide column"  style="padding-top: 0px;padding-bottom: 0px;font-family: Georgia;cursor: pointer;padding-left: 8%;">
 	<span ng-bind="!challengeObj.anonymous?challengeObj.createdBy:'Anonymous'"> </span> <i class="calendar green icon"></i>{{challengeObj.created_at | dateFormat}}   <label ng-hide="challengeObj.learning"><strong>|</strong> solutions accepted untill <i class="calendar red icon"></i>{{challengeObj.date | dateFormat}}</label>
 				<span  ng-show="challengeObj.prize"><strong>| <i class=" large gift icon" style="line-height: inherit;"> </i></strong>Win :   {{challengeObj.prize}} </span>
-				<span ng-show="(currentTab==='myChallenges') || (challengeObj.challengeStatus==='Closed' && currentTab!=='myChallenges')"><strong >| </strong>{{challengeObj.solutions.length}} solutions</span> 
+				<span ng-show="(currentTab==='myChallenges') || (challengeObj.challengeStatus==='Closed' && currentTab!=='myChallenges')" ng-hide="challengeObj.learning || challengeObj.status==='draft'"><strong >| </strong>{{challengeObj.solutions.length}} solutions</span> 
 		
 			<span style="float:right;" ng-init="showLikesCountForChallenge(challengeObj.likes);">{{challengeObj.likes.length}}<i class="thumbs up icon"></i></span>	
 				
