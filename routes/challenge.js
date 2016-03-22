@@ -50,7 +50,14 @@ var storage =   multer.diskStorage({
 	    });
 	});
 	
-
+router.get('/all', checkSession.requireLogin, function(request,
+			response, next) {
+		challengeService.fetchAllChallenges(function(err, challenges) {
+			if (err)
+				response.send("error");
+			response.send(challenges);
+		});
+	});
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var challenge=request.body;
 	var user=request.session.user;
