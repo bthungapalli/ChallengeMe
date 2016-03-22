@@ -34,9 +34,9 @@ return{
   		      
         }
 },
-getSolution:function(challengeId,userEmailId,callbackForSolution){
+getSolution:function(challengeIds,userEmailId,callbackForSolution){
 	
-	var query = solutionModel.findOne({"challengeId":challengeId,"solutionByEmailId":userEmailId});
+	var query = solutionModel.find({"challengeId":{$in:challengeIds},"solutionByEmailId":userEmailId});
     query.exec(function(err, solution){
         if(err)
         	callbackForSolution(err);

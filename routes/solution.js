@@ -24,7 +24,7 @@ router.get('/:challengeId',checkSession.requireLogin,function (request,response,
 	solutionService.getSolution(challengeId,userEmailId,function(err,solution){
 		if(err)
 			response.send("error");
-		response.send(solution);
+		response.send(solution[0]);
 	});
 });
 

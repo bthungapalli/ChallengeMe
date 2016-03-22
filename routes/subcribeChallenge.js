@@ -3,6 +3,7 @@ var router = express.Router();
 var http = require('http');
 var challengeService=require("../services/challengeService");
 var checkSession=require("../services/checkSessionService");
+var solutionService=require("../services/solutionService");
 var mailUtil = require("../utils/MailUtil");
 var nconf = require('nconf');
 
@@ -39,7 +40,20 @@ router.get('/',checkSession.requireLogin,function (request,response,next){
 			challengeIds.push(subcribedChallengesIds[prop].challengeId);
 		}
 		challengeService.getSubcribedChallenges(challengeIds,function(err,subcribedChallenges){
-			response.send(subcribedChallenges);
+			solutionService.getSolution(challengeIds,userEmailId,function(err,solutions){
+				if(err)
+					response.send("error");
+				for (var i = 0; i<subcribedChallenges.length; i++) {
+					for (var j = 0; j<solutions.length; j++) {
+						if (subcribedChallenges[i]._id == solutions[j].challengeId) {
+								subcribedChallenges[i].solutions.push(solutions[j]);
+								console.log("challengeIds::::",subcribedChallenges[i]);
+						}
+					}
+				}
+				response.send(subcribedChallenges);
+			});
+		//	console.log("Solutions::::",solutions[j].challengeId);
 		});
 	});
 });
