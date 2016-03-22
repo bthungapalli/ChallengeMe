@@ -1,8 +1,4 @@
 <style>
- .column {
-      max-width: 450px;
-    
-    }
     
     #email:hover .emailToolTip{
     visibility: visible;
@@ -13,19 +9,17 @@
     
     .emailToolTip,.passwordToolTip{
     visibility: hidden;
-    position:absolute;
-    width: 56%;
-    background-color:black;
-    color:white;
-    right: -58%;
-    top: 3px;
-    height: 91%;
-    padding-top: 7px;
+        position: absolute;
+    background-color: black;
+    color: white;
+    right: 0%;
+    top: 16px;
+    height: 55%;
     border-radius: 5px;
     }
     
    .emailToolTip:before,.passwordToolTip:before{
-       position: absolute;
+         position: absolute;
     width: 0;
     height: 0;
     border-top: 10px solid transparent;
@@ -34,27 +28,39 @@
     border-left: 10px solid transparent;
     display: block;
     content: " ";
-    right: 100%;
+    right: 99%;
+    top: 2px;
 }
     
     
     
 </style>
-<div style="position: absolute;top: 2px;background-color: #f7f7f7;min-width: 100%;min-height: 7%;"> <img src="images/logo.png" style="width: 7%;margin-top: 7px;margin-left: 10px;margin-bottom: 1px;">
+<!-- <div style="position: absolute;top: 2px;background-color: #f7f7f7;min-width: 100%;min-height: 7%;"> <img src="images/logo.png" style="width: 7%;margin-top: 7px;margin-left: 10px;margin-bottom: 1px;">
 
 
 
+</div> -->
+<div  style="position: absolute;left:0;width: 65%;height:100%;">
+<img src="images/loginTemplate.png" style="width: 100%;height:100%;">
 </div>
-<div class="ui middle aligned center aligned grid loginBackGround" style="height:105%">
 
-  <div class="column" >
-   <div dw-loading="authenticate" >
+<div style="position: absolute;left:65%;width: 35%;height:100%;">
+
+ <div dw-loading="authenticate"  style="width: 100%;height:100%;">
     
-   
-    <form class="ui large form">
-      <div class="ui piled segments segment" style=" background-color: #f7f7f7;">
-      <h2 class="ui teal  header">
-      <div class="content">
+<div style="padding:7%;height:100%;">
+
+
+<div style="font-size: x-large;font-weight: bold;">
+<img src="images/loginTemplate.png" style="width: 11%;height:44px;vertical-align: middle;"> Challenge Me
+</div>
+
+
+
+ <form class="ui large form" style="margin-top:30%;">
+      <div class="" style="background-color: white;padding-bottom: 35px;padding-top: 25px;">
+      <h2 class="ui header">
+      <div class="content" style="color:#1AA2B9;">
         Log into your account
       </div>
     </h2>
@@ -64,42 +70,59 @@
         <div class="field" id="email"  ng-class="{error:user.invalidCredentials}">
           <div class="ui left icon input" style="position:relative">
             <i class="circular inverted  user icon" ng-class="{red:user.invalidCredentials,teal:!user.invalidCredentials}" ></i>
-            <input type="text"   name="email" placeholder="E-mail address"  ng-model="user.userName" >
-            <div  class="emailToolTip" >Please enter OSI email.</div>
+            <input type="text"   name="email" placeholder="E-mail address"  ng-model="user.userName" style="
+    border-top-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 2px;
+" >
+            <div  class="emailToolTip" >Please enter OSI email</div>
             
           </div>
         </div>
         <div class="field"  id="password" ng-class="{error:user.invalidCredentials}" style="margin-bottom: 0px;">
           <div class="ui left icon input">
             <i class="circular inverted  lock icon" ng-class="{red:user.invalidCredentials,teal:!user.invalidCredentials}"></i>
-            <input id="password" type="password" name="password" ng-model="user.password"  placeholder="Password">
-             <div class="passwordToolTip">Please enter OSI password.</div>
+            <input id="password" type="password" name="password" ng-model="user.password"  placeholder="Password" style="
+    border-top-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 2px;
+">
+             <div class="passwordToolTip">Please enter OSI password</div>
           </div>
         </div>
          
         
-        
-      <!--   <button class="ui right labeled icon positive button large fluid" ng-disabled="user.userName.length===0 || user.password.length===0" ng-click="authenticateUser()">
-       <i class="large sign in icon"></i>
-        Login
-      </button> -->
+
       
-        <div class="floatRight" style="padding-top:10px;padding-bottom:10px;"><a href="https://login.osius.com" target="_blank" >Forgot Password ?</a></div>
+        <div class="floatRight" style="padding-top:10px;padding-bottom:10px;;font-size: small;"><a href="https://login.osius.com" target="_blank" >Forgot Password ?</a></div>
       
       <button class="large fluid ui positive button" ng-disabled="user.userName.length===0 || user.password.length===0" ng-click="authenticateUser()">
-      <i class=" lock icon"></i>Login</button>
-      <span style="float: right;font-size: x-small;">By Logging in you agree to our <a href="#" ng-click="showConditions();">T&C</a></span>
+      <i class=" lock icon"></i>Secure Login</button>
+      
+      <span style="float: right;font-size: small;">By Logging in you agree to our <a href="#" ng-click="showConditions();">T&C</a></span>
 	 
       </div>
 
       
 
     </form>
+
+
+
+
 </div>
-    
-  </div>
+   
+   
 </div>
-<div style="position: absolute;bottom:-5px;background-color: #f7f7f7;min-width: 100%;min-height: 5%; text-align:center;padding-top: 2px;"> 
+
+
+</div>
+
+
+
+<div style="position: absolute;bottom:-5px;background-color: #222;min-width: 100%;min-height: 5%; text-align:center;padding-top: 2px;color:white"> 
 <img src="images/OSI.png" style="width: 2.3%;margin-left: 10px;margin-bottom: 1px;float:left"> 
 <span style="position: relative;margin-top: 10px;bottom: -4px;"><strong >@2016 OSI Technologies. All rights reserved</strong></span>
    <span style="float:right;margin-top: 4px;opacity: 0.6;">Innovate Integrate Operate </span>

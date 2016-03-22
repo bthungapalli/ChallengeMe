@@ -24,7 +24,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 	$scope.challengeComment="";
 	
 	
-	 $(":file").jfilestyle({placeholder: "",buttonText: "Browse",'inputSize': '40%'});
+	 $(":file").jfilestyle({placeholder: "",buttonText: "Browse",'inputSize': '60%'});
 	 $('#uploadForm1').submit(function() {
 		 $scope.loadingMessage="saving file..";
 			$loading.start('challenges');
@@ -74,6 +74,14 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 						$scope.challenge.isCreated=true;
 						parentChallenge.status="create";
 					}
+					parentChallenge.date=$scope.challenge.date;
+					parentChallenge.anonymous=$scope.challenge.anonymous;
+					if($scope.challenge.learning){
+						parentChallenge.challengeLearningStatus="Learning";
+					}else{
+						parentChallenge.challengeLearningStatus="";
+					}
+					parentChallenge.learning=$scope.challenge.learning;
 					$scope.editChallenge=!$scope.editChallenge;
 					
 				};
