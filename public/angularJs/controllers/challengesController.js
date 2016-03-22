@@ -9,7 +9,6 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 		angular.forEach(challenges,function(challenge,index){
 			challenge.collapse=false;
 			challenge.index=index;
-			debugger;
 			var date=challenge.date.split("/");
 			var closedDate=new Date(date[2], date[0]-1,  date[1] , "23", "59", "59" );
 			if(closedDate.getTime()>new Date().getTime()){
@@ -23,6 +22,12 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 			if(challenge.anonymous){
 				challenge.createdByEmailId="Anonymous";
 			}
+			
+			if($state.current.name==="main.subcribedChallenges" && challenge.solutions.length>0){
+				if(challenge.solutions[0].solutionByEmailId===$scope.userDetails.emailId)
+					challenge.solutionStatus=challenge.solutions[0].status;
+			}
+			
 		});
 		$scope.challenges=challenges;
 	};

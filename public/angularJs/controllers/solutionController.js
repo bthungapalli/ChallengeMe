@@ -42,6 +42,7 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 			$scope.solutionObj._id=response._id;
 			if($scope.solutionObj.status==="create"){
 				$scope.hideEdit=true;
+				challenge.solutionStatus="create";
 			}
 			challenge.collapse=false;
 			$scope.successMessageForSolution="solution updated."
