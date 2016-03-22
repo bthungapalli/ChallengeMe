@@ -67,11 +67,11 @@
 
 		
 		<div ng-show="challengeObj.challengeStatus==='Closed' && !challengeObj.learning && challengeObj.status!=='draft'" class="ui small red label">
-		  	<i class="ban icon" style="margin-right: 0px;"></i>{{challengeObj.challengeStatus}}
+		  	<i class="ban icon" style="margin-right: 0px;"></i> {{challengeObj.challengeStatus}}
 		 </div>
 		
 		<div ng-show="challengeObj.challengeStatus==='Open' && !challengeObj.learning && challengeObj.status!=='draft'" class="ui small green label">
-		  	<i class="checkmark icon" style="margin-right: 0px;"></i>{{challengeObj.challengeStatus}}
+		  	<i class="checkmark icon" style="margin-right: 0px;"></i> {{challengeObj.challengeStatus}}
 		 </div>
 		
 	 <div ng-if="challengeObj.learning" class="ui teal tag label"> {{challengeObj.challengeLearningStatus}} </div>
@@ -98,7 +98,7 @@
 		<span ng-if="!challengeObj.learning" >
 		
 		<div ng-show="challengeObj.challengeStatus==='Closed'" class="ui small red label">
-		<i class="ban icon" style="margin-right: 0px;"></i>{{challengeObj.challengeStatus}}
+		<i class="ban icon" style="margin-right: 0px;"></i> {{challengeObj.challengeStatus}}
 		 </div>
 		 
 		 <div ng-show="challengeObj.challengeStatus==='Open'" class="ui small green label">
