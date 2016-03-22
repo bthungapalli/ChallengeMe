@@ -33,7 +33,26 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	};
 	
 	$scope.fetchAll=function(){
-		alert('hi');
+		$scope.loadingMessage="fetching all challenges...";
+		$loading.start('challenge');
+		var url=""
+		if($scope.allChallenges){
+			url='/challenge/all';
+		}else{
+			url=challengeMeConstants.allChallenges;
+		}
+		
+		$http.get(url).success(function(response){
+			$scope.redirectToLoginIfSessionExpires(response);
+			if(response==="error")
+				$scope.errorMessage=challengeMeConstants.errorMessage;
+			$scope.addAttributesToChallenge(response);
+			if(response.length===0)$scope.errorMessage=challengeMeConstants.noChallengeMessage;
+			$loading.finish('challenge');
+			}).error(function(error){
+				$scope.errorMessage=challengeMeConstants.errorMessage;
+				$loading.finish('challenge');
+			});
 	};
 	
 	$scope.getMyChallenges=function(){

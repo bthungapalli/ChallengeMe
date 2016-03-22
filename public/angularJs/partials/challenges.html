@@ -8,7 +8,7 @@
 
 <div class="ui grid" ng-show="challenges.length>0">
 
-	<div class="six wide column" style="padding-bottom: 0px;padding-left: 0px;">
+	<div class="four wide column" style="padding-bottom: 0px;padding-left: 0px;">
 				<select id="itemsPerPage" name="itemsPerPage" class="ui dropdown" ng-model="itemsPerPage" style="border-radius: 5px;">
 			  <option  value="5">5</option>
 			  <option value="10">10</option>
@@ -16,13 +16,15 @@
 			  <option value="50">50</option>
 			</select> Challenges Per Page
 	</div>
-	<div class="three wide column" style="position: relative;top: 7px;">
+	<div class="seven wide column" style="position: relative;top: 7px;">
+	 <div ng-show="currentTab==='allChallenges'">
+	 <label for="All" ng-class="{boldText:!allChallenges}">Subcribed Categories Challenges</label>
 				<div class="ui toggle checkbox">
-					  <input id="All" type="checkbox"  onchange="fetchAll()" />
-					  <label for="All" ><strong>All Categories</strong></label>
+					  <input id="All" type="checkbox" ng-model="allChallenges"  ng-change="fetchAll()" />
+					  <label for="All" ng-class="{boldText:allChallenges}">All Categories Challenges</label>
+					</div>
 					</div>
 		</div>
-	<div class="two wide column" style="padding-bottom: 0px;"> </div>
 	<div class="five wide column" style="text-align: end;padding-bottom: 0px;padding-right: 0px;">
 		
 			<div class="ui  icon input">
