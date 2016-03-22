@@ -196,9 +196,22 @@ unlikeChallenge:function(challengeId,user,callbackForUnLikes){
 		console.log(challengeId +"challengeId deleted.");
 		callbackForUnLikes(null,"deleted");
 	});
-}
+},
 	
-	
+fetchAllChallenges:function(callbackForAllChallenges){
+	var query = challengeModel.find({"status":"create"}).sort({"created_at":-1});
+			    query.exec(function(err, challenges) {
+				if (err) {
+					callbackForAllChallenges(err);
+				} else {
+					likesUtil.fetchLikes(challenges, function(err, challenges) {
+						if (err)
+							callbackForAllChallenges(err);
+						callbackForAllChallenges(null, challenges)
+					});
+				}
+			});
+		},	
 	
 	}
 

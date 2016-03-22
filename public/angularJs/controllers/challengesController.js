@@ -27,6 +27,10 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 		$scope.challenges=challenges;
 	};
 	
+	$scope.fetchAll=function(){
+		alert('hi');
+	};
+	
 	$scope.getMyChallenges=function(){
 		$scope.loadingMessage="fetching my challenges...";
 		$loading.start('challenge');
