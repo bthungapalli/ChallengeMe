@@ -23,9 +23,12 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 				challenge.createdByEmailId="Anonymous";
 			}
 			
-			if($state.current.name==="main.subcribedChallenges" && challenge.solutions.length>0){
-				if(challenge.solutions[0].solutionByEmailId===$scope.userDetails.emailId)
+			if($state.current.name==="main.subcribedChallenges" ){
+				if(challenge.solutions.length===0){
+					challenge.solutionStatus="draft";
+				}else if(challenge.solutions[0].solutionByEmailId===$scope.userDetails.emailId){
 					challenge.solutionStatus=challenge.solutions[0].status;
+				}
 			}
 			
 		});
