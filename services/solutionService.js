@@ -134,7 +134,17 @@ unlikeChallenge:function(solutionId,user,callbackForUnLikes){
 		console.log(solutionId +"solutionId deleted.");
 		callbackForUnLikes(null,"deleted");
 	});
-}
+},
+
+getSolutionsForChallenges:function(callbackForSolutionsCount){
+	solutionModel.aggregate([{$group:{ _id: "$challengeId",count: { $sum: 1 } } } ],function(err,count){
+		if(err)
+			callbackForSolutionsCount(err);
+		callbackForSolutionsCount(null,count);
+		
+	});
+},
+
 	
 }
 

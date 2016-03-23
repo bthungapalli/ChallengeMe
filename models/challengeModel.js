@@ -33,6 +33,7 @@ var challengeSchema = Schema({
     file:{type:String},
     likes :{type:Array},
     anonymous  :{type:Boolean,default: false},
+    solutionsCount:{type:Number,default:0},
     location :{type:String}
 });
 

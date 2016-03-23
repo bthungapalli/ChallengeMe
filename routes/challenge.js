@@ -128,15 +128,30 @@ router.get('/categories',checkSession.requireLogin,function (request,response,ne
 		challengeService.getSubcribedChallengeIdsForEmail(user.emailId,function(err,challengeIds){
 			if(err)
 				response.send("error");
-			for( var challenge in challenges){
-				for( var id in challengeIds){
-					if(challengeIds[id].challengeId===challenges[challenge]._id){
-						challenges[challenge].isSubcribed=true;
-						break;
-					};
+			
+			solutionService.getSolutionsForChallenges(function(err,count){
+				if(err)
+				response.send("error");
+				
+				for( var challenge in challenges){
+					for( var id in challengeIds){
+						if(challengeIds[id].challengeId===challenges[challenge]._id){
+							challenges[challenge].isSubcribed=true;
+							break;
+						};
+					}
+					
+					for(var id in count){
+						if(challenges[challenge]._id===count[id]._id){
+							challenges[challenge].solutionsCount=count[id].count;
+						}
+					}
 				}
-			}
-			response.send(challenges);
+				
+				response.send(challenges);
+			});
+			
+			
 		});
 		
 	});
@@ -147,7 +162,23 @@ router.get('/mychallenges',checkSession.requireLogin,function (request,response,
 	challengeService.getChallengeForEmailId(emailId,function(err,challenges){
 		if(err)
 			response.send("error");
-		response.send(challenges);
+		
+		solutionService.getSolutionsForChallenges(function(err,count){
+			if(err)
+			response.send("error");
+			
+			for( var challenge in challenges){
+				
+				for(var id in count){
+					if(challenges[challenge]._id===count[id]._id){
+						challenges[challenge].solutionsCount=count[id].count;
+					}
+				}
+			}
+			
+			response.send(challenges);
+		});
+		
 	});
 });
 

@@ -96,7 +96,7 @@
 		</div>
 				<div class="sixteen wide column" style="padding-top: 0px;">
 				<div class="ui teal large label">
-				  Mail Groups 
+				  Notify Groups 
 				</div>
 					 <div class="ui toggle checkbox" ng-repeat="category in categories">
 					  <input id="{{category._id}}"  type="checkbox" value="{{category}}"  ng-checked="checkCategoryForMailGroup(category);"  ng-click="toggleSelection(category)" ng-disabled="challenge.status==='create' || !editChallenge || selectedCategory===category"/>
