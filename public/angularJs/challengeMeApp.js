@@ -1,4 +1,4 @@
-var challengeMeApp=angular.module('challengeMeApp',["ui.router","angularUtils.directives.dirPagination","darthwade.loading","chart.js"]);
+var challengeMeApp=angular.module('challengeMeApp',["ui.router","angularUtils.directives.dirPagination","darthwade.loading","chart.js","ngSanitize"]);
 
 challengeMeApp.config(["$stateProvider",function($stateProvider){
 	

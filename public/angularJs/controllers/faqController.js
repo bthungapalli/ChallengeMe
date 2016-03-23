@@ -3,12 +3,12 @@ angular.module("challengeMeApp").controller("faqController",["$scope","$http","$
 $scope.faq=[
     {
 	    "question":"What is TechWizz?",
-		"answer":"Techwizz is our own platform to share knowledge. We go by the motto of “Sharing is learning”. We as engineers seek google’s help for most of our challenges and some of us are even active in online forums. This platform allows us to seek answers for our challenges from our own elite peer group and also share our incredible learnings.",
+		"answer":"Techwizz is our own platform to share knowledge. We go by the motto of \"Sharing is learning\". We as engineers seek google\'s help for most of our challenges and some of us are even active in online forums. This platform allows us to seek answers for our challenges from our own elite peer group and also share our incredible learnings.",
 		"show":true
     },
     {
         "question":"Do I need to register to Techwizz?",
-    	"answer":"No, you don\’t. You just need to login to Techwizz using your OSI credentials. You need to update your profile post login to be in touch with latest updates on TechWizz.",
+    	"answer":"No, you don\'t. You just need to login to Techwizz using your OSI credentials. You need to update your profile post login to be in touch with latest updates on TechWizz.",
     	"show":false
     },
     {
@@ -18,7 +18,7 @@ $scope.faq=[
      },
      {
          "question":"Do I need to register to Techwizz?",
-     	"answer":"No, you don’t. You just need to login to Techwizz using your OSI credentials. You need to update your profile post login to be in touch with latest updates on TechWizz.",
+     	"answer":"No, you don't. You just need to login to Techwizz using your OSI credentials. You need to update your profile post login to be in touch with latest updates on TechWizz.",
      	"show":false
      },
      {
@@ -83,7 +83,7 @@ $scope.faq=[
      },
      {
          "question":"Whom do I contact if I need a help in operating the site?",
-     	"answer":"you can post a query to techwizz-support@osius.com",
+     	"answer":"you can post a query to <a href='#'>techwizz-support@osius.com</a>",
      	"show":false
      }
     ];
