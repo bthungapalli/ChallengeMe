@@ -4,7 +4,7 @@ $scope.faq=[
     {
 	    "question":"What is TechWizz?",
 		"answer":"Techwizz is our own platform to share knowledge. We go by the motto of “Sharing is learning”. We as engineers seek google’s help for most of our challenges and some of us are even active in online forums. This platform allows us to seek answers for our challenges from our own elite peer group and also share our incredible learnings.",
-		"show":false
+		"show":true
     },
     {
         "question":"Do I need to register to Techwizz?",

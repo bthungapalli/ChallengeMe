@@ -7,8 +7,8 @@
 </div>
 
 <div class="ui grid" ng-show="challenges.length>0">
-
-	<div class="four wide column" style="padding-bottom: 0px;padding-left: 0px;">
+<div class="sixteen wide column" style="text-align: center;padding-top: 0px;">List of challenges..</div>
+	<div class="five wide column" style="padding-bottom: 0px;padding-left: 0px;padding-top: 0px;">
 				<select id="itemsPerPage" name="itemsPerPage" class="ui dropdown" ng-model="itemsPerPage" style="border-radius: 5px;">
 			  <option  value="5">5</option>
 			  <option value="10">10</option>
@@ -16,16 +16,16 @@
 			  <option value="50">50</option>
 			</select> Challenges Per Page
 	</div>
-	<div class="seven wide column" style="position: relative;top: 7px;">
+	<div class="six wide column" style="position: relative;top: 7px;padding-top: 0px;">
 	 <div ng-show="currentTab==='allChallenges'">
-	 <label for="All" ng-class="{boldText:!allChallenges}">Subcribed Categories Challenges</label>
+	 <label for="All" ng-class="{boldText:!allChallenges}">Subcribed Categories</label>
 				<div class="ui toggle checkbox">
 					  <input id="All" type="checkbox" ng-model="allChallenges"  ng-change="fetchAll()" />
-					  <label for="All" ng-class="{boldText:allChallenges}">All Categories Challenges</label>
+					  <label for="All" ng-class="{boldText:allChallenges}">All Categories</label>
 					</div>
 					</div>
 		</div>
-	<div class="five wide column" style="text-align: end;padding-bottom: 0px;padding-right: 0px;">
+	<div class="five wide column" style="text-align: end;padding-bottom: 0px;padding-right: 0px;padding-top: 0px;">
 		
 			<div class="ui  icon input">
 			  <input type="text" ng-model="search" placeholder="Search ...">
@@ -71,7 +71,7 @@
 <h3 style="font-family: Georgia;">{{challengeObj.title | camelCase}}</h3>
 </div>
 <div class="five wide column" ng-show="(currentTab==='myChallenges')"  style="cursor: default !important;text-align: right;padding-top: 5px;padding-bottom: 0px;cursor: pointer">
-<div class="ui teal tag label">{{challengeObj.categories.name | camelCase}} </div>
+<div class="ui teal tag label" style="padding-left: 11px;padding-right: 9px;">{{challengeObj.categories.name | camelCase}} </div>
 
 		
 		<div ng-show="challengeObj.challengeStatus==='Closed' && !challengeObj.learning && challengeObj.status!=='draft'" class="ui small red label">
@@ -82,7 +82,7 @@
 		  	<i class="checkmark icon" style="margin-right: 0px;"></i> {{challengeObj.challengeStatus}}
 		 </div>
 		
-	 <div ng-if="challengeObj.learning" class="ui teal tag label"> {{challengeObj.challengeLearningStatus}} </div>
+	 <div ng-if="challengeObj.learning" class="ui teal tag label" style="padding-left: 11px;padding-right: 9px;"> {{challengeObj.challengeLearningStatus}} </div>
 		 
 <!-- 		 <div ng-if="challengeObj.status==='create'" class="ui small green label">
 		    Created
@@ -95,13 +95,13 @@
 		
 </div>
 <div class="five wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))"  style="cursor: default !important;text-align: right;padding-top: 5px;padding-bottom: 0px;cursor: pointer">
-  <div class="ui teal tag label">{{challengeObj.categories.name | camelCase}} </div>
+  <div class="ui teal tag label" style="padding-left: 11px;padding-right: 9px;">{{challengeObj.categories.name | camelCase}} </div>
 
 		<button type="submit" class="ui mini green button" ng-click="subcribeChallenge(challengeObj);"  type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') || (challengeObj.challengeStatus==='Closed') || challengeObj.learning || challengeObj.createdBy===userDetails.name">
 			  	<i class="thumbs up icon"></i> Accept
 		</button>
 		
-		 <div ng-if="challengeObj.learning" class="ui teal tag label">{{challengeObj.challengeLearningStatus}} </div>
+		 <div ng-if="challengeObj.learning" class="ui teal tag label" style="padding-left: 11px;padding-right: 9px;">{{challengeObj.challengeLearningStatus}} </div>
 		
 		<span ng-if="!challengeObj.learning" >
 		
@@ -123,7 +123,7 @@
 </div>
 
 <div class="sixteen wide column"  style="padding-top: 0px;padding-bottom: 0px;font-family: Georgia;cursor: pointer;padding-left: 8%;">
-	<span ng-bind="!challengeObj.anonymous?challengeObj.createdBy:'Anonymous'"> </span> <i class="calendar green icon"></i>{{challengeObj.created_at | dateFormat}}   <label ng-hide="challengeObj.learning"><strong>|</strong> solutions accepted untill <i class="calendar red icon"></i>{{challengeObj.date | dateFormat}}</label>
+	<span ng-bind="!challengeObj.anonymous?challengeObj.createdBy:'Anonymous'"> </span> <strong><i class="calendar green icon"></i></strong>{{challengeObj.created_at | dateFormat}}   <label ng-hide="challengeObj.learning"><strong>|</strong> solutions accepted untill <strong><i class="calendar red icon"></i></strong>{{challengeObj.date | dateFormat}}</label>
 				<span  ng-show="challengeObj.prize"><strong>| <i class=" large gift icon" style="line-height: inherit;"> </i></strong>Win :   {{challengeObj.prize}} </span>
 				<span ng-show="(currentTab==='myChallenges')" ng-hide="challengeObj.learning || challengeObj.status==='draft' || (challengeObj.challengeStatus==='Open' && currentTab!=='myChallenges')"><strong >| </strong>{{challengeObj.solutions.length}} solutions</span> 
 		

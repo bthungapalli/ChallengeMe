@@ -68,14 +68,36 @@ angular.module('challengeMeApp')
 					}else if(input==="contactUs"){
 						tabName="Contact Us";
 					}else if(input==="createChallenge"){
-						tabName="Post a challenge or share a learning";
+						tabName="Create Challenge";
 					}else if(input==="profile"){
 						tabName="My Profile";
 					}else if(input==="faq"){
-						tabName="Frequently Asked Questions";
+						tabName="FAQ";
 					}else{
 						tabName=input;
 					}
 				  return tabName
 			  };
+}).filter('displayDescriptionForTab', function() {
+	  return function(input) {
+			var tabName=""
+				if(input==="allChallenges"){
+					tabName="List of All challenges (or) Learnings";
+				}else if(input==="myChallenges"){
+					tabName="My Challenges";
+				}else if(input==="subcribedChallenges"){
+					tabName="Subcribed Challenges";
+				}else if(input==="contactUs"){
+					tabName="Feel Free To Contact Us";
+				}else if(input==="createChallenge"){
+					tabName="Post a challenge or share a learning";
+				}else if(input==="profile"){
+					tabName="My Profile";
+				}else if(input==="faq"){
+					tabName="Frequently Asked Questions";
+				}else{
+					tabName=input;
+				}
+			  return tabName
+		  };
 });

@@ -19,5 +19,5 @@ angular.module('challengeMeApp').constant("challengeMeConstants", {
         "errorMessage":"Some thing went wrong.",
         "noChallengeMessage":"No challenges are available."
     }).constant("loadingMessages", {
-        "loginLoadMessage": "authenticating users..."
+        "loginLoadMessage": "authenticating user..."
     })

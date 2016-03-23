@@ -1,12 +1,12 @@
 
 <header style="margin-bottom: 14px;">
 <div class="ui menu headerBackGround" >
-  <!-- <div class="item" style="width: 18%;font-style: oblique;font-weight: bolder;font-size: 23px;color: #018AC6;text-shadow: #018AC6 2px 0px 1px;padding-top: 11px;padding-bottom: 11px;">
-   TECHWIZZ
-  </div> -->
-  <div class="item" style="width:18%;" >
-   <img src="images/title.png" style="width: 81%;" > 
+  <div class="item" style="width: 18%;font-style: oblique;font-weight: bolder;font-size: 23px;color: #018AC6;text-shadow: #018AC6 2px 0px 1px;padding-top: 11px;padding-bottom: 11px;">
+   TechWizz
   </div>
+ <!--  <div class="item" style="width:18%;" >
+   <img src="images/logo.png" style="width: 81%;" > 
+  </div> -->
   <div class="item" ng-click="toggleSideMenu();" style="cursor: pointer;" ng-style="{'background-color': myStyle}">
   <i class="big align justify icon" style="margin-right: 0px;"></i> 
   </div>
@@ -97,7 +97,7 @@
 		</section>
 		<div class="ui grid" style="margin-top: 0px;">
 		
-		<div class="sixteen wide column headerBackGround" style="padding-bottom: 0px;padding-top: 3px;padding-left: 0px;margin-left: 15px;border-bottom: 1px solid #2E4356;"><h3><i class="angle double right icon"></i>{{currentTab | displayTab | camelCase}}</h3></div>
+		<div class="sixteen wide column headerBackGround" style="padding-bottom: 0px;padding-top: 3px;padding-left: 0px;margin-left: 15px;border-bottom: 1px solid #2E4356;"><h3><i class="angle double right icon"></i>{{currentTab | displayDescriptionForTab | camelCase}}</h3></div>
 		</div>
 		
   		<section><div ui-view style="margin-right: 30px;margin-left: 30px;margin-top: 25px;"></div></section>
