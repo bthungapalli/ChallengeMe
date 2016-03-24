@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>Tech Wizz</title>
+  <title>TechWizz</title>
   <link rel="shortcut icon" type="image/png" href="images/logo.png"/>
     <link rel="stylesheet" type="text/css" href="../node_modules/semantic-ui/dist/semantic.css">
    <link rel="stylesheet" type="text/css" href="../node_modules/semantic-ui/dist/components/reset.css">
@@ -52,46 +52,9 @@
 <body ng-app="challengeMeApp" ng-controller="loginController" style="overflow: hidden;">
 <div ui-view class="container" ></div>
 
-<div id="conditions" class="ui modal">
-  <i class="close icon"></i>
-  <div class="header">
-   Terms And Conditions
-  </div>
-    
-    <div class="description" style="padding-left: 30px;padding-right: 30px;">
-     <p> Welcome to Techwizz, the portal where you can post challenges and seek solutions as well as share your learning. Techwizz and its associates provide their services to you, subject to the following conditions. If you visit this website, you accept these conditions. Please read them carefully. Techwizz is a proprietary of OSI Consulting & OSI Technologies.</p>
+<div id="conditions" class="ui modal" ng-include="conditionsTemplate"></div>
+<div id="faq" class="ui modal" ng-include="faqTemplate"></div>
 
-<h5>COPYRIGHT</h5>
-
-<p>
-All content included on this site, such as text, graphics, logos, button icons, images, audio clips, digital downloads, data, compilations is an intellectual property of OSI Consulting & OSI Technologies or its content suppliers and protected by international copyright laws. The compilation of all the content on this site is the exclusive property of Techwizz.
-If you think the content, information or material is violating your copyrights, please contact: 
-
-
-<a href="#">techwizz-support@osius.com</a></p>
-
-
-<h5>DISCLAIMER OF ENDORSEMENT</h5>
-<p>
-The information posted on this website may contain hypertext links or pointers to information created and maintained by other public and private organizations. These links and pointers are provided for visitors’ convenience. Techwizz does not control or guarantee the accuracy, relevance, timeliness, or completeness of any linked information.
-Reference in this website to any specific commercial products, processes, or services, or the use of any trade, firm, or corporation name is for the information and convenience of the site's visitors, and does not constitute endorsement or recommendation.
-The views and opinions of participants expressed herein shall not be used for advertising or product endorsement purposes.
-
-</p>
-<h5>DISCLAIMER OF LIABILITY</h5>
-<p>
-Techwizz does not assume any legal liability for the accuracy, completeness, or usefulness of any information, product, or process disclosed herein, nor freedom from computer virus, and do not represent that use of such information, product, or process would not infringe on privately owned rights.
-Techwizz has the right but not the obligation to monitor and edit or remove any activity or content. It takes no responsibility and assumes no liability for any content posted by you or any third party.
-
-</p>
-<h5>QUESTIONS</h5>
-<p>
-Questions regarding our Terms of Conditions or other policy related material can be directed to our staff by emailing us at: <a href="#">techwizz-support@osius.com</a>
-   </p> </div>
-  <div class="actions">
-   
-  </div>
-</div>
 
 </body>
 

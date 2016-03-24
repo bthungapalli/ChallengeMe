@@ -31,6 +31,11 @@
     right: 99%;
     top: 2px;
 }
+
+.faq:hover{
+background-color:  #21BA45 !important;
+width: 76px !important;
+}
     
 </style>
 
@@ -38,12 +43,17 @@
 <img src="images/loginTemplate.png" style="width: 100%;height:100%;">
 </div>
 
+
 <div style="position: absolute;left:65%;width: 35%;height:100%;">
 
  <div dw-loading="authenticate"  style="width: 100%;height:100%;">
     
 <div style="padding:7%;height:100%;">
-
+<div class="faq" style="position: absolute;right:-2px;top: 3%;width: 65px;height: 40px;background-color:#4DA762;color:white;padding-top: 9px;border-radius: 6px;padding-left: 7px;cursor: pointer;font-weight: bolder;" ng-click="showConditions('faq');">
+<i class="  help icon" style="
+    margin-right: 0px;
+"></i> FAQ
+</div>
 
 <div style="">
 <img  src="images/logo.png" style="vertical-align: middle;"> 
@@ -95,7 +105,7 @@
       <button class="large fluid ui positive button" ng-disabled="user.userName.length===0 || user.password.length===0" ng-click="authenticateUser()">
       <i class=" lock icon"></i>Secure Login</button>
       
-      <span style="float: right;font-size: small;">By Logging in you agree to our <a href="#" ng-click="showConditions();">T&C</a></span>
+      <span style="float: right;font-size: small;">By Logging in you agree to our <a href="#" ng-click="showConditions('termsAndConditions');">T&C</a></span>
 	 
       </div>
 
@@ -121,7 +131,7 @@
 <span style="position: relative;margin-top: 10px;bottom: -4px;"><strong >@2016 OSI Technologies. All rights reserved</strong></span>
    <span style="float:right;margin-top: 4px;opacity: 0.6;padding-right:10px;">Innovate Integrate Operate </span>
 
-</div><!-- EF5C5C -->
+</div>
 
 
 

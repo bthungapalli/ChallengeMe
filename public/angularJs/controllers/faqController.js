@@ -1,5 +1,5 @@
 angular.module("challengeMeApp").controller("faqController",["$scope","$http","$state","$rootScope","challengeMeConstants",function($scope,$http,$state,$rootScope,challengeMeConstants){
-	
+	$scope.faqTemplate="angularJs/partials/faq.html";
 $scope.faq=[
     {
 	    "question":"What is TechWizz?",

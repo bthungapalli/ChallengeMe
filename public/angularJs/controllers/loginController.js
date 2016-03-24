@@ -43,8 +43,17 @@ angular.module("challengeMeApp").controller("loginController",["$scope","$http",
 			};
 		};
 		
-		$scope.showConditions=function(){
-			$('#conditions').modal('setting', 'transition', 'horizontal flip').modal('show');
+		$scope.showConditions=function(modalName){
+		/*	$scope.faqTemplate="";
+			$scope.conditionsTemplate="";*/
+			if(modalName==="termsAndConditions"){
+				$scope.conditionsTemplate="angularJs/partials/termsAndConditions.html";
+				$('#conditions').modal('setting', 'transition', 'horizontal flip').modal('show');
+			}else{
+				$scope.faqTemplate="angularJs/partials/faqInLogin.html";
+				$('#faq').modal('setting', 'transition', 'horizontal flip').modal('show');
+			}
+			
 		};
 
 

@@ -48,7 +48,7 @@ challengeMeApp.config(["$stateProvider",function($stateProvider){
 	}).state("main.faq",{
 		url: "/faq",
 		controller:"faqController",
-		templateUrl : "angularJs/partials/FAQ.html"
+		templateUrl : "angularJs/partials/faq.html"
 	});
 	
 }]);
