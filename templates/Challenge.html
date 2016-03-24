@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -6,7 +7,7 @@
    
   <![endif]-->
   <style>
-  	td{border:1px solid; font-family: Garamond, Georgia, serif;color: #656565; font-size:15px;}
+  	th,td{border:1px solid; font-family: Garamond, Georgia, serif;color: #656565; font-size:18px;}
   
   </style>
   </head>
@@ -30,12 +31,11 @@
 		<h2 style=" font-family: Garamond, Georgia, serif;color: #656565;font-size: 1.8em;margin-bottom: 6px">
 		A New Challenge has been Posted.
 		</h2>
-		<table style:"width:auto;border-collapse: collapse;">
+		<table  style="border-spacing: inherit;">
 			<thead>
-				<tr>
+				<tr style="background-color: lightgray;">
 				<th>Owner</th>
 				<th>Title</th>
-				<th>Description</th>
 				<th>Categories</th>
 				<th>Prize</th>
 				<th>LastDate</th></tr>
@@ -44,15 +44,16 @@
 				<tr>
 				<td><p style="font-family:Garamond,Georgia,serif;color:#656565;margin-bottom:6px;font-weight: bolder;"> {{username}}</p></td>
 				<td><p style="font-family:Garamond,Georgia,serif;color:#656565;margin-bottom:6px;font-weight: bolder;"> {{challengeName}}</p></td>
-				<td><p style="font-family:Garamond,Georgia,serif;color:#656565;margin-bottom:6px;font-weight: bolder;"> {{description}}</p></td>
 				<td><p style="font-family:Garamond,Georgia,serif;color:#656565;margin-bottom:6px;font-weight: bolder;"> {{categoryName}}</p></td>
 				<td><p style="font-family:Garamond,Georgia,serif;color:#656565;margin-bottom:6px;font-weight: bolder;"> {{prize}}</p></td>
 				<td><p style="font-family:Garamond,Georgia,serif;color:#656565;margin-bottom:6px;font-weight: bolder;"> {{lastDate}}</p></td>
 				</tr>
 			</tbody>
 		</table>
-			
-			<span style=" font-family: Garamond, Georgia, serif;color: #656565;font-size: 1.4em;margin-bottom: 6px">
+			<h2 style=" font-family: Garamond, Georgia, serif;color: #656565;font-size: 1.8em;margin-bottom: 6px">
+		<u>Description: </u><p style="font-family:Garamond,Georgia,serif;color:#656565;margin-bottom:6px;font-weight: bolder;"> {{description}}</p>
+		</h2>
+			<span style=" font-family: Garamond, Georgia, serif;color: #656565;font-size: 2em;margin-bottom: 6px">
 			
 			For more details login to  <a href="{{appURL}}" target="_blank">{{appURL}}</a></span>
 			
