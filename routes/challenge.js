@@ -213,7 +213,7 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 			
 				var context =  {
 						title : nconf.get("mail").appName,
-						ownerName : challenge.createdByEmailId.substr(0,challenge.createdByEmailId.indexOf('@')),
+						ownerName : challenge.createdBy,
 						challengeTitle : challenge.title,
 						userName : user.name,
 						comments : postedComment,
