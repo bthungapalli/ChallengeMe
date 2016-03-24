@@ -1,7 +1,7 @@
 <div class="ui stackable grid">
 		<div class="sixteen wide column" style="padding-bottom: 10px;" > 
 		 
-				<button class="ui tiny primary button" ng-click="viewSolutionComments=!viewSolutionComments"  style="padding-right: 0px;padding-left: 11px;">
+				<button class="ui tiny primary button" ng-click="viewSolutionComments=!viewSolutionComments"  style="padding-right: 0px;padding-left: 11px;" ng-disabled="solutionObj.comments===undefined">
 					   <i class="comments outline icon"></i>Comments ({{solutionObj.comments.length}}) <i ng-show="!viewSolutionComments" class=" large angle down icon"></i><i ng-show="viewSolutionComments"class=" large angle up icon"></i>
 				</button>
 				<a href="#" ng-hide="solutionObj.userLiked || currentTab==='subcribedChallenges'" ng-click="like(solutionObj);"><i class="thumbs up blue icon"></i> Like</a>

@@ -23,7 +23,7 @@
          
          <div class="ui relaxed divided list" >
 		  <div id="userDetails" class="item" style="text-align: center;border-bottom: 2px solid black;padding: 23px 0px;" >
-			     <img title="{{userDetails.name}}" class="ui tiny image profileDimensions" ng-class="{profileDimensions:!shortMenu,profileDimensionsForShortMenu:shortMenu}"  ng-src="{{userPhotoPath}}" style="border:2px solid white;">
+			     <img title="{{userDetails.name}}" class="ui tiny image profileDimensions" ng-class="{profileDimensions:!shortMenu,profileDimensionsForShortMenu:shortMenu}"  ng-src="{{userPhotoPath}}" style="border:2px solid white;border-radius: 15%;">
 			    
           </div>
             <div class="item sideMenu" title="Dashboard" style=" border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;padding-bottom: 0px;padding-top: 0px;"    ng-class="{activeSideMenu:currentTab==='dashboard'}">
@@ -97,7 +97,7 @@
 		</section>
 		<div class="ui grid" style="margin-top: 0px;">
 		
-		<div class="sixteen wide column headerBackGround" style="padding-bottom: 0px;padding-top: 3px;padding-left: 0px;margin-left: 15px;border-bottom: 1px solid #2E4356;"><h3><i class="angle double right icon"></i>{{currentTab | displayDescriptionForTab | camelCase}}</h3></div>
+		<div class="sixteen wide column headerBackGround" style="padding-bottom: 0px;padding-top: 3px;padding-left: 0px;margin-left: 15px;border-bottom: 1px solid #2E4356;"><h3><i class="angle double right icon"></i>{{currentTab | displayDescriptionForTab}}</h3></div>
 		</div>
 		
   		<section><div ui-view style="margin-right: 30px;margin-left: 30px;margin-top: 25px;"></div></section>

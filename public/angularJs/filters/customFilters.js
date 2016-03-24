@@ -82,19 +82,21 @@ angular.module('challengeMeApp')
 	  return function(input) {
 			var tabName=""
 				if(input==="allChallenges"){
-					tabName="List of All challenges (or) Learnings";
+					tabName="List of all Challenges & Learnings";
 				}else if(input==="myChallenges"){
-					tabName="My Challenges";
+					tabName="My Challenges & Learnings";
 				}else if(input==="subcribedChallenges"){
 					tabName="Subcribed Challenges";
 				}else if(input==="contactUs"){
-					tabName="Feel Free To Contact Us";
+					tabName="Feel free to Contact us";
 				}else if(input==="createChallenge"){
-					tabName="Post a challenge or share a learning";
+					tabName="Post a Challenge (or) Share a Learning";
 				}else if(input==="profile"){
 					tabName="My Profile";
 				}else if(input==="faq"){
 					tabName="Frequently Asked Questions";
+				}else if(input==="dashboard"){
+					tabName="Dashboard";
 				}else{
 					tabName=input;
 				}

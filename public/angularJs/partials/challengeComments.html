@@ -6,10 +6,11 @@
 				<a href="#" ng-hide="userLikedChallenge || currentTab==='subcribedChallenges'" ng-click="likeChallenge(challengeObj);"><i class="thumbs up blue icon"></i> Like</a>
 			<a href="#"   ng-hide="!userLikedChallenge || currentTab==='subcribedChallenges'"  ng-click="unLikeChallenge(challengeObj);"><i class="thumbs down blue icon"></i> Unlike</a>
 		 </div> 
-		 <div class="sixteen wide column" ng-show="viewComments"> 
+		 <div class="sixteen wide column" ng-show="viewComments" style="padding-top: 0px;"> 
 		    
 			<div class="ui threaded comments" style="max-width:100%">
- 				 <h3 ng-show="challenge.comments.length>0" class="ui dividing header">Comments</h3>
+ 				<!--  <h3  class="ui dividing header">Comments</h3> -->
+ 				 <hr ng-show="challenge.comments.length>0">
 				  <div class="comment" ng-repeat="comment in challenge.comments">
 				    <div class="content">
 				      <a class="author">{{comment.userName}}</a>
