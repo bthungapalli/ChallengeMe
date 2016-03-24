@@ -35,10 +35,10 @@
 		"appName":"TechWizz"
    },
    "profile":{
-	   "profilePath":"/apps/TechWizz/uploads/profiles/"
+	   "profilePath":"/apps/TechWizz/testing/uploads/profiles/"
    },
    "challenge":{
-	   "attachmentPath":"/apps/TechWizz/uploads/challenges/"
+	   "attachmentPath":"/apps/TechWizz/testing/uploads/challenges/"
    },
    "smtpConfig":{
 	   "host":"outlook.office365.com",
