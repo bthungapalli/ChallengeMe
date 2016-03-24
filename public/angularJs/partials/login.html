@@ -32,10 +32,26 @@
     top: 2px;
 }
 
+.faq:before{
+    position: absolute;
+    width: 43px;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 16px solid transparent;
+    border-right: 20px solid #4DA762;
+    border-left: 10px solid transparent;
+    display: block;
+    content: " ";
+    right: 99%;
+    top: 2px;
+}
+
+
 .faq:hover{
-background-color:  #21BA45 !important;
 width: 76px !important;
 }
+    
+    
     
 </style>
 
@@ -49,7 +65,7 @@ width: 76px !important;
  <div dw-loading="authenticate"  style="width: 100%;height:100%;">
     
 <div style="padding:7%;height:100%;">
-<div class="faq" style="position: absolute;right:-2px;top: 3%;width: 65px;height: 40px;background-color:#4DA762;color:white;padding-top: 9px;border-radius: 6px;padding-left: 7px;cursor: pointer;font-weight: bolder;" ng-click="showConditions('faq');">
+<div class="faq" style="position: absolute;right:-5px;top: 3%;width: 65px;height: 40px;background-color:#4DA762;color:white;padding-top: 9px;border-radius: 6px;padding-left: 7px;cursor: pointer;font-weight: bolder;" ng-click="showConditions('faq');">
 <i class="  help icon" style="
     margin-right: 0px;
 "></i> FAQ
