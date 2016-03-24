@@ -47,9 +47,11 @@
 					Work phone
 					</div>
 					<div  class="thirteen wide column">
+					<form name="form">
 					<div class="ui input focus">
-					 <input type="text" ng-model="userDetails.workPhone" ng-disabled="!editProfile" maxlength="4"/>   
-					 </div> (Extn)
+					 <input type="text" id="input" ng-model="userDetails.workPhone" ng-disabled="!editProfile" maxlength="4" name="input" ng-pattern="regex"/> 
+					 </div> (Extn)<label ng-show="!form.input.$valid" style="color:red;">Please enter only integers.</label>
+					  </form>  
 					</div>
 					<div class="three wide column" style="padding-top: 24px;">
 					Location
@@ -85,7 +87,7 @@
 						<button class="ui primary button" ng-click="edit();" ng-show="!editProfile">
 					  	<i class="write icon"  style="margin-right: 0px;"></i>Edit
 						</button>
-						<button class="ui positive button" ng-click="updateProfile();" ng-show="editProfile">
+						<button class="ui positive button" ng-click="updateProfile();" ng-show="editProfile" ng-disabled="!form.input.$valid">
 					  	<i class="checkmark icon"  style="margin-right: 0px;"></i> Update
 						</button>
 					</div>
