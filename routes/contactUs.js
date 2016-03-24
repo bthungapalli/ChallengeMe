@@ -9,7 +9,7 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 	var user=request.session.user;
 	subject =  nconf.get("mail").subject+contactUs.subject;
 	var context =  {
-			title : 'ChallengeMe',
+			title : nconf.get("mail").appName,
 			username : user.name,
 			query:contactUs.query,
 			appName : nconf.get("mail").appName

@@ -18,7 +18,7 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 			response.send("error");}
 		else{
 		/*var context =  {
-				title : 'ChallengeMe',
+				title : nconf.get("mail").appName,
 				owner : challenge.createdBy,
 				challengeName : challenge.title,
 				user:user.name

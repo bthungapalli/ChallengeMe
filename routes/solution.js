@@ -47,7 +47,7 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 		
 		if(solution!=="solution Needed"){
 			var context =  {
-					title : 'ChallengeMe',
+					title : nconf.get("mail").appName,
 					solutionBy : solution.solutionBy,
 					challengeTitle : challengeTitle,
 					userName : user.name,

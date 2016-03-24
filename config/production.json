@@ -30,12 +30,15 @@
    },
    "mail":{
 	   "challengeMeSupport":"bthungapalli@osius.com",
-		"subject":"[ChallengeME] ",
+		"subject":"[TechWizz] ",
 		"appURL" : "http://techwizz.osius.com",
-		"appName":"ChallengeMe"
+		"appName":"TechWizz"
    },
    "profile":{
-	   "profilePath":"F:/"
+	   "profilePath":"/apps/TechWizz/uploads/profiles/"
+   },
+   "challenge":{
+	   "attachmentPath":"/apps/TechWizz/uploads/challenges/"
    },
    "smtpConfig":{
 	   "host":"outlook.office365.com",

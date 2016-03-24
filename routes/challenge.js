@@ -89,7 +89,7 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 				
 						
 				var context =  {
-						title : 'ChallengeMe',
+						title : nconf.get("mail").appName,
 						username : challenge.anonymous ? "Anonymous":user.name,
 						categoryName:categoryNames,
 						challengeName : challenge.title,
@@ -212,7 +212,7 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 			ids.push(challenge.createdByEmailId);
 			
 				var context =  {
-						title : 'ChallengeMe',
+						title : nconf.get("mail").appName,
 						ownerName : challenge.createdByEmailId.substr(0,challenge.createdByEmailId.indexOf('@')),
 						challengeTitle : challenge.title,
 						userName : user.name,
