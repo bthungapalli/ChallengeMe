@@ -13,7 +13,10 @@
 				<h3 style="font-family: Georgia;font-weight: 100;font-size: initial;"> {{challenge.description }}</h3>
 		 </div> 
 
-
+<div class="sixteen wide column">
+	<b>Tags:</b> {{challenge.tag}}
+			</div>
+</div>
 <div class="sixteen wide column" ng-show="{{challenge.file.length>0}}"  style="cursor: pointer;">
 	<b>Attachment:</b>
 					<a href="challenge/download/{{challenge.file}}">{{challenge.file}}.</a>

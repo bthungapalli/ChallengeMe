@@ -101,13 +101,22 @@
 					  <input id="{{category._id}}" type="checkbox" value="{{category}}" ng-checked="selectedCategory==category" ng-disabled="selectedCategory==category"  ng-click="toggleSelection(category)"/>
 					  <label for="{{category._id}}" style="padding-left: 50px;padding-right:12px;">{{category.name | camelCase}} </label>
 					</div>
-		</div>		
+		</div>	
+			<div class="sixteen wide column" style="padding-top: 0px;">
+				<div class="ui fluid labeled input focus">
+				  <div class="ui teal label">
+				   Tag*
+				  </div>
+				 <input type="text" ng-model="challenge.tag" /> <div class = label> (Ex.Spring,Cache,Security ...) </div>
+				</div> 
+		</div>	
+			
 		<div class="sixteen wide center aligned column" >
 
 				<div class="ui buttons">
-					  <button class="ui blue button" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (!challenge.learning?challenge.date.length===0:false) || (challenge.categories.length===0) )" ng-click="challenge.status='draft';createChallenge()"><i class="save icon"  style="margin-right: 0px;"></i> Draft</button>
+					  <button class="ui blue button" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (!challenge.learning?challenge.date.length===0:false) || (challenge.categories.length===0)  || (challenge.tag.length===0) )" ng-click="challenge.status='draft';createChallenge()"><i class="save icon"  style="margin-right: 0px;"></i> Draft</button>
 					  <div class="or"></div>
-					  <button class="ui positive button"  ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (!challenge.learning?challenge.date.length===0:false) || (challenge.categories.length===0))" ng-click="challenge.status='create';createChallenge()"><i class="checkmark icon"  style="margin-right: 0px;"></i> Create</button>
+					  <button class="ui positive button"  ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (!challenge.learning?challenge.date.length===0:false) || (challenge.categories.length===0)|| (challenge.tag.length===0))" ng-click="challenge.status='create';createChallenge()"><i class="checkmark icon"  style="margin-right: 0px;"></i> Create</button>
 				</div>
 		</div>
 		

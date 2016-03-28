@@ -40,6 +40,7 @@ router.post('/authenticate', function(request, response,next) {
 					  });
 				}
 				catch(err) {
+					console.log("Error:::",err);
 					  response.send("Invalid Credentials");
 				}
 			 

@@ -14,7 +14,7 @@
 	   "Db":"challengeMeDB"
    },
    "impact":{
-	   "URL":"http://impact.osius.com:7070/impact"
+	   "URL":"impact.osius.com"
    },
    "routes":{
 	   "login":"/",

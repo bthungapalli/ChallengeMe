@@ -5,7 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var qt   = require('quickthumb');
 var session = require('client-sessions');
 //var busboy = require('connect-busboy');
 
@@ -47,7 +46,6 @@ var routes=nconf.get('routes');
 /************   mongo connection  ****************/
 mongoose.connect('mongodb://'+mongoDbConnection.host+'/'+mongoDbConnection.Db);
 
-app.use(qt.static(__dirname + '/'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

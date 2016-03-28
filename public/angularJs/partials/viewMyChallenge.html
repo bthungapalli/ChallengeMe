@@ -103,12 +103,21 @@
 					  <label for="{{category._id}}" style="padding-left: 50px;padding-right: 8px;">{{category.name | camelCase}} </label>
 					</div>
 		</div>
+		<div class="sixteen wide column" style="padding-top: 0px;">
+				<div class="ui fluid labeled input focus">
+				  <div class="ui teal label">
+				   Tag*
+				  </div>
+				 <input type="text" ng-model="challenge.tag" placeholder="Comma Seperated Tags (eg. Spring,Cache,Security ...)"/> 
+				</div> 
+		</div>
+		
 		<div class="sixteen wide center aligned column">
 		
-			<button type="submit" class="ui small primary button"   ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (!challenge.learning?challenge.date.length===0:false))" ng-click="challenge.status='draft';saveChallenge(challengeObj);edit=!edit" ng-show="editChallenge && challenge.status==='draft'">
+			<button type="submit" class="ui small primary button"   ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (!challenge.learning?challenge.date.length===0:false)|| (challenge.tag.length===0))" ng-click="challenge.status='draft';saveChallenge(challengeObj);edit=!edit" ng-show="editChallenge && challenge.status==='draft'">
 			  	<i class="save icon"  style="margin-right: 0px;"></i> Draft
 			</button>
-			<button type="submit" class="ui small positive button" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (!challenge.learning?challenge.date.length===0:false) || (challenge.categories.length===0))" ng-click="challenge.status='create';saveChallenge(challengeObj);edit=!edit" ng-show="editChallenge">
+			<button type="submit" class="ui small positive button" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (!challenge.learning?challenge.date.length===0:false) || (challenge.categories.length===0)|| (challenge.tag.length===0))" ng-click="challenge.status='create';saveChallenge(challengeObj);edit=!edit" ng-show="editChallenge">
 			  	<i class="checkmark icon"  style="margin-right: 0px;"></i> Submit
 			</button>
 		</div>
