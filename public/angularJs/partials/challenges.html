@@ -66,7 +66,7 @@
 
 <div class="sixteen wide column">
 
-<div class="ui grid" ng-click="getChallenge(challengeObj);">  <img class="ui tiny image" ng-src="profile/imagePath/emailId/{{challengeObj.createdByEmailId}}/number/12" style="position: absolute;width: 7%;height:100%;padding-left: 0px;padding-right: 0px;">
+<div class="ui grid" ng-click="getChallenge(challengeObj);">  <img class="ui tiny image" ng-src="{{challengeObj.profileImageOfChallengeOwner}}" style="position: absolute;width: 7%;height:100%;padding-left: 0px;padding-right: 0px;">
 <div class="eleven wide column" style="padding-bottom: 0px;padding-top: 5px;cursor: pointer;padding-left: 8%;">
 <h3 style="font-family: Georgia;">{{challengeObj.title | camelCase}}</h3>
 </div>

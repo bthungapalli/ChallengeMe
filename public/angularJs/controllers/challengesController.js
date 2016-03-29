@@ -30,7 +30,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 					challenge.solutionStatus=challenge.solutions[0].status;
 				}
 			}
-			
+			challenge.profileImageOfChallengeOwner="profile/imagePath/emailId/"+challenge.createdByEmailId+"/number/"+Math.random();
 		});
 		$scope.challenges=challenges;
 	};
