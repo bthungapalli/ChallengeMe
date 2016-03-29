@@ -47,6 +47,7 @@ angular.module("challengeMeApp").controller("loginController",["$scope","$http",
 		/*	$scope.faqTemplate="";
 			$scope.conditionsTemplate="";*/
 			if(modalName==="termsAndConditions"){
+				console.log("Modal Name:::",modalName);
 				$scope.conditionsTemplate="angularJs/partials/termsAndConditions.html";
 				$('#conditions').modal('setting', 'transition', 'horizontal flip').modal('show');
 			}else if(modalName==="contactUs"){

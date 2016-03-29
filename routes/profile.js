@@ -40,16 +40,20 @@ router.post('/update', checkSession.requireLogin,function(request, response,next
 	router.get('/imagePath/emailId/:emailId/number/:randomNumber',checkSession.requireLogin,function(req,res,err){
 		var filename = req.params.emailId+".jpg";
 		var defaultPic = "/../public/images/defaultphoto.jpg";
+		var annonPic = "/../public/images/anonomus.jpg";
 		console.log("profile::::::::"+nconf.get("profile").profilePath)
 		var absolutePath = nconf.get("profile").profilePath+filename;
-		
-		try{
-			var fd=fileSystem.openSync(path.resolve(absolutePath),'r');
-			fileSystem.closeSync(fd);
-			res.sendFile(path.resolve(absolutePath));
-		}catch(err){
-			res.sendFile(path.resolve(__dirname+defaultPic));
-		}
+		if(req.params.emailId === 'Anonymous'){
+			res.sendFile(path.resolve(__dirname+annonPic));
+		}else{
+			try{
+				var fd=fileSystem.openSync(path.resolve(absolutePath),'r');
+				fileSystem.closeSync(fd);
+				res.sendFile(path.resolve(absolutePath));
+			}catch(err){
+				res.sendFile(path.resolve(__dirname+defaultPic));
+			}
+		}	
 		
 			});
 	
