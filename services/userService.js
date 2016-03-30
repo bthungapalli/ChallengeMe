@@ -2,13 +2,14 @@ var userModel=require("../models/userModel");
 var catModel     = require("../models/catModel"); 
 var counterModel     = require("../models/counterModel"); 
 var locationModel = require("../models/locationModel");
+var nconf = require('nconf');
 
 var userService =function(){
 
 return{
 
 createOrSaveUser : function(userDetails,categories, callback){
-	 var path = "/Users/bthungapalli/Documents/uploads/";
+	 var path = nconf.get("profile").profilePath;
     var query = userModel.findOne({"emailId":userDetails.emailId});
     query.exec(function(err, users){
         if(err)
