@@ -97,7 +97,9 @@ angular.module('challengeMeApp')
 					tabName="Frequently Asked Questions";
 				}else if(input==="dashboard"){
 					tabName="Dashboard";
-				}else{
+				}else if(input==="categories"){
+					tabName="Add or Update Categories";
+				}else {
 					tabName=input;
 				}
 			  return tabName

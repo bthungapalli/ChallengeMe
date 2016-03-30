@@ -103,12 +103,12 @@
 					  <label for="{{category._id}}" style="padding-left: 50px;padding-right: 8px;">{{category.name | camelCase}} </label>
 					</div>
 		</div>
-		<div class="sixteen wide column" style="padding-top: 0px;">
+		<div class="ten wide column" style="padding-top: 0px;">
 				<div class="ui fluid labeled input focus">
 				  <div class="ui teal label">
 				  <i class="tags icon" style="margin-right:0px;"></i> Tag*
 				  </div>
-				 <input type="text" ng-model="challenge.tag" placeholder="Comma Seperated Tags (eg. Spring,Cache,Security ...)"/> 
+				 <input type="text" ng-model="challenge.tag" />  <div class = label> <span style="font-size: smaller;"> (Ex.Spring,Cache,Security ...)</span>  </div>
 				</div> 
 		</div>
 		
