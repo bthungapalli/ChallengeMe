@@ -52,7 +52,8 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 					challengeTitle : challengeTitle,
 					userName : user.name,
 					comments : postedComment,
-					appName : nconf.get("mail").appName
+					appName : nconf.get("mail").appName,
+					contextPath : nconf.get("context").path
 				};
 			mailUtil.sendMail(_.uniq(ids),nconf.get('mail').challengeMeSupport,subject,'Comments_Solutions.html',context);
 			

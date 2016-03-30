@@ -45,6 +45,9 @@
 	   "port":587,
 	   "authUser":"bthungapalli@osius.com",
 	   "authPassword":"Eeshu@05"
-   }
+   },
+   "context":{
+	   	"path":"http://localhost:8123/images/logo.png"
+  }
    
 }

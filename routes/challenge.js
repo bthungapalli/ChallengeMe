@@ -97,7 +97,8 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 						prize : challenge.prize,
 						lastDate : challenge.date,
 						appURL : nconf.get("mail").appURL,
-						appName : nconf.get("mail").appName
+						appName : nconf.get("mail").appName,
+						contextPath : nconf.get("context").path
 						
 					};
 
@@ -217,7 +218,8 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 						challengeTitle : challenge.title,
 						userName : user.name,
 						comments : postedComment,
-						appName : nconf.get("mail").appName
+						appName : nconf.get("mail").appName,
+						contextPath : nconf.get("context").path
 					};
 				mailUtil.sendMail(_.uniq(ids),nconf.get('mail').challengeMeSupport,subject,'Comments_Challenges.html',context);
 				response.json(challenge);
