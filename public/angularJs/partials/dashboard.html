@@ -33,7 +33,7 @@
 				<div class="ui secondary segment">Total Users : <b>{{userCount}}</b></div><br>
 				<div class="ui secondary segment">Total Solutions : <b>{{solutionCount}}</b></div>
 			</div>
- <div class="ten wide column ui secondary segment"  ng-show="userDetails.adminIndicator!==0">
+ <div class="ten wide column ui secondary segment"  ng-show="userDetails.adminIndicator===0">
 				<canvas id="bar" class="chart chart-bar" chart-data="barBUData.data" chart-labels="barBUData.labels" chart-series="barBUData.series" style="width:100%; height:200px"></canvas>
 	<p></p><label><b>Challenges/Learnings Posted by Location</b></label>
 	</div>		

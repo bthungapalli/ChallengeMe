@@ -11,7 +11,8 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 			"description":"",
 			"date":"",
 			"prize":"",
-			"status":""
+			"status":"",
+			"tag":""
 	};
 	$scope.editChallenge=false;
 	$scope.challengeTemplate;

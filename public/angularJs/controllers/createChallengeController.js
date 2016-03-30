@@ -12,7 +12,8 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 			"status":"",
 			"learning":false,
 			"anonymous":false,
-			"mailGroups":[]
+			"mailGroups":[],
+			"tag":""
 	};
 	 $(":file").jfilestyle({placeholder: "",buttonText: "Browse",'inputSize': '60%'});
 	 $('#uploadForm').submit(function() {
