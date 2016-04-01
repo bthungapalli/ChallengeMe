@@ -58,7 +58,7 @@
 		</div>			
 		<div class="sixteen wide column">
 				<div class="ui teal large label">
-				  Categories{{challenge.categories}}
+				  Categories
 				</div>
 				 <span ng-repeat="category in categories" >
 					 <div class="ui radio checkbox">
@@ -69,7 +69,7 @@
 		</div>
 		<div class="sixteen wide column" style="padding-top: 0px;">
 				<div class="ui teal large label">
-				  Mail Groups {{challenge.mailGroups}}
+				  Mail Groups
 				</div>
 					 <div class="ui toggle checkbox" ng-repeat="category in categories">
 					  <input id="{{category._id}}" type="checkbox" value="{{category}}" ng-checked="selectedCategory==category" ng-disabled="selectedCategory==category"  ng-click="toggleSelection(category)"/>
