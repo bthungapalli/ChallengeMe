@@ -7,7 +7,7 @@
 </div>
 
 <div class="ui grid" ng-show="challenges.length>0">
-<div ng-show="currentTab==='allChallenges'" class="sixteen wide column" style="text-align: center;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 48px;">List of challenges related to...</div>
+<div ng-show="currentTab==='allChallenges'" class="sixteen wide column" style="text-align: center;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 48px;">Show List related to...</div>
 	<div class="five wide column" style="padding-bottom: 0px;padding-left: 0px;padding-top: 0px;">
 				<select id="itemsPerPage" name="itemsPerPage" class="ui dropdown" ng-model="itemsPerPage" style="border-radius: 5px;">
 			  <option  value="5">5</option>
@@ -97,7 +97,7 @@
 <div class="five wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))"  style="cursor: default !important;text-align: right;padding-top: 5px;padding-bottom: 0px;cursor: pointer">
   <div class="ui teal tag label" style="padding-left: 11px;padding-right: 9px;">{{challengeObj.categories.name | camelCase}} </div>
 
-		<button type="submit" class="ui mini green button" ng-click="subcribeChallenge(challengeObj);"  type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') || (challengeObj.challengeStatus==='Closed') || challengeObj.learning || challengeObj.createdBy===userDetails.name">
+		<button type="submit" class="ui medium green label" ng-click="subcribeChallenge(challengeObj);"  type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') || (challengeObj.challengeStatus==='Closed') || challengeObj.learning || challengeObj.createdBy===userDetails.name">
 			  	<i class="thumbs up icon"></i> Accept
 		</button>
 		

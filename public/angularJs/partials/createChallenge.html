@@ -5,11 +5,11 @@
 {{errorMessage}}
 </div>
 </div>
-<div  ng-if="successMessage" class="ui green floating  message">
+<!-- <div  ng-if="successMessage" class="ui green floating  message">
 <div class="header">
 {{successMessage}}
 </div>
-</div>
+</div> -->
 
 <div class="ui stackable grid">
 		<div class="ten wide column" style="padding-bottom: 0px;"> 
@@ -102,14 +102,14 @@
 					  <label for="{{category._id}}" style="padding-left: 50px;padding-right:12px;">{{category.name | camelCase}} </label>
 					</div>
 		</div>	
-			<div class="ten wide column" style="padding-top: 0px;">
+			<div class="five wide column" style="padding-top: 0px;">
 				<div class="ui fluid labeled input focus">
 				  <div class="ui teal label">
 				  <i class="tags icon" style="margin-right:0px;"></i> Tags*
 				  </div>
 				 <input type="text" ng-model="challenge.tag" /><br>
 				</div> 
-			<div class = label> <span style="font-size: smaller;"> (Ex.Spring,Cache,Security ...)</span> </div> 
+			<div class = label> <span style="font-size: smaller;color:red;"> (Ex.Spring,Cache,Security ...)</span> </div> 
 		</div>	
 			
 		<div class="sixteen wide center aligned column" >

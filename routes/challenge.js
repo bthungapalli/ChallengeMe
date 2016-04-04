@@ -103,7 +103,6 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 					};
 
 				if(ids.length>0 && !challenge.isCreated)
-					
 				mailUtil.sendMail(ids,nconf.get('mail').challengeMeSupport,subject,template,context);
 				response.send("created");
 			 });

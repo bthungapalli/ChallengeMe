@@ -71,7 +71,7 @@ var dashboardService = function() {
 		 
 	 },
 	 getSolutionsCount:function(callbackUserCount){
-		 solutionsModel.count({},function(err,result){
+		 solutionsModel.count({status:"create"},function(err,result){
 					if (err) {
 						callbackUserCount(err);
 					} else {
