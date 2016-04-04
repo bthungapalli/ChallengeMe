@@ -5,7 +5,7 @@ var dashboardService=require("../services/dashboardService");
 //var util = require('util');
 var _ = require('underscore');
 
-
+//All the Dashboard request comes here.
 var checkSession=require("../services/checkSessionService");
 
 	router.get('/byIntrest',checkSession.requireLogin,function(req,res,err){
