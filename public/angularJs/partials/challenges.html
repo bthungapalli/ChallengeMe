@@ -35,7 +35,7 @@
 
 	<div class="sixteen wide column" style="padding-bottom: 7px;padding-top: 6px;padding-left: 0px;padding-right: 0px;">
 
-
+{{imageDisplay}}
 <div class="ui fluid five item secondary pointing menu">
  <a  ng-click="sort('title')"  class="item title"  ng-class="{titleSelected:currentTab==='profile'}" >
      Title<i ng-class="{'sort alphabet ascending icon':reverse,'sort alphabet descending icon':!reverse}"></i>
@@ -66,8 +66,8 @@
 
 <div class="sixteen wide column">
 
-<div class="ui grid" ng-click="getChallenge(challengeObj);">  <img class="ui tiny image" ng-src="{{challengeObj.profileImageOfChallengeOwner}}" style="position: absolute;width: 7%;height:100%;padding-left: 0px;padding-right: 0px;">
-<div class="eleven wide column" style="padding-bottom: 0px;padding-top: 5px;cursor: pointer;padding-left: 8%;">
+<div class="ui grid" ng-click="getChallenge(challengeObj);">  <img ng-hide="currentTab==='myChallenges'" class="ui tiny image" ng-src="{{challengeObj.profileImageOfChallengeOwner}}" style="position: absolute;width: 7%;height:100%;padding-left: 0px;padding-right: 0px;">
+<div class="eleven wide column" ng-style="{'padding-left': paddingLeft}" style="padding-bottom: 0px;padding-top: 5px;cursor: pointer;">
 <h3 style="font-family: Georgia;">{{challengeObj.title | camelCase}}</h3>
 </div>
 <div class="five wide column" ng-show="(currentTab==='myChallenges')"  style="cursor: default !important;text-align: right;padding-top: 5px;padding-bottom: 0px;cursor: pointer">
@@ -122,7 +122,7 @@
 		</span>
 </div>
 
-<div class="sixteen wide column"  style="padding-top: 0px;padding-bottom: 0px;font-family: Georgia;cursor: pointer;padding-left: 8%;">
+<div class="sixteen wide column" ng-style="{'padding-left': paddingLeft}" style="padding-top: 0px;padding-bottom: 0px;font-family: Georgia;cursor: pointer;">
 	<span ng-bind="!challengeObj.anonymous?challengeObj.createdBy:'Anonymous'"> </span> <strong><i class="calendar green icon"></i></strong>{{challengeObj.created_at | dateFormat}}   <label ng-hide="challengeObj.learning"><strong>|</strong> solutions accepted untill <strong><i class="calendar red icon"></i></strong>{{challengeObj.date | dateFormat}}</label>
 				<span  ng-show="challengeObj.prize"><strong>| <i class=" large gift icon" style="line-height: inherit;"> </i></strong>Win :   {{challengeObj.prize}} </span>
 				<span ng-show="(currentTab==='myChallenges')" ng-hide="challengeObj.learning || challengeObj.status==='draft' || currentTab==='subcribedChallenges' ||(challengeObj.challengeStatus==='Open' && currentTab!=='myChallenges')"><strong >| </strong>({{challengeObj.solutionsCount}}) solutions</span> 

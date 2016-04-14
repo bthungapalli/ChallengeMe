@@ -16,13 +16,13 @@
 		<div  class="ui segment" id="profileImage"  ng-controller="profileController">
  			 <img  class="ui centered medium image"  ng-src="{{imagePath}}" style="height: 200px;">
  		</div>
-		
+		<span style="color:red;">{{errorMessageForImage}}</span>
 	<div  id="upload" ng-show="editProfile">	<form id="uploadForm"
 	         enctype="multipart/form-data"
 	         action="/profile/upload"
 	         method="post"
 	         ng-controller="profileController">
-	     <input type="file" class="jfilestyle" data-placeholder="My place holder" name=userPhoto>
+	     <input id="profile" type="file" class="jfilestyle" data-placeholder="My place holder" name=userPhoto>
 	      <button type="submit" class="ui tiny green button">
 		  	<i class="upload icon"  style="margin-right: 0px;"></i> Upload
 		</button>

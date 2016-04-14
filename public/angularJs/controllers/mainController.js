@@ -19,6 +19,11 @@ angular.module("challengeMeApp").controller("mainController",["$scope","$http","
 	$scope.getUserDetails();
 	$scope.setCurrentTab=function(tabName){
 		$scope.currentTab=tabName;
+		if($scope.currentTab!=='myChallenges'){
+			$rootScope.paddingLeft="8%"
+		}else{
+			$rootScope.paddingLeft="";
+		}
 		$rootScope.history.push(tabName);
 		 //$scope.openCloseSideMenu(false,false);
 	}

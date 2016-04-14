@@ -8,25 +8,34 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	$scope.imagePath='';
 	$scope.successMessage="";
 	$scope.regex = '\\d+';
+	$scope.errorMessageForImage="";
 	 $(":file").jfilestyle({placeholder: "",buttonText: "Browse",'inputSize': '62%'});
 	
 	 $('#uploadForm').submit(function() {
-	        $(this).ajaxSubmit({
-	            error: function(xhr) {
-	        	status('Error: ' + xhr.status);
-	            },
-	            success: function(response) {
-	            	if(response==="error"){
-	            		$scope.errorMessage=challengeMeConstants.errorMessage;
-	            	}else{
-	            		var randomNumber=Math.random();
-		            	$("#profileImage > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
-		            	$("#userDetails > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
-		            	$scope.editProfile=false;
-		            	$scope.$digest();
-	            	}
-	             }
-	    });
+		 $scope.errorMessageForImage="";
+		 
+		var imageSize= $('#profile')[0].files[0].size/1024;
+		 if(imageSize>500){
+			 $scope.errorMessageForImage="Max image size 500 kb.";
+			 $scope.$digest();
+		 }else{
+			 $(this).ajaxSubmit({
+		            error: function(xhr) {
+		        	status('Error: ' + xhr.status);
+		            },
+		            success: function(response) {
+		            	if(response==="error"){
+		            		$scope.errorMessage=challengeMeConstants.errorMessage;
+		            	}else{
+		            		var randomNumber=Math.random();
+			            	$("#profileImage > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
+			            	$("#userDetails > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
+			            	$scope.editProfile=false;
+			            	$scope.$digest();
+		            	}
+		             }
+		    });
+		 }
 	        //Very important line, it disable the page refresh.
 	    return false;
 	    }); 
