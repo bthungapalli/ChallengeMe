@@ -145,7 +145,7 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 				});
 		};
 		
-		$scope.toggleSelection = function toggleSelection(category) {
+		$scope.toggleSelection = function (category) {
 			var idx=-1;
 		    angular.forEach($scope.challenge.mailGroups,function(mailGroup,index){
 				if(mailGroup._id===category._id){
@@ -159,6 +159,31 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 		    else {
 		      $scope.challenge.mailGroups.push(category);
 		    }
+		  };
+		  
+		  $scope.toggleAllSelection = function() {
+
+			  if($scope.challenge.mailGroups.length===$scope.categories.length){
+				  if($scope.selectedCategory===undefined){
+					  $scope.challenge.mailGroups=[];
+				  }else{
+					 
+					  $scope.challenge.mailGroups=$scope.selectedCategory;
+				  }
+			  }else{
+				  $scope.challenge.mailGroups=angular.copy($scope.categories);
+			  }
+			  
+		  };
+		  
+		  $scope.checkCategory=function(categoryId){
+			  var checked=false;
+			  angular.forEach(  $scope.challenge.mailGroups,function(category,index){
+					if(category._id===categoryId){
+						checked=true;
+					}
+				});
+			  return checked;
 		  };
 		  
 		  $scope.updateMailGroups = function toggleSelection(category) {

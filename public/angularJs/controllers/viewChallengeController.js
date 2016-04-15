@@ -151,7 +151,27 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 			  return checked;
 	};
 	
-	
+	$scope.selectAllCategories = function() {
+		  if($scope.challenge.mailGroups.length===$scope.categories.length){
+			 return true;
+		  }else{
+			  return false;
+		   }
+	  };
+	  
+	  $scope.toggleAllSelection = function() {
+
+		  if($scope.challenge.mailGroups.length===$scope.categories.length){
+			  if($scope.selectedCategory===undefined){
+				  $scope.challenge.mailGroups=[];
+			  }else{
+				  $scope.challenge.mailGroups=$scope.selectedCategory;
+			  }
+		  }else{
+			  $scope.challenge.mailGroups=angular.copy($scope.categories);
+		  }
+		  
+	  };
 	$scope.addAttributesToSolution=function(challenge){
 		angular.forEach(challenge.solutions,function(solution,index){
 			solution.collapse=false;

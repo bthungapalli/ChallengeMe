@@ -95,11 +95,15 @@
 		<div class="sixteen wide column" style="padding-top: 0px;">
 				<div class="ui teal large label" style="width: 10.88%;margin-right: 5px;height: 29px;">
 				  Notify Groups
-				</div>
+				</div> 
 				<span ng-if="categories.length==0">No Categories are created.</span>
 					 <div class="ui toggle checkbox" ng-repeat="category in categories">
-					  <input id="{{category._id}}" type="checkbox" value="{{category}}" ng-checked="selectedCategory==category" ng-disabled="selectedCategory==category"  ng-click="toggleSelection(category)"/>
+					  <input id="{{category._id}}" type="checkbox" value="{{category}}" ng-checked="checkCategory(category._id) || selectedCategory==category" ng-disabled="selectedCategory==category"  ng-click="toggleSelection(category)"/>
 					  <label for="{{category._id}}" style="padding-left: 50px;padding-right:12px;">{{category.name | camelCase}} </label>
+					</div>
+					 <div class="ui toggle checkbox" style="margin: 5px 0px;">
+					  <input id="All" type="checkbox"   ng-click="toggleAllSelection()"/>
+					  <label for="All" style="padding-left: 54px;padding-right: 20px;">All</label>
 					</div>
 		</div>	
 			<div class="five wide column" style="padding-top: 0px;">
