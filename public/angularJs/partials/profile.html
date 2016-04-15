@@ -12,8 +12,8 @@
 </div> -->
 <div class="ui stackable grid">
 
-		<div id="aaa" class="four wide center aligned column">
-		<div  class="ui segment" id="profileImage"  ng-controller="profileController">
+		<div id="aaa" class="four wide center aligned column" >
+		<div  class="ui segment" id="profileImage"  >
  			 <img  class="ui centered medium image"  ng-src="{{imagePath}}" style="height: 200px;">
  		</div>
 		<span style="color:red;">{{errorMessageForImage}}</span>
@@ -40,10 +40,20 @@
 					</div>
 					<div  class="thirteen wide column">
 					 <div class="ui input focus">
-				     <input type="text" ng-model="userDetails.name" ng-disabled="!editProfile"/> 
+				     <input type="text" ng-model="userDetails.name" ng-disabled="true"/> 
 				     </div>
 					</div>
 					<div class="three wide column" style="padding-top: 24px;">
+					 Phone
+					</div>
+					<div  class="thirteen wide column">
+					<form name="form">
+					<div class="ui input focus">
+					 <input type="text" id="input" ng-model="userDetails.phone" ng-disabled="true" maxlength="4" name="input" /> 
+					 </div> 
+					  </form>  
+					</div>
+					<!-- <div class="three wide column" style="padding-top: 24px;">
 					Work phone
 					</div>
 					<div  class="thirteen wide column">
@@ -52,6 +62,22 @@
 					 <input type="text" id="input" ng-model="userDetails.workPhone" ng-disabled="!editProfile" maxlength="4" name="input" ng-pattern="regex"/> 
 					 </div> (Extn)<label ng-show="!form.input.$valid" style="color:red;">Please enter only numbers.</label>
 					  </form>  
+					</div> -->
+					<div class="three wide column" style="padding-top: 24px;">
+					Title
+					</div>
+					<div  class="thirteen wide column">
+					 <div class="ui input focus">
+				     <input type="text" ng-model="userDetails.title" ng-disabled="true"/> 
+				     </div>
+					</div>
+					<div class="three wide column" style="padding-top: 24px;">
+					Business Unit
+					</div>
+					<div  class="thirteen wide column">
+					 <div class="ui input focus">
+				     <input type="text" ng-model="userDetails.businessUnit" ng-disabled="true"/> 
+				     </div>
 					</div>
 					<div class="three wide column" style="padding-top: 24px;">
 					Location
@@ -66,7 +92,7 @@
 					</div>
 					<div  class="thirteen wide column">
 					<div class="ui input focus">
-					  <input type="text" ng-model="userDetails.empId"  ng-disabled="!editProfile"/> 
+					  <input type="text" ng-model="userDetails.empId"  ng-disabled="true"/> 
 					  </div>
 					</div>
 					<div class="three wide column" >
@@ -82,12 +108,17 @@
 					</div>
 					 
 					 </span>
+					 <div class="ui toggle checkbox" style="margin: 5px 0px;">
+					  <input id="All" type="checkbox"  ng-disabled="!editProfile" ng-checked="selectAllCategories();" ng-click="toggleAllSelection()"/>
+					  <label for="All" style="padding-left: 54px;padding-right: 20px;">All</label>
+					</div>
+					 
 					</div>
 					<div class="sixteen wide center aligned column">
 						<button class="ui primary button" ng-click="edit();" ng-show="!editProfile">
 					  	<i class="write icon"  style="margin-right: 0px;"></i>Edit
 						</button>
-						<button class="ui positive button" ng-click="updateProfile();" ng-show="editProfile" ng-disabled="!form.input.$valid">
+						<button class="ui positive button" ng-click="updateProfile();" ng-show="editProfile" ng-disabled="userCategories.length===0">
 					  	<i class="checkmark icon"  style="margin-right: 0px;"></i> Update
 						</button>
 					</div>

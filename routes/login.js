@@ -31,6 +31,7 @@ router.post('/authenticate', function(request, response,next) {
 			  var resBodyJson;
 			  try {
 				   resBodyJson=  JSON.parse(resBody);
+				   console.log("resBodyJson.user.principal"+resBodyJson.user.principal)
 				   userService.createOrSaveUser(resBodyJson.user.principal,request.body.categories,function(err,userDetails){
 						  if(err)
 							  response.send("Invalid");

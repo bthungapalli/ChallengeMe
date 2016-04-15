@@ -75,7 +75,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	$scope.getLocations();
 	$loading.finish('profile');
 	
-	$scope.toggleSelection = function toggleSelection(category) {
+	$scope.toggleSelection = function(category) {
 		var idx=-1;
 	    angular.forEach($scope.userCategories,function(userCategory,index){
 			if(userCategory._id===category._id){
@@ -101,6 +101,22 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 		  return checked;
 	  };
 	  
+	  $scope.toggleAllSelection = function() {
+		  if($scope.userCategories.length===$scope.allCategories.length){
+			  $scope.userCategories=[];
+		  }else{
+			  $scope.userCategories=angular.copy($scope.allCategories);
+		   }
+	  };
+	  
+	  $scope.selectAllCategories = function() {
+		  if($scope.userCategories.length===$scope.allCategories.length){
+			 return true;
+		  }else{
+			  return false;
+		   }
+	  };
+	
 	  $scope.updateProfile=function(){
 		  $scope.successMessage="";
 		  $scope.loadingMessage="updating profile..";
@@ -115,6 +131,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 		 $http.post(challengeMeConstants.profileUpdate,data).success(function(response){
 			 $scope.redirectToLoginIfSessionExpires(response);
 			 if(response==="updated"){
+					$rootScope.userDetails.categories=$scope.userCategories;
 				 $scope.successMessage="Profile updated.";
 				 $scope.editProfile=false;
 			 }else if(response==="error"){
