@@ -135,6 +135,23 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 				});
 			
 		}
+		
+	$scope.getTopUsers = function(){
+		$http.get("dashboard/topUsers")
+		.success(
+			function(response){
+				if(response==="error"){
+					 $scope.errorMessage=challengeMeConstants.errorMessage;
+				 }
+				$scope.redirectToLoginIfSessionExpires(response);
+				$scope.topusers = response;
+			})
+		.error(
+			function(xhr, status, err){
+				 $scope.errorMessage=challengeMeConstants.errorMessage;
+			});
+		
+	}	
 			
 			
 	$scope.donutData();
@@ -144,4 +161,5 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 	$scope.solutionsCount();
 	$scope.getCLStats();
 	$scope.getBUData();
+	$scope.getTopUsers();
 });

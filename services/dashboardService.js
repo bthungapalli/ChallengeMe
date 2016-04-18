@@ -49,7 +49,7 @@ var dashboardService = function() {
 		},
 		
 	getStats : function(callbackStats){
-		var query = challengeModel.find({status:'create'},{learning:false}).sort({"created_at":-1});
+		var query = challengeModel.find({status:'create',learning:false}).sort({"created_at":-1});
 	    query.exec(function(err, challenges){
 	    	if(err){
 		    	   console.log("error:"+error);
@@ -119,8 +119,33 @@ var dashboardService = function() {
 			}
 		});
 
-	}
-	 
+	},
+	
+	getTopUsersFromChallenges : function(callback) {
+		challengeModel.aggregate([     
+		        { $group: { _id: "$createdBy",  count: { $sum: 1 } } },
+		        { $sort: { _id: 1 } }
+		], function(err, result) {
+			if (err) {
+				callback(err);
+			} else {
+				callback(null,result);
+			}
+		});
+	},
+	getTopUsersFromSolutions : function(callback) {
+		solutionsModel.aggregate([     
+		        { $group: { _id: "$solutionBy",  count: { $sum: 1 } } },
+		        { $sort: { _id: 1 } }
+		], function(err, result) {
+			if (err) {
+				callback(err);
+			} else {
+				callback(null,result);
+			}
+		});
+	},
+	
 		}
 	}
 module.exports=dashboardService();

@@ -141,5 +141,40 @@ var checkSession=require("../services/checkSessionService");
 		});
 		
 			});
+	
+	router.get('/topUsers',checkSession.requireLogin,function(req,res,err){
+		dashboardService.getTopUsersFromChallenges(function(err,challenges){
+			if(err){
+				console.log("Err",err);
+				res.send("error");
+			}
+			else{
+				dashboardService.getTopUsersFromSolutions(function(err,solutions){
+					if(err){
+						console.log("Err",err);
+						res.send("error");
+					}
+				else{
+					for (var prop in solutions) {
+							var a= _.findWhere(challenges,{"_id":solutions[prop]._id});
+							if(a !== undefined){
+							solutions[prop].count=solutions[prop].count+a.count
+							}
+						}
+
+						for (var prop in challenges) {
+							var a= _.findWhere(solutions,{"_id":solutions[prop]._id})
+							if(a === undefined){
+							solutions.push(a);
+							}
+						}	
+					res.send(_.first(_.pluck(_.sortBy(solutions,"count").reverse(),'_id'),10));
+					}
+				})
+			}
+		});
+		
+			});
+	
 
 module.exports = router;
