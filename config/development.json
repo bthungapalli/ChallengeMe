@@ -35,10 +35,13 @@
 		"appName":"TechWizz"
    },
    "profile":{
-	   "profilePath":"/Users/bthungapalli/Documents/uploads/"
+	   "profilePath":"F:\\"
    },
    "challenge":{
-	   "attachmentPath":"/Users/bthungapalli/Documents/uploads/"
+	   "attachmentPath":"F:\\"
+   },
+   "solution":{
+	   "attachmentPath":"F:\\whitePapers\\"
    },
    "smtpConfig":{
 	   "host":"outlook.office365.com",

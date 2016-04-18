@@ -22,7 +22,8 @@ var solutionSchema = Schema({
     likes :{type:Array},
     isCorrect:{type:Boolean,default: false},
     created_at: {type: Date, default: Date.now},
-    updated_at: {type: Date, default: Date.now}
+    updated_at: {type: Date, default: Date.now},
+    file:{type:String}
 });
 
 module.exports = mongoose.model('solution', solutionSchema);;

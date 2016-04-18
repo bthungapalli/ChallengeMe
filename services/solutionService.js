@@ -12,7 +12,7 @@ return{
         if(solutionObj._id !==""){
         console.log('came in update');
         	 var conditions = { "_id":solutionObj._id };
-        	 var update = { $set: {"challengeId": solutionObj.challengeId,"solution": solutionObj.solution,"anonymous":solutionObj.anonymous,"status":solutionObj.status,"solutionByEmailId":user.emailId,"solutionBy":user.name}};
+        	 var update = { $set: {"challengeId": solutionObj.challengeId,"solution": solutionObj.solution,"anonymous":solutionObj.anonymous,"status":solutionObj.status,"solutionByEmailId":user.emailId,"solutionBy":user.name,"file":solutionObj.file}};
         	 solutionModel.update(conditions, update, callback);
         	 
         	function callback (err, numAffected) {
@@ -24,7 +24,7 @@ return{
         	counterModel.findByIdAndUpdate({_id : "solutionId"}, {$inc: {seq: 1} }, function(error, counter)   {
    		       if(error)
    		    	callbackForcreateOrSaveSolution(error);
-        	var solution = new solutionModel({"_id":counter.seq,"challengeId": solutionObj.challengeId,"solution": solutionObj.solution,"anonymous":solutionObj.anonymous,"status":solutionObj.status,"solutionByEmailId":user.emailId,"solutionBy":user.name});
+        	var solution = new solutionModel({"_id":counter.seq,"challengeId": solutionObj.challengeId,"solution": solutionObj.solution,"anonymous":solutionObj.anonymous,"status":solutionObj.status,"solutionByEmailId":user.emailId,"solutionBy":user.name,"file":solutionObj.file});
         	solution.save(function(err){
                 if(err)
                 callbackForcreateOrSaveSolution(err);

@@ -6,6 +6,10 @@ var checkSession=require("../services/checkSessionService");
 var mailUtil = require("../utils/MailUtil");
 var nconf = require('nconf');
 var _ = require('underscore');
+var  multer = require('multer');
+var fs   = require('fs-extra');
+var fileSystem = require('fs');
+var path = require('path');
 
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var solutionObj=request.body;
@@ -26,6 +30,33 @@ router.get('/:challengeId',checkSession.requireLogin,function (request,response,
 			response.send("error");
 		response.send(solution[0]);
 	});
+});
+
+var filename="";
+var storage =   multer.diskStorage({
+	  destination: function (req, file, callback) {
+		  console.log("AttachmentPaht::::::::"+nconf.get("solution").attachmentPath)
+	    callback(null, nconf.get("solution").attachmentPath);
+	  },
+	  filename: function (req, file, callback) {
+		var month=  new Date().getMonth()+1;
+		 filename=new Date().getDate()+"-"+month+"-"+new Date().getFullYear()+"_"+file.originalname;
+		  console.log("filename::::"+filename);
+	    callback(null, filename);
+	  }
+	});
+
+	var upload = multer({ storage : storage}).single('attachment'); 
+	
+router.post('/upload/:solutionId',checkSession.requireLogin,function(req,res){
+	var solutionId=req.params.solutionId;
+	console.log("solutionId::::::"+solutionId);
+    upload(req,res,function(user,err) {
+        if(err) {
+             res.end("error");
+        }
+        	 res.send(filename);
+    });
 });
 
 router.post('/comment',checkSession.requireLogin,function (request,response,next){
@@ -95,6 +126,17 @@ router.post('/unlike',checkSession.requireLogin,function (request,response,next)
 		response.json("unliked");
 		}
 	});
+});
+
+router.get('/download/:fileName',function(request,response,next){
+	var fileName = request.params.fileName;
+	  var file = nconf.get("solution").attachmentPath + fileName ;
+	  console.log("solution download file "+file)
+	  response.download(file,fileName,function(err){
+		  if(err)
+			  response.json("Error Occured while downloading");
+	  })
+	
 });
 
 module.exports = router;

@@ -40,6 +40,9 @@
    "challenge":{
 	   "attachmentPath":"/apps/TechWizz/prod/uploads/challenges/"
    },
+   "solution":{
+	   "attachmentPath":"/apps/TechWizz/prod/uploads/solutions/"
+   }
    "smtpConfig":{
 	   "host":"outlook.office365.com",
 	   "port":587,

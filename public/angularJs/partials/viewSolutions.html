@@ -26,6 +26,9 @@
 		  </div>
 		  <div class="ui segment" ng-show="solutionObj.collapse" >
 		    <p>{{solutionObj.solution}}</p>
+		   
+		<span style="cursor:pointer;" ng-show="solutionObj.file.length>0">Attachment: <a href="solution/download/{{solutionObj.file}}"> {{solutionObj.file}}</a><br><br> </span>
+	
 		   <!--  <i ng-show="solutionObj.isCorrect && currentTab==='allChallenges'" class="huge check green circle icon" style="position: absolute;left: -12%;top: 26px;"></i> -->
 		    <div  ng-include="solutionCommentTemplate" ></div>
 		  </div>

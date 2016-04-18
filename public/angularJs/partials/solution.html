@@ -9,6 +9,11 @@
 {{successMessageForSolution}}
 </div>
 </div>
+<form id="uploadForm"
+	         enctype="multipart/form-data"
+	         action="{{'/solution/upload/'+solutionIdForFileUpload}}"
+	         method="post"
+	         >
  <div class="ui stackable grid" >
 
 		 <div class="sixteen wide column" ng-disabled="challengeObj.closed">
@@ -23,6 +28,16 @@
 				    <textarea ng-model="solutionObj.solution" ng-disabled="challengeObj.challengeStatus==='Closed'"></textarea>
 				  </div>
 				</div>
+		</div>
+	
+		<div class="six wide column" style="padding-right: 0px;">
+		
+		Attachment: <input type="file" class="jfilestyle" data-placeholder="My place holder" name=attachment> 
+	
+		</div>
+		<div class="ten wide column" style="padding-left: 0px;">
+		 <span ng-show="solutionObj.file.length>0"><a href="solution/download/{{solutionObj.file}}"> {{solutionObj.file}}</a> </span>
+	
 		</div>
 		
 		<div class="two wide left aligned column" style="padding-bottom: 0px;">
@@ -40,6 +55,8 @@
 			</button>
 		
 		</div>
-		<div   class="sixteen wide column"  ng-include="solutionCommentTemplate" ></div>
+		
 </div>
+	</form>
+	<div   class="sixteen wide column"  ng-include="solutionCommentTemplate" ></div>
  </div>
