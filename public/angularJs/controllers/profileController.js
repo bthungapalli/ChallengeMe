@@ -11,7 +11,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	$scope.errorMessageForImage="";
 	 $(":file").jfilestyle({placeholder: "",buttonText: "Browse",'inputSize': '62%'});
 	
-	 $('#uploadForm').submit(function() {
+/*	 $('#uploadForm2').submit(function() {
 		 $scope.errorMessageForImage="";
 		 
 		var imageSize= $('#profile')[0].files[0].size/1024;
@@ -38,7 +38,7 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 		 }
 	        //Very important line, it disable the page refresh.
 	    return false;
-	    }); 
+	    }); */
 	
 	$scope.getAllCategories=function(){
 		
@@ -119,30 +119,53 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	
 	  $scope.updateProfile=function(){
 		  $scope.successMessage="";
-		  $scope.loadingMessage="updating profile..";
-			$loading.start('profile');
-		  var data={
-				  "emailId":$scope.userDetails.emailId,
-				  "empId":$scope.userDetails.empId,
-				  "workPhone":$scope.userDetails.workPhone,
-				  "location":$scope.userDetails.location,
-				  "categories":$scope.userCategories
-		  };
-		 $http.post(challengeMeConstants.profileUpdate,data).success(function(response){
-			 $scope.redirectToLoginIfSessionExpires(response);
-			 if(response==="updated"){
-					$rootScope.userDetails.categories=$scope.userCategories;
-				 $scope.successMessage="Profile updated.";
-				 $scope.editProfile=false;
-			 }else if(response==="error"){
-				 $scope.errorMessage=challengeMeConstants.errorMessage;
+		  $scope.errorMessageForImage="";
+		  var imageSize= $('#profile')[0].files[0].size/1024;
+			 if(imageSize>500){
+				 $scope.errorMessageForImage="Max image size 500 kb.";
+			 }else{
+				 $scope.loadingMessage="updating profile..";
+					$loading.start('profile');
+				  var data={
+						  "emailId":$scope.userDetails.emailId,
+						  "empId":$scope.userDetails.empId,
+						  "workPhone":$scope.userDetails.workPhone,
+						  "location":$scope.userDetails.location,
+						  "categories":$scope.userCategories
+				  };
+				 $http.post(challengeMeConstants.profileUpdate,data).success(function(response){
+					 $scope.redirectToLoginIfSessionExpires(response);
+					 if(response==="updated"){
+							$rootScope.userDetails.categories=$scope.userCategories;
+							 $("#uploadForm").ajaxSubmit({
+						            error: function(xhr) {
+						        	status('Error: ' + xhr.status);
+						            },
+						            success: function(response) {
+						            	if(response==="error"){
+						            		$scope.errorMessage=challengeMeConstants.errorMessage;
+						            	}else{
+						            		var randomNumber=Math.random();
+							            	$("#profileImage > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
+							            	$("#userDetails > img").attr("src","profile/imagePath/emailId/"+$scope.userDetails.username+"/number/"+Math.random());
+							            	$scope.editProfile=false;
+							            	 $scope.successMessage="Profile updated.";
+											 $scope.errorMessageForImage="";
+							            	$scope.$digest();
+						            	}
+						             }
+						    });
+					 }else if(response==="error"){
+						 $scope.errorMessage=challengeMeConstants.errorMessage;
+					 }
+					 $loading.finish('profile');
+						}).error(function(error){
+							 $scope.successMessage="";
+							$scope.errorMessage=challengeMeConstants.errorMessage;
+							$loading.finish('profile');
+						});
 			 }
-			 $loading.finish('profile');
-				}).error(function(error){
-					 $scope.successMessage="";
-					$scope.errorMessage=challengeMeConstants.errorMessage;
-					$loading.finish('profile');
-				});
+		 
 	  };
 	  
 	  $scope.edit=function(){
