@@ -19,7 +19,12 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 		$http.get(challengeMeConstants.solution+"/"+$scope.challenge._id).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			console.log("inside response"+response);
-			$scope.solutionIdForFileUpload=response._id;
+			if(response!==""){
+				$scope.solutionIdForFileUpload=response._id;
+			}else{
+				$scope.solutionIdForFileUpload="-1"
+			}
+			
 			if(response!==undefined && response!==""){
 				$scope.solutionObj=response;
 				if($scope.solutionObj.file===undefined){
