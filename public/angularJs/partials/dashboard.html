@@ -21,6 +21,14 @@
 		</div>
 
 
+<div class="four wide column" >
+			<ol type="1" class="ui secondary segment" style="list-style-position: inside;height:300px;">
+				<u><b>Trending Users</b></u>
+				<li ng-repeat=" user in topusers" ng-bind-html-unsafe="user">
+					<em>{{ user }}</em>
+				</li>
+			</ol>
+</div>
 		<div class="nine wide column ui secondary segment"
 			style="padding-bottom: 0px; border-bottom-width: 0px; padding-left: 2px; border-left-width: 0px;">
 			<canvas id="bar" class="chart chart-bar" chart-data="barData.data"
@@ -38,13 +46,6 @@
 				Total Solutions : <b>{{solutionCount}}</b>
 			</div>
 		</div>
-		<div class="four wide column">
-			<ol type="1" class="ui secondary segment" style="list-style-position: inside;">
-				<u><b>Trending Users</b></u>
-				<li ng-repeat=" user in topusers" ng-bind-html-unsafe="user">
-					<em>{{ user }}</em>
-				</li>
-			</ol>
 
 			<div class="ten wide column ui secondary segment"
 				ng-show="userDetails.adminIndicator!==0">

@@ -163,13 +163,12 @@ var checkSession=require("../services/checkSessionService");
 						}
 
 						for (var prop in challenges) {
-							if(prop<solutions.length){
-								var a= _.findWhere(solutions,{"_id":solutions[prop]._id})
-								if(a === undefined){
-								solutions.push(a);
-							}else{
-								break;
-							}
+								var a= _.findWhere(solutions,{"_id":challenges[prop]._id});
+								console.log("Valueeee"+a);
+								console.log("C Promp::::"+JSON.stringify(challenges[prop]));
+								if(a == undefined){
+									console.log("Inside"+a);
+								solutions.push(challenges[prop]);
 							}
 						}	
 					res.send(_.first(_.pluck(_.sortBy(solutions,"count").reverse(),'_id'),10));
