@@ -5,6 +5,8 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	$rootScope.previousOpenedChallengeIndex=-1;
 	$scope.colspan=5;
 	$scope.itemsPerPage="5";
+	$scope.list="All";
+	$scope.allChallenges=false;
 	$scope.addAttributesToChallenge=function(challenges){
 		angular.forEach(challenges,function(challenge,index){
 			challenge.collapse=false;
@@ -35,16 +37,47 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 		$scope.challenges=challenges;
 	};
 	
+	$scope.getListOfSelectedForMyPosts=function(){
+		var url="";
+		
+		if($scope.list==="All"){
+			url="/challenge/mychallenges/All";
+		}else if($scope.list==="Challenges"){
+			url="/challenge/mychallenges/false";
+		}else if($scope.list==="Learning"){
+			url="/challenge/mychallenges/true";
+		}
+		$scope.getMyChallenges(url);
+	};
+	
+	$scope.getListOfSelected=function(){
+		var url="";
+		$scope.allChallenges=false;
+		if($scope.list==="All"){
+			$scope.fetchAll();
+		}else if($scope.list==="Challenges"){
+			url="/challenge/challengeOrLearning/false/"+$scope.allChallenges;
+		}else if($scope.list==="Learning"){
+			url="/challenge/challengeOrLearning/true/"+$scope.allChallenges;
+		}
+		$scope.fetchChallengesOrLearning(url);
+	};
+	
 	$scope.fetchAll=function(){
 		$scope.loadingMessage="fetching all challenges...";
 		$loading.start('challenge');
-		var url=""
+		var url="";
 		if($scope.allChallenges){
-			url='/challenge/all';
+			url='/challenge/all/'+$scope.list;
 		}else{
-			url=challengeMeConstants.allChallenges;
+			url=challengeMeConstants.allChallenges+'/'+$scope.list;
 		}
 		
+		$scope.fetchChallengesOrLearning(url);
+	};
+	
+	$scope.fetchChallengesOrLearning=function(url){
+		$scope.errorMessage="";
 		$http.get(url).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			if(response==="error")
@@ -56,12 +89,12 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 				$scope.errorMessage=challengeMeConstants.errorMessage;
 				$loading.finish('challenge');
 			});
-	};
+	}
 	
-	$scope.getMyChallenges=function(){
+	$scope.getMyChallenges=function(url){
 		$scope.loadingMessage="fetching my challenges...";
 		$loading.start('challenge');
-		$http.get(challengeMeConstants.myChallenges).success(function(response){
+		$http.get(url).success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			if(response==="error")
 				$scope.errorMessage=challengeMeConstants.errorMessage;
@@ -77,7 +110,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	$scope.getAllChallenges=function(){
 		$scope.loadingMessage="fetching all challenges...";
 		$loading.start('challenge');
-		$http.get(challengeMeConstants.allChallenges).success(function(response){
+		$http.get(challengeMeConstants.allChallenges+"/All").success(function(response){
 			$scope.redirectToLoginIfSessionExpires(response);
 			if(response==="error")
 				$scope.errorMessage=challengeMeConstants.errorMessage;
@@ -108,7 +141,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 
 	if($state.current.name==="main.myChallenges"){
 		$scope.setCurrentTab("myChallenges");
-		$scope.getMyChallenges();
+		$scope.getMyChallenges("/challenge/mychallenges/All");
 	}else if($state.current.name==="main.allChallenges"){
 			$scope.setCurrentTab("allChallenges");
 		$scope.getAllChallenges()

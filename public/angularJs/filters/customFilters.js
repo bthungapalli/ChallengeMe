@@ -60,9 +60,9 @@ angular.module('challengeMeApp')
 			  return function(input) {
 				var tabName=""
 					if(input==="allChallenges"){
-						tabName="All Challenges";
+						tabName="All Posts";
 					}else if(input==="myChallenges"){
-						tabName="My Challenges";
+						tabName="My Posts";
 					}else if(input==="subcribedChallenges"){
 						tabName="Subcribed Challenges";
 					}else if(input==="contactUs"){

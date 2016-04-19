@@ -1,12 +1,8 @@
 
 <div dw-loading="challenge" dw-loading-options="{text: loadingMessage}">
-<div  ng-if="errorMessage" class="ui red floating  message">
-<div class="header">
-{{errorMessage}}
-</div>
-</div>
 
-<div class="ui grid" ng-show="challenges.length>0">
+
+<div class="ui grid" >
 <div ng-show="currentTab==='allChallenges'" class="sixteen wide column" style="text-align: center;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 48px;">Show List related to...</div>
 	<div class="five wide column" style="padding-bottom: 0px;padding-left: 0px;padding-top: 0px;">
 				<select id="itemsPerPage" name="itemsPerPage" class="ui dropdown" ng-model="itemsPerPage" style="border-radius: 5px;">
@@ -15,6 +11,18 @@
 			  <option value="25">25</option>
 			  <option value="50">50</option>
 			</select> Challenges Per Page
+			
+			
+			<select ng-show="currentTab==='allChallenges'" class="ui dropdown" ng-model="list" ng-change="getListOfSelected()" style="border-radius: 5px;">
+			 <option value="All" selected>All</option>
+			 <option value="Challenges">Challenges</option>
+			  <option value="Learning">Learning</option>
+			</select>
+			<select  ng-show="currentTab==='myChallenges'" class="ui dropdown" ng-model="list" ng-change="getListOfSelectedForMyPosts()" style="border-radius: 5px;">
+			 <option value="All" selected>All</option>
+			 <option value="Challenges">Challenges</option>
+			  <option value="Learning">Learning</option>
+			</select>
 	</div>
 	<div class="six wide column" style="position: relative;top: 7px;padding-top: 0px;">
 	 <div ng-show="currentTab==='allChallenges'">
@@ -32,6 +40,13 @@
 			  <i class="inverted circular teal search link icon"></i>
 			</div>
 	</div>
+	
+	<div  ng-if="errorMessage" class="ui red floating  message">
+<div class="header">
+{{errorMessage}}
+</div>
+</div>
+	
 
 	<div class="sixteen wide column" style="padding-bottom: 7px;padding-top: 6px;padding-left: 0px;padding-right: 0px;">
 
@@ -58,7 +73,7 @@
 </div>
 </div>
 
-<div class="ui grid"  ng-controller="viewChallengeController" style="font-family: Georgia;" dir-paginate="challengeObj in challenges|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage" >
+<div ng-show="challenges.length>0" class="ui grid"  ng-controller="viewChallengeController" style="font-family: Georgia;" dir-paginate="challengeObj in challenges|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage" >
 
 <div class="sixteen wide column challengeBgColor" style="border-bottom: 4px solid white;" >
 

@@ -50,14 +50,23 @@ var storage =   multer.diskStorage({
 	    });
 	});
 	
-router.get('/all', checkSession.requireLogin, function(request,
+router.get('/all/:challengeOrLearningOrBoth', checkSession.requireLogin, function(request,
 			response, next) {
-		challengeService.fetchAllChallenges(function(err, challenges) {
+		challengeService.fetchAllChallenges(request.params.challengeOrLearningOrBoth,function(err, challenges) {
 			if (err)
 				response.send("error");
 			response.send(challenges);
 		});
 	});
+
+router.get('/challengeOrLearning/:learning/:allChallenges', checkSession.requireLogin, function(request,
+		response, next) {
+	challengeService.fetchChallengesOrLearning(request.params.learning,request.params.allChallenges,request.session.user,function(err, challenges) {
+		if (err)
+			response.send("error");
+		response.send(challenges);
+	});
+}); 
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var challenge=request.body;
 	var user=request.session.user;
@@ -113,7 +122,7 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 	});
 });
 
-router.get('/categories',checkSession.requireLogin,function (request,response,next){
+router.get('/categories/:challengeOrLearningOrBoth',checkSession.requireLogin,function (request,response,next){
 	var user=request.session.user;
 	console.log("sess user"+user.categories);
 	var categoriesJson = user.categories;
@@ -122,7 +131,7 @@ router.get('/categories',checkSession.requireLogin,function (request,response,ne
 		var cat =categoriesJson[prop];
 		categories.push(categoriesJson[prop]._id);
 	}
-	challengeService.getAllChallenges(categories,function(err,challenges){
+	challengeService.getAllChallenges(categories,request.params.challengeOrLearningOrBoth,function(err,challenges){
 		if(err)
 			response.send("error");
 		challengeService.getSubcribedChallengeIdsForEmail(user.emailId,function(err,challengeIds){
@@ -157,9 +166,9 @@ router.get('/categories',checkSession.requireLogin,function (request,response,ne
 	});
 });
 
-router.get('/mychallenges',checkSession.requireLogin,function (request,response,next){
+router.get('/mychallenges/:challengeOrLearningOrBoth',checkSession.requireLogin,function (request,response,next){
 	var emailId=request.session.user.emailId;
-	challengeService.getChallengeForEmailId(emailId,function(err,challenges){
+	challengeService.getChallengeForEmailId(emailId,request.params.challengeOrLearningOrBoth,function(err,challenges){
 		if(err)
 			response.send("error");
 		
