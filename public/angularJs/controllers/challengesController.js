@@ -110,7 +110,6 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 		$scope.setCurrentTab("myChallenges");
 		$scope.getMyChallenges();
 	}else if($state.current.name==="main.allChallenges"){
-		
 			$scope.setCurrentTab("allChallenges");
 		$scope.getAllChallenges()
 	}else if($state.current.name==="main.subcribedChallenges"){

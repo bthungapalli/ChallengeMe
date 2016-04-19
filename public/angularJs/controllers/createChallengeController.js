@@ -15,9 +15,13 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 			"mailGroups":[],
 			"tag":""
 	};
+	if($scope.currentTab==='createLearning'){
+		$scope.challenge.learning=true;
+	}else{
+		$scope.challenge.learning=false;
+	}
 	 $(":file").jfilestyle({placeholder: "",buttonText: "Browse",'inputSize': '60%'});
-	 $('#uploadForm').submit(function() {
-		 alert($('#createChallengeFile')[0].files)
+	/* $('#uploadForm').submit(function() {
 		 $scope.loadingMessage="Saving file..";
 			$loading.start('createChallenge');
 	        $(this).ajaxSubmit({
@@ -37,7 +41,7 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 	        //Very important line, it disable the page refresh.
 	    return false;
 	    }); 
-	
+	*/
 	
 	 var today = new Date();
 	  today.setMonth(today.getMonth()+6);
@@ -130,7 +134,7 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 			
 			$scope.loadingMessage=$scope.challenge.status==="create"?"Creating challenge":"Saving challenge";
 			$loading.start('createChallenge');
-			$scope.errorMessage=""
+			$scope.errorMessage="";
 			
 			if($('#createChallengeFile')[0].files.length>0){
 				$("#uploadForm").ajaxSubmit({
