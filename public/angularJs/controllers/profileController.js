@@ -120,8 +120,9 @@ angular.module("challengeMeApp").controller("profileController",["$scope","$http
 	  $scope.updateProfile=function(){
 		  $scope.successMessage="";
 		  $scope.errorMessageForImage="";
-		  var imageSize= $('#profile')[0].files[0].size/1024;
-			 if(imageSize>500){
+		  
+		 // var imageSize= $('#profile')[0].files[0].size/1024;
+			 if( $('#profile')[0].files.length>0 && ($('#profile')[0].files[0].size/1024>500)){
 				 $scope.errorMessageForImage="Max image size 500 kb.";
 			 }else{
 				 $scope.loadingMessage="updating profile..";

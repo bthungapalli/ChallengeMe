@@ -12,7 +12,7 @@
 </div> -->
 
 <div class="ui stackable grid">
-		<div class="ten wide column" style="padding-bottom: 0px;"> 
+		<div class="twelve wide column" style="padding-bottom: 0px;"> 
 				<div class="ui fluid labeled input focus">
 				  <div class="ui teal label">
 				   Title*
@@ -20,19 +20,19 @@
 				  <input type="text" ng-model="challenge.title" />
 				</div>
 		 </div> 
-		 <div class="six wide column" id="upload" style="padding-bottom: 0px;">	
+		 <div class="four wide column" id="upload" style="padding-bottom: 0px;">	
 		<form id="uploadForm"
 	         enctype="multipart/form-data"
 	         action="/challenge/upload/-1"
 	         method="post"
 	         >
-	     <input type="file" class="jfilestyle" data-placeholder="My place holder" name=attachment>
-	      <button type="submit" class="ui tiny green button">
+	     <input id="createChallengeFile" type="file" class="jfilestyle" data-placeholder="My place holder" name=attachment>
+	     <!--  <button type="submit" class="ui tiny green button">
 		  	<i class="upload icon" style="margin-right: 0px;"></i> Upload
-		</button>
+		</button> -->
 		
 	    </form>
-	    <span style="font-size: smaller;position: relative;top: -14px;color:red;"> *Please click Upload after browsing the file.</span><br>
+	  <!--   <span style="font-size: smaller;position: relative;top: -14px;color:red;"> *Please click Upload after browsing the file.</span> --><br>
 	      {{challenge.file}}
 		</div>
 		 <div class="sixteen wide column" style="padding-top: 0px;">

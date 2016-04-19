@@ -61,10 +61,35 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		$scope.getAllCategories();
 		
 		$scope.saveChallenge=function(parentChallenge){
+			
+			
 			$scope.loadingMessage="saving challenge..";
 			$loading.start('challenges');
 			$scope.successMessage="";
 			$scope.errorMessage="";
+			
+			if($('#file')[0].files.length>0){
+				$("#uploadForm1").ajaxSubmit({
+		            error: function(xhr) {
+		        	status('Error: ' + xhr.status);
+		            },
+		            success: function(response) {
+		            	if(response==="error"){
+		            		$scope.errorMessage=challengeMeConstants.errorMessage;
+		            	}else{
+		            		$scope.challenge.file=response;
+		            		$scope.saveChallengePost(parentChallenge);
+		            	}
+		            	$scope.$digest();
+		             }
+		    });
+			}else{
+				$scope.saveChallengePost(parentChallenge);
+			}
+		};
+		
+		$scope.saveChallengePost=function(parentChallenge){
+			
 			$scope.challenge.categories= (typeof $scope.challenge.categories === 'string') ?  JSON.parse($scope.challenge.categories) : $scope.challenge.categories;
 			$http.post(challengeMeConstants.challenge,$scope.challenge).success(function(response){
 				$scope.redirectToLoginIfSessionExpires(response);
@@ -92,7 +117,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 					$scope.errorMessage=challengeMeConstants.errorMessage;
 					$loading.finish('challenges');
 				});
-		};
+		}
 		
 		$scope.showEditFields=function(){
 			$scope.editChallenge=!$scope.editChallenge;

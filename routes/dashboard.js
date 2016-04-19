@@ -163,9 +163,13 @@ var checkSession=require("../services/checkSessionService");
 						}
 
 						for (var prop in challenges) {
-							var a= _.findWhere(solutions,{"_id":solutions[prop]._id})
-							if(a === undefined){
-							solutions.push(a);
+							if(prop<solutions.length){
+								var a= _.findWhere(solutions,{"_id":solutions[prop]._id})
+								if(a === undefined){
+								solutions.push(a);
+							}else{
+								break;
+							}
 							}
 						}	
 					res.send(_.first(_.pluck(_.sortBy(solutions,"count").reverse(),'_id'),10));

@@ -17,6 +17,7 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 	};
 	 $(":file").jfilestyle({placeholder: "",buttonText: "Browse",'inputSize': '60%'});
 	 $('#uploadForm').submit(function() {
+		 alert($('#createChallengeFile')[0].files)
 		 $scope.loadingMessage="Saving file..";
 			$loading.start('createChallenge');
 	        $(this).ajaxSubmit({
@@ -126,10 +127,35 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 		$scope.getAllCategories();
 		
 		$scope.createChallenge=function(){
+			
 			$scope.loadingMessage=$scope.challenge.status==="create"?"Creating challenge":"Saving challenge";
 			$loading.start('createChallenge');
 			$scope.errorMessage=""
-			console.log("challenge:::",$scope.challenge);
+			
+			if($('#createChallengeFile')[0].files.length>0){
+				$("#uploadForm").ajaxSubmit({
+		            error: function(xhr) {
+		        	status('Error: ' + xhr.status);
+		            },
+		            success: function(response) {
+		            	if(response==="error"){
+		            		$scope.errorMessage=challengeMeConstants.errorMessage;
+		            	}else{
+		            		$scope.challenge.file=response;
+		            		/*$scope.successMessage="File uploaded";
+		            		$loading.finish('createChallenge');*/
+		            		$scope.createChallengePost();
+		            	}
+		             }
+		      });
+			}else{
+				$scope.createChallengePost();
+			}
+			
+		};
+		
+		$scope.createChallengePost = function () {
+			
 			$scope.challenge.categories= JSON.parse($scope.challenge.categories);
 			$http.post(challengeMeConstants.challenge,$scope.challenge).success(function(response){
 				$scope.redirectToLoginIfSessionExpires(response);
@@ -143,7 +169,7 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 					$scope.errorMessage=challengeMeConstants.errorMessage;
 					$loading.finish('createChallenge');
 				});
-		};
+		}
 		
 		$scope.toggleSelection = function (category) {
 			var idx=-1;
