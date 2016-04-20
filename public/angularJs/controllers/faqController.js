@@ -2,23 +2,23 @@ angular.module("challengeMeApp").controller("faqController",["$scope","$http","$
 	$scope.faqTemplate="angularJs/partials/faq.html";
 $scope.faq=[
     {
-	    "question":"What is TechWizz?",
-		"answer":"Techwizz is our own platform to share knowledge. We go by the motto of \"Sharing is learning\". We as engineers seek google\'s help for most of our challenges and some of us are even active in online forums. This platform allows us to seek answers for our challenges from our own elite peer group and also share our incredible learnings.",
+	    "question":"What is OSIWizz?",
+		"answer":"OSIWizz is our own platform to share knowledge. We go by the motto of \"Sharing is learning\". We as engineers seek google\'s help for most of our challenges and some of us are even active in online forums. This platform allows us to seek answers for our challenges from our own elite peer group and also share our incredible learnings.",
 		"show":true
     },
     {
-        "question":"Do I need to register to Techwizz?",
-    	"answer":"No, you don\'t. You just need to login to Techwizz using your OSI credentials. You need to update your profile post login to be in touch with latest updates on TechWizz.",
+        "question":"Do I need to register to OSIWizz?",
+    	"answer":"No, you don\'t. You just need to login to OSIWizz using your OSI credentials. You need to update your profile post login to be in touch with latest updates on OSIWizz.",
     	"show":false
     },
     {
-        "question":"What notifications will I receive from TechWizz?",
+        "question":"What notifications will I receive from OSIWizz?",
     	"answer":"Click on the Edit Profile link on the left hand NAV after login and choose the categories from the Subscribe To section. All members subscribed to a particular group will be notified when a challenge or Learning is shared with that particular group.",
     	"show":false
      },
      {
-         "question":"Do I need to register to Techwizz?",
-     	"answer":"No, you don't. You just need to login to Techwizz using your OSI credentials. You need to update your profile post login to be in touch with latest updates on TechWizz.",
+         "question":"Do I need to register to OSIWizz?",
+     	"answer":"No, you don't. You just need to login to OSIWizz using your OSI credentials. You need to update your profile post login to be in touch with latest updates on OSIWizz.",
      	"show":false
      },
      {
@@ -77,13 +77,13 @@ $scope.faq=[
      	"show":false
      },
      {
-         "question":"How to subscribe/unsubscribe to emails from Techwizz?",
-     	"answer":"You can edit your profile and subscribe to a new category or unsubscribe to an existing category to start or stop receiving notifications from TechWizz.",
+         "question":"How to subscribe/unsubscribe to emails from OSIWizz?",
+     	"answer":"You can edit your profile and subscribe to a new category or unsubscribe to an existing category to start or stop receiving notifications from OSIWizz.",
      	"show":false
      },
      {
          "question":"Whom do I contact if I need a help in operating the site?",
-     	"answer":"you can post a query to <a href='#'>techwizz-support@osius.com</a>",
+     	"answer":"you can post a query to <a href='#'>OSIWizz-support@osius.com</a>",
      	"show":false
      }
     ];

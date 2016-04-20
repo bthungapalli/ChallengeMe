@@ -30,19 +30,20 @@
    },
    "mail":{
 	   "challengeMeSupport":"bthungapalli@osius.com",
-		"subject":"[TechWizz] ",
-		"appURL" : "http://techwizz.osius.com",
-		"appName":"TechWizz"
+		"subject":"[OSIWizz] ",
+		"appURL" : "http://osiwizz.osius.com",
+		"appName":"OSIWizz"
    },
    "profile":{
-	   "profilePath":"F:\\"
+	   "profilePath":"/Users/bthungapalli/Documents/uploads/"
    },
    "challenge":{
-	   "attachmentPath":"F:\\"
+	   "attachmentPath":"/Users/bthungapalli/Documents/uploads/"
    },
    "solution":{
-	   "attachmentPath":"F:\\whitePapers\\"
+	   "attachmentPath":"/Users/bthungapalli/Documents/uploads/"
    },
+   
    "smtpConfig":{
 	   "host":"outlook.office365.com",
 	   "port":587,
