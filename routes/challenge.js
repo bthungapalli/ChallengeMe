@@ -271,6 +271,18 @@ router.post('/unlike',checkSession.requireLogin,function (request,response,next)
 	});
 });
 
+router.post('/close',checkSession.requireLogin,function (request,response,next){
+	var challengeId=request.body._id;
+	console.log("challengeId......"+challengeId);
+	challengeService.closeChallenge(challengeId,function(err,res){
+		if(err){
+			response.send("error");
+		}else{
+		response.send("closed");
+		}
+	});
+});
+
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var challenge=request.body;
 });

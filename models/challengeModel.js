@@ -35,7 +35,8 @@ var challengeSchema = Schema({
     anonymous  :{type:Boolean,default: false},
     solutionsCount:{type:Number,default:0},
     location :{type:String},
-    tag : {type:String,required:true}
+    tag : {type:String,required:true},
+    explicitClose :{type:Boolean,default: false}
 });
 
 module.exports = mongoose.model('challenge', challengeSchema);;

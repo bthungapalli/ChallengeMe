@@ -126,6 +126,9 @@
 			<button type="submit" class="ui small positive button" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (!challenge.learning?challenge.date.length===0:false) || (challenge.categories.length===0)|| (challenge.tag.length===0))" ng-click="challenge.status='create';saveChallenge(challengeObj);edit=!edit" ng-show="editChallenge">
 			  	<i class="checkmark icon"  style="margin-right: 0px;"></i> Submit
 			</button>
+			<button type="submit" class="ui small red button" ng-hide="challenge.status==='draft' || challenge.learning"  ng-click="closeChallenge(challengeObj);edit=!edit">
+			  	<i class="remove icon"  style="margin-right: 0px;"></i> Close
+			</button>
 		</div>
 </div>
 

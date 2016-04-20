@@ -214,7 +214,19 @@ unlikeChallenge:function(challengeId,user,callbackForUnLikes){
 		callbackForUnLikes(null,"deleted");
 	});
 },
+closeChallenge:function(challengeId,callbackForCloseChallenge){
+	var conditions = { "_id":challengeId };
+	 var update = { $set: {"explicitClose": true}};
+	 challengeModel.update(conditions, update, callback);
+	 
+	function callback (err, numAffected) {
+		if(err)
+			callbackForCloseChallenge(err);
+		console.log(numAffected + "rows updates");
+		callbackForCloseChallenge(null,numAffected);
+	};
 	
+},	
 fetchAllChallenges:function(challengeOrLearningOrBoth,callbackForAllChallenges){
 	var q="";
 	if(challengeOrLearningOrBoth==='All'){

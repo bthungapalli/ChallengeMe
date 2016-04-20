@@ -119,6 +119,26 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 				});
 		}
 		
+		
+$scope.closeChallenge=function(parentChallenge){
+	$scope.loadingMessage="closing challenge..";
+	$loading.start('challenges');
+			$http.post("/challenge/close",parentChallenge).success(function(response){
+				$scope.redirectToLoginIfSessionExpires(response);
+				if(response=="error"){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				}else{
+					parentChallenge.challengeStatus="Closed";
+					$scope.editChallenge=!$scope.editChallenge;
+				};
+				$loading.finish('challenges');
+				}).error(function(error){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+					$loading.finish('challenges');
+				});
+		}
+		
+		
 		$scope.showEditFields=function(){
 			$scope.editChallenge=!$scope.editChallenge;
 		};
