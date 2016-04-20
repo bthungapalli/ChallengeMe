@@ -164,10 +164,7 @@ var checkSession=require("../services/checkSessionService");
 
 						for (var prop in challenges) {
 								var a= _.findWhere(solutions,{"_id":challenges[prop]._id});
-								console.log("Valueeee"+a);
-								console.log("C Promp::::"+JSON.stringify(challenges[prop]));
 								if(a == undefined){
-									console.log("Inside"+a);
 								solutions.push(challenges[prop]);
 							}
 						}	

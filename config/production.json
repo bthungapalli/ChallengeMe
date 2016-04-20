@@ -30,9 +30,9 @@
    },
    "mail":{
 	   "challengeMeSupport":"bthungapalli@osius.com",
-		"subject":"[TechWizz] ",
+		"subject":"[OSIWIZZ] ",
 		"appURL" : "http://techwizz.osius.com",
-		"appName":"TechWizz"
+		"appName":"OSIWIZZ"
    },
    "profile":{
 	   "profilePath":"/apps/TechWizz/prod/uploads/profiles/"

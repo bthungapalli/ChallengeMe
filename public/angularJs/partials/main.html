@@ -2,7 +2,7 @@
 <header style="margin-bottom: 14px;">
 <div class="ui menu headerBackGround" style="height: 10px;">
   <div class="item" style="width: 18%;font-style: oblique;font-weight: bolder;font-size: 23px;color: #018AC6;text-shadow: #018AC6 2px 0px 1px;padding-top: 11px;padding-bottom: 11px;">
-   TechWizz
+   OSIWIZZ
   </div>
  <!--  <div class="item" style="width:18%;" >
    <img src="images/logo.png" style="width: 81%;" > 
@@ -43,27 +43,27 @@
 					<i class=" write icon " ></i>	  <span ng-hide="shortMenu" style="font-size: medium;">Edit Profile </span>  
 				</a>
 		  </div>
-		  <div class="item sideMenu" title="Create Challenge" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;padding-bottom: 0px;padding-top: 0px;"  ng-class="{activeSideMenu:currentTab==='createChallenge'}">
+		  <div class="item sideMenu" title="Post Challenge" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;padding-bottom: 0px;padding-top: 0px;"  ng-class="{activeSideMenu:currentTab==='createChallenge'}">
 			    
-			    <a  class="silver " ui-sref=".createChallenge" ng-click="setCurrentTab('createChallenge');" style="vertical-align: bottom;display: block;padding-top: 10px;padding-bottom: 10px;" ng-class="{activeSideMenuColor:currentTab==='createChallenge'}" >
+			    <a  class="silver " ui-sref=".createChallenge" ng-click="setCurrentTab('postChallenge');" style="vertical-align: bottom;display: block;padding-top: 10px;padding-bottom: 10px;" ng-class="{activeSideMenuColor:currentTab==='createChallenge'}" >
 					<i class=" puzzle icon " ></i>	   <span ng-hide="shortMenu" style="font-size: medium;"> Post Challenge</span>  
 				</a>
 		  </div>
 		  <div class="item sideMenu" title="Share A Learning" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;padding-bottom: 0px;padding-top: 0px;"  ng-class="{activeSideMenu:currentTab==='createLearning'}">
 			    
-			    <a  class="silver " ui-sref=".createLearning" ng-click="setCurrentTab('createLearning');" style="vertical-align: bottom;display: block;padding-top: 10px;padding-bottom: 10px;" ng-class="{activeSideMenuColor:currentTab==='createLearning'}" >
+			    <a  class="silver " ui-sref=".createLearning" ng-click="setCurrentTab('shareLearning');" style="vertical-align: bottom;display: block;padding-top: 10px;padding-bottom: 10px;" ng-class="{activeSideMenuColor:currentTab==='createLearning'}" >
 					<i class="share alternate icon"></i>	   <span ng-hide="shortMenu" style="font-size: medium;"> Share A Learning</span>  
 				</a>
 		  </div>
 		  <div class="item sideMenu" title="All Posts" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;padding-bottom: 0px;padding-top: 0px;" ng-class="{activeSideMenu:currentTab==='allChallenges'}">
 			   
-			     <a class="silver " ui-sref=".allChallenges"  ng-click="setCurrentTab('allChallenges');" style="vertical-align: bottom;display: block;padding-top: 10px;padding-bottom: 10px;" ng-class="{activeSideMenuColor:currentTab==='allChallenges'}">
+			     <a class="silver " ui-sref=".allChallenges"  ng-click="setCurrentTab('allPosts');" style="vertical-align: bottom;display: block;padding-top: 10px;padding-bottom: 10px;" ng-class="{activeSideMenuColor:currentTab==='allChallenges'}">
 					 <i class=" archive icon " ></i>	  <span ng-hide="shortMenu" style="font-size: medium;"> All Posts </span>  
 				</a>
 		  </div> 
 		  <div class="item sideMenu" title="My Posts" style="border-bottom:1px solid black;margin-left: 5px;margin-right: 5px;cursor: pointer;padding-bottom: 0px;padding-top: 0px;"  ng-class="{activeSideMenu:currentTab==='myChallenges'}">
 			   
-			     <a class="silver " ui-sref=".myChallenges" ng-click="setCurrentTab('myChallenges');" style="vertical-align: bottom;display: block;padding-top: 10px;padding-bottom: 10px;" ng-class="{activeSideMenuColor:currentTab==='myChallenges'}" >
+			     <a class="silver " ui-sref=".myChallenges" ng-click="setCurrentTab('myPosts');" style="vertical-align: bottom;display: block;padding-top: 10px;padding-bottom: 10px;" ng-class="{activeSideMenuColor:currentTab==='myChallenges'}" >
 						 <i class=" lab icon " ></i>   <span ng-hide="shortMenu" style="font-size: medium;"> My Posts </span> 
 				</a>
 		  </div>

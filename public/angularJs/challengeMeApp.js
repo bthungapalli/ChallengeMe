@@ -23,19 +23,19 @@ challengeMeApp.config(["$stateProvider",function($stateProvider){
 		controller:"profileController",
 		templateUrl : "angularJs/partials/profile.html",
 	}).state("main.createChallenge",{
-		url: "/createChallenge",
+		url: "/postChallenge",
 		controller:"createChallengeController",
 		templateUrl : "angularJs/partials/createChallenge.html",
 	}).state("main.createLearning",{
-		url: "/createLearning",
+		url: "/shareLearning",
 		controller:"createChallengeController",
 		templateUrl : "angularJs/partials/createChallenge.html",
 	}).state("main.myChallenges",{
-		url: "/myChallenges",
+		url: "/myPosts",
 		controller:"challengesController",
 		templateUrl : "angularJs/partials/challenges.html",
 	}).state("main.allChallenges",{
-		url: "/allChallenges",
+		url: "/allPosts",
 		controller:"challengesController",
 		templateUrl : "angularJs/partials/challenges.html",
 	}).state("main.logout",{
