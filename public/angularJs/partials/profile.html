@@ -53,7 +53,7 @@
 					 </div> 
 					  </form>  
 					</div>
-					<!-- <div class="three wide column" style="padding-top: 24px;">
+					<div class="three wide column" style="padding-top: 24px;">
 					Work phone
 					</div>
 					<div  class="thirteen wide column">
@@ -62,7 +62,7 @@
 					 <input type="text" id="input" ng-model="userDetails.workPhone" ng-disabled="!editProfile" maxlength="4" name="input" ng-pattern="regex"/> 
 					 </div> (Extn)<label ng-show="!form.input.$valid" style="color:red;">Please enter only numbers.</label>
 					  </form>  
-					</div> -->
+					</div>
 					<div class="three wide column" style="padding-top: 24px;">
 					Title
 					</div>
@@ -118,7 +118,7 @@
 						<button class="ui primary button" ng-click="edit();" ng-show="!editProfile">
 					  	<i class="write icon"  style="margin-right: 0px;"></i>Edit
 						</button>
-						<button class="ui positive button" ng-click="updateProfile();" ng-show="editProfile" ng-disabled="userCategories.length===0">
+						<button class="ui positive button" ng-click="updateProfile();" ng-show="editProfile" ng-disabled="userCategories.length===0 || !form.input.$valid ">
 					  	<i class="checkmark icon"  style="margin-right: 0px;"></i> Update
 						</button>
 					</div>

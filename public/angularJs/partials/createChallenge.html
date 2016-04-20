@@ -52,14 +52,14 @@
 					</div>
 		</div>
 		
-		<div  class="four wide column" style="position: relative;top: 7px;padding-top: 0px;padding-bottom: 10px;">
+		<div  class="five wide column" style="position: relative;top: 7px;padding-top: 0px;padding-bottom: 10px;">
 				<div class="ui toggle checkbox">
 					  <input id="Anonymous" type="checkbox" ng-model="challenge.anonymous"  />
 					  <label for="Anonymous" >Anonymous</label>
 					</div>
 		</div>
-		<div ng-hide="currentTab==='createLearning'" class="six wide column" style="padding-top: 0px;padding-bottom: 0px;">
-			   <div class="ui fluid labeled input focus">
+		<div ng-hide="currentTab==='createLearning'" class="five wide column" style="padding-top: 0px;padding-bottom: 0px;text-align: left;">
+			   <div class="ui labeled input focus">
 				  <div class="ui teal label">
 				   Prize
 				  </div>
@@ -67,7 +67,7 @@
 				</div> 	
 		</div>
 		
-	<div ng-hide="currentTab==='createLearning'" class="five wide column"  style="text-align: right;padding-top: 0px;padding-bottom: 0px;">
+	<div ng-hide="currentTab==='createLearning'" class="six wide column"  style="text-align: right;padding-top: 0px;padding-bottom: 0px;">
 
 				<div class="ui labeled input focus">
 				  <div class="ui teal label">
@@ -97,14 +97,15 @@
 				  Notify Groups
 				</div> 
 				<span ng-if="categories.length==0">No Categories are created.</span>
+				 <div class="ui toggle checkbox" style="margin: 5px 0px;">
+					  <input id="All" type="checkbox"   ng-click="toggleAllSelection()"/>
+					  <label for="All" style="padding-left: 54px;padding-right: 20px;"><strong>All</strong></label>
+					</div>
 					 <div class="ui toggle checkbox" ng-repeat="category in categories">
 					  <input id="{{category._id}}" type="checkbox" value="{{category}}" ng-checked="checkCategory(category._id) || selectedCategory==category" ng-disabled="selectedCategory==category"  ng-click="toggleSelection(category)"/>
 					  <label for="{{category._id}}" style="padding-left: 50px;padding-right:12px;">{{category.name | camelCase}} </label>
 					</div>
-					 <div class="ui toggle checkbox" style="margin: 5px 0px;">
-					  <input id="All" type="checkbox"   ng-click="toggleAllSelection()"/>
-					  <label for="All" style="padding-left: 54px;padding-right: 20px;">All</label>
-					</div>
+					
 		</div>	
 			<div class="five wide column" style="padding-top: 0px;">
 				<div class="ui fluid labeled input focus">
