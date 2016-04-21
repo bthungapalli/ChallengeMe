@@ -68,6 +68,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	$scope.getListOfSelected=function(){
 		var url="";
 			$scope.allChallenges=false;
+			$rootScope.ocValue = "";
 		if($scope.list==="All"){
 			$scope.fetchAll();
 		}else if($scope.list==="CHALLENGES"){
@@ -167,8 +168,9 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 				$scope.allChallenges=true;
 				$scope.fetchAll();
 			}else{
-				$scope.getAllChallenges();
+				$rootScope.ocValue = "";
 				$rootScope.clickedValue = undefined;
+				$scope.getAllChallenges();
 			}
 		
 	}else if($state.current.name==="main.subcribedChallenges"){
