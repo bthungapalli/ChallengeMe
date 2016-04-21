@@ -100,6 +100,10 @@
 					</div>
 					<div  class="thirteen wide column">
 					<span ng-if="allCategories.length==0">No Categories are created.</span>
+					 <div class="ui toggle checkbox" style="margin: 5px 0px;">
+					  <input id="All" type="checkbox"  ng-disabled="!editProfile" ng-checked="selectAllCategories();" ng-click="toggleAllSelection()"/>
+					  <label for="All" style="padding-left: 54px;padding-right: 20px;"><strong>All</strong></label>
+					</div>
 					 <span ng-repeat="category in allCategories" >
 					 
 					 <div class="ui toggle checkbox" style="margin: 5px 0px;">
@@ -108,10 +112,7 @@
 					</div>
 					 
 					 </span>
-					 <div class="ui toggle checkbox" style="margin: 5px 0px;">
-					  <input id="All" type="checkbox"  ng-disabled="!editProfile" ng-checked="selectAllCategories();" ng-click="toggleAllSelection()"/>
-					  <label for="All" style="padding-left: 54px;padding-right: 20px;">All</label>
-					</div>
+					
 					 
 					</div>
 					<div class="sixteen wide center aligned column">
