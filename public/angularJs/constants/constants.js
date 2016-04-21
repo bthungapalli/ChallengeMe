@@ -17,7 +17,7 @@ angular.module('challengeMeApp').constant("challengeMeConstants", {
         "like":"/like",
         "unlike":"/unlike",
         "errorMessage":"Some thing went wrong.",
-        "noChallengeMessage":"No challenges are available."
+        "noChallengeMessage":"No posts are available."
     }).constant("loadingMessages", {
         "loginLoadMessage": "authenticating user..."
     })
