@@ -52,6 +52,10 @@
    },
    "context":{
 	   	"path":"http://localhost:8123/images/logo.png"
+  },
+  "AllHands":{
+	  "emailId":"lbole@osius.com",
+	  "flag":false
   }
    
 }

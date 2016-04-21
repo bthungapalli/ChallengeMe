@@ -51,6 +51,10 @@
    },
    "context":{
 	   	"path":"http://impact.osius.com:8123/images/logo.png"
+  },
+  "AllHands":{
+	  "emailId":"OSIIndia@osius.com",
+	  "flag":false
   }
    
 }

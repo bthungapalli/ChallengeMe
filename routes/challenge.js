@@ -82,10 +82,15 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 				categoryService.getEmailIdsForCategories(categoriesForMailGroup,function(err,emailIds){
 					if(err)
 						response.send("error");
-					var ids=_.pluck(emailIds, 'emailId');
+					var ids;
+					if(nconf.get('AllHands').flag){
+						ids= nconf.get('AllHands').emailId;
+					}else{
+						ids=_.pluck(emailIds, 'emailId');
+					}
 					console.log("emailIds...................."+ids);
-				var categoryNames = challenge.categories.name;
-				console.log("categories Details:::::",categoryNames);
+					var categoryNames = challenge.categories.name;
+					console.log("categories Details:::::",categoryNames);
 				var subject;
 				var template;
 					if(challenge.learning ){
