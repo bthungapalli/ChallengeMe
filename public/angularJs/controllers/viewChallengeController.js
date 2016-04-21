@@ -100,6 +100,8 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 						$scope.challenge.isCreated=true;
 						parentChallenge.status="create";
 					}
+					parentChallenge.categories=$scope.challenge.categories
+					parentChallenge.prize=$scope.challenge.prize;
 					parentChallenge.date=$scope.challenge.date;
 					parentChallenge.anonymous=$scope.challenge.anonymous;
 					if($scope.challenge.learning){
