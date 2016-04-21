@@ -157,6 +157,7 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 //        console.log("evt"+evt);
 //        console.log("points"+points[0].label);
 		 $rootScope.clickedValue = points[0].label;
+		 $rootScope.ocValue = "";
 		 $state.go("main.allChallenges");
      
        };
