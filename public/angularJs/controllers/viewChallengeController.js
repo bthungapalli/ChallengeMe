@@ -125,6 +125,8 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 $scope.closeChallenge=function(parentChallenge){
 	$scope.loadingMessage="closing challenge..";
 	$loading.start('challenges');
+	$scope.challenge.date=$scope.challenge.date.replace($scope.challenge.date.substring(3,5), new Date().getDate());
+	parentChallenge.date=$scope.challenge.date
 			$http.post("/challenge/close",parentChallenge).success(function(response){
 				$scope.redirectToLoginIfSessionExpires(response);
 				if(response=="error"){

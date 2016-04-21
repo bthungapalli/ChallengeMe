@@ -54,13 +54,13 @@
 					</div>
 		</div>	 -->
 		
-		<div class="five wide column" style="position: relative;top: 7px;padding-top: 0px;padding-bottom: 10px;" >
+		<div class="three wide column" style="position: relative;top: 7px;padding-top: 0px;padding-bottom: 10px;" >
 				<div class="ui toggle checkbox">
 					  <input id="Anonymous" type="checkbox" ng-model="challenge.anonymous"  ng-disabled="!editChallenge" />
 					  <label for="Anonymous" >Anonymous</label>
 					</div>
 		</div>
-		<div ng-hide="challenge.learning===true" class="five wide column" style="padding-top: 0px;padding-bottom: 0px;text-align: left;">
+		<div ng-hide="challenge.learning===true" class="four wide column" style="padding-top: 0px;padding-bottom: 0px;text-align: left;">
 			   <div class="ui labeled input focus">
 				  <div class="ui teal label">
 				   Prize
@@ -68,7 +68,7 @@
 				 <input type="text" ng-model="challenge.prize" ng-disabled="challenge.learning"/> 
 				</div> 	
 		</div>
-		<div class="one wide column"></div>
+		
 	<div ng-hide="challenge.learning===true" class="five wide column"  style="text-align: right;padding-top: 0px;padding-bottom: 0px;">
 
 				<div class="ui labeled input focus">
@@ -81,6 +81,13 @@
 			  <i class="calendar green icon"></i>
 			</div>
 		</div>
+		<div class="four wide column" style="padding-top: 0px;padding-left: 38px;">	<button type="submit" class="ui small red button" ng-hide="challenge.status==='draft' || challenge.learning"  ng-click="closeChallenge(challengeObj);edit=!edit">
+			  	<i class="remove icon"  style="margin-right: 0px;"></i> Pre-Close Challenge
+			</button>
+					<div class="label"> <span style="font-size: smaller;color:red;">*Challenge will move to closed status</span> </div> 
+					</div>
+	
+		
 		<!-- <div class="three wide column">
 			   <div class="ui fluid labeled input focus">
 				  <div class="ui teal label">
@@ -146,10 +153,7 @@
 			<button type="submit" class="ui small positive button" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (!challenge.learning?challenge.date.length===0:false) || (challenge.categories.length===0)|| (challenge.tag.length===0))" ng-click="challenge.status='create';saveChallenge(challengeObj);edit=!edit" ng-show="editChallenge">
 			  	<i class="checkmark icon"  style="margin-right: 0px;"></i> Submit
 			</button>
-			<button type="submit" class="ui small red button" ng-hide="challenge.status==='draft' || challenge.learning"  ng-click="closeChallenge(challengeObj);edit=!edit">
-			  	<i class="remove icon"  style="margin-right: 0px;"></i> Close
-			</button>
-		</div>
+			</div>
 </div>
 
 <div class="ui stackable grid"  ng-show="!edit" >

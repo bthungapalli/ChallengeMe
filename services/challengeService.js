@@ -214,9 +214,9 @@ unlikeChallenge:function(challengeId,user,callbackForUnLikes){
 		callbackForUnLikes(null,"deleted");
 	});
 },
-closeChallenge:function(challengeId,callbackForCloseChallenge){
+closeChallenge:function(challengeId,date,callbackForCloseChallenge){
 	var conditions = { "_id":challengeId };
-	 var update = { $set: {"explicitClose": true}};
+	 var update = { $set: {"explicitClose": true,"date":date}};
 	 challengeModel.update(conditions, update, callback);
 	 
 	function callback (err, numAffected) {

@@ -273,8 +273,9 @@ router.post('/unlike',checkSession.requireLogin,function (request,response,next)
 
 router.post('/close',checkSession.requireLogin,function (request,response,next){
 	var challengeId=request.body._id;
+	var date=request.body.date;
 	console.log("challengeId......"+challengeId);
-	challengeService.closeChallenge(challengeId,function(err,res){
+	challengeService.closeChallenge(challengeId,date,function(err,res){
 		if(err){
 			response.send("error");
 		}else{
