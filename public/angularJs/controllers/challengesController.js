@@ -8,15 +8,21 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	$scope.list="All";
 	$scope.allChallenges=false;
 	$scope.addAttributesToChallenge=function(challenges){
+		
+		var openChallenges=[];
+		var closedChallenges=[];
+		
 		angular.forEach(challenges,function(challenge,index){
 			challenge.collapse=false;
 			challenge.index=index;
 			var date=challenge.date.split("/");
 			var closedDate=new Date(date[2], date[0]-1,  date[1] , "23", "59", "59" );
 			if((closedDate.getTime()>new Date().getTime() && !challenge.explicitClose) || challenge.status==='draft'){
-				challenge.challengeStatus="Open"
+				challenge.challengeStatus="Open";
+				openChallenges.push(challenge);
 			}else{
 				challenge.challengeStatus="Closed";
+				closedChallenges.push(challenge);
 			}
 			if(challenge.learning){
 				challenge.challengeLearningStatus="Learning";
@@ -34,7 +40,16 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 			}
 			challenge.profileImageOfChallengeOwner="profile/imagePath/emailId/"+challenge.createdByEmailId+"/number/"+Math.random();
 		});
-		$scope.challenges=challenges;
+		
+		if($rootScope.ocValue==="CLOSED"){
+			$scope.challenges=closedChallenges;
+		}else if($rootScope.ocValue==="OPEN"){
+			$scope.challenges=openChallenges;
+		}else{
+			$scope.challenges=challenges;
+		}
+		
+		
 	};
 	
 	$scope.getListOfSelectedForMyPosts=function(){
@@ -150,7 +165,6 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 			if($rootScope.clickedValue !== undefined){
 				$scope.list=$rootScope.clickedValue;
 				$scope.allChallenges=true;
-				$scope.search=$rootScope.ocValue;
 				$scope.fetchAll();
 			}else{
 				$scope.getAllChallenges();
