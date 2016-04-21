@@ -72,7 +72,7 @@ getAllChallenges:function(categories,challengeOrLearningOrBoth,callbackForAllCha
 	if(challengeOrLearningOrBoth==='All'){
 		q={"mailGroups._id":{$in:categories},"status":"create"};
 	}else{
-		if(challengeOrLearningOrBoth==="Learning"){
+		if(challengeOrLearningOrBoth==="LEARNINGS"){
 			q={"mailGroups._id":{$in:categories},"status":"create","learning":true} ;
 		}else{
 			q={"mailGroups._id":{$in:categories},"status":"create","learning":false} ;
@@ -232,7 +232,7 @@ fetchAllChallenges:function(challengeOrLearningOrBoth,callbackForAllChallenges){
 	if(challengeOrLearningOrBoth==='All'){
 		q={"status":"create"};
 	}else{
-		if(challengeOrLearningOrBoth==="Learning"){
+		if(challengeOrLearningOrBoth==="LEARNINGS"){
 			q={"status":"create","learning":true};
 		}else{
 			q={"status":"create","learning":false};

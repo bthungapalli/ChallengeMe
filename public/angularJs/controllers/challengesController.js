@@ -42,9 +42,9 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 		
 		if($scope.list==="All"){
 			url="/challenge/mychallenges/All";
-		}else if($scope.list==="Challenges"){
+		}else if($scope.list==="CHALLENGES"){
 			url="/challenge/mychallenges/false";
-		}else if($scope.list==="Learning"){
+		}else if($scope.list==="LEARNINGS"){
 			url="/challenge/mychallenges/true";
 		}
 		$scope.getMyChallenges(url);
@@ -52,19 +52,21 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	
 	$scope.getListOfSelected=function(){
 		var url="";
-		$scope.allChallenges=false;
+			$scope.allChallenges=false;
 		if($scope.list==="All"){
 			$scope.fetchAll();
-		}else if($scope.list==="Challenges"){
+		}else if($scope.list==="CHALLENGES"){
 			url="/challenge/challengeOrLearning/false/"+$scope.allChallenges;
-		}else if($scope.list==="Learning"){
+		}else if($scope.list==="LEARNINGS"){
 			url="/challenge/challengeOrLearning/true/"+$scope.allChallenges;
 		}
 		$scope.fetchChallengesOrLearning(url);
+		$rootScope.clickedValue = undefined;
+		$scope.search='';
 	};
 	
 	$scope.fetchAll=function(){
-		$scope.loadingMessage="fetching all challenges...";
+		$scope.loadingMessage="fetching all posts...";
 		$loading.start('challenge');
 		var url="";
 		if($scope.allChallenges){
@@ -74,6 +76,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 		}
 		
 		$scope.fetchChallengesOrLearning(url);
+		$rootScope.clickedValue = undefined
 	};
 	
 	$scope.fetchChallengesOrLearning=function(url){
@@ -144,7 +147,16 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 		$scope.getMyChallenges("/challenge/mychallenges/All");
 	}else if($state.current.name==="main.allChallenges"){
 			$scope.setCurrentTab("allChallenges");
-		$scope.getAllChallenges()
+			if($rootScope.clickedValue !== undefined){
+				$scope.list=$rootScope.clickedValue;
+				$scope.allChallenges=true;
+				$scope.search=$rootScope.ocValue;
+				$scope.fetchAll();
+			}else{
+				$scope.getAllChallenges();
+				$rootScope.clickedValue = undefined;
+			}
+		
 	}else if($state.current.name==="main.subcribedChallenges"){
 		$scope.setCurrentTab("subcribedChallenges");
 		$scope.getSubcribeChallenges();

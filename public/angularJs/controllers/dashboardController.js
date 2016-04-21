@@ -152,8 +152,22 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 			});
 		
 	}	
-			
-			
+	
+	 $scope.onClick = function (points, evt) {
+//        console.log("evt"+evt);
+//        console.log("points"+points[0].label);
+		 $rootScope.clickedValue = points[0].label;
+		 $state.go("main.allChallenges");
+     
+       };
+	$scope.OpenCloseClick = function(points,evt){
+		$rootScope.clickedValue = "CHALLENGES";
+		$rootScope.ocValue = points[0].label; 
+		 $state.go("main.allChallenges");
+		
+	}		
+       
+       
 	$scope.donutData();
 	$scope.getPieData();
 	$scope.getMonthData();
