@@ -8,7 +8,9 @@ var dashboardService = function() {
 
 	return {
 		getChallengesByIntrest : function(callback) {
-			challengeModel.aggregate([ {
+			challengeModel.aggregate([
+			   { $match:  {status:'create'}},
+			    {
 				$group : {
 					_id : '$categories.name', //$region is the column name in collection
 					count : {
@@ -82,7 +84,9 @@ var dashboardService = function() {
 			 
 		 },
 	getCLStats : function(callback) {
-				challengeModel.aggregate([ {
+				challengeModel.aggregate([ 
+				  { $match:  {status:'create'}},                   
+				      {
 					$group : {
 						_id : '$learning', //$region is the column name in collection
 						count : {
