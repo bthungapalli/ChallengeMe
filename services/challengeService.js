@@ -119,6 +119,28 @@ getAllChallengesForCategoryName:function(categories,challengeOrLearningOrBoth,ca
        }
     });
 },
+getAllChallengesForMonth:function(month,callbackForAllChallenges){
+	
+	var year=new Date().getFullYear();
+	var startDate=year+"-"+month+"-01T00:00:00.000Z";
+	var endDate=year+"-"+month+"-31T23:59:59.000Z"
+	var q={ created_at: { $gte: new Date(startDate), $lte: new Date(endDate) },"status":"create" };
+	console.log("getAllChallengesForMonth::::"+startDate+ ";::"+endDate);
+	var query = challengeModel.find(q).sort({"created_at":-1});
+    query.exec(function(err, challenges){
+        if(err){
+        	callbackForAllChallenges(err);
+        }else{
+        	   likesUtil.fetchLikes(challenges,function(err,challenges){
+   	        	if(err)
+   	        		callbackForAllChallenges(err);
+   	        	callbackForAllChallenges(null,challenges)
+   	        	
+   	        });
+       }
+    });
+},
+
 getChallengeForChallengeId:function(challengeId,callbackForchallenge){
 	
 	var query = challengeModel.find({"_id":challengeId});

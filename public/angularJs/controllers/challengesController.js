@@ -109,6 +109,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 				$loading.finish('challenge');
 			});
 		$rootScope.categoryValue=undefined;
+		$rootScope.monthWiseClick=undefined;
 	}
 	
 	$scope.getMyChallenges=function(url){
@@ -170,9 +171,13 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 				$scope.fetchAll();
 			}else if($rootScope.categoryValue !== undefined){
 				$scope.fetchChallengesOrLearning("/challenge/categoryFromDashboard/"+$rootScope.categoryValue)
+			}else if($rootScope.monthWiseClick!==undefined){
+				$scope.fetchChallengesOrLearning("/challenge/monthWisePosts/"+$rootScope.monthWiseClick)
 			}else{
 				$rootScope.ocValue = "";
 				$rootScope.clickedValue = undefined;
+				$rootScope.categoryValue =undefined;
+				$rootScope.monthWiseClick=undefined;
 				$scope.getAllChallenges();
 			}
 		

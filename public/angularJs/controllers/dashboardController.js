@@ -176,7 +176,16 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 		 $state.go("main.allChallenges");
 		
 	}	
-	
+	$scope.monthWiseClick = function(points,evt){
+		$rootScope.clickedValue = undefined;
+		$rootScope.ocValue =undefined; 
+		$rootScope.categoryValue = undefined;
+		var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+		var month=months.indexOf(points[0].label.substring(0,3))+1;
+		$rootScope.monthWiseClick= month>9?month:"0"+month;
+		 $state.go("main.allChallenges");
+		
+	}	
 	
        
        
