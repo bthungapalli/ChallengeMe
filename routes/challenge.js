@@ -212,6 +212,44 @@ router.get('/:challengeId',checkSession.requireLogin,function (request,response,
 	});
 });
 
+
+router.get('/categoryFromDashboard/:category',checkSession.requireLogin,function (request,response,next){
+	var categories=[request.params.category];
+	var user=request.session.user;
+	challengeService.getAllChallengesForCategoryName(categories,"All",function(err,challenges){
+		if(err)
+			response.send("error");
+		challengeService.getSubcribedChallengeIdsForEmail(user.emailId,function(err,challengeIds){
+			if(err)
+				response.send("error");
+			
+			solutionService.getSolutionsForChallenges(function(err,count){
+				if(err)
+				response.send("error");
+				
+				for( var challenge in challenges){
+					for( var id in challengeIds){
+						if(challengeIds[id].challengeId===challenges[challenge]._id){
+							challenges[challenge].isSubcribed=true;
+							break;
+						};
+					}
+					
+					for(var id in count){
+						if(challenges[challenge]._id===count[id]._id){
+							challenges[challenge].solutionsCount=count[id].count;
+						}
+					}
+				}
+				
+				response.send(challenges);
+			});
+			
+			
+		});
+});
+});
+
 router.post('/comment',checkSession.requireLogin,function (request,response,next){
 	var challengeId = request.body.challengeId;
 	var postedComment = request.body.comment;

@@ -93,6 +93,32 @@ getAllChallenges:function(categories,challengeOrLearningOrBoth,callbackForAllCha
        }
     });
 },
+getAllChallengesForCategoryName:function(categories,challengeOrLearningOrBoth,callbackForAllChallenges){
+	var q="";
+	if(challengeOrLearningOrBoth==='All'){
+		q={"categories.name":{$in:categories},"status":"create"};
+	}/*else{
+		if(challengeOrLearningOrBoth==="LEARNINGS"){
+			q={"mailGroups._id":{$in:categories},"status":"create","learning":true} ;
+		}else{
+			q={"mailGroups._id":{$in:categories},"status":"create","learning":false} ;
+		}
+	}*/
+	console.log("categories"+categories);
+	var query = challengeModel.find(q).sort({"created_at":-1});
+    query.exec(function(err, challenges){
+        if(err){
+        	callbackForAllChallenges(err);
+        }else{
+        	   likesUtil.fetchLikes(challenges,function(err,challenges){
+   	        	if(err)
+   	        		callbackForAllChallenges(err);
+   	        	callbackForAllChallenges(null,challenges)
+   	        	
+   	        });
+       }
+    });
+},
 getChallengeForChallengeId:function(challengeId,callbackForchallenge){
 	
 	var query = challengeModel.find({"_id":challengeId});

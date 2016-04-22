@@ -158,15 +158,26 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 //        console.log("points"+points[0].label);
 		 $rootScope.clickedValue = points[0].label;
 		 $rootScope.ocValue = "";
+		 $rootScope.categoryValue=undefined;
 		 $state.go("main.allChallenges");
      
        };
 	$scope.OpenCloseClick = function(points,evt){
 		$rootScope.clickedValue = "CHALLENGES";
 		$rootScope.ocValue = points[0].label; 
+		$rootScope.categoryValue=undefined;
 		 $state.go("main.allChallenges");
 		
-	}		
+	}	
+	$scope.categoriesClick = function(points,evt){
+		$rootScope.clickedValue = undefined;
+		$rootScope.ocValue =undefined; 
+		$rootScope.categoryValue = points[0].label;
+		 $state.go("main.allChallenges");
+		
+	}	
+	
+	
        
        
 	$scope.donutData();
