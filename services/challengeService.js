@@ -140,7 +140,23 @@ getAllChallengesForMonth:function(month,callbackForAllChallenges){
        }
     });
 },
-
+getAllChallengesForLocation:function(location,callbackForAllChallenges){
+	
+	var q={ "location":location,"status":"create" };
+	var query = challengeModel.find(q).sort({"created_at":-1});
+    query.exec(function(err, challenges){
+        if(err){
+        	callbackForAllChallenges(err);
+        }else{
+        	   likesUtil.fetchLikes(challenges,function(err,challenges){
+   	        	if(err)
+   	        		callbackForAllChallenges(err);
+   	        	callbackForAllChallenges(null,challenges)
+   	        	
+   	        });
+       }
+    });
+},
 getChallengeForChallengeId:function(challengeId,callbackForchallenge){
 	
 	var query = challengeModel.find({"_id":challengeId});

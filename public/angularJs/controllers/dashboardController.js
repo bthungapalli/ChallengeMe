@@ -166,12 +166,16 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 		$rootScope.clickedValue = "CHALLENGES";
 		$rootScope.ocValue = points[0].label; 
 		$rootScope.categoryValue=undefined;
+		$rootScope.locationWiseClick=undefined; 
+		$rootScope.monthWiseClick= undefined;
 		 $state.go("main.allChallenges");
 		
 	}	
 	$scope.categoriesClick = function(points,evt){
 		$rootScope.clickedValue = undefined;
 		$rootScope.ocValue =undefined; 
+		$rootScope.locationWiseClick=undefined; 
+		$rootScope.monthWiseClick= undefined;
 		$rootScope.categoryValue = points[0].label;
 		 $state.go("main.allChallenges");
 		
@@ -186,6 +190,18 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 		 $state.go("main.allChallenges");
 		
 	}	
+	
+	$scope.locationWiseClick = function(points,evt){
+		$rootScope.clickedValue = undefined;
+		$rootScope.ocValue =undefined; 
+		$rootScope.categoryValue = undefined;
+		$rootScope.monthWiseClick= undefined;
+		$rootScope.locationWiseClick= points[0].label;
+		 $state.go("main.allChallenges");
+		
+	}	
+	
+	
 	
        
        

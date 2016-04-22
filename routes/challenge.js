@@ -286,6 +286,42 @@ router.get('/monthWisePosts/:month',checkSession.requireLogin,function (request,
 });
 });
 
+router.get('/locationWisePosts/:location',checkSession.requireLogin,function (request,response,next){
+	var user=request.session.user;
+	challengeService.getAllChallengesForLocation(request.params.location,function(err,challenges){
+		if(err)
+			response.send("error");
+		challengeService.getSubcribedChallengeIdsForEmail(user.emailId,function(err,challengeIds){
+			if(err)
+				response.send("error");
+			
+			solutionService.getSolutionsForChallenges(function(err,count){
+				if(err)
+				response.send("error");
+				
+				for( var challenge in challenges){
+					for( var id in challengeIds){
+						if(challengeIds[id].challengeId===challenges[challenge]._id){
+							challenges[challenge].isSubcribed=true;
+							break;
+						};
+					}
+					
+					for(var id in count){
+						if(challenges[challenge]._id===count[id]._id){
+							challenges[challenge].solutionsCount=count[id].count;
+						}
+					}
+				}
+				
+				response.send(challenges);
+			});
+			
+			
+		});
+});
+});
+
 router.post('/comment',checkSession.requireLogin,function (request,response,next){
 	var challengeId = request.body.challengeId;
 	var postedComment = request.body.comment;
