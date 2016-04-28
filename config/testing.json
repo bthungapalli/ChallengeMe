@@ -29,7 +29,7 @@
 	   "dashboard":"/dashboard"
    },
    "mail":{
-	   "challengeMeSupport":"bthungapalli@osius.com",
+	   "challengeMeSupport":"osiwizz-admin@osius.com",
 		"subject":"[OSIWizz] ",
 		"appURL" : "http://osiwizz.osius.com",
 		"appName":"OSIWizz"
@@ -46,8 +46,8 @@
    "smtpConfig":{
 	   "host":"outlook.office365.com",
 	   "port":587,
-	   "authUser":"bthungapalli@osius.com",
-	   "authPassword":"Eeshu@05"
+	   "authUser":"osiwizz-admin@osius.com",
+	   "authPassword":"Welcome@05!"
    },
    "context":{
 	   	"path":"http://impact.osius.com:8123/images/logo.png"
