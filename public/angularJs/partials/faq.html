@@ -2,14 +2,15 @@
 <div class="ui grid" >
 <div class="sixteen wide column" style="padding-top: 0px;" >
 <div id="solutions" style="margin-top: 12px;" >
-		<div  id="solution" class="ui raised segments" ng-repeat="f in faq">  
+
+		<div  id="solution" class="ui raised segments" ng-repeat="f in faq ">  
 		
-		  <div class="ui secondary segment" ng-click="f.show=!f.show">
+		  <div class="ui secondary segment" ng-click="showHideFAQ($index)">
 		   <div style="margin-bottom:0px;" >
-		   <i ng-class="{'add circle green icon':!f.show,'minus circle red icon':f.show}"></i><strong >{{f.question}}</strong> 
+		   <i ng-class="{'add circle green icon':faqOpen!==$index+1,'minus circle red icon':faqOpen===$index+1}"></i><strong >{{f.question}}</strong> 
 			 </div> 
 		  </div>
-		  <div class="ui segment" ng-show="f.show">
+		  <div class="ui segment" ng-show=" faqOpen===$index+1">
 		    <p ng-bind-html="f.answer"></p>
 		  </div>
 		  
