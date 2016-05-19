@@ -1,5 +1,5 @@
  {
-  "port": "8123",
+  "port": "80",
    "sessionDetails":{
 	   "cookieName":"session",
 	   "secretKey":"challengeMe",
@@ -35,13 +35,13 @@
 		"appName":"OSIWizz"
    },
    "profile":{
-	   "profilePath":"/apps/TechWizz/prod/uploads/profiles/"
+	   "profilePath":"/apps/OSIWizz/prod/uploads/profiles/"
    },
    "challenge":{
-	   "attachmentPath":"/apps/TechWizz/prod/uploads/challenges/"
+	   "attachmentPath":"/apps/OSIWizz/prod/uploads/challenges/"
    },
    "solution":{
-	   "attachmentPath":"/apps/TechWizz/prod/uploads/solutions/"
+	   "attachmentPath":"/apps/OSIWizz/prod/uploads/solutions/"
    }
    "smtpConfig":{
 	   "host":"outlook.office365.com",
@@ -50,11 +50,11 @@
 	   "authPassword":"Welcome@05!"
    },
    "context":{
-	   	"path":"http://impact.osius.com:8123/images/logo.png"
+	   	"path":"http://osiwizz.osius.com/images/logo.png"
   },
   "AllHands":{
 	  "emailId":"OSIIndia@osius.com",
-	  "flag":false
+	  "flag":true
   }
    
 }
