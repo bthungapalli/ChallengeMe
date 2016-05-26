@@ -30,17 +30,17 @@
 	         action="{{'/solution/upload/'+solutionIdForFileUpload}}"
 	         method="post"
 	         >
-		<div class="six wide column" style="padding-right: 0px;">
+		<div class="six wide column" ng-hide=" challengeObj.challengeStatus==='Closed'" style="padding-right: 0px;">
 		
 		Attachment:  <input type="file" class="jfilestyle" data-placeholder="My place holder" name=attachment> 
 	
 		</div></form>
-		<div class="ten wide column" style="padding-left: 0px;padding-top: 6px;">
+		<div ng-hide=" challengeObj.challengeStatus==='Closed'"  class="ten wide column" style="padding-left: 0px;padding-top: 6px;">
 		 <span ng-show="solutionObj.file.length>0"><a href="solution/download/{{solutionObj.file}}"> {{solutionObj.file}}</a> </span>
 	
 		</div>
 		
-		<div class="two wide left aligned column" style="padding-bottom: 0px;">
+		<div ng-hide=" challengeObj.challengeStatus==='Closed'" class="two wide left aligned column" style="padding-bottom: 0px;">
 					 <div class="ui toggle checkbox">
 					  <input  id="Anonymous" type="checkbox" ng-model="solutionObj.anonymous" ng-disabled="challengeObj.challengeStatus==='Closed'" />
 					  <label for="Anonymous" style="padding-left: 54px;padding-right: 20px;padding-bottom: 15px;">Anonymous</label>
