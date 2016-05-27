@@ -1,60 +1,60 @@
  {
   "port": "80",
    "sessionDetails":{
-	   "cookieName":"session",
-	   "secretKey":"challengeMe",
-	   "duration":1800000,
-	   "activeDuration":30000,
-	   "httpOnly":true,
-	   "secure":true,
-	   "ephemeral":true
+           "cookieName":"session",
+           "secretKey":"challengeMe",
+           "duration":1800000,
+           "activeDuration":30000,
+           "httpOnly":true,
+           "secure":true,
+           "ephemeral":true
    },
    "mongoDbConnection":{
-	   "host":"localhost",
-	   "Db":"challengeMeDB"
+           "host":"localhost",
+           "Db":"challengeMeDB"
    },
    "impact":{
-	   "URL":"impact.osius.com"
+           "URL":"impact.osius.com"
    },
    "routes":{
-	   "login":"/",
-	   "mailUtil":"/mails",
-	   "categories":"/categories",
-	   "locations":"/locations",
-	   "profile":"/profile",
-	   "challenge":"/challenge",
-	   "subcribeChallenge":"/subcribeChallenge",
-	   "solution":"/solution",
-	   "contactUs":"/contactUs",
-	   "dashboard":"/dashboard"
+           "login":"/",
+           "mailUtil":"/mails",
+           "categories":"/categories",
+           "locations":"/locations",
+           "profile":"/profile",
+           "challenge":"/challenge",
+           "subcribeChallenge":"/subcribeChallenge",
+           "solution":"/solution",
+           "contactUs":"/contactUs",
+           "dashboard":"/dashboard"
    },
    "mail":{
-	   "challengeMeSupport":"osiwizz-admin@osius.com",
-		"subject":"[OSIWizz] ",
-		"appURL" : "http://osiwizz.osius.com",
-		"appName":"OSIWizz"
+           "challengeMeSupport":"osiwizz-admin@osius.com",
+                "subject":"[OSIWizz] ",
+                "appURL" : "https://osiwizz.osius.com",
+                "appName":"OSIWizz"
    },
    "profile":{
-	   "profilePath":"/apps/OSIWizz/prod/uploads/profiles/"
+           "profilePath":"/apps/OSIWizz/prod/uploads/profiles/"
    },
    "challenge":{
-	   "attachmentPath":"/apps/OSIWizz/prod/uploads/challenges/"
+           "attachmentPath":"/apps/OSIWizz/prod/uploads/challenges/"
    },
    "solution":{
-	   "attachmentPath":"/apps/OSIWizz/prod/uploads/solutions/"
-   }
+           "attachmentPath":"/apps/OSIWizz/prod/uploads/solutions/"
+   },
    "smtpConfig":{
-	   "host":"outlook.office365.com",
-	   "port":587,
-	   "authUser":"osiwizz-admin@osius.com",
-	   "authPassword":"Welcome@05!"
+           "host":"outlook.office365.com",
+           "port":587,
+           "authUser":"osiwizz-admin@osius.com",
+           "authPassword":"Welcome@05!"
    },
    "context":{
-	   	"path":"http://osiwizz.osius.com/images/logo.png"
-  },
-  "AllHands":{
-	  "emailId":"OSIIndia@osius.com",
-	  "flag":true
-  }
-   
+                "path":"https://osiwizz.osius.com/images/logo.png"
+   },
+   "AllHands":{
+                  "emailId":"OSIIndia@osius.com , osi_philippines@osius.com",
+                  "flag":true
+          }
+
 }
