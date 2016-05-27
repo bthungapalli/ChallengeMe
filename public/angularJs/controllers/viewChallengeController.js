@@ -23,7 +23,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 	$scope.view=$state.current.name;
 	$scope.viewComments=false;
 	$scope.challengeComment="";
-	
+
 	
 	 $(":file").jfilestyle({placeholder: "",buttonText: "Browse",'inputSize': '60%'});
 	 $('#uploadForm1').submit(function() {
@@ -276,6 +276,7 @@ $scope.closeChallenge=function(parentChallenge){
 					}else{
 						$scope.solutionTemplateForView="angularJs/partials/viewSolutions.html";
 					};
+					
 					$loading.finish('challenges');
 				}).error(function(error){
 						$scope.errorMessage=challengeMeConstants.errorMessage;
@@ -287,27 +288,46 @@ $scope.closeChallenge=function(parentChallenge){
 		};
 		
 		
-		
 		$scope.showComments=function(){
 			$scope.viewComments=!$scope.viewComments;
 		};
 		
+		$scope.disableButton=function(){
+			$("#commentButton").prop('disabled', true);
+		};
+		
+		$scope.showCommentButton=function(){
+			if($("#commentTextArea").val().trim().length===0){
+				$("#commentButton").prop('disabled', true);
+			}else{
+				$("#commentButton").prop('disabled', false);
+			};
+		};
+		
+		
+		
 		$scope.addChallengeComment=function(challenge){
-			var data={"challengeId":challenge._id,"comment":$("#commentTextArea").val()}
-			$http.post(challengeMeConstants.challenge+"/"+challengeMeConstants.challengeComment,data).success(function(response){
-				$scope.redirectToLoginIfSessionExpires(response);
-				if(response==="error"){
-					$scope.errorMessage=challengeMeConstants.errorMessage;
-				}else{
-					
-					var commentData={"comment":$("#commentTextArea").val(),"userName":$scope.userDetails.name,"emailId":$scope.userDetails.emailId,"commentedDate":new Date().toISOString()}
-					$scope.challenge.comments.push(commentData);
-					$scope.challengeComment="";
-					$("#commentTextArea").val("")
-				};
-				}).error(function(error){
-					$scope.errorMessage=challengeMeConstants.errorMessage;
-				});
+		
+			if($("#commentTextArea").val().trim().length>0){
+				var data={"challengeId":challenge._id,"comment":$("#commentTextArea").val()}
+				$http.post(challengeMeConstants.challenge+"/"+challengeMeConstants.challengeComment,data).success(function(response){
+					$scope.redirectToLoginIfSessionExpires(response);
+					if(response==="error"){
+						$scope.errorMessage=challengeMeConstants.errorMessage;
+					}else{
+						
+						var commentData={"comment":$("#commentTextArea").val(),"userName":$scope.userDetails.name,"emailId":$scope.userDetails.emailId,"commentedDate":new Date().toISOString()}
+						$scope.challenge.comments.push(commentData);
+						$("#commentTextArea").val("");
+						$("#commentButton").prop('disabled', true);
+						$scope.challengeComment="";
+					};
+					}).error(function(error){
+						$scope.errorMessage=challengeMeConstants.errorMessage;
+					});
+			}
+			
+			
 		};
 		
 		$scope.addSolutionComment=function(challenge,solutionObj){
