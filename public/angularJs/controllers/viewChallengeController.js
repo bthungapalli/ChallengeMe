@@ -292,15 +292,12 @@ $scope.closeChallenge=function(parentChallenge){
 			$scope.viewComments=!$scope.viewComments;
 		};
 		
-		$scope.disableButton=function(){
-			$("#commentButton").prop('disabled', true);
-		};
 		
-		$scope.showCommentButton=function(){
-			if($("#commentTextArea").val().trim().length===0){
-				$("#commentButton").prop('disabled', true);
+		$scope.showCommentButton=function(challenge){
+			if($("#commentTextArea"+challenge.index).val().trim().length===0){
+				$("#commentButton"+challenge.index).prop('disabled', true);
 			}else{
-				$("#commentButton").prop('disabled', false);
+				$("#commentButton"+challenge.index).prop('disabled', false);
 			};
 		};
 		
@@ -308,7 +305,7 @@ $scope.closeChallenge=function(parentChallenge){
 		
 		$scope.addChallengeComment=function(challenge){
 		
-			if($("#commentTextArea").val().trim().length>0){
+			if($("#commentTextArea"+challenge.index).val().trim().length>0){
 				var data={"challengeId":challenge._id,"comment":$("#commentTextArea").val()}
 				$http.post(challengeMeConstants.challenge+"/"+challengeMeConstants.challengeComment,data).success(function(response){
 					$scope.redirectToLoginIfSessionExpires(response);
@@ -316,10 +313,10 @@ $scope.closeChallenge=function(parentChallenge){
 						$scope.errorMessage=challengeMeConstants.errorMessage;
 					}else{
 						
-						var commentData={"comment":$("#commentTextArea").val(),"userName":$scope.userDetails.name,"emailId":$scope.userDetails.emailId,"commentedDate":new Date().toISOString()}
+						var commentData={"comment":$("#commentTextArea"+challenge.index).val(),"userName":$scope.userDetails.name,"emailId":$scope.userDetails.emailId,"commentedDate":new Date().toISOString()}
 						$scope.challenge.comments.push(commentData);
-						$("#commentTextArea").val("");
-						$("#commentButton").prop('disabled', true);
+						$("#commentTextArea"+challenge.index).val("");
+						$("#commentButton"+challenge.index).prop('disabled', true);
 						$scope.challengeComment="";
 					};
 					}).error(function(error){
