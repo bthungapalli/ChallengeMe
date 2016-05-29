@@ -90,10 +90,12 @@
 <div class="sixteen wide column">
 
 <div class="ui grid" ng-click="getChallenge(challengeObj);">  <img ng-hide="currentTab==='myChallenges'" class="ui tiny image" ng-src="{{challengeObj.profileImageOfChallengeOwner}}" style="position: absolute;width: 7%;height:100%;padding-left: 0px;padding-right: 0px;">
-<div class="eleven wide column" ng-style="{'padding-left': paddingLeft}" style="padding-bottom: 0px;padding-top: 5px;cursor: pointer;">
-<h3 style="font-family: Georgia;">{{challengeObj.title | camelCase}}</h3>
+<div class="twelve wide column" ng-style="{'padding-left': paddingLeft}" style="padding-bottom: 0px;padding-top: 5px;cursor: pointer;">
+<h3 style="font-family: Georgia;">{{challengeObj.title | camelCase}} <button type="submit" style="background-color: #2185d0 !important;border-radius: 30px;margin-left: 46px;" class="ui medium green label" ng-click="subcribeChallenge(challengeObj);"  type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') || (challengeObj.challengeStatus==='Closed') || challengeObj.learning || challengeObj.createdBy===userDetails.name">
+			  	<i class="thumbs up icon" style="margin-right: 0px;"></i> Accept Challenge
+		</button></h3>
 </div>
-<div class="five wide column" ng-show="(currentTab==='myChallenges')"  style="cursor: default !important;text-align: right;padding-top: 5px;padding-bottom: 0px;cursor: pointer">
+<div class="four wide column" ng-show="(currentTab==='myChallenges')"  style="cursor: default !important;text-align: right;padding-top: 5px;padding-bottom: 0px;cursor: pointer">
 <div class="ui teal tag label" style="padding-left: 11px;padding-right: 9px;">{{challengeObj.categories.name | camelCase}} </div>
 
 		
@@ -117,12 +119,10 @@
 		 
 		
 </div>
-<div class="five wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))"  style="cursor: default !important;text-align: right;padding-top: 5px;padding-bottom: 0px;cursor: pointer">
+<div class="four wide column" ng-show="((currentTab==='allChallenges') || (currentTab==='subcribedChallenges'))"  style="cursor: default !important;text-align: right;padding-top: 5px;padding-bottom: 0px;cursor: pointer">
  
 
-		<button type="submit" style="background-color: #2185d0 !important;border-radius: 30px;" class="ui medium green label" ng-click="subcribeChallenge(challengeObj);"  type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') || (challengeObj.challengeStatus==='Closed') || challengeObj.learning || challengeObj.createdBy===userDetails.name">
-			  	<i class="thumbs up icon" style="margin-right: 0px;"></i> Accept Challenge
-		</button>
+		
 		 <div class="ui teal tag label" style="padding-left: 11px;padding-right: 9px;">{{challengeObj.categories.name | camelCase}} </div>
 		 <div ng-if="challengeObj.learning" class="ui teal tag label" style="padding-left: 11px;padding-right: 9px;">{{challengeObj.challengeLearningStatus}} </div>
 		
