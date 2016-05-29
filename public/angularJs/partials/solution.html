@@ -20,8 +20,9 @@
 				  <!--   <div style="float:right" ng-show="solutionObj.status==='draft'" class="ui small blue label">
 					<i class="save icon" style="margin-right: 0px;"></i>Draft
 					 </div> -->
-		 
-				    <textarea ng-model="solutionObj.solution" ng-disabled="challengeObj.challengeStatus==='Closed'"></textarea>
+		 <p ng-if="challengeObj.challengeStatus==='Closed'" ng-bind-html=" solutionObj.solution | toTrustHtml"></p>
+		  <label style="color:red;">	{{solutionEmpty}}</label>
+				    <textarea id="solution{{challengeObj._id}}" ng-model="solutionObj.solution"  ng-if="challengeObj.challengeStatus==='Open'"></textarea>
 				  </div>
 				</div>
 		</div>

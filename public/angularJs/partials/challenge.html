@@ -10,7 +10,7 @@
 
 <div class="ui stackable grid">
 		<div class="sixteen wide column"> 
-				<h3 style="font-family: Georgia;font-weight: 100;font-size: initial;"> {{challenge.description }}</h3>
+				<h3 style="font-family: Georgia;font-weight: 100;font-size: initial;" ng-bind-html="challenge.description | toTrustHtml"> </h3>
 		 </div> 
 
 <div class="sixteen wide column">

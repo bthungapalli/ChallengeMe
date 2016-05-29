@@ -35,11 +35,13 @@
 	  <!--   <span style="font-size: smaller;position: relative;top: -14px;color:red;"> *Please click Upload after browsing the file.</span> --><br>
 	      {{challenge.file}}
 		</div>
+	
 		 <div class="sixteen wide column" style="padding-top: 0px;">
 				 <div class="ui form ">
 				  <div class="field">
 				    <label>Description*</label>
-				    <textarea ng-model="challenge.description"></textarea>
+				    <label style="color:red;">	{{descriptionEmpty}}</label>
+				    <textarea id="CL" ng-model="challenge.description"></textarea>
 				  </div>
 				</div>
 		</div>
@@ -120,9 +122,9 @@
 		<div class="sixteen wide center aligned column" >
 
 				<div class="ui buttons">
-					  <button class="ui blue button" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (!challenge.learning?challenge.date.length===0:false) || (challenge.categories.length===0)  || (challenge.tag.length===0) )" ng-click="challenge.status='draft';createChallenge()"><i class="save icon"  style="margin-right: 0px;"></i> Draft</button>
+					  <button class="ui blue button" ng-disabled="((challenge.title.length===0)|| (!challenge.learning?challenge.date.length===0:false) || (challenge.categories.length===0)  || (challenge.tag.length===0) )" ng-click="challenge.status='draft';createChallenge()"><i class="save icon"  style="margin-right: 0px;"></i> Draft</button>
 					  <div class="or"></div>
-					  <button class="ui positive button"  ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (!challenge.learning?challenge.date.length===0:false) || (challenge.categories.length===0)|| (challenge.tag.length===0))" ng-click="challenge.status='create';createChallenge()"><i class="checkmark icon"  style="margin-right: 0px;"></i> Create</button>
+					  <button class="ui positive button"  ng-disabled="((challenge.title.length===0)  || (!challenge.learning?challenge.date.length===0:false) || (challenge.categories.length===0)|| (challenge.tag.length===0))" ng-click="challenge.status='create';createChallenge()"><i class="checkmark icon"  style="margin-right: 0px;"></i> Create</button>
 				</div>
 		</div>
 		

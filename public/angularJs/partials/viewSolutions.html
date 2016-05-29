@@ -25,7 +25,7 @@
 		  <img style="border-radius: 10px;height: 106%;position: absolute;left: -11%;top: 0px;width: 8%;" class="ui tiny image"  ng-src="{{solutionObj.solutionUserImagePath}}">
 		  </div>
 		  <div class="ui segment" ng-show="solutionObj.collapse" >
-		    <p>{{solutionObj.solution}}</p>
+		    <p ng-bind-html="solutionObj.solution | toTrustHtml"></p>
 		   
 		<span style="cursor:pointer;" ng-show="solutionObj.file.length>0">Attachment: <a href="solution/download/{{solutionObj.file}}"> {{solutionObj.file}}</a><br><br> </span>
 	

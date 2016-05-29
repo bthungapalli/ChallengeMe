@@ -40,7 +40,7 @@
 				 <div class="ui form">
 				  <div class="field">
 				    <label>Description</label>
-				    <textarea ng-model="challenge.description" ng-disabled="!editChallenge"></textarea>
+				    <textarea id="CL{{challengeObj.index}}" ng-model="challenge.description" ng-disabled="!editChallenge"></textarea>
 				  </div>
 				</div>
 		</div>
@@ -147,10 +147,10 @@
 		
 		<div class="sixteen wide center aligned column">
 		
-			<button type="submit" class="ui small primary button"   ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (!challenge.learning?challenge.date.length===0:false)|| (challenge.tag.length===0))" ng-click="challenge.status='draft';saveChallenge(challengeObj);edit=!edit" ng-show="editChallenge && challenge.status==='draft'">
+			<button type="submit" class="ui small primary button"   ng-disabled="((challenge.title.length===0) || (!challenge.learning?challenge.date.length===0:false)|| (challenge.tag.length===0))" ng-click="challenge.status='draft';saveChallenge(challengeObj);edit=!edit" ng-show="editChallenge && challenge.status==='draft'">
 			  	<i class="save icon"  style="margin-right: 0px;"></i> Draft
 			</button>
-			<button type="submit" class="ui small positive button" ng-disabled="((challenge.title.length===0) || (challenge.description.length===0) || (!challenge.learning?challenge.date.length===0:false) || (challenge.categories.length===0)|| (challenge.tag.length===0))" ng-click="challenge.status='create';saveChallenge(challengeObj);edit=!edit" ng-show="editChallenge">
+			<button type="submit" class="ui small positive button" ng-disabled="((challenge.title.length===0) || (!challenge.learning?challenge.date.length===0:false) || (challenge.categories.length===0)|| (challenge.tag.length===0))" ng-click="challenge.status='create';saveChallenge(challengeObj);edit=!edit" ng-show="editChallenge">
 			  	<i class="checkmark icon"  style="margin-right: 0px;"></i> Submit
 			</button>
 			</div>
@@ -159,14 +159,14 @@
 <div class="ui stackable grid"  ng-show="!edit" >
 
 <div class="sixteen wide column" style="padding-top: 0px;">
-<h3 style="font-family: Georgia;font-weight: 100;font-size: initial;"> {{challenge.description }}</h3>
+<h3 style="font-family: Georgia;font-weight: 100;font-size: initial;" ng-bind-html="challenge.description | toTrustHtml"> </h3>
 </div>
 <div class="sixteen wide column" ng-show="{{challenge.file.length>0}}"  style="cursor: pointer;">
 	<b>Attachment:</b>
 					<a href="challenge/download/{{challenge.file}}">{{challenge.file}}.</a>
 			</div>
 <div class="sixteen wide center aligned column" style="padding-top: 0px;">
-	<button type="submit" class="ui blue button"  ng-show="!editChallenge && (challengeObj.challengeStatus==='Open') || (challengeObj.learning)" ng-click="showEditFields();edit=!edit">
+	<button type="submit" class="ui blue button"  ng-show="!editChallenge && (challengeObj.challengeStatus==='Open') || (challengeObj.learning)" ng-click="showEditFields(challengeObj.index);edit=!edit">
 			  	<i class="write icon"  style="margin-right: 0px;"></i> Edit
 			</button>
 </div>

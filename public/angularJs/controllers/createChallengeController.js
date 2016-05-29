@@ -2,6 +2,7 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 	$scope.errorMessage;
 	$scope.successMessage="";
 	$scope.categories=[];
+	$scope.descriptionEmpty="";
 	$scope.challenge={
 			"_id":"",
 			"categories":[],
@@ -129,37 +130,66 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 		};
 		
 		$scope.getAllCategories();
+		if($state.current.name==="main.createChallenge" || $state.current.name==="main.createLearning"){
+			
+			if (tinymce.editors.length > 0) {
+			    tinymce.execCommand('mceFocus', true, "CL" );       
+			    tinymce.execCommand('mceRemoveEditor',true, "CL");        
+			    tinymce.execCommand('mceAddEditor',true,"CL");
+			}else{
+				if($("#CL").is(":visible")){
+					 
+					tinymce.init({
+					    selector: "#CL",
+						 plugins: [
+					        "advlist autolink lists link image charmap print preview anchor ",
+					        "searchreplace visualblocks code fullscreen",
+					        "insertdatetime media table contextmenu paste textcolor colorpicker "
+					    ],
+					    toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image "
+				   });	
+				}
+	
+			}
+
+		}
 		
 		$scope.createChallenge=function(){
-			
-			$scope.loadingMessage=$scope.challenge.status==="create"?"Creating challenge":"Saving challenge";
-			$loading.start('createChallenge');
-			$scope.errorMessage="";
-			
-			if($('#createChallengeFile')[0].files.length>0){
-				$("#uploadForm").ajaxSubmit({
-		            error: function(xhr) {
-		        	status('Error: ' + xhr.status);
-		            },
-		            success: function(response) {
-		            	if(response==="error"){
-		            		$scope.errorMessage=challengeMeConstants.errorMessage;
-		            	}else{
-		            		$scope.challenge.file=response;
-		            		/*$scope.successMessage="File uploaded";
-		            		$loading.finish('createChallenge');*/
-		            		$scope.createChallengePost();
-		            	}
-		             }
-		      });
+			$scope.descriptionEmpty="";
+			if(tinymce.get('CL').getContent().length>0){
+				$scope.loadingMessage=$scope.challenge.status==="create"?"Creating challenge":"Saving challenge";
+				$loading.start('createChallenge');
+				$scope.errorMessage="";
+				
+				if($('#createChallengeFile')[0].files.length>0){
+					$("#uploadForm").ajaxSubmit({
+			            error: function(xhr) {
+			        	status('Error: ' + xhr.status);
+			            },
+			            success: function(response) {
+			            	if(response==="error"){
+			            		$scope.errorMessage=challengeMeConstants.errorMessage;
+			            	}else{
+			            		$scope.challenge.file=response;
+			            		/*$scope.successMessage="File uploaded";
+			            		$loading.finish('createChallenge');*/
+			            		$scope.createChallengePost();
+			            	}
+			             }
+			      });
+				}else{
+					$scope.createChallengePost();
+				}
 			}else{
-				$scope.createChallengePost();
+				$scope.descriptionEmpty="Please Enter Description";
 			}
+			
+			
 			
 		};
 		
 		$scope.createChallengePost = function () {
-			
+			$scope.challenge.description=tinymce.get('CL').getContent();
 			$scope.challenge.categories= JSON.parse($scope.challenge.categories);
 			$http.post(challengeMeConstants.challenge,$scope.challenge).success(function(response){
 				$scope.redirectToLoginIfSessionExpires(response);

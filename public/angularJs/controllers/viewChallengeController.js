@@ -4,6 +4,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 	$scope.errorMessage;
 	$scope.successMessage='';
 	$scope.categories=[];
+	$scope.descriptionEmpty="";
     $scope.challenge={
 			"_id":"",
 			"categories":[],
@@ -62,35 +63,44 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		
 		$scope.saveChallenge=function(parentChallenge){
 			
-			
-			$scope.loadingMessage="saving challenge..";
-			$loading.start('challenges');
-			$scope.successMessage="";
-			$scope.errorMessage="";
-			
-			if($('#file')[0].files.length>0){
-				$("#uploadForm1").ajaxSubmit({
-		            error: function(xhr) {
-		        	status('Error: ' + xhr.status);
-		            },
-		            success: function(response) {
-		            	if(response==="error"){
-		            		$scope.errorMessage=challengeMeConstants.errorMessage;
-		            	}else{
-		            		$scope.challenge.file=response;
-		            		$scope.saveChallengePost(parentChallenge);
-		            	}
-		            	$scope.$digest();
-		             }
-		    });
+			$scope.descriptionEmpty="";
+			if(tinymce.get('CL'+parentChallenge.index).getContent().length>0 && parentChallenge.status==='create'){
+				$scope.loadingMessage="saving challenge..";
+				$loading.start('challenges');
+				$scope.successMessage="";
+				$scope.errorMessage="";
+				
+				if($('#file')[0].files.length>0){
+					$("#uploadForm1").ajaxSubmit({
+			            error: function(xhr) {
+			        	status('Error: ' + xhr.status);
+			            },
+			            success: function(response) {
+			            	if(response==="error"){
+			            		$scope.errorMessage=challengeMeConstants.errorMessage;
+			            	}else{
+			            		$scope.challenge.file=response;
+			            		$scope.saveChallengePost(parentChallenge);
+			            	}
+			            	$scope.$digest();
+			             }
+			    });
+				}else{
+					$scope.saveChallengePost(parentChallenge);
+				}
 			}else{
-				$scope.saveChallengePost(parentChallenge);
+				$scope.descriptionEmpty="Please Enter Description";
+				$scope.editChallenge=!$scope.editChallenge;
 			}
+			
+			
 		};
 		
 		$scope.saveChallengePost=function(parentChallenge){
 			
 			$scope.challenge.categories= (typeof $scope.challenge.categories === 'string') ?  JSON.parse($scope.challenge.categories) : $scope.challenge.categories;
+			
+			$scope.challenge.description=tinymce.get('CL'+parentChallenge.index).getContent();
 			$http.post(challengeMeConstants.challenge,$scope.challenge).success(function(response){
 				$scope.redirectToLoginIfSessionExpires(response);
 				if(response=="error"){
@@ -105,7 +115,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 					parentChallenge.prize=$scope.challenge.prize;
 					parentChallenge.date=$scope.challenge.date;
 					parentChallenge.anonymous=$scope.challenge.anonymous;
-					parentChallenge.title=$scope.challenge.title;
+					parentChallenge.description=$scope.challenge.description;
 					if($scope.challenge.learning){
 						parentChallenge.challengeLearningStatus="Learning";
 					}else{
@@ -145,8 +155,28 @@ $scope.closeChallenge=function(parentChallenge){
 		}
 		
 		
-		$scope.showEditFields=function(){
+		$scope.showEditFields=function(textAreaId){
 			$scope.editChallenge=!$scope.editChallenge;
+			
+			if (tinymce.editors.length > 0) {
+			    tinymce.execCommand('mceFocus', true, "CL"+textAreaId );       
+			    tinymce.execCommand('mceRemoveEditor',true, "CL"+textAreaId);        
+			    tinymce.execCommand('mceAddEditor',true,"CL"+textAreaId);
+			}else{
+				//if($("#CL"+textAreaId).is(":visible")){
+					 
+					tinymce.init({
+					    selector: "#CL"+textAreaId,
+						 plugins: [
+					        "advlist autolink lists link image charmap print preview anchor ",
+					        "searchreplace visualblocks code fullscreen",
+					        "insertdatetime media table contextmenu paste textcolor colorpicker "
+					    ],
+					    toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image "
+				   });	
+				//}
+	
+			}
 		};
 		
 		
