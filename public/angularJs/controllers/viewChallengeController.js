@@ -306,7 +306,7 @@ $scope.closeChallenge=function(parentChallenge){
 		$scope.addChallengeComment=function(challenge){
 		
 			if($("#commentTextArea"+challenge.index).val().trim().length>0){
-				var data={"challengeId":challenge._id,"comment":$("#commentTextArea").val()}
+				var data={"challengeId":challenge._id,"comment":$("#commentTextArea"+challenge.index).val()}
 				$http.post(challengeMeConstants.challenge+"/"+challengeMeConstants.challengeComment,data).success(function(response){
 					$scope.redirectToLoginIfSessionExpires(response);
 					if(response==="error"){
