@@ -18,7 +18,7 @@
 				  <div class="ui teal label">
 				   Title 
 				  </div>
-				  <input type="text" ng-disabled="true" ng-model="challenge.title" />
+				  <input type="text" ng-disabled="!editChallenge" ng-model="challenge.title" />
 				</div>
 		 </div> 
 		  <div class="four wide column" id="upload" style="padding-bottom: 0px;">	
@@ -123,10 +123,10 @@
 		</div>
 				<div class="sixteen wide column" style="padding-top: 0px;">
 				<div class="ui teal large label">
-				  Notify Groups {{$scope.challenge.mailGroups.length===$scope.challenge.categories.length}}
+				  Notify Groups 
 				</div>
 				<div class="ui toggle checkbox" style="margin: 5px 0px;">
-					  <input id="All" type="checkbox" ng-checked="selectAllCategories();"   ng-click="toggleAllSelection()"/>
+					  <input id="All" type="checkbox" ng-checked="selectAllCategories();" disabled  ng-click="toggleAllSelection()"/>
 					  <label for="All" style="padding-left: 54px;padding-right: 20px;"><strong>All</strong></label>
 					</div>
 					 <div class="ui toggle checkbox" ng-repeat="category in categories">

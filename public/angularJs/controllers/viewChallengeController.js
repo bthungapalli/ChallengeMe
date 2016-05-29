@@ -100,10 +100,12 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 						$scope.challenge.isCreated=true;
 						parentChallenge.status="create";
 					}
+					parentChallenge.title=$scope.challenge.title;
 					parentChallenge.categories=$scope.challenge.categories
 					parentChallenge.prize=$scope.challenge.prize;
 					parentChallenge.date=$scope.challenge.date;
 					parentChallenge.anonymous=$scope.challenge.anonymous;
+					parentChallenge.title=$scope.challenge.title;
 					if($scope.challenge.learning){
 						parentChallenge.challengeLearningStatus="Learning";
 					}else{
@@ -327,9 +329,18 @@ $scope.closeChallenge=function(parentChallenge){
 			
 		};
 		
-		$scope.addSolutionComment=function(challenge,solutionObj){
+		$scope.showSolutionCommentButton=function(challenge,index){
+			if($("#commentTextAreaForSolution"+challenge.index+index).val().trim().length===0){
+				$("#solutionComment"+challenge.index+index).prop('disabled', true);
+			}else{
+				$("#solutionComment"+challenge.index+index).prop('disabled', false);
+			};
+		};
+		
+		
+		$scope.addSolutionComment=function(challenge,solutionObj,index){
 			$scope.errorMessage="";
-			var data={"solutionId":solutionObj._id,"challengeEmailId":challenge.createdByEmailId,"title":challenge.title,"comment":$("#commentTextAreaForSolution").val()}
+			var data={"solutionId":solutionObj._id,"challengeEmailId":challenge.createdByEmailId,"title":challenge.title,"comment":$("#commentTextAreaForSolution"+challenge.index+index).val()}
 			$http.post(challengeMeConstants.solution+"/"+challengeMeConstants.solutionComment,data).success(function(response){
 				$scope.redirectToLoginIfSessionExpires(response);
 				if(response==="error"){
@@ -337,11 +348,12 @@ $scope.closeChallenge=function(parentChallenge){
 				}else if(response==="solution Needed"){
 					$scope.errorMessage="Please add solution to  comment.";
 				}else{
-					var commentData={"comment":$("#commentTextAreaForSolution").val(),"userName":$scope.userDetails.name,"emailId":$scope.userDetails.emailId,"commentedDate":new Date().toISOString()}
+					var commentData={"comment":$("#commentTextAreaForSolution"+challenge.index+index).val(),"userName":$scope.userDetails.name,"emailId":$scope.userDetails.emailId,"commentedDate":new Date().toISOString()}
 					if(solutionObj.comments===undefined)solutionObj.comments=[];
 					solutionObj.comments.push(commentData);
 					$scope.solutionComment="";
-					$("#commentTextAreaForSolution").val("")
+					$("#solutionComment"+challenge.index+index).prop('disabled', true);
+					$("#commentTextAreaForSolution"+challenge.index+index).val("");
 				};
 				}).error(function(error){
 					$scope.errorMessage=challengeMeConstants.errorMessage;

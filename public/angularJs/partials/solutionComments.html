@@ -24,13 +24,13 @@
 				  </div>
                  <div class="ui form ">
 				  <div class="field">
-				    <textarea id="commentTextAreaForSolution" rows="2" placeholder="comment on solution.." ng-model="solutionComment"></textarea>
+				    <textarea id="commentTextAreaForSolution{{challengeObj.index}}{{$index}}" rows="2" placeholder="comment on solution.." ng-change="showSolutionCommentButton(challengeObj,$index)" ng-model="solutionComment"></textarea>
 				  </div>
 			<!-- 	 <div class="ui blue labeled submit icon button" ng-show="solutionComment" ng-click="addSolutionComment(challengeObj,solutionObj);">
                  <i class="icon edit" ></i> Add Comment
                 </div> -->
                 
-                <button class="ui tiny primary button"  ng-show="solutionComment" ng-click="addSolutionComment(challengeObj,solutionObj);">
+                <button id="solutionComment{{challengeObj.index}}{{$index}}" class="ui tiny primary button" disabled="disabled"  ng-click="addSolutionComment(challengeObj,solutionObj,$index);">
 					  <i class="icon edit" style="margin-right: 0px;" ></i> Add Comment
 				</button>
                 
