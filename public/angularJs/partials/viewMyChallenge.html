@@ -161,6 +161,9 @@
 <div class="sixteen wide column" style="padding-top: 0px;">
 <h3 style="font-family: Georgia;font-weight: 100;font-size: initial;" ng-bind-html="challenge.description | toTrustHtml"> </h3>
 </div>
+<div class="sixteen wide column">
+	<i class="tags icon" style="margin-right:0px;"></i><b>Tags:</b> {{challenge.tag}}
+			</div>
 <div class="sixteen wide column" ng-show="{{challenge.file.length>0}}"  style="cursor: pointer;">
 	<b>Attachment:</b>
 					<a href="challenge/download/{{challenge.file}}">{{challenge.file}}.</a>

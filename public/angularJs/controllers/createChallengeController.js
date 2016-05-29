@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("createChallengeController",["$scope","$http","$state","$rootScope","challengeMeConstants","$loading",function($scope,$http,$state,$rootScope,challengeMeConstants,$loading){
+angular.module("challengeMeApp").controller("createChallengeController",["$scope","$http","$state","$rootScope","challengeMeConstants","$loading","$timeout",function($scope,$http,$state,$rootScope,challengeMeConstants,$loading,$timeout){
 	$scope.errorMessage;
 	$scope.successMessage="";
 	$scope.categories=[];
@@ -130,30 +130,26 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 		};
 		
 		$scope.getAllCategories();
-		if($state.current.name==="main.createChallenge" || $state.current.name==="main.createLearning"){
-			
+		
+		$timeout(function() {
 			if (tinymce.editors.length > 0) {
 			    tinymce.execCommand('mceFocus', true, "CL" );       
 			    tinymce.execCommand('mceRemoveEditor',true, "CL");        
 			    tinymce.execCommand('mceAddEditor',true,"CL");
 			}else{
-				if($("#CL").is(":visible")){
-					 
-					tinymce.init({
-					    selector: "#CL",
-						 plugins: [
-					        "advlist autolink lists link image charmap print preview anchor ",
-					        "searchreplace visualblocks code fullscreen",
-					        "insertdatetime media table contextmenu paste textcolor colorpicker "
-					    ],
-					    toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image "
-				   });	
-				}
-	
+				tinymce.init({
+				    selector: "#CL",
+					 plugins: [
+				        "advlist autolink lists link image charmap print preview anchor ",
+				        "searchreplace visualblocks code fullscreen",
+				        "insertdatetime media table contextmenu paste textcolor colorpicker "
+				    ],
+				    toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image "
+			   });
 			}
-
-		}
+	    }, 200);
 		
+	
 		$scope.createChallenge=function(){
 			$scope.descriptionEmpty="";
 			if(tinymce.get('CL').getContent().length>0){

@@ -28,6 +28,7 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 				$scope.solutionObj=response;
 			
 				$("#solution"+$scope.challenge._id).val(response.solution);
+				//tinymce.get('solution'+$scope.challenge._id).setContent(response.solution)
 				if($scope.solutionObj.file===undefined){
 					$scope.solutionObj.file="";
 				}
@@ -65,7 +66,7 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 		
 		$scope.solutionEmpty="";
 		
-		if(tinymce.get('solution'+$scope.challenge._id).getContent().length>0 && $scope.solutionObj==='create'){
+		if(tinymce.get('solution'+$scope.challenge._id).getContent().length>0 ){
 			$scope.successMessageForSolution="";
 			$scope.loadingMessage="saving solution..";
 			$loading.start('solution');

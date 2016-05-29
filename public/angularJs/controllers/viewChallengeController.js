@@ -64,7 +64,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 		$scope.saveChallenge=function(parentChallenge){
 			
 			$scope.descriptionEmpty="";
-			if(tinymce.get('CL'+parentChallenge.index).getContent().length>0 && parentChallenge.status==='create'){
+			if(tinymce.get('CL'+parentChallenge.index).getContent().length>0){
 				$scope.loadingMessage="saving challenge..";
 				$loading.start('challenges');
 				$scope.successMessage="";

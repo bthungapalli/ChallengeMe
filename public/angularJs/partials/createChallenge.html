@@ -1,5 +1,5 @@
 
-<div dw-loading="createChallenge" dw-loading-options="{text: loadingMessage}">
+<div dw-loading="createChallenge" dw-loading-options="{text: loadingMessage}" ng-controller="createChallengeController">
 <div  ng-if="errorMessage" class="ui red floating  message">
 <div class="header">
 {{errorMessage}}
@@ -41,7 +41,7 @@
 				  <div class="field">
 				    <label>Description*</label>
 				    <label style="color:red;">	{{descriptionEmpty}}</label>
-				    <textarea id="CL" ng-model="challenge.description"></textarea>
+				    <textarea id="CL" ng-init="initializeTinyMCE()" ng-model="challenge.description"></textarea>
 				  </div>
 				</div>
 		</div>
