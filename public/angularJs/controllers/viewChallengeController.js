@@ -24,6 +24,7 @@ angular.module("challengeMeApp").controller("viewChallengeController",["$scope",
 	$scope.view=$state.current.name;
 	$scope.viewComments=false;
 	$scope.challengeComment="";
+	$scope.isEdit = false;
 
 	
 	 $(":file").jfilestyle({placeholder: "",buttonText: "Browse",'inputSize': '60%'});
@@ -355,9 +356,29 @@ $scope.closeChallenge=function(parentChallenge){
 						$scope.errorMessage=challengeMeConstants.errorMessage;
 					});
 			}
-			
-			
 		};
+		
+		$scope.updateChallengeComment=function(challenge,commentId){
+			if($("#updatecommentTextArea"+challenge.index).val().trim().length>0){
+				var data={"challengeId":challenge._id,"commentId":commentId,"comment":$("#updatecommentTextArea"+challenge.index).val()}
+				$http.post(challengeMeConstants.challenge+"/"+challengeMeConstants.updateComment,data).success(function(response){
+					$scope.redirectToLoginIfSessionExpires(response);
+					if(response==="error"){
+						$scope.errorMessage=challengeMeConstants.errorMessage;
+					}else{
+						var commentData={"comment":$("#updatecommentTextArea"+challenge.index).val(),"userName":$scope.userDetails.name,"emailId":$scope.userDetails.emailId,"commentedDate":new Date().toISOString()}
+						$scope.challenge.comments.push(commentData);
+						$("#updatecommentTextArea"+challenge.index).val("");
+						$("#updatecommentButton"+challenge.index).prop('disabled', true);
+						$scope.challengeComment="";
+						$scope.isEdit = false;
+					};
+					}).error(function(error){
+						$scope.errorMessage=challengeMeConstants.errorMessage;
+					});
+			}
+		};
+		
 		
 		$scope.showSolutionCommentButton=function(challenge,index){
 			if($("#commentTextAreaForSolution"+challenge.index+index).val().trim().length===0){
@@ -366,6 +387,10 @@ $scope.closeChallenge=function(parentChallenge){
 				$("#solutionComment"+challenge.index+index).prop('disabled', false);
 			};
 		};
+		
+		$scope.editComment = function(){
+			$scope.isEdit = true;
+		}
 		
 		
 		$scope.addSolutionComment=function(challenge,solutionObj,index){
@@ -384,6 +409,7 @@ $scope.closeChallenge=function(parentChallenge){
 					$scope.solutionComment="";
 					$("#solutionComment"+challenge.index+index).prop('disabled', true);
 					$("#commentTextAreaForSolution"+challenge.index+index).val("");
+					
 				};
 				}).error(function(error){
 					$scope.errorMessage=challengeMeConstants.errorMessage;

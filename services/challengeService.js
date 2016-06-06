@@ -314,7 +314,8 @@ fetchAllChallenges:function(challengeOrLearningOrBoth,callbackForAllChallenges){
 					});
 				}
 			});
-		},	
+		},
+		
 fetchChallengesOrLearning:function(learning,allChallenges,user,callbackForChallengesOrLearning){
 	var q="";
 	if(allChallenges){
@@ -341,7 +342,31 @@ fetchChallengesOrLearning:function(learning,allChallenges,user,callbackForChalle
 							});
 						}
 					});
-				}
+},
+
+
+	fetchTags : function(callback){
+		console.log("Came here");
+		challengeModel.find({},{'tag':1,'_id':0},function(err,categories){
+	       if(err)
+	    	   callback("error");
+	       callback(null,categories);
+			});
+		},
+		
+		updateComment:function(challengeId,commentId,comment,callbackForUpdateComment){
+			var conditions = { "_id":challengeId , "comments._id":commentId};
+			 var update = { $set: {"comments.$.comment" : comment,"comments.$.commentedDate":new Date()}};
+			 challengeModel.update(conditions, update, callback);
+			 
+			function callback (err, numAffected) {
+				if(err)
+					callbackForUpdateComment(err);
+				console.log(numAffected + "rows updates");
+				callbackForUpdateComment(null,numAffected);
+			};
+			
+		}
 	
 	}
 

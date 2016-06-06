@@ -17,12 +17,22 @@
 				      <div class="metadata">
 				        <span class="date">{{comment.commentedDate | dateFormat}}</span>
 				      </div>
-				      <div class="text">
+				      
+				      <div class="text" ng-show = "!isEdit">
 				        {{comment.comment}}
 				      </div>
+				      <span button id="updateComment" ng-click="editComment()" class="ui tiny primary button" ng-show="!isEdit"><i class="icon edit" style="margin-right: 0px;" ></i> Edit Comment</span> 
+				      
+				       <div class="field" ng-show="isEdit">
+				    <textarea id="updatecommentTextArea{{challengeObj.index}}" rows="2" placeholder="comment on challenge..."  ng-change="showCommentButton(challengeObj)" ng-model="challengeComment"></textarea>
+				     <button id="updatecommentButton{{challengeObj.index}}" disabled class="ui tiny primary button"   ng-click="updateChallengeComment(challengeObj,comment._id);">
+					  <i class="icon edit" style="margin-right: 0px;" ></i> Update Comment
+				</button>
+				  	</div>
+				      
 				    </div>
 				  </div>
-                 <div class="ui form ">
+                 <div class="ui form " ng-show="!isEdit">
 				  <div class="field">
 				    <textarea id="commentTextArea{{challengeObj.index}}" rows="2" placeholder="comment on challenge..."  ng-change="showCommentButton(challengeObj)" ng-model="challengeComment"></textarea>
 				  </div>

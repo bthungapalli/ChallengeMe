@@ -28,6 +28,21 @@ var storage =   multer.diskStorage({
 	});
 
 	var upload = multer({ storage : storage}).single('attachment');
+	
+	router.get('/fetchTags',checkSession.requireLogin,function (req,res,next){
+		 console.log('came in get categories');
+		 challengeService.fetchTags(function(err,tags){
+			if(err)
+	   		res.send("error");
+			var finalTag = _.union(_.pluck(tags,'tag'));
+			var totalTags=''
+			for(var i=0;i<finalTag.length;i++){
+				totalTags +=finalTag[i]+",";
+			}
+			 res.json(totalTags);
+		});
+	});
+	
 
 	router.post('/upload/:challengeId',checkSession.requireLogin,function(req,res){
 		var challengeId=req.params.challengeId;
@@ -210,6 +225,8 @@ router.get('/:challengeId',checkSession.requireLogin,function (request,response,
 			response.send(challenge[0]);
 		});
 	});
+
+
 });
 
 
@@ -398,6 +415,22 @@ router.post('/close',checkSession.requireLogin,function (request,response,next){
 		}
 	});
 });
+
+router.post('/updatecomment',checkSession.requireLogin,function (request,response,next){
+	var challengeId=request.body.challengeId;
+	var commentId=request.body.commentId;
+	var comment = request.body.comment;
+	console.log("challengeId......"+challengeId);
+	challengeService.updateComment(challengeId,commentId,comment,function(err,res){
+		if(err){
+			response.send("error");
+		}else{
+		response.send("ok");
+		}
+	});
+});
+
+
 
 router.post('/',checkSession.requireLogin,function (request,response,next){
 	var challenge=request.body;

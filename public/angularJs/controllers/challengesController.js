@@ -7,6 +7,8 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	$scope.itemsPerPage="5";
 	$scope.list="All";
 	$scope.allChallenges=false;
+	
+	
 	$scope.addAttributesToChallenge=function(challenges){
 		
 		var openChallenges=[];
