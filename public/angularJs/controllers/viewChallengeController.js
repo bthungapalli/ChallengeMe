@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("viewChallengeController",["$scope","$http","$state","$rootScope","challengeMeConstants","$loading",function($scope,$http,$state,$rootScope,challengeMeConstants,$loading){
+angular.module("challengeMeApp").controller("viewChallengeController",["$scope","$http","$state","$rootScope","challengeMeConstants","$loading","$parse",function($scope,$http,$state,$rootScope,challengeMeConstants,$loading,$parse){
 
 	
 	$scope.errorMessage;
@@ -358,9 +358,14 @@ $scope.closeChallenge=function(parentChallenge){
 			}
 		};
 		
-		$scope.updateChallengeComment=function(challenge,commentId){
-			if($("#updatecommentTextArea"+challenge.index).val().trim().length>0){
-				var data={"challengeId":challenge._id,"commentId":commentId,"comment":$("#updatecommentTextArea"+challenge.index).val()}
+		$scope.updateChallengeComment=function(challenge,commentIndex,commentId,currentChallenge){
+			if($("#updatecommentTextArea"+challenge.index+commentIndex).val().trim().length>0){
+				
+				currentChallenge.comments[commentIndex].comment=$("#updatecommentTextArea"+challenge.index+commentIndex).val();
+				$scope["isEdit"+challenge.index+commentIndex] = false;
+			
+				//update the call for update
+				/*var data={"challengeId":challenge._id,"commentId":commentId,"comment":$("#updatecommentTextArea"+challenge.index+commentIndex).val()}
 				$http.post(challengeMeConstants.challenge+"/"+challengeMeConstants.updateComment,data).success(function(response){
 					$scope.redirectToLoginIfSessionExpires(response);
 					if(response==="error"){
@@ -375,7 +380,7 @@ $scope.closeChallenge=function(parentChallenge){
 					};
 					}).error(function(error){
 						$scope.errorMessage=challengeMeConstants.errorMessage;
-					});
+					});*/
 			}
 		};
 		
@@ -388,8 +393,12 @@ $scope.closeChallenge=function(parentChallenge){
 			};
 		};
 		
-		$scope.editComment = function(){
-			$scope.isEdit = true;
+		$scope.editComment = function(challenge,currentChallenge,commentIndex){
+			
+			$("#updatecommentTextArea"+challenge.index+commentIndex).val(currentChallenge.comments[commentIndex].comment);
+			var editId="isEdit"+challenge.index+commentIndex;
+			$parse(editId).assign($scope, true);
+			
 		}
 		
 		

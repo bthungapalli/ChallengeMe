@@ -16,22 +16,25 @@
 				      <a class="author">{{comment.userName}}</a>
 				      <div class="metadata">
 				        <span class="date">{{comment.commentedDate | dateFormat}}</span>
+				         <button  style="padding-top: 8px;padding-left: 8px;padding-right: 5px;padding-bottom: 7px;margin-right: 0px;" ng-show="!isEdit{{challengeObj.index}}{{$index}}" ng-click="editComment(challengeObj,challenge,$index)" class="ui tiny primary button" ><i class="icon edit" style="margin-right: 0px;" ></i></button> 
+				       <button ng-show="isEdit{{challengeObj.index}}{{$index}}" style="padding-top: 8px;padding-left: 8px;padding-right: 5px;padding-bottom: 7px;margin-right: 0px;"  class="ui tiny positive button"   ng-click="updateChallengeComment(challengeObj,$index,comment._id,challenge);">
+					  <i class="checkmark icon" style="margin-right: 0px;" ></i> 
+				</button>
 				      </div>
 				      
-				      <div class="text" ng-show = "!isEdit">
+				      <div class="text" ng-show="!isEdit{{challengeObj.index}}{{$index}}">
 				        {{comment.comment}}
 				      </div>
-				      <span button id="updateComment" ng-click="editComment()" class="ui tiny primary button" ng-show="!isEdit"><i class="icon edit" style="margin-right: 0px;" ></i> Edit Comment</span> 
-				      
-				       <div class="field" ng-show="isEdit">
-				    <textarea id="updatecommentTextArea{{challengeObj.index}}" rows="2" placeholder="comment on challenge..."  ng-change="showCommentButton(challengeObj)" ng-model="challengeComment"></textarea>
-				     <button id="updatecommentButton{{challengeObj.index}}" disabled class="ui tiny primary button"   ng-click="updateChallengeComment(challengeObj,comment._id);">
-					  <i class="icon edit" style="margin-right: 0px;" ></i> Update Comment
-				</button>
+				     
+				      <div class="ui form" ng-show="isEdit{{challengeObj.index}}{{$index}}">
+				       <div class="field" >
+				    <textarea id="updatecommentTextArea{{challengeObj.index}}{{$index}}" rows="2" placeholder="comment on challenge..." ></textarea>
+				  	</div>
 				  	</div>
 				      
 				    </div>
 				  </div>
+				  <br>
                  <div class="ui form " ng-show="!isEdit">
 				  <div class="field">
 				    <textarea id="commentTextArea{{challengeObj.index}}" rows="2" placeholder="comment on challenge..."  ng-change="showCommentButton(challengeObj)" ng-model="challengeComment"></textarea>
