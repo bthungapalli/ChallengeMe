@@ -358,31 +358,43 @@ $scope.closeChallenge=function(parentChallenge){
 			}
 		};
 		
-		$scope.updateChallengeComment=function(challenge,commentIndex,commentId,currentChallenge){
-			if($("#updatecommentTextArea"+challenge.index+commentIndex).val().trim().length>0){
-				
-				currentChallenge.comments[commentIndex].comment=$("#updatecommentTextArea"+challenge.index+commentIndex).val();
-				$scope["isEdit"+challenge.index+commentIndex] = false;
-			
+		$scope.updateChallengeComment=function(challenge,currentChallenge,commentIndex){
 				//update the call for update
-				/*var data={"challengeId":challenge._id,"commentId":commentId,"comment":$("#updatecommentTextArea"+challenge.index+commentIndex).val()}
+			if($("#updatecommentTextArea"+challenge.index+commentIndex).val().trim().length>0){
+				var comment = $("#updatecommentTextArea"+challenge.index+commentIndex).val();
+				var data={"challengeId":challenge._id,"commentId":currentChallenge.comments[commentIndex]._id,"comment":comment}
 				$http.post(challengeMeConstants.challenge+"/"+challengeMeConstants.updateComment,data).success(function(response){
 					$scope.redirectToLoginIfSessionExpires(response);
 					if(response==="error"){
 						$scope.errorMessage=challengeMeConstants.errorMessage;
 					}else{
-						var commentData={"comment":$("#updatecommentTextArea"+challenge.index).val(),"userName":$scope.userDetails.name,"emailId":$scope.userDetails.emailId,"commentedDate":new Date().toISOString()}
-						$scope.challenge.comments.push(commentData);
-						$("#updatecommentTextArea"+challenge.index).val("");
-						$("#updatecommentButton"+challenge.index).prop('disabled', true);
-						$scope.challengeComment="";
-						$scope.isEdit = false;
+//						$("#updatecommentTextArea"+challenge.index+commentIndex).val(comment);
+						currentChallenge.comments[commentIndex].comment = comment;
+						var editId="isEdit"+challenge.index+commentIndex;
+						$parse(editId).assign($scope, false); 
 					};
 					}).error(function(error){
 						$scope.errorMessage=challengeMeConstants.errorMessage;
-					});*/
+					});
 			}
 		};
+		
+		
+		$scope.deleteComment=function(challenge,currentChallenge,commentIndex){
+			var data={"challengeId":challenge._id,"commentId":currentChallenge.comments[commentIndex]._id}
+			$http.post(challengeMeConstants.challenge+"/"+challengeMeConstants.deleteComment,data).success(function(response){
+				$scope.redirectToLoginIfSessionExpires(response);
+				if(response==="error"){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				}else{
+					$scope.challenge.comments.pop(currentChallenge.comments[commentIndex]);
+					$scope["isEdit"+challenge.index+commentIndex] = false;
+				};
+				}).error(function(error){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				});
+	};
+		
 		
 		
 		$scope.showSolutionCommentButton=function(challenge,index){
@@ -394,7 +406,6 @@ $scope.closeChallenge=function(parentChallenge){
 		};
 		
 		$scope.editComment = function(challenge,currentChallenge,commentIndex){
-			
 			$("#updatecommentTextArea"+challenge.index+commentIndex).val(currentChallenge.comments[commentIndex].comment);
 			var editId="isEdit"+challenge.index+commentIndex;
 			$parse(editId).assign($scope, true);

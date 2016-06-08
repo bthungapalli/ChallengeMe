@@ -15,6 +15,7 @@ angular.module('challengeMeApp').constant("challengeMeConstants", {
         "challengeComment":"/comment",
         "solutionComment":"/comment",
         "updateComment":"/updateComment",
+        "deleteComment":"/deleteComment",
         "solutionIsCorrect":"/correctAnswer",
         "like":"/like",
         "unlike":"/unlike",

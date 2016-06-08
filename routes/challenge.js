@@ -430,6 +430,20 @@ router.post('/updatecomment',checkSession.requireLogin,function (request,respons
 	});
 });
 
+router.post('/deleteComment',checkSession.requireLogin,function (request,response,next){
+	var challengeId=request.body.challengeId;
+	var commentId=request.body.commentId;
+//	var comment = request.body.comment;
+	console.log("challengeId......"+challengeId);
+	console.log("challengeId......"+commentId);
+	challengeService.deleteComment(challengeId,commentId,function(err,res){
+		if(err){
+			response.send("error");
+		}else{
+		response.send("ok");
+		}
+	});
+});
 
 
 router.post('/',checkSession.requireLogin,function (request,response,next){

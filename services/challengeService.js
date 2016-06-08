@@ -366,6 +366,16 @@ fetchChallengesOrLearning:function(learning,allChallenges,user,callbackForChalle
 				callbackForUpdateComment(null,numAffected);
 			};
 			
+		},
+		deleteComment:function(challengeId,commentId,callbackForDeleteComment){
+			 challengeModel.update({"_id":challengeId},{$pull:{"comments" : {"_id":commentId}}}, callback);
+			 
+			function callback (err,numAffected) {
+				if(err)
+					callbackForDeleteComment(err,numAffected);
+				callbackForDeleteComment(null,numAffected);
+			};
+			
 		}
 	
 	}
