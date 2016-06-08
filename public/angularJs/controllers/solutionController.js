@@ -12,7 +12,7 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 			"challengeId":$scope.challenge._id,
 			"file":""
 	};
-	$(":file").jfilestyle({placeholder: "",buttonText: "Browse",'inputSize': '72%'});
+	$(":file").jfilestyle({placeholder: "",buttonText: "Browse",'inputSize': '50%'});
 	$scope.getSolution=function(){
 		$scope.loadingMessage="fetching solution..";
 		$loading.start('solution');
