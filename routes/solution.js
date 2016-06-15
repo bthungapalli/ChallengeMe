@@ -86,7 +86,7 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 					appName : nconf.get("mail").appName,
 					contextPath : nconf.get("context").path
 				};
-			mailUtil.sendMail(_.uniq(ids),nconf.get('mail').challengeMeSupport,subject,'Comments_Solutions.html',context);
+			mailUtil.sendMail(_.uniq(ids),nconf.get("smtpConfig").authUser,subject,'Comments_Solutions.html',context);
 			
 		}
 				response.json(solution);
@@ -137,6 +137,34 @@ router.get('/download/:fileName',function(request,response,next){
 			  response.json("Error Occured while downloading");
 	  })
 	
+});
+
+
+router.post('/updatecomment',checkSession.requireLogin,function (request,response,next){
+	var solutionId=request.body.solutionId;
+	var commentId=request.body.commentId;
+	var comment = request.body.comment;
+	console.log("SolutionId......"+solutionId);
+	solutionService.updateComment(solutionId,commentId,comment,function(err,res){
+		if(err){
+			response.send("error");
+		}else{
+		response.send("ok");
+		}
+	});
+});
+
+router.post('/deleteComment',checkSession.requireLogin,function (request,response,next){
+	var solutionId=request.body.solutionId;
+	var commentId=request.body.commentId;
+	console.log("solutionId......"+solutionId);
+	solutionService.deleteComment(solutionId,commentId,function(err,res){
+		if(err){
+			response.send("error");
+		}else{
+		response.send("ok");
+		}
+	});
 });
 
 module.exports = router;

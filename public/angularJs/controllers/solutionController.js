@@ -1,4 +1,4 @@
-angular.module("challengeMeApp").controller("solutionController",["$scope","$http","$state","$rootScope","challengeMeConstants","$loading",function($scope,$http,$state,$rootScope,challengeMeConstants,$loading){
+angular.module("challengeMeApp").controller("solutionController",["$scope","$http","$state","$rootScope","challengeMeConstants","$loading","$parse",function($scope,$http,$state,$rootScope,challengeMeConstants,$loading,$parse){
 	
 	
 	$scope.errorMessage="";
@@ -119,6 +119,49 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 	
 	
 	};
+	
+	$scope.updateSolutionComment=function(challengeObj,solution,commentIndex){
+		//update the call for update
+	if($("#updateSolutionTextArea"+challengeObj.index+commentIndex).val().trim().length>0){
+		var comment = $("#updateSolutionTextArea"+challengeObj.index+commentIndex).val();
+		var data={"solutionId":solution._id,"commentId":solution.comments[commentIndex]._id,"comment":comment}
+		$http.post(challengeMeConstants.solution+"/"+challengeMeConstants.updateComment,data).success(function(response){
+			$scope.redirectToLoginIfSessionExpires(response);
+			if(response==="error"){
+				$scope.errorMessage=challengeMeConstants.errorMessage;
+			}else{
+				solution.comments[commentIndex].comment = comment;
+				var editId="isSolutionEdit"+challengeObj.index+commentIndex;
+				$parse(editId).assign($scope, false); 
+			};
+			}).error(function(error){
+				$scope.errorMessage=challengeMeConstants.errorMessage;
+			});
+	}
+};
+
+
+$scope.deleteSolutionComment=function(challengeObj,solution,commentIndex){
+	var data={"solutionId":solution._id,"commentId":solution.comments[commentIndex]._id}
+	$http.post(challengeMeConstants.solution+"/"+challengeMeConstants.deleteComment,data).success(function(response){
+		$scope.redirectToLoginIfSessionExpires(response);
+		if(response==="error"){
+			$scope.errorMessage=challengeMeConstants.errorMessage;
+		}else{
+			solution.comments.splice(commentIndex,1);
+			$scope["isSolutionEdit"+solution.index+commentIndex] = false;
+		};
+		}).error(function(error){
+			$scope.errorMessage=challengeMeConstants.errorMessage;
+		});
+};
+
+$scope.editSolutionComment = function(challengeObj,solution,commentIndex){
+$("#updateSolutionTextArea"+challengeObj.index+commentIndex).val(solution.comments[commentIndex].comment);
+var editId="isSolutionEdit"+challengeObj.index+commentIndex;
+$parse(editId).assign($scope, true);
+
+}
 	
 	
 }]);

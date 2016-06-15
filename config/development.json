@@ -1,5 +1,6 @@
  {
   "port": "8123",
+  "httpsport":"443",
    "sessionDetails":{
 	   "cookieName":"session",
 	   "secretKey":"challengeMe",
@@ -29,7 +30,7 @@
 	   "dashboard":"/dashboard"
    },
    "mail":{
-	   "challengeMeSupport":"osiwizz-admin@osius.com",
+	   "challengeMeSupport":"osiwizz-support@osius.com",
 		"subject":"[OSIWizz] ",
 		"appURL" : "http://osiwizz.osius.com",
 		"appName":"OSIWizz"
@@ -48,7 +49,7 @@
 	   "host":"outlook.office365.com",
 	   "port":587,
 	   "authUser":"osiwizz-admin@osius.com",
-	   "authPassword":"Welcome@05!"
+       "authPassword":"Welcome@05!"
    },
    "context":{
 	   	"path":"http://localhost:8123/images/logo.png"

@@ -14,12 +14,29 @@
 				  <div class="comment" ng-repeat="comment in solutionObj.comments">
 				    <div class="content">
 				      <a class="author">{{comment.userName}}</a>
-				      <div class="metadata">
+				         <div class="metadata">
 				        <span class="date">{{comment.commentedDate | dateFormat}}</span>
+				        <span ng-show="userDetails.emailId == comment.emailId">
+				         <button  style="padding-top: 8px;padding-left: 8px;padding-right: 5px;padding-bottom: 7px;margin-right: 0px;" ng-show="!isSolutionEdit{{challengeObj.index}}{{$index}}" ng-click="editSolutionComment(challengeObj,solutionObj,$index)" class="ui icon button" ><i class="write icon" style="margin-right: 0px;" ></i></button> 
+				       <button ng-show="isSolutionEdit{{challengeObj.index}}{{$index}}" style="padding-top: 8px;padding-left: 8px;padding-right: 5px;padding-bottom: 7px;margin-right: 0px;"  class="ui icon button"   ng-click="updateSolutionComment(challengeObj,solutionObj,$index);">
+					  <i class="checkmark icon" style="margin-right: 0px;" ></i> 
+				</button>
+				 <button style="padding-top: 8px;padding-left: 8px;padding-right: 5px;padding-bottom: 7px;margin-right: 0px;"  class="ui icon button"   ng-click="deleteSolutionComment(challengeObj,solutionObj,$index);">
+					  <i class="remove icon" style="margin-right: 0px;" ></i> 
+				</button>
+				
+				</span>
 				      </div>
-				      <div class="text">
+				      <div class="text" ng-show="!isSolutionEdit{{challengeObj.index}}{{$index}}" style="outline: none; white-space: pre-line; word-wrap: break-word;margin-top:-2%">
 				        {{comment.comment}}
 				      </div>
+				      
+				   <div class="ui form" ng-show="isSolutionEdit{{challengeObj.index}}{{$index}}">
+				       <div class="field" >
+				    <textarea id="updateSolutionTextArea{{challengeObj.index}}{{$index}}" rows="2" placeholder="comment on Solution..." ></textarea>
+				  	</div>
+				  	</div><br />
+				      
 				    </div>
 				  </div>
                  <div class="ui form ">

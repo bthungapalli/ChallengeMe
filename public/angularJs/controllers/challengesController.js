@@ -4,7 +4,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 	$scope.challenges=[];
 	$rootScope.previousOpenedChallengeIndex=-1;
 	$scope.colspan=5;
-	$scope.itemsPerPage="5";
+	$scope.itemsPerPage="10";
 	$scope.list="All";
 	$scope.allChallenges=false;
 	

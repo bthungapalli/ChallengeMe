@@ -1,5 +1,6 @@
  {
   "port": "8123",
+  "httpsport":"445",
    "sessionDetails":{
 	   "cookieName":"session",
 	   "secretKey":"challengeMe",

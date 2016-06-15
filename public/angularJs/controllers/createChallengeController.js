@@ -140,11 +140,13 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 				tinymce.init({
 				    selector: "#CL",
 					 plugins: [
-				        "advlist autolink lists link image charmap print preview anchor ",
+				        "advlist autolink lists link image charmap print preview anchor",
 				        "searchreplace visualblocks code fullscreen",
-				        "insertdatetime media table contextmenu paste textcolor colorpicker "
+				        "insertdatetime media table contextmenu paste textcolor colorpicker"
 				    ],
-				    toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image "
+				    toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image ",
+				    browser_spellcheck: true,
+				    contextmenu: false
 			   });
 			}
 	    }, 200);

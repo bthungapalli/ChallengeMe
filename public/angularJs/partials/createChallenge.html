@@ -17,7 +17,7 @@
 				  <div class="ui teal label">
 				   Title*
 				  </div>
-				  <input type="text" ng-model="challenge.title" />
+				  <input type="text" spellcheck="true" ng-model="challenge.title" />
 				</div>
 		 </div> 
 		 <div class="four wide column" id="upload" style="padding-bottom: 0px;">	
@@ -94,10 +94,15 @@
 					</div>
 				</span>
 		</div>
-		<div class="sixteen wide column" style="padding-top: 0px;">
-				<div class="ui teal large label" style="width: 10.88%;margin-right: 5px;height: 29px;">
-				  Notify Groups
+		<div class="two wide column" style="padding-top: 0px;">
+				<div class="ui teal large label" style="height: 30px;width:115px !important">
+				 Notify Groups
 				</div> 
+				
+					
+		</div>	
+		<div class="fourteen wide column" style="padding-top: 0px;padding-left: 0px;">
+				
 				<span ng-if="categories.length==0">No Categories are created.</span>
 				 <div class="ui toggle checkbox" style="margin: 5px 0px;">
 					  <input id="All" type="checkbox"   ng-click="toggleAllSelection()"/>

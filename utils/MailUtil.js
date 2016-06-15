@@ -15,24 +15,29 @@ var mailUtil = function() {
 					pass : nconf.get("smtpConfig").authPassword
 				}
 			};
-			console.log("smtpConfig:::::::::::"+smtpConfig.host);
 			var transporter = nodemailer.createTransport(smtpConfig);
 			var templates = new EmailTemplates({
 				  root: path.resolve(__dirname+'/../templates/')
 			});
 			templates.render(templateName, context,
-					function(err, html, text) {
+					function(err,html,text) {
 						transporter.sendMail({
 							from : fromEmail,
 							to : toEmail,
 							subject : subject,
 							html : html,
 							text : text
+						},function(err,info){
+							if(err){
+								 console.log("Error occured in callback::",err)
+							}else{
+								 console.log("Info::",info.response);
+							}
 						});
 						if(err){
 							return console.log("Error occured::",err)
 						}else{
-							return console.log("Mail sent to::",toEmail);
+							return console.log("Sending Mail To::",toEmail);
 						}
 					});
 

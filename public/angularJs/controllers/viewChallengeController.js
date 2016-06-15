@@ -173,7 +173,9 @@ $scope.closeChallenge=function(parentChallenge){
 					        "searchreplace visualblocks code fullscreen",
 					        "insertdatetime media table contextmenu paste textcolor colorpicker "
 					    ],
-					    toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image "
+					    toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image ",
+					    browser_spellcheck: true,
+					    contextmenu: false
 				   });	
 				//}
 	
@@ -387,7 +389,7 @@ $scope.closeChallenge=function(parentChallenge){
 				if(response==="error"){
 					$scope.errorMessage=challengeMeConstants.errorMessage;
 				}else{
-					$scope.challenge.comments.pop(currentChallenge.comments[commentIndex]);
+					$scope.challenge.comments.splice(commentIndex,1);
 					$scope["isEdit"+challenge.index+commentIndex] = false;
 				};
 				}).error(function(error){
@@ -435,6 +437,49 @@ $scope.closeChallenge=function(parentChallenge){
 					$scope.errorMessage=challengeMeConstants.errorMessage;
 				});
 		};
+		
+		$scope.updateSolutionComment=function(challenge,solution,commentIndex){
+			//update the call for update
+		if($("#updateSolutionTextArea"+challenge.index+commentIndex).val().trim().length>0){
+			var comment = $("#updateSolutionTextArea"+challenge.index+commentIndex).val();
+			var data={"solutionId":solution._id,"commentId":solution.comments[commentIndex]._id,"comment":comment}
+			$http.post(challengeMeConstants.solution+"/"+challengeMeConstants.updateComment,data).success(function(response){
+				$scope.redirectToLoginIfSessionExpires(response);
+				if(response==="error"){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				}else{
+					solution.comments[commentIndex].comment = comment;
+					var editId="isSolutionEdit"+challenge.index+commentIndex;
+					$parse(editId).assign($scope, false); 
+				};
+				}).error(function(error){
+					$scope.errorMessage=challengeMeConstants.errorMessage;
+				});
+		}
+	};
+	
+	
+	$scope.deleteSolutionComment=function(challenge,solution,commentIndex){
+		var data={"solutionId":solution._id,"commentId":solution.comments[commentIndex]._id}
+		$http.post(challengeMeConstants.solution+"/"+challengeMeConstants.deleteComment,data).success(function(response){
+			$scope.redirectToLoginIfSessionExpires(response);
+			if(response==="error"){
+				$scope.errorMessage=challengeMeConstants.errorMessage;
+			}else{
+				solution.comments.splice(commentIndex,1);
+				$scope["isSolutionEdit"+solution.index+commentIndex] = false;
+			};
+			}).error(function(error){
+				$scope.errorMessage=challengeMeConstants.errorMessage;
+			});
+};
+	
+$scope.editSolutionComment = function(challenge,solution,commentIndex){
+	$("#updateSolutionTextArea"+challenge.index+commentIndex).val(solution.comments[commentIndex].comment);
+	var editId="isSolutionEdit"+challenge.index+commentIndex;
+	$parse(editId).assign($scope, true);
+	
+}
 		
 		$scope.updateCorrectAnswerOrNot=function(solutionObj){
 			$http.put(challengeMeConstants.solution+challengeMeConstants.solutionIsCorrect,solutionObj).success(function(response){

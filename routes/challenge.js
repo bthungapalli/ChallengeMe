@@ -46,13 +46,11 @@ var storage =   multer.diskStorage({
 
 	router.post('/upload/:challengeId',checkSession.requireLogin,function(req,res){
 		var challengeId=req.params.challengeId;
-		console.log("challengeId::::::"+challengeId);
 	    upload(req,res,function(user,err) {
 	        if(err) {
 	             res.end("error");
 	        }
 	        if(challengeId!=="-1"){
-	        	console.log("inside:::: update for file");
 	        	challengeService.updateFilePath(challengeId,filename,function(err,response){
 	        		if(err)
 	        			res.end("error");
@@ -93,7 +91,7 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 				for(var i=0;i<challenge.mailGroups.length;i++){
 					categoriesForMailGroup.push(challenge.mailGroups[i].name)
 				}
-				console.log("categoriesForMailGroup:"+categoriesForMailGroup);
+//				console.log("categoriesForMailGroup:"+categoriesForMailGroup);
 				categoryService.getEmailIdsForCategories(categoriesForMailGroup,function(err,emailIds){
 					if(err)
 						response.send("error");
@@ -103,9 +101,9 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 					}else{
 						ids=_.pluck(emailIds, 'emailId');
 					}
-					console.log("emailIds...................."+ids);
+//					console.log("emailIds...................."+ids);
 					var categoryNames = challenge.categories.name;
-					console.log("categories Details:::::",categoryNames);
+//					console.log("categories Details:::::",categoryNames);
 				var subject;
 				var template;
 					if(challenge.learning ){
@@ -132,7 +130,7 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 					};
 
 				if(ids.length>0 && !challenge.isCreated)
-				mailUtil.sendMail(ids,nconf.get('mail').challengeMeSupport,subject,template,context);
+				mailUtil.sendMail(ids,nconf.get("smtpConfig").authUser,subject,template,context);
 				response.send("created");
 			 });
 			}else{
@@ -144,7 +142,7 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 
 router.get('/categories/:challengeOrLearningOrBoth',checkSession.requireLogin,function (request,response,next){
 	var user=request.session.user;
-	console.log("sess user"+user.categories);
+//	console.log("sess user"+user.categories);
 	var categoriesJson = user.categories;
 	var categories = [];
 	for (var prop in user.categories) {
@@ -221,7 +219,7 @@ router.get('/:challengeId',checkSession.requireLogin,function (request,response,
 			if(err)
 				response.send("error");
 			challenge[0].solutions=solutions;
-			console.log("challenge[0]::"+challenge[0]);
+//			console.log("challenge[0]::"+challenge[0]);
 			response.send(challenge[0]);
 		});
 	});
@@ -361,7 +359,7 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 						appName : nconf.get("mail").appName,
 						contextPath : nconf.get("context").path
 					};
-				mailUtil.sendMail(_.uniq(ids),nconf.get('mail').challengeMeSupport,subject,'Comments_Challenges.html',context);
+				mailUtil.sendMail(_.uniq(ids),nconf.get("smtpConfig").authUser,subject,'Comments_Challenges.html',context);
 				response.json(challenge);
 		
 	});
@@ -420,7 +418,6 @@ router.post('/updatecomment',checkSession.requireLogin,function (request,respons
 	var challengeId=request.body.challengeId;
 	var commentId=request.body.commentId;
 	var comment = request.body.comment;
-	console.log("challengeId......"+challengeId);
 	challengeService.updateComment(challengeId,commentId,comment,function(err,res){
 		if(err){
 			response.send("error");
@@ -434,8 +431,6 @@ router.post('/deleteComment',checkSession.requireLogin,function (request,respons
 	var challengeId=request.body.challengeId;
 	var commentId=request.body.commentId;
 //	var comment = request.body.comment;
-	console.log("challengeId......"+challengeId);
-	console.log("challengeId......"+commentId);
 	challengeService.deleteComment(challengeId,commentId,function(err,res){
 		if(err){
 			response.send("error");

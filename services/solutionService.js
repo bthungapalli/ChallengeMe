@@ -145,6 +145,30 @@ getSolutionsForChallenges:function(callbackForSolutionsCount){
 	});
 },
 
+updateComment:function(solutionId,commentId,comment,callbackForUpdateComment){
+	var conditions = { "_id":solutionId , "comments._id":commentId};
+	 var update = { $set: {"comments.$.comment" : comment,"comments.$.commentedDate":new Date()}};
+	 solutionModel.update(conditions, update, callback);
+	 
+	function callback (err, numAffected) {
+		if(err)
+			callbackForUpdateComment(err);
+		console.log(numAffected + "rows updates");
+		callbackForUpdateComment(null,numAffected);
+	};
+	
+},
+deleteComment:function(solutionId,commentId,callbackForDeleteComment){
+	solutionModel.update({"_id":solutionId},{$pull:{"comments" : {"_id":commentId}}}, callback);
+	 
+	function callback (err,numAffected) {
+		if(err)
+			callbackForDeleteComment(err,numAffected);
+		callbackForDeleteComment(null,numAffected);
+	};
+	
+}
+
 	
 }
 

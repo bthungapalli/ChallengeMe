@@ -15,7 +15,7 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 			appName : nconf.get("mail").appName,
 			contextPath : nconf.get("context").path
 		};
-	mailUtil.sendMail(nconf.get('mail').challengeMeSupport,nconf.get('mail').challengeMeSupport,subject,'ContactUs.html',context);
+	mailUtil.sendMail(nconf.get('mail').challengeMeSupport,nconf.get("smtpConfig").authUser,subject,'ContactUs.html',context);
 	response.send("Mail Sent.");
 });
 

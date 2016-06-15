@@ -14,21 +14,18 @@
 				  <div class="comment" ng-repeat="comment in challenge.comments">
 				    <div class="content">
 				      <a class="author">{{comment.userName}}</a>
-				      <div class="metadata">
 				        <span class="date">{{comment.commentedDate | dateFormat}}</span>
 				        <span ng-show="userDetails.emailId == comment.emailId">
-				         <button  style="padding-top: 8px;padding-left: 8px;padding-right: 5px;padding-bottom: 7px;margin-right: 0px;" ng-show="!isEdit{{challengeObj.index}}{{$index}}" ng-click="editComment(challengeObj,challenge,$index)" class="ui tiny primary button" ><i class="icon edit" style="margin-right: 0px;" ></i></button> 
-				       <button ng-show="isEdit{{challengeObj.index}}{{$index}}" style="padding-top: 8px;padding-left: 8px;padding-right: 5px;padding-bottom: 7px;margin-right: 0px;"  class="ui tiny positive button"   ng-click="updateChallengeComment(challengeObj,challenge,$index);">
+				         <button  style="padding-top: 8px;padding-left: 8px;padding-right: 5px;padding-bottom: 7px;margin-right: 0px;" ng-show="!isEdit{{challengeObj.index}}{{$index}}" ng-click="editComment(challengeObj,challenge,$index)" class="ui basic button" ><i class="write icon" style="margin-right: 0px;" ></i></button> 
+				       <button ng-show="isEdit{{challengeObj.index}}{{$index}}" style="padding-top: 8px;padding-left: 8px;padding-right: 5px;padding-bottom: 7px;margin-right: 0px;"  class="ui basic button"   ng-click="updateChallengeComment(challengeObj,challenge,$index);">
 					  <i class="checkmark icon" style="margin-right: 0px;" ></i> 
 				</button>
-				 <button style="padding-top: 8px;padding-left: 8px;padding-right: 5px;padding-bottom: 7px;margin-right: 0px;"  class="ui tiny negative button"   ng-click="deleteComment(challengeObj,challenge,$index);">
-					  <i class="remove icon" style="margin-right: 0px;" ></i> 
+				 <button style="padding-top: 8px;padding-left: 8px;padding-right: 5px;padding-bottom: 7px;margin-right: 0px;"  class="ui basic button"   ng-click="deleteComment(challengeObj,challenge,$index);">
+					  <i class="trash icon" style="margin-right: 0px;" ></i> 
 				</button>
 				
 				</span>
-				      </div>
-				      
-				      <div class="text" ng-show="!isEdit{{challengeObj.index}}{{$index}}">
+				      <div class="text" ng-show="!isEdit{{challengeObj.index}}{{$index}}" style="outline: none; white-space: pre-line; word-wrap: break-word;margin-top:-2%">
 				        {{comment.comment}}
 				      </div>
 				     
