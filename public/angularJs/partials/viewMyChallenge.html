@@ -1,6 +1,6 @@
 
 
-<div dw-loading="challenges" dw-loading-options="{text: loadingMessage}" style="font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;">
+<div dw-loading="challenges" dw-loading-options="{text: loadingMessage}" >
 <div  ng-if="errorMessage" class="ui red floating  message">
 <div class="header">
 {{errorMessage}}
@@ -122,11 +122,11 @@
 				</span>
 		</div>
 				<div class="two wide column" style="padding-top: 0px;">
-				<div class="ui teal large label" style="height: 40px;">
+				<div class="ui teal large label" style="height: 32px;min-width: 120px;">
 				  Notify Groups 
 		</div>
 		</div>
-			<div class="fourteen wide column" style="padding-top: 0px;padding-left: 0px;">
+			<div class="fourteen wide column" style="padding-top: 0px;padding-left: 5px;">
 				<div class="ui toggle checkbox" style="margin: 5px 0px;">
 					  <input id="All" type="checkbox" ng-checked="selectAllCategories();" disabled  ng-click="toggleAllSelection()"/>
 					  <label for="All" style="padding-left: 54px;padding-right: 20px;"><strong>All</strong></label>
@@ -162,7 +162,7 @@
 <div class="ui stackable grid"  ng-show="!edit" >
 
 <div class="sixteen wide column" style="padding-top: 0px;">
-<h3 style="font-family: Georgia;font-weight: 100;font-size: initial;" ng-bind-html="challenge.description | toTrustHtml"> </h3>
+<p class="siteFontFamily" ng-bind-html="challenge.description | toTrustHtml"> </p>
 </div>
 <div class="sixteen wide column">
 	<i class="tags icon" style="margin-right:0px;"></i><b>Tags:</b> {{challenge.tag}}

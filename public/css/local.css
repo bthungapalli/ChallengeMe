@@ -13,6 +13,24 @@
     background: teal;
 } */
 /*login html css  */
+
+
+.siteFontFamily{
+	font-family: 'NeueHaasGroteskText W01', Helvetica, Arial, sans-serif;
+}
+
+.sideMenuFontStyle{
+	font-size: 16px;font-weight: 400;font-style: normal;
+}
+
+
+.paddingForSideMenuText{
+	vertical-align: bottom;display: block;padding-top: 5px;padding-bottom: 5px;
+}
+
+.sideMenuBorderMarginStyle{
+ border-bottom:1px solid white;margin-left: 5px;cursor: pointer;padding-bottom: 0px;padding-top: 0px;
+}
 .boldText{
 	font-weight: bold;
 }
@@ -40,13 +58,13 @@
 }
  
 .sideMenu:hover{
-background-color: #1AAF98;
+background-color: #2e4356;
 border-radius: 5px;
 color:#ffffff !important;
 }
 
 .activeSideMenu{
-background-color: #1AAF98;
+background-color: #2e4356;
 border-radius: 5px;
 }
 
@@ -59,19 +77,24 @@ color:#ffffff !important;
 }
 
 .silver{
-color:#C6D1E6 ;
+color:#ffffff ;
 }
 
-.headerBackGround{
+.currentPageBackGround{
 background-color: #F7F7F7 !important;
 }
 
-.sideMenuBackGroundColor{
-background-color: #2E4356 !important;
+.headerBackGround{
+background-color: #00b3ac !important;
 }
+/*F7F7F7*/
+.sideMenuBackGroundColor{
+background-color: #00b3ac !important;
+}
+/*2E4356*/
 
 .sideMenuBackGround{
-background-color: #2E4356 !important;
+background-color: #00b3ac !important;
 padding-right: 0px !important;
 padding-top: 0px !important;
 	max-height:96vh;
@@ -81,7 +104,7 @@ overflow: auto;
 }
 
 .sideMenuBackGroundForShortMenu{
-background-color: #2E4356 !important;
+background-color: #00b3ac !important;
 padding-right: 0px !important;
 padding-top: 0px !important;
 	max-height:96vh;
@@ -111,7 +134,7 @@ text-align: center;
 }
 
 .historyFontColor{
-	color:#C6D1E6
+	color:#ffffff;
 }
 
 /* challenge html css  */

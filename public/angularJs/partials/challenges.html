@@ -2,7 +2,7 @@
 <div dw-loading="challenge" dw-loading-options="{text: loadingMessage}">
 
 
-<div class="ui grid" >
+<div class="ui grid siteFontFamily" >
 <div ng-show="currentTab==='allChallenges'" class="sixteen wide column" style="text-align: center;padding-top: 0px;padding-bottom: 0px;padding-left: 8%;padding-right: 0px;">Show List related to...</div>
 	<div  ng-hide="currentTab==='subcribedChallenges'" class="three wide column" style="padding-bottom: 0px;padding-left: 0px;padding-top: 0px;">
 				
@@ -81,7 +81,7 @@
 </div>
 </div>
 
-<div ng-show="challenges.length>0" class="ui grid"  ng-controller="viewChallengeController" style="font-family: Georgia;" dir-paginate="challengeObj in challenges|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage" >
+<div ng-show="challenges.length>0" class="ui grid siteFontFamily"  ng-controller="viewChallengeController"  dir-paginate="challengeObj in challenges|orderBy:sortKey:reverse|filter:search|itemsPerPage:itemsPerPage" >
 
 <div class="sixteen wide column challengeBgColor" style="border-bottom: 4px solid white;" >
 
@@ -91,7 +91,7 @@
 
 <div class="ui grid" ng-click="getChallenge(challengeObj);">  <img ng-hide="currentTab==='myChallenges'" class="ui tiny image" ng-src="{{challengeObj.profileImageOfChallengeOwner}}" style="position: absolute;width: 7%;height:100%;padding-left: 0px;padding-right: 0px;">
 <div class="twelve wide column" ng-style="{'padding-left': paddingLeft}" style="padding-bottom: 0px;padding-top: 5px;cursor: pointer;">
-<h3 style="font-family: Georgia;">{{challengeObj.title | camelCase}} <button type="submit" style="background-color: #2185d0 !important;border-radius: 30px;margin-left: 46px;" class="ui medium green label" ng-click="subcribeChallenge(challengeObj);"  type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') || (challengeObj.challengeStatus==='Closed') || challengeObj.learning || challengeObj.createdBy===userDetails.name">
+<h3 class="siteFontFamily">{{challengeObj.title | camelCase}} <button type="submit" style="background-color: #2185d0 !important;border-radius: 30px;margin-left: 46px;" class="ui medium green label" ng-click="subcribeChallenge(challengeObj);"  type="button" ng-hide="challengeObj.isSubcribed || (currentTab==='subcribedChallenges') || (challengeObj.challengeStatus==='Closed') || challengeObj.learning || challengeObj.createdBy===userDetails.name">
 			  	<i class="thumbs up icon" style="margin-right: 0px;"></i> Accept Challenge
 		</button></h3>
 </div>
@@ -145,7 +145,7 @@
 		</span>
 </div>
 
-<div class="sixteen wide column" ng-style="{'padding-left': paddingLeft}" style="padding-top: 0px;padding-bottom: 0px;font-family: Georgia;cursor: pointer;">
+<div class="sixteen wide column siteFontFamily" ng-style="{'padding-left': paddingLeft}" style="padding-top: 0px;padding-bottom: 0px;cursor: pointer;">
 	<span ng-bind="!challengeObj.anonymous?challengeObj.createdBy:'Anonymous'"> </span> <strong><i class="calendar green icon"></i></strong>{{challengeObj.created_at | dateFormat}}   <label ng-hide="challengeObj.learning"><strong>|</strong> solutions accepted untill <strong><i class="calendar red icon"></i></strong>{{challengeObj.date | dateFormat}}</label>
 				<span  ng-show="challengeObj.prize"><strong>| <i class=" large gift icon" style="line-height: inherit;"> </i></strong>Win :   {{challengeObj.prize}} </span>
 				<span ng-show="(currentTab==='myChallenges')" ng-hide="challengeObj.learning || challengeObj.status==='draft' || currentTab==='subcribedChallenges' ||(challengeObj.challengeStatus==='Open' && currentTab!=='myChallenges')"><strong >| </strong>({{challengeObj.solutionsCount}}) solutions</span> 
@@ -156,12 +156,12 @@
 
 </div>
 </div>
-<div class="sixteen wide column headerBackGround" ng-show="challengeObj.collapse" style="border-left: 2px solid teal;border-right: 2px solid teal;border-bottom: 2px solid teal;">
+<div class="sixteen wide column currentPageBackGround" ng-show="challengeObj.collapse" style="border-left: 2px solid teal;border-right: 2px solid teal;border-bottom: 2px solid teal;">
 
-<div  ng-include="challengeTemplate" style="font-family: Georgia;"></div>
-<div  ng-include="challengeCommentsTemplate" style="font-family: Georgia;"></div>
-<div style="font-family: Georgia;"  ng-show="((currentTab!=='allChallenges') || (currentTab!=='subcribedChallenges' && (challengeObj.challengeStatus==='Closed')))"  ng-include="solutionTemplateForView" ></div>
-<div style="font-family: Georgia;" ng-show="currentTab==='subcribedChallenges'" ng-include="solutionTemplate" ></div>
+<div  ng-include="challengeTemplate" ></div>
+<div  ng-include="challengeCommentsTemplate" ></div>
+<div   ng-show="((currentTab!=='allChallenges') || (currentTab!=='subcribedChallenges' && (challengeObj.challengeStatus==='Closed')))"  ng-include="solutionTemplateForView" ></div>
+<div  ng-show="currentTab==='subcribedChallenges'" ng-include="solutionTemplate" ></div>
 
 </div>
 

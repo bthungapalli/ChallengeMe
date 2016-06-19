@@ -6,7 +6,7 @@ angular.module("challengeMeApp").controller("mainController",["$scope","$http","
 	$rootScope.shortMenu=false;
 	 $scope.sideMenuClass="three wide column sideMenuBackGround";
 	 $scope.mainContentClass="thirteen wide column mainContentBackGround";
-	 $scope.myStyle="#f7f7f7";
+	 $scope.myStyle="#00b3ac";
 	$scope.getUserDetails=function(){
 		$http.get(challengeMeConstants.userDetails).success(function(response){
 			$rootScope.userDetails=response;
@@ -49,9 +49,9 @@ angular.module("challengeMeApp").controller("mainController",["$scope","$http","
 	 $scope.toggleSideMenu=function(){
 		 $scope.shortMenu=! $scope.shortMenu;
 		 if($scope.shortMenu){
-			 $scope.myStyle="darkgray";
+			 $scope.myStyle="#2e4356";
 		 }else{
-			 $scope.myStyle="#f7f7f7";
+			 $scope.myStyle="#00b3ac";
 		 }
 		 $scope.openCloseSideMenu( $scope.shortMenu,true);
 	 }

@@ -49,7 +49,8 @@ angular.module("challengeMeApp").controller("solutionController",["$scope","$htt
 					        "searchreplace visualblocks code fullscreen",
 					        "insertdatetime media table contextmenu paste textcolor colorpicker "
 					    ],
-					    toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image "
+					    fontsize_formats: "6pt 8pt 10pt 12pt 14pt 18pt 20pt 24pt 36pt",
+					    toolbar: "insertfile undo redo | styleselect | bold italic |sizeselect | fontselect |  fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image "
 				   });	
 
 			}

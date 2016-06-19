@@ -68,9 +68,9 @@ angular.module('challengeMeApp')
 					}else if(input==="contactUs"){
 						tabName="Contact Us";
 					}else if(input==="createChallenge"){
-						tabName="Post A Challenge";
+						tabName="Post Challenge";
 					}else if(input==="createLearning"){
-						tabName="Share A Learning";
+						tabName="Share Learning";
 					}else if(input==="profile"){
 						tabName="My Profile";
 					}else if(input==="faq"){
@@ -92,9 +92,9 @@ angular.module('challengeMeApp')
 				}else if(input==="contactUs"){
 					tabName="Feel free to Contact us";
 				}else if(input==="createChallenge"){
-					tabName="Post A Challenge";
+					tabName="Post Challenge";
 				}else if(input==="createLearning"){
-					tabName="Share A Learning";
+					tabName="Share Learning";
 				}else if(input==="profile"){
 					tabName="My Profile";
 				}else if(input==="faq"){
