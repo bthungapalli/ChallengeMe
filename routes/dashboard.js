@@ -67,7 +67,7 @@ var checkSession=require("../services/checkSessionService");
 			console.log("data::"+data.length);
 			
 			openedCount = _.filter(data, function(challenge){ 
-				return new Date(challenge.date).getTime() >= time;
+				return (new Date(challenge.date).getTime() >= time && challenge.explicitClose == false);
 			});
 			var closedCount = data.length - openedCount.length;
 			counts.push(openedCount.length);

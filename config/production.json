@@ -30,7 +30,7 @@
            "dashboard":"/dashboard"
    },
    "mail":{
-           "challengeMeSupport":"osiwizz-admin@osius.com",
+           "challengeMeSupport":"osiwizz-support@osius.com",
                 "subject":"[OSIWizz] ",
                 "appURL" : "https://osiwizz.osius.com",
                 "appName":"OSIWizz"
@@ -55,7 +55,7 @@
    },
    "AllHands":{
                   "emailId":"OSIIndia@osius.com , osi_philippines@osius.com",
-                  "flag":true
+                  "flag":false
           }
 
 }

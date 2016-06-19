@@ -25,6 +25,7 @@ angular.module("challengeMeApp").controller("challengesController",["$scope","$h
 			}else{
 				challenge.challengeStatus="Closed";
 				closedChallenges.push(challenge);
+				console.log(challenge);
 			}
 			if(challenge.learning){
 				challenge.challengeLearningStatus="Learning";

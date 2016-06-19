@@ -6,7 +6,7 @@ var mailUtil = function() {
 
 	return {
 		// create reusable transporter object using the default SMTP transport
-		sendMail : function(toEmail, fromEmail, subject, templateName,context) {
+		sendMail : function(toEmail, fromEmail, subject, templateName,context ,callback) {
 			var smtpConfig = {
 				host : nconf.get("smtpConfig").host,
 				port : nconf.get("smtpConfig").port,
@@ -17,7 +17,10 @@ var mailUtil = function() {
 			};
 			var transporter = nodemailer.createTransport(smtpConfig);
 			var templates = new EmailTemplates({
-				  root: path.resolve(__dirname+'/../templates/')
+				  root: path.resolve(__dirname+'/../templates/'),
+				  swig: {
+					    safe: true     // Don't cache swig templates 
+					  },
 			});
 			templates.render(templateName, context,
 					function(err,html,text) {
@@ -30,15 +33,13 @@ var mailUtil = function() {
 						},function(err,info){
 							if(err){
 								 console.log("Error occured in callback::",err)
+								 return callback(err);
 							}else{
-								 console.log("Info::",info.response);
+								 console.log("Mail Sent to ",info.accepted);
+								 return callback(null)
 							}
 						});
-						if(err){
-							return console.log("Error occured::",err)
-						}else{
-							return console.log("Sending Mail To::",toEmail);
-						}
+						
 					});
 
 		}

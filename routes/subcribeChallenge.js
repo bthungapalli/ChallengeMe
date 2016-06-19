@@ -23,7 +23,8 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 				challengeName : challenge.title,
 				user:user.name
 			};
-		mailUtil.sendMail(challenge.createdByEmailId,nconf.get('mail').challengeMeSupport,'Challenge Subscribed','Subscribe.html',context);*/
+		mailUtil.sendMail(challenge.createdByEmailId,nconf.get('mail').challengeMeSupport,'Challenge Subscribed','Subscribe.html',context ,function(err){
+				});*/
 		response.send(createdMsg);
 			}
 	});

@@ -86,7 +86,8 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 					appName : nconf.get("mail").appName,
 					contextPath : nconf.get("context").path
 				};
-			mailUtil.sendMail(_.uniq(ids),nconf.get("smtpConfig").authUser,subject,'Comments_Solutions.html',context);
+			mailUtil.sendMail(_.uniq(ids),nconf.get("smtpConfig").authUser,subject,'Comments_Solutions.html',context , function(err){
+			});
 			
 		}
 				response.json(solution);

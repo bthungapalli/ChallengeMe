@@ -75,9 +75,25 @@ router.get('/all/:challengeOrLearningOrBoth', checkSession.requireLogin, functio
 router.get('/challengeOrLearning/:learning/:allChallenges', checkSession.requireLogin, function(request,
 		response, next) {
 	challengeService.fetchChallengesOrLearning(request.params.learning,request.params.allChallenges,request.session.user,function(err, challenges) {
-		if (err)
+		if(err)
 			response.send("error");
-		response.send(challenges);
+		
+		solutionService.getSolutionsForChallenges(function(err,count){
+			if(err)
+			response.send("error");
+			
+			for( var challenge in challenges){
+				for(var id in count){
+					if(challenges[challenge]._id===count[id]._id){
+						console.log("Solution Count:::::"+count[id].count);
+						challenges[challenge].solutionsCount=count[id].count;
+					}
+				}
+			}
+			
+			response.send(challenges);
+		});
+		
 	});
 }); 
 router.post('/',checkSession.requireLogin,function (request,response,next){
@@ -130,7 +146,8 @@ router.post('/',checkSession.requireLogin,function (request,response,next){
 					};
 
 				if(ids.length>0 && !challenge.isCreated)
-				mailUtil.sendMail(ids,nconf.get("smtpConfig").authUser,subject,template,context);
+				mailUtil.sendMail(ids,nconf.get("smtpConfig").authUser,subject,template,context,function(err){
+				});
 				response.send("created");
 			 });
 			}else{
@@ -159,7 +176,6 @@ router.get('/categories/:challengeOrLearningOrBoth',checkSession.requireLogin,fu
 			solutionService.getSolutionsForChallenges(function(err,count){
 				if(err)
 				response.send("error");
-				
 				for( var challenge in challenges){
 					for( var id in challengeIds){
 						if(challengeIds[id].challengeId===challenges[challenge]._id){
@@ -359,7 +375,9 @@ router.post('/comment',checkSession.requireLogin,function (request,response,next
 						appName : nconf.get("mail").appName,
 						contextPath : nconf.get("context").path
 					};
-				mailUtil.sendMail(_.uniq(ids),nconf.get("smtpConfig").authUser,subject,'Comments_Challenges.html',context);
+				mailUtil.sendMail(_.uniq(ids),nconf.get("smtpConfig").authUser,subject,'Comments_Challenges.html',context , function(err){
+				});
+						
 				response.json(challenge);
 		
 	});

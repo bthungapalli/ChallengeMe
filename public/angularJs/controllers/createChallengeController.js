@@ -142,9 +142,10 @@ angular.module("challengeMeApp").controller("createChallengeController",["$scope
 					 plugins: [
 				        "advlist autolink lists link image charmap print preview anchor",
 				        "searchreplace visualblocks code fullscreen",
-				        "insertdatetime media table contextmenu paste textcolor colorpicker"
+				        "insertdatetime media table paste textcolor colorpicker"
 				    ],
-				    toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image ",
+				    toolbar: "sizeselect | bold italic | fontselect | fontsizeselect | insertfile undo redo | styleselect | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image ",
+				    fontsize_formats: "8px 10px 12px 14px 18px 24px 36px",
 				    browser_spellcheck: true,
 				    contextmenu: false
 			   });
