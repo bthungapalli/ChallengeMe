@@ -64,7 +64,7 @@ color:#ffffff !important;
 }
 
 .activeSideMenu{
-background-color: #2e4356;
+background-color: #00001a;
 border-radius: 5px;
 }
 
@@ -77,7 +77,7 @@ color:#ffffff !important;
 }
 
 .silver{
-color:#ffffff ;
+color:salmon ;
 }
 
 .currentPageBackGround{
@@ -85,16 +85,16 @@ background-color: #F7F7F7 !important;
 }
 
 .headerBackGround{
-background-color: #00b3ac !important;
+background-color: #00001a !important;
 }
 /*F7F7F7*/
 .sideMenuBackGroundColor{
-background-color: #00b3ac !important;
+background-color: #00001a !important;
 }
 /*2E4356*/
 
 .sideMenuBackGround{
-background-color: #00b3ac !important;
+background-color:#00001a  !important;
 padding-right: 0px !important;
 padding-top: 0px !important;
 	max-height:96vh;
@@ -104,7 +104,7 @@ overflow: auto;
 }
 
 .sideMenuBackGroundForShortMenu{
-background-color: #00b3ac !important;
+background-color: #00001a !important;
 padding-right: 0px !important;
 padding-top: 0px !important;
 	max-height:96vh;
@@ -237,3 +237,41 @@ left:20px;
   background-color:#f7f7f7;
   border-color: #ddd;
 }
+
+.ui.teal.label {
+    background-color: salmon !important;
+    border-color: salmon !important;
+    color: #00001a !important;
+	}
+	i.green.icon {
+    color: #00001a !important;
+	}
+	i.red.icon {
+    color: #fa8072 !important;
+	}
+	i.inverted.circular.teal.icon {
+    background-color: #fba69d !important;
+    color: #00001a !important;
+	}
+	.ui.positive.buttons .button, .ui.positive.button {
+    background-color: #fba69d;
+    color: #00001a;
+    }
+    .ui.positive.buttons .button:hover,
+	.ui.positive.button:hover {
+	  background-color: salmon;
+	  color: #00001a ;
+	  text-shadow: none;
+	}
+	.ui.positive.buttons .button:focus,
+	.ui.positive.button:focus {
+	  background-color: #fba69d;
+	  color: #00001a;
+	  text-shadow: none;
+	}
+	.ui.positive.buttons .button:active,
+	.ui.positive.button:active {
+	  background-color: #fba69d;
+	  color: #00001a;
+	  text-shadow: none;
+	}
