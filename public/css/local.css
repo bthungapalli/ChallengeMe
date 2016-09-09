@@ -254,24 +254,24 @@ left:20px;
     color: #00001a !important;
 	}
 	.ui.positive.buttons .button, .ui.positive.button {
-    background-color: #fba69d;
-    color: #00001a;
+    background-color: #fba69d !important;
+    color: #00001a !important;
     }
     .ui.positive.buttons .button:hover,
 	.ui.positive.button:hover {
-	  background-color: salmon;
-	  color: #00001a ;
+	  background-color: salmon !important;
+	  color: #00001a !important; 
 	  text-shadow: none;
 	}
 	.ui.positive.buttons .button:focus,
 	.ui.positive.button:focus {
-	  background-color: #fba69d;
-	  color: #00001a;
+	  background-color: #fba69d !important;
+	  color: #00001a !important;
 	  text-shadow: none;
 	}
 	.ui.positive.buttons .button:active,
 	.ui.positive.button:active {
-	  background-color: #fba69d;
-	  color: #00001a;
+	  background-color: #fba69d !important;
+	  color: #00001a !important;
 	  text-shadow: none;
 	}
