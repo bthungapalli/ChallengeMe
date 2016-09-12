@@ -162,7 +162,6 @@
 @bulletOpacity: 1;
 @bulletCharacter: '•';
 @bulletColor: inherit;
-@bulletLinkColor: @textColor;
 @bulletVerticalAlign: top;
 @bulletChildDistance: @bulletDistance;
 
@@ -184,7 +183,7 @@
 
 @orderedInvertedCountColor: @invertedLightTextColor;
 
-/* Horizontal Ordered */
+/* Horizontal Ordereded */
 @horizontalOrderedCountDistance: 0.5em;
 
 /* Divided */

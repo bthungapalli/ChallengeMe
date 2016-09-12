@@ -97,10 +97,6 @@
 @focusColor: @hoveredTextColor;
 @iconFocusOpacity: 0.85;
 
-/* Disabled */
-@disabledBackgroundImage: none;
-@disabledBoxShadow: none;
-
 /* Pressed Down */
 @downBackgroundColor: #BABBBC;
 @downBackgroundImage: '';
@@ -325,16 +321,6 @@
 @secondaryTextColor: @invertedTextColor;
 @secondaryTextShadow: @invertedTextShadow;
 @secondaryBoxShadow: @coloredBoxShadow;
-
-@positiveBackgroundImage: @coloredBackgroundImage;
-@positiveTextColor: @invertedTextColor;
-@positiveTextShadow: @invertedTextShadow;
-@positiveBoxShadow: @coloredBoxShadow;
-
-@negativeBackgroundImage: @coloredBackgroundImage;
-@negativeTextColor: @invertedTextColor;
-@negativeTextShadow: @invertedTextShadow;
-@negativeBoxShadow: @coloredBoxShadow;
 
 /* Compact */
 @compactVerticalPadding: (@verticalPadding * 0.75);

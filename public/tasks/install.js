@@ -191,22 +191,14 @@ if(manager.name == 'NPM') {
 
 gulp.task('run setup', function() {
 
-  // If auto-install is switched on, we skip the configuration section and simply reuse the configuration from semantic.json
-  if(install.shouldAutoInstall()) {
-    answers = {
-      overwrite : 'yes',
-      install   : 'auto',
-    };
-  }
-  else {
-    return gulp
-      .src('gulpfile.js')
-      .pipe(prompt.prompt(questions.setup, function(setupAnswers) {
-        // hoist
-        answers = setupAnswers;
-      }))
-    ;
-  }
+  return gulp
+    .src('gulpfile.js')
+    .pipe(prompt.prompt(questions.setup, function(setupAnswers) {
+      // hoist
+      answers = setupAnswers;
+    }))
+  ;
+
 });
 
 gulp.task('create install files', function(callback) {
@@ -219,13 +211,9 @@ gulp.task('create install files', function(callback) {
   if(answers.overwrite !== undefined && answers.overwrite == 'no') {
     return;
   }
+
   console.clear();
-  if(install.shouldAutoInstall()) {
-    console.log('Auto-Installing (Without User Interaction)');
-  }
-  else {
-    console.log('Installing');
-  }
+  console.log('Installing');
   console.log('------------------------------');
 
 
@@ -426,25 +414,17 @@ gulp.task('clean up install', function() {
     console.log('');
   }
 
-  // If auto-install is switched on, we skip the configuration section and simply build the dependencies
-  if(install.shouldAutoInstall()) {
-    return gulp.start('build');
-  }
-  else {
-    return gulp
-      .src('gulpfile.js')
-      .pipe(prompt.prompt(questions.cleanup, function(answers) {
-        if(answers.cleanup == 'yes') {
-          del(install.setupFiles);
-        }
-        if(answers.build == 'yes') {
-          gulp.start('build');
-        }
-      }))
-    ;
-  }
-
-
+  return gulp
+    .src('gulpfile.js')
+    .pipe(prompt.prompt(questions.cleanup, function(answers) {
+      if(answers.cleanup == 'yes') {
+        del(install.setupFiles);
+      }
+      if(answers.build == 'yes') {
+        gulp.start('build');
+      }
+    }))
+  ;
 });
 
 runSequence(

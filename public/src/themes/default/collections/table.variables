@@ -90,13 +90,8 @@
 @definitionFooterFontWeight: @definitionHeaderFontWeight;
 
 @definitionColumnBackground: @subtleTransparentBlack;
-@definitionColumnFontWeight: bold;
 @definitionColumnColor: @selectedTextColor;
-@definitionColumnFontSize: @relativeMedium;
-@definitionColumnTextTransform: '';
-@definitionColumnBoxShadow: '';
-@definitionColumnTextAlign: '';
-@definitionColumnHorizontalPadding: '';
+@definitionColumnFontWeight: bold;
 
 
 /*--------------

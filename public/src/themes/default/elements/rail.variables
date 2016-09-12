@@ -23,8 +23,8 @@
 @splitCloseDistance: (@closeDistance / 2);
 @splitVeryCloseDistance: (@veryCloseDistance / 2);
 
-@closeWidth: ~"calc("@width~" + "@splitCloseDistance~")";
-@veryCloseWidth: ~"calc("@width~" + "@splitVeryCloseDistance~")";
+@closeWidth: @width + @splitCloseDistance;
+@veryCloseWidth: @width + @splitVeryCloseDistance;
 
 /* Dividing */
 @dividingBorder: 1px solid @borderColor;

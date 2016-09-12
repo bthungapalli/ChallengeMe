@@ -52,9 +52,7 @@
    @cornerIconStroke  @cornerIconStroke 0 @black
 ;
 
-@mini: 0.4em;
-@tiny: 0.5em;
-@small: 0.75em;
+@small: @relativeSmall;
 @medium: 1em;
 @large: 1.5em;
 @big: 2em;

@@ -44,7 +44,6 @@
 /* Text */
 @textLineHeight: 1em;
 @textLineHeightOffset: (@textLineHeight - 1em);
-@textCursorSpacing: 1px;
 
 /* Menu Item */
 @itemFontSize: @medium;
@@ -132,7 +131,7 @@
 @selectionMinHeight: @inputLineHeight + (@selectionVerticalPadding * 2) - @selectionBorderEmWidth;
 @selectionBackground: @inputBackground;
 @selectionDisplay: inline-block;
-@selectionIconDistance: @inputHorizontalPadding + @glyphWidth;
+@selectionIconDistance: @inputHorizontalPadding + @glyphWidth + 0.5em;
 @selectionPadding: @selectionVerticalPadding @selectionIconDistance @selectionVerticalPadding @selectionHorizontalPadding;
 @selectionZIndex: 10;
 
@@ -148,7 +147,7 @@
 @selectionTextColor: @textColor;
 
 @selectionTextUnderlayIconOpacity: @disabledOpacity;
-@selectionTextUnderlayColor: @inputPlaceholderFocusColor;
+@selectionTextUnderlayColor: @unselectedTextColor;
 
 @selectionBoxShadow: none;
 @selectionBorderColor: @borderColor;
@@ -231,10 +230,10 @@
 @searchWidescreenMaxMenuHeight: @selectionWidescreenMaxMenuHeight;
 
 /* Inline */
-@inlineIconMargin: 0em @relative7px 0em @relative3px;
+@inlineIconMargin: 0em 0.5em 0em 0.25em;
 @inlineTextColor: inherit;
 @inlineTextFontWeight: bold;
-@inlineMenuDistance: @relative3px;
+@inlineMenuDistance: 0.25em;
 @inlineMenuBorderRadius: @borderRadius;
 
 
@@ -244,7 +243,7 @@
 
 /* Split Actual Padding Between Child and Parent (allows for label spacing) */
 @multipleSelectionVerticalPadding: (@searchSelectionVerticalPadding * (1/3));
-@multipleSelectionLeftPadding: @relative5px;
+@multipleSelectionLeftPadding: (@selectionHorizontalPadding - @labelHorizontalPadding);
 @multipleSelectionRightPadding: @selectionIconDistance;
 @multipleSelectionPadding: @multipleSelectionVerticalPadding @multipleSelectionRightPadding @multipleSelectionVerticalPadding @multipleSelectionLeftPadding;
 
@@ -252,19 +251,17 @@
 @multipleSelectionChildVerticalMargin: (@searchSelectionVerticalPadding * (2/3));
 @multipleSelectionChildLeftMargin: (@inputHorizontalPadding - @multipleSelectionLeftPadding);
 @multipleSelectionChildMargin: @multipleSelectionChildVerticalMargin 0em @multipleSelectionChildVerticalMargin @multipleSelectionChildLeftMargin;
-@multipleSelectionChildLineHeight: @relative17px;
+@multipleSelectionChildLineHeight: @searchSelectionLineHeight;
 @multipleSelectionSearchStartWidth: (@glyphWidth * 2);
 
 /* Dropdown Icon */
-@multipleSelectionDropdownIconMargin: '';
-@multipleSelectionDropdownIconPadding: '';
-
-@multipleSelectionSearchAfterLabelDistance: @relative2px;
+@multipleSelectionDropdownIconMargin: 0em -@labelHorizontalPadding 0em 0em;
+@multipleSelectionDropdownIconPadding: 0.5em;
 
 /* Selection Label */
 @labelSize: @relativeMedium;
 @labelHorizontalMargin: @4px;
-@labelVerticalMargin: @2px;
+@labelVerticalMargin: (@relative6px / 2);
 @labelMargin: @labelVerticalMargin @labelHorizontalMargin @labelVerticalMargin 0em;
 @labelBorderWidth: 1px;
 @labelBoxShadow: 0px 0px 0px @labelBorderWidth @borderColor inset;
@@ -283,8 +280,8 @@
 @hoveredZIndex: @menuZIndex + 2;
 
 /* Default Text */
-@defaultTextColor: @inputPlaceholderColor;
-@defaultTextFocusColor: @inputPlaceholderFocusColor;
+@defaultTextColor: rgba(179, 179, 179, 0.7);
+@defaultTextHoverColor: rgba(179, 179, 179, 0.7);
 
 /* Loading */
 @loadingZIndex: -1;
