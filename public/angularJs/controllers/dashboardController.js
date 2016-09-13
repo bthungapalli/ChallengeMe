@@ -102,7 +102,7 @@ angular.module("challengeMeApp").controller("dashboardController", function ($sc
 								 $scope.errorMessage=challengeMeConstants.errorMessage;
 							 }
 							$scope.redirectToLoginIfSessionExpires(response);
-							$scope.CLLabel = ['LEARNINGS', 'CHALLENGES'];
+							$scope.CLLabel = ['CHALLENGES','LEARNINGS'];
 							$scope.CLData = response[1];
 						})
 				.error(
